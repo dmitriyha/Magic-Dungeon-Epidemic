@@ -1,0 +1,13 @@
+#define GRID_WIDTH 50
+#define GRID_HEIGHT 50
+#define CAMERA_GRID_WIDTH 11
+#define CAMERA_GRID_HEIGHT 11
+#define WINDOW_WIDTH 939
+#define WINDOW_HEIGHT 713
+#define TILE_WIDTH 64
+#define TILE_HEIGHT 48
+#define MAX_ROOMS 25
+
+#define SND_FILENAME 0x20000
+#define SND_LOOP 8
+#define SND_ASYNC 1

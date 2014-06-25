@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Magic Dungeon Epidemic" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Magic Dungeon Epidemic" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Magic Dungeon Epidemic" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="include" />
+		</Compiler>
+		<Linker>
+			<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf" />
+			<Add option="-lfreetype -lz -lbz2" />
+			<Add option="-lgdi32 -lWinmm" />
+			<Add option="-lOle32 -lImm32 -lOleAut32 -lVersion" />
+		</Linker>
+		<Unit filename="include/ActorManager.h" />
+		<Unit filename="include/ArtificialIntelligence.h" />
+		<Unit filename="include/Battle.h" />
+		<Unit filename="include/CameraStruct.h" />
+		<Unit filename="include/Character.h" />
+		<Unit filename="include/Controls.h" />
+		<Unit filename="include/EnemyGen.h" />
+		<Unit filename="include/GlobalDef.h" />
+		<Unit filename="include/Inventory.h" />
+		<Unit filename="include/Item.h" />
+		<Unit filename="include/Map.h" />
+		<Unit filename="include/MapDataStructs.h" />
+		<Unit filename="include/PlaceItemsAndEnemies.h" />
+		<Unit filename="include/RNG.h" />
+		<Unit filename="include/ReadFile.h" />
+		<Unit filename="include/ReadString.h" />
+		<Unit filename="include/SDLHandler.h" />
+		<Unit filename="include/TextTexture.h" />
+		<Unit filename="include/Texture.h" />
+		<Unit filename="include/Window.h" />
+		<Unit filename="include/WriteFile.h" />
+		<Unit filename="include/camera.h" />
+		<Unit filename="include/enemy.h" />
+		<Unit filename="include/player.h" />
+		<Unit filename="include/sound_play.h" />
+		<Unit filename="src/ActorManager.cpp" />
+		<Unit filename="src/ArtificialIntelligence.cpp" />
+		<Unit filename="src/Battle.cpp" />
+		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/Controls.cpp" />
+		<Unit filename="src/EnemyGen.cpp" />
+		<Unit filename="src/Inventory.cpp" />
+		<Unit filename="src/Item.cpp" />
+		<Unit filename="src/Map.cpp" />
+		<Unit filename="src/PlaceItemsAndEnemies.cpp" />
+		<Unit filename="src/RNG.cpp" />
+		<Unit filename="src/ReadFile.cpp" />
+		<Unit filename="src/ReadString.cpp" />
+		<Unit filename="src/SDLHandler.cpp" />
+		<Unit filename="src/TextTexture.cpp" />
+		<Unit filename="src/Texture.cpp" />
+		<Unit filename="src/Window.cpp" />
+		<Unit filename="src/WriteFile.cpp" />
+		<Unit filename="src/camera.cpp" />
+		<Unit filename="src/enemy.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/player.cpp" />
+		<Unit filename="src/sound_play.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
