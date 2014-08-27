@@ -1,5 +1,12 @@
 #include "Window.h"
 
+/** \brief Sets up the window where the game will be displayed
+ *
+ * \param windowName The string which will be turned into the name of the window in the top left hand corner of it.
+ *
+ */     
+
+
 Window::Window(string windowName){
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
@@ -49,9 +56,22 @@ Window::Window(string windowName){
 	if( TTF_Init() == -1 ) { }
 }
 
+/** \brief Returns the object where we will blit everything
+ * 
+ * \return The object where we will blit everything
+ *
+ */     
+
+
 SDL_Renderer* Window::getRenderer(){
 	return renderer;
 }
+
+/** \brief SDL cleanup.
+ * 
+ *
+ */     
+
 
 Window::~Window(){
 	//Destroy window	

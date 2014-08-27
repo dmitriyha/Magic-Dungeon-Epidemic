@@ -4,7 +4,7 @@ ArtificialIntelligence::ArtificialIntelligence(){
 }
 
 int ArtificialIntelligence::direction(int* playerLoc,int* coord,EntityData liveEnteties,MapData mapLayer){
-	if(abs(playerLoc[0]-coord[0]) + abs(playerLoc[1]-coord[1])<=7){
+	if(abs(playerLoc[0]-coord[0]) + abs(playerLoc[1]-coord[1])<=7){//controls player visibility
 		int choice=rand.generate(1,2);
 		if (playerLoc[0]<coord[0]&&playerLoc[1]<coord[1] ){ //move diagonally towards palyer up and left
 			if(liveEnteties.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#' && choice == 1){//move left

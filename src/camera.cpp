@@ -1,5 +1,16 @@
 #include "camera.h"
 
+/** \brief Camera class constructor.
+ *
+ * This class is responsible for showing stuff on the screen
+ *
+ * \param _camData Pointer to CameraStruct, which holds all of the data of the logic
+ * \param _screen The surface where we will be blitting.
+ * 
+ *
+ */     
+
+
 Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	screen=_screen;
 	camData=_camData;
@@ -12,6 +23,8 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	item_surface = new Texture("img\\items.png",screen);
 	UI = new Texture("img\\userinterface.png",screen);
 	level_bar = new Texture("img\\level_bar.png",screen);
+	
+	
 	
 	SDL_Color color={0,0,0};
 	carbon18=new TextTexture ("img\\carbon.ttf",color,18,screen);//message
@@ -103,6 +116,12 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	//end preperation
 }
 
+/** \brief Shows the screen
+ *
+ *
+ */     
+
+
 void Camera::renderScreen(){
 	
 	print_dmg();
@@ -116,6 +135,12 @@ void Camera::renderScreen(){
 		game_over();
 	}
 }
+
+/** \brief the screen where enemies and the player is.
+ *
+ *
+ */     
+
 
 void Camera::renderAll(){
 	int x=camData->mapStruct.playerLoc[0]-5;
@@ -225,6 +250,11 @@ void Camera::renderAll(){
 	
 }
 
+/** \brief Renders the inventory screen
+ *
+ */     
+
+
 void Camera::inventoryRender(){
 	int place=0;
 	int invRow=0;
@@ -290,6 +320,12 @@ void Camera::inventoryRender(){
 	
 	
 }
+
+/** \brief Renders the user interface (the stuff around the main screen and inventory
+ *
+ *
+ */     
+
 
 void Camera:: user_interface(){
 	SDL_Rect offset1={0,0,0,0};
@@ -439,6 +475,12 @@ void Camera:: user_interface(){
 	}
 }
 
+/** \brief Prints the damage dealt on the screen.
+ * 
+ *
+ */     
+
+
 void Camera::print_dmg(){
 	string damage_text;
 	
@@ -463,6 +505,12 @@ void Camera::print_dmg(){
 	}
 	
 }
+
+/** \brief Called, should a game over state be reached
+ *
+ * 
+ *
+ */     
 
 void Camera::game_over(){
 	Texture t("img\\game_over.png",screen);

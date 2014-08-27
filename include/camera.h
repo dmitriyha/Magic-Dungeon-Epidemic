@@ -21,6 +21,7 @@ class Camera{
 	deque<SDL_Rect> itemTextures;
 	deque<int> item_number;
 	
+	///the textures
 	Texture* player;
 	Texture* enemy;
 	Texture* tile_set;
@@ -33,7 +34,7 @@ class Camera{
 	
 	TextTexture * carbon18;//message
 	
-	
+	///the floor sprite data
 	SDL_Rect floor;
 	SDL_Rect top_wall;
 	SDL_Rect top_left_corner;

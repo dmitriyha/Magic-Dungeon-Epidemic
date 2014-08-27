@@ -1,5 +1,6 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <iostream>
@@ -10,15 +11,19 @@ using namespace std;
 class Texture{
 	
 	public:
-		Texture();
 		Texture(string path,SDL_Renderer* screen);
 		void render( SDL_Rect offset );
 		void renderTile( SDL_Rect textureLoc,SDL_Rect renderQuad);
 		~Texture();
 	protected:
-		SDL_Texture* texture;
+		///The texture that will be blitted.
+		SDL_Texture* texture; 
+		///The screen that the texture will be blitted to.
 		SDL_Renderer* screen;
-		int width,height;
+		/// the width of the input picture.
+		int width;
+		/// the height of the input picture.
+		int height;
 		void free();
 	private:
 		

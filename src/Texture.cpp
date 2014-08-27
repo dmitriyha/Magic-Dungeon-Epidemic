@@ -1,7 +1,11 @@
 #include "Texture.h"
 
-Texture::Texture(){
-}
+/** \brief Creates a Texture with picture at given path.
+ *
+ * \param path The path of the target image to be loaded.
+ * \param _screen The top level screen that has to be acquired at the beginning of the program, where the texture will be blitted.
+ *
+ */     
 
 Texture::Texture(string path,SDL_Renderer* _screen){
 	screen=_screen;
@@ -34,12 +38,29 @@ Texture::Texture(string path,SDL_Renderer* _screen){
 	}
 }
 
+/** \brief Render this texture at the given location.
+ *
+ * \param offset The location where the texture will be blitted.
+ *
+ */     
+
+
 void Texture::render( SDL_Rect offset){
 	//Set rendering space and render to screen
 	offset.w =  width;
 	offset.h=height ;
 	SDL_RenderCopy( screen, texture, NULL, &offset );
 }
+
+/** \brief Use this for sprite textures
+ *
+ * Render the certain sprite tile in a certain location on the screen
+ *
+ * \param locOnSpriteSheet The top right corner location of the wanted sprite on the sprite sheet.
+ * \param location Where the sprite will be on the screen
+ *
+ */     
+
 
 void Texture::renderTile( SDL_Rect locOnSpriteSheet,SDL_Rect location ){
 	//Set rendering space and render to screen
@@ -49,6 +70,11 @@ void Texture::renderTile( SDL_Rect locOnSpriteSheet,SDL_Rect location ){
 	}
 	SDL_RenderCopy( screen, texture, &locOnSpriteSheet, &location );
 }
+
+/** \brief Frees the resources allocated to this Texture.
+ *
+ */     
+
 
 void Texture::free(){
 	if( texture != NULL ){

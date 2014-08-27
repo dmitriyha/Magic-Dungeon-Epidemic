@@ -1,6 +1,19 @@
 #include "TextTexture.h"
 
-TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Renderer* _screen):Texture(){
+/** \brief The constructor for TextTexture class. SubClass of Texture.
+ *
+ * \param _path The Path of the required texture.
+ *
+ * \param _textColor The required color for the texture.
+ *
+ * \param fontSize The size of this font texture.
+ *
+ * \param _screen The top level screen that has to be acquired at the beginning of the program, where the texture will be blitted.
+ * 
+ *
+ */     
+
+TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Renderer* _screen):Texture(path,screen){
 	path=_path;
 	screen=_screen;
 	texture = NULL;
@@ -17,6 +30,16 @@ TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Rend
 	}
 	
 }
+
+/** \brief Sets the text to be used for this texture Object.
+ *	
+ * If file not found, prints an error message on the console
+ *
+ * \param text The string that will be created as a texture.
+ *
+ * \return void
+ *
+ */     
 
 void TextTexture::setText(string text){
 	free();
@@ -42,6 +65,12 @@ void TextTexture::setText(string text){
 	SDL_FreeSurface( textSurf );
 	
 }
+
+/** \brief The destructor of the class. Frees the resources used in this class
+ *
+ *
+ */     
+
 
 TextTexture::~TextTexture()
 {
