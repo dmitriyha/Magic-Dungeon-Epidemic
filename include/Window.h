@@ -9,6 +9,9 @@
 #include "GlobalDef.h"
 using namespace std;
 
+/** \brief the Graphics engine
+ */     
+
 
 class Window{
 	bool success=false;

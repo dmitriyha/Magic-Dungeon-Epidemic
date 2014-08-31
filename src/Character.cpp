@@ -70,8 +70,8 @@ int Character::getID(){
 
 /** \brief lets the entity know where it is on the map
  *
- * \param the x cordinate on the map
- * \param the y coordinate on the map
+ * \param x the x cordinate on the map
+ * \param y the y coordinate on the map
  *
  */     
 

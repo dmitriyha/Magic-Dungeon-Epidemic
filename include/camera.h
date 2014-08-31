@@ -16,6 +16,10 @@
 #include "CameraStruct.h"
 using namespace std;
 
+/** \brief Where all the rendering happens
+ */     
+
+
 class Camera{
 	
 	deque<SDL_Rect> itemTextures;

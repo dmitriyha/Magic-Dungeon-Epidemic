@@ -9,6 +9,12 @@
 #include <cstring>
 using namespace std;
 
+/** \brief parses a csv file line
+ *
+ *
+ */     
+
+
 class ReadString{
 	
 public: 

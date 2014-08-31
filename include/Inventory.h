@@ -7,6 +7,10 @@
 #include"Item.h"
 using namespace std;
 
+/** \brief stores the data of, and co controls the inventory of the player
+ */     
+
+
 class Inventory{
 	///the list if items in the inventory
 	deque<Item> inventory;

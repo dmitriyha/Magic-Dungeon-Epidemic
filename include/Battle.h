@@ -8,6 +8,11 @@
 #include "Character.h"
 using namespace std;
 
+/** \brief Used by both the player and the enemies to do damage to one another
+ *
+ */     
+
+
 class Battle{
 	RNG random;
 public: 

@@ -6,6 +6,10 @@
 #include"ReadFile.h"
 using namespace std;
 
+/** \brief the item class, which has all the required data to function as an item
+ */     
+
+
 class Item{
 	///the armor or damage enhancement, based on item type
 	int itemStat;

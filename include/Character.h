@@ -4,6 +4,10 @@
 #include <iostream>
 using namespace std;
 
+/** \brief the base class of Player and Enemy
+ */     
+
+
 class Character{
 protected:
 	int health;

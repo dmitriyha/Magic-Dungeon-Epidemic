@@ -20,6 +20,12 @@
 #include "CameraStruct.h"
 using namespace std;
 
+/** \brief used to control the actors of the game
+ * 
+ *
+ */     
+
+
 class ActorManager{
 	///this is the struct that tracks the alive and dead entities
 	EntityData entityData[10];

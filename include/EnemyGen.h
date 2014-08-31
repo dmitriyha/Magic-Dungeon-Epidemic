@@ -7,6 +7,11 @@
 #include "enemy.h"
 using namespace std;
 
+/** \brief generates a list of enemies
+ *
+ */     
+
+
 class EnemyGen{
 	
 public:

@@ -9,7 +9,9 @@
 #include "MapDataStructs.h"
 using namespace std;
 
-   
+/** \brief generates a map and returns it with the getters
+ */     
+
 
 class Map{
 	/** \brief the struct used to help in the creation process of the map

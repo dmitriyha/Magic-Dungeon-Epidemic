@@ -5,6 +5,11 @@
 #include <iostream>
 using namespace std;
 
+
+/** \brief stores all what only the player requires
+ */     
+
+
 class Player : public Character{
 protected:
 	int xp=0;

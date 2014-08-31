@@ -10,6 +10,10 @@
 #include "ReadString.h"
 using namespace std;
 
+/** \brief Parses a csv file
+ */     
+
+
 class ReadFile{
 	string file;
 	int id;

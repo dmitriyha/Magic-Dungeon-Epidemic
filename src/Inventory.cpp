@@ -24,6 +24,7 @@ int Inventory::storeItem(Item item){//inventosy store function
 /** \brief Controls the inventory based on the specified mode at the specified cursor
  *
  * \param mode Mode 1 drops item, mode 2 equips and unequips items that are on, mode 3 uequips off hand weapon
+ * \param inventory_cursor the current cursor in the inventory
  * \return returns new inventory cursor
  *
  */     

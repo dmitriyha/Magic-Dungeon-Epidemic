@@ -11,6 +11,12 @@
 #include <iostream>
 #include "MapDataStructs.h"
 using namespace std;
+
+/** \brief places items and enemies on to the map
+ *
+ */     
+
+
 class PlaceItemsAndEnemies{
 	ItemData itemLayer;
 	EntityData entityData;

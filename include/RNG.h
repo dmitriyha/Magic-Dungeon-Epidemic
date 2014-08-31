@@ -6,6 +6,11 @@
 #include "GlobalDef.h"
 using namespace std;
 
+/** \brief generates a pseudo random number
+ *
+ */     
+
+
 class RNG{
 	bool first_run=true;
 public:

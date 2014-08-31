@@ -7,6 +7,10 @@
 #include "CameraStruct.h"
 using namespace std;
 
+/** \brief Handles all of the games controls and is the game way to the logic of the game
+ */     
+
+
 class Controls{
 	///show inventory or not
 	bool inventory=false;

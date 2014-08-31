@@ -6,6 +6,11 @@
 #include "MapDataStructs.h"
 using namespace std;
 
+/** \brief The class that decides which way the enemies move 
+ *
+ */     
+
+
 class ArtificialIntelligence{
 	RNG rand;
 public:

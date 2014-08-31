@@ -8,6 +8,10 @@
 #include "GlobalDef.h"
 using namespace std;
 
+/** \brief class used for showing images on the screen
+ */     
+
+
 class Texture{
 	
 	public:

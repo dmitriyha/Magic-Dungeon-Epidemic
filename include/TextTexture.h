@@ -6,6 +6,8 @@
 #include <SDL2/SDL_ttf.h>
 
 
+/** \brief class specifically for showing text on the screen
+ */     
 
 
 class TextTexture : public Texture{
