@@ -1,5 +1,12 @@
 #include "ActorManager.h"
 #include "CameraStruct.h"
+
+/** \brief The constructor for the class that controls all the actors in the game
+ *
+ *
+ */     
+
+
 ActorManager::ActorManager(){
 	//play->new sound_play ("music\\hit.wav");
 	player->set_stats(100,5,5,5,5,5,5,5,5,1);
@@ -18,6 +25,14 @@ ActorManager::ActorManager(){
 	}
 	
 }
+
+/** \brief Based on the direction selected, the player is moved to a new square, unless enemy encountered.
+ * 
+ * \param direction The integer number of the direction based on the num key pad
+ * \return Returns 1 if movement action was successful, 0 if that direction does not exist in the definition of the controls 
+ *
+ */     
+
 
 int ActorManager::playerMovement(int direction){
 	int *coord=player->getCoords();
@@ -91,6 +106,13 @@ int ActorManager::playerMovement(int direction){
 	return 1;
 }
 
+/** \brief Fights the enemy at given coordinates
+ *
+ * \param coord A 2 dimensional coordinate of which enemy to attack
+ *
+ */     
+
+
 void ActorManager::fightAndKillEnemy(int* coord){//player attack calculation function
 	player_damage = battle.Sword(player->Strength(),player->Dexterity(),player->Stamina(),inv->equippedList()[1].getItemStat()+inv->equippedList()[2].getItemStat(),0);
 	bool enemyAlive=enemy[dungeon_depth][entityData[dungeon_depth].live[coord[0]][coord[1]]].Health(player_damage);
@@ -105,6 +127,12 @@ void ActorManager::fightAndKillEnemy(int* coord){//player attack calculation fun
 	}
 }
 
+/** \brief Checks tile for items and puts it in the inventory
+ * 
+ *
+ */     
+
+
 void ActorManager::checkTileForItems(){//checks tile for items and picks up, if inventory not full
 	int *coord=player->getCoords();
 	while(!itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].empty()){
@@ -116,6 +144,11 @@ void ActorManager::checkTileForItems(){//checks tile for items and picks up, if 
 		}
 	}
 }
+
+/** \brief Controls the AI movement
+ * 
+ *
+ */   
 
 void ActorManager::AI(){//ai controller
 	int *playerLoc=player->getCoords();
@@ -159,9 +192,23 @@ void ActorManager::AI(){//ai controller
 	}
 }
 
+/** \brief Getter of the current inventory size
+ * 
+ * \return the size of the inventory
+ *
+ */     
+
+
 int ActorManager::get_inventory_size(){
 	return inv->getList().size();
 }
+
+/** \brief Removes an item from the inventory and places it on the current location of the player
+ *
+ * \param inventory_cursor the current cursor
+ * \return the new cursor, should there have been any change to it
+ *
+ */     
 
 
 int ActorManager::dropItem(int inventory_cursor){
@@ -173,15 +220,35 @@ int ActorManager::dropItem(int inventory_cursor){
 	return inventory_cursor;
 }
 
+/** \brief Takes the selected item and equps it
+ *
+ * \param inventory_cursor the current selection
+ * \return returns the new cursor number
+ *
+ */     
+
+
 int ActorManager::equipItem(int inventory_cursor){
 	inventory_cursor=inv->inventory_control(2,inventory_cursor);
 	return inventory_cursor;
 }
 
+/** \brief Removes secondary weapon and puts it int the place of the inventory_cursor
+ * 
+ * \param inventory_cursor the current selection
+ * \return returns the new cursor number
+ *
+ */     
+
+
 int ActorManager::remove_secondary_weapon(int inventory_cursor){
 	inventory_cursor=inv->inventory_control(3,inventory_cursor);
 	return inventory_cursor;
 }
+
+/** \brief Generates a level.
+ * 
+ */     
 
 void ActorManager::level_generator(){
 	int x=0,y=0;
@@ -222,6 +289,14 @@ void ActorManager::level_generator(){
 	mapTosend.stairsUp=stairs_up[dungeon_depth];
 }
 
+/** \brief Checks whether the player is alive
+ *
+ * 
+ * \return the boolean value of players state
+ *
+ */     
+
+
 bool ActorManager::check_player_death(){
 	if(kills == 50){
 		return false;
@@ -229,6 +304,12 @@ bool ActorManager::check_player_death(){
 	return player->Health(0);
 	
 }
+
+/** \brief Sets up and sends camera data pointers
+ *
+ * \return CameraStruct pointer object
+ *
+ */     
 
 
 CameraStruct* ActorManager::getData(){

@@ -1,5 +1,10 @@
 #include "Controls.h"
 
+/** \brief Constructs a class responsible for all of the controls of the game
+ *
+ */     
+
+
 Controls::Controls(){
 	
 	manage= new ActorManager();
@@ -7,6 +12,12 @@ Controls::Controls(){
 	cameraData->inventoryStruct.inventory_cursor=inventory_cursor;
 	cameraData->inventoryStruct.inventoryMode=inventory;
 }
+
+/** \brief the definition of all of the controls
+ *
+ * \param event the event struct 
+ *
+ */     
 
 void Controls::buttons(SDL_Event event){
 	int direction=0;
@@ -101,6 +112,11 @@ void Controls::buttons(SDL_Event event){
 	cameraData->inventoryStruct.inventoryMode=inventory;
 	
 }
+
+/** \brief CameraStruct getter
+ *
+ */     
+
 
 CameraStruct* Controls::getData(){
 	return cameraData;

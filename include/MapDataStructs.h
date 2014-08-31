@@ -4,17 +4,33 @@
 #include "Item.h"
 #include <deque>
 
+/** \brief contains the 2 dimensional data of the map, which has the floor and walls as its data set 
+ *
+ */     
+
 struct MapData{
+	///the map data set
 	char mapDim[GRID_WIDTH][GRID_HEIGHT];
 	
 };
+/** \brief Contains the data of where the life and the dead entities are for rendering purposes
+ *
+ */     
 
 struct EntityData{
+	///the 2D map of all the alive entities
 	int live[GRID_WIDTH][GRID_HEIGHT];
+	///the 2D map of all the dead entities
 	int dead[GRID_WIDTH][GRID_HEIGHT];
 };
 
+/** \brief contains the data of all the items on the map
+ *
+ */     
+
+
 struct ItemData{
+	///items that are found on the floor
 	deque <Item> itemDataMap[GRID_WIDTH][GRID_HEIGHT];
 };
 

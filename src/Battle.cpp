@@ -3,6 +3,22 @@
 Battle::Battle(){
 }
 
+/** \brief For now, only the sword method is being used, regardless of the weapon
+ *	
+ *  The primary attribute goes as it it towards the dice, 
+ *  the secondary is divided by 5,
+ *  and the tertiary by 15.
+ *  Once that is done the, armor_deduction is still deducted from the sides of the dice.
+ * 
+ *
+ * \param strength The primary attribute
+ * \param dexterity The secondary attribute
+ * \param stamina The tertiary attribute
+ * \param dmg_nhancement The amount the maximum and minimum damage are increased by
+ * \param armor_deduction The penalty the dice suffers
+ * \return the calculated damage 
+ *
+ */     
 // all of these are the same, but act as hints for the programmer 
 int Battle::Sword(int strength, int dexterity, int stamina, int dmg_nhancement, int armor_deduction){
 	int dice=strength+(dexterity/5)+(stamina/15)-armor_deduction;					//the primary secondary and tertiary traits for this attack determine the max possible roll

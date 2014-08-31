@@ -3,6 +3,16 @@
 ReadFile::ReadFile(){
 }
 
+/** \brief Reads the given file until id, or EOF is reached
+ *
+ * \param file the file that needs to be read
+ * \param id the line you want to be read
+ * \param place the column to be read
+ * \return returns the string required from the file, "-1" in string form if EOF is reached, and "0" in string form if unable to open the file 
+ *
+ */     
+
+
 string ReadFile::readFile(string file, int id, int place){
 	int count;
 	string line;

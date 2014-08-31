@@ -1,5 +1,11 @@
 #include"Item.h"
 
+/** \brief Creates an Item of the ID specified in the item data sheet
+ *
+ * \param id the item that this Item object will be, as defined in the item_data.csv
+ */     
+
+
 Item::Item(int id){							//defines everything an item needs
 	ReadFile read;
 	ID=id;
@@ -29,22 +35,46 @@ Item::Item(int id){							//defines everything an item needs
 	}
 }
 
+/** \brief Gets the item ID, as defined in the item_data.csv
+ * 
+ * \return the ID of this Item object
+ */    
+
+
 int Item::getID(){
 	return ID;
 }
+
+/** \brief Gets the damage enhancement or armor, depending on the item type
+ * 
+ * \return damage enhancement or armor, depending on the item type
+ */  
 
 int Item::getItemStat(){							
 	return itemStat;
 }
 
+/** \brief gets the name of the Item in string form
+ * 
+ * \return the name in string form
+ */  
+
 string Item::Name(){
 	return name;
 }
 
+/** \brief gets the description of the Item in string form
+ * 
+ * \return the description in string form
+ */  
 string Item::Descriprion(){
 	return description;
 }
 
+/** \brief gets the type(armor, sword,etc) of the Item in string form
+ * 
+ * \return the type in string form
+ */  
 string Item::getType(){
 	return type;
 }

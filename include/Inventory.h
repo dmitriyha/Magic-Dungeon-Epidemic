@@ -8,11 +8,17 @@
 using namespace std;
 
 class Inventory{
+	///the list if items in the inventory
 	deque<Item> inventory;
+	///the item in the main hand
 	Item main_hand=Item(0);
+	///the item in the off hand
 	Item off_hand=Item(0);
+	///the item on the chest
 	Item chest=Item(0);
+	///the item that was dropped
 	Item dropped_Item=Item(0);
+	///the current inventory place
 	int inventory_cursor = 1;
 	
 public:

@@ -6,6 +6,7 @@
 using namespace std;
 
 class Enemy : public Character{
+	///the level of the Enemy
 	int level;
 	
 	public:

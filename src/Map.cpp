@@ -1,5 +1,13 @@
 #include "Map.h"
 
+/** \brief The class that creates the map.
+ *	
+ *	the computation happens in the constructor
+ * 
+ * \param depth determines the type of stairs to put on the level
+ */     
+
+
 Map::Map(int depth){
 	int x=0,y=0;//map coordinates
 	int maxRoom=0;//maximum desired rooms
@@ -170,14 +178,32 @@ Map::Map(int depth){
 	}
 }
 
+/** \brief Gets a ready MapData object
+ *
+ * \return a ready MapData object
+ *
+ */     
+
 MapData Map::getMap (){;
 	return map;
 }
+
+/** \brief gets the location the up stairs in array form
+ *
+ * \return location of stairs in array form
+ *
+ */     
+
 
 int * Map::get_stairs_up(){
 	return stairs_up;
 }
 
+/** \brief gets the down location stairs in array form
+ *
+ * \return location of stairs in array form
+ *
+ */     
 int * Map::get_stairs_down(){
 	return stairs_down;
 }

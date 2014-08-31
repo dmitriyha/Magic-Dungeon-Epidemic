@@ -13,7 +13,7 @@
  *
  */     
 
-TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Renderer* _screen):Texture(path,screen){
+TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Renderer* _screen):Texture(){
 	path=_path;
 	screen=_screen;
 	texture = NULL;

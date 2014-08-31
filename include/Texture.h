@@ -11,6 +11,7 @@ using namespace std;
 class Texture{
 	
 	public:
+		Texture();
 		Texture(string path,SDL_Renderer* screen);
 		void render( SDL_Rect offset );
 		void renderTile( SDL_Rect textureLoc,SDL_Rect renderQuad);

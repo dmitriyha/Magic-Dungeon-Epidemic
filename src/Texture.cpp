@@ -1,4 +1,9 @@
 #include "Texture.h"
+/** \brief used for inheritance
+ *
+ */    
+Texture::Texture(){
+}
 
 /** \brief Creates a Texture with picture at given path.
  *

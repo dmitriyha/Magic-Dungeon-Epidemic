@@ -3,6 +3,14 @@
 Inventory::Inventory(){
 }
 
+/** \brief Stores the specified Item
+ *
+ * \param item the Item to be stored
+ * \return returns 1 if successful store, else returns 0
+ *
+ */     
+
+
 int Inventory::storeItem(Item item){//inventosy store function
 	if (inventory.size()<15){
 		inventory.push_back(item);//store items at the back of the list
@@ -12,6 +20,14 @@ int Inventory::storeItem(Item item){//inventosy store function
 		return 0;
 	}
 }
+
+/** \brief Controls the inventory based on the specified mode at the specified cursor
+ *
+ * \param mode Mode 1 drops item, mode 2 equips and unequips items that are on, mode 3 uequips off hand weapon
+ * \return returns new inventory cursor
+ *
+ */     
+
 
 int Inventory::inventory_control(int mode, int inventory_cursor){
 	int size=inventory.size();
@@ -100,20 +116,42 @@ int Inventory::inventory_control(int mode, int inventory_cursor){
 	return inventory_cursor;
 }
 
+/** \brief Removes the item in the specified slot
+ *
+ * \param remove the item in this slot
+ *
+ */     
+
 void Inventory::removeItem(int rmItem){
 	if(rmItem>0){
 		inventory.erase(inventory.begin()+(rmItem-1));//remove the specified item
 	}
 }
 
+/** \brief Returns the dropped Item.
+ * 
+ * \return the dropped item to put on the ground
+ *
+ */     
+
 Item Inventory::dropped_item(){
 	return dropped_Item;
 }
 
+/** \brief Returns the inventory list.
+ * 
+ * \return the inventory list.
+ *
+ */   
 deque<Item> Inventory::getList(){//returns list
 	return inventory;
 }
 
+/** \brief Returns the a list of equipped items.
+ * 
+ * \return list of equipped items.
+ *
+ */   
 deque<Item> Inventory::equippedList(){
 	deque<Item> list;
 	list.push_back(chest);

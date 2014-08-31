@@ -7,11 +7,17 @@
 using namespace std;
 
 class Item{
+	///the armor or damage enhancement, based on item type
 	int itemStat;
+	/// the item id of the item
 	int ID;
+	///the name of the item
 	string name;
+	/// the item description
 	string description;
+	///the maximum amount items of this type that can be stacked in the inventory
 	int maxStack;
+	///the type of the item
 	string type;
 public:
 	Item(int id);

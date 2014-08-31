@@ -1,5 +1,12 @@
 #include "player.h"
 
+/** \brief called on a death of a creature to calculate new xp
+ *
+ * \param creature_level the level of the creature that was killed
+ *
+ */     
+
+
 void Player::set_xp(int creature_level){
 	if (level == creature_level){
 		xp=xp+(10*level);
@@ -20,6 +27,12 @@ void Player::set_xp(int creature_level){
 	//cout<<"Level: "<<level<<endl<<"xp: "<<xp<<endl;
 }
 
+/** \brief returns the lvl progress in integer form
+ *
+ * \return the lvl progress in integer form
+ *
+ */     
+
 
 int Player::get_level_progress(){
 	float prog = ((float)xp / (float)next_level)*100;
@@ -27,6 +40,11 @@ int Player::get_level_progress(){
 	return progress;
 }
 
+/** \brief returns the lvl of the player
+ *
+ * \return the lvl of the player
+ *
+ */     
 int Player::get_level(){
 	return level;
 }

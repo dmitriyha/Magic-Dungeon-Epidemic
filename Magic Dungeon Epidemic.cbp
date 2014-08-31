@@ -58,7 +58,6 @@
 		<Unit filename="include/RNG.h" />
 		<Unit filename="include/ReadFile.h" />
 		<Unit filename="include/ReadString.h" />
-		<Unit filename="include/SDLHandler.h" />
 		<Unit filename="include/TextTexture.h" />
 		<Unit filename="include/Texture.h" />
 		<Unit filename="include/Window.h" />
@@ -80,7 +79,6 @@
 		<Unit filename="src/RNG.cpp" />
 		<Unit filename="src/ReadFile.cpp" />
 		<Unit filename="src/ReadString.cpp" />
-		<Unit filename="src/SDLHandler.cpp" />
 		<Unit filename="src/TextTexture.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Window.cpp" />

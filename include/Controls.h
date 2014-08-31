@@ -8,11 +8,15 @@
 using namespace std;
 
 class Controls{
+	///show inventory or not
 	bool inventory=false;
+	///the inventory cursor location tracker
 	int inventory_cursor=1;
+	///first run flag
 	bool first_run=true;
-	SDL_Surface * Screen;
+	///the logic of the game
 	ActorManager *manage;
+	///the camera data to be handled in Camera
 	CameraStruct* cameraData;
 public:
 	Controls();

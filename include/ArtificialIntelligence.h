@@ -10,7 +10,7 @@ class ArtificialIntelligence{
 	RNG rand;
 public:
 	ArtificialIntelligence();
-	int direction(int* PlayerLoc,int* coord,EntityData liveEnteties,MapData maplayer);
+	int direction(int* PlayerLoc,int* coord,EntityData liveEntities,MapData maplayer);
 	~ArtificialIntelligence();
 };
 

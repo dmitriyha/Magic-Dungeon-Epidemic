@@ -21,28 +21,48 @@
 using namespace std;
 
 class ActorManager{
+	///this is the struct that tracks the alive and dead entities
 	EntityData entityData[10];
+	///where the map data is stored
 	MapData mapLayer[10];
+	///the struct where items on the map are stored
 	ItemData itemLayer[10];
+	///the stairs that lead to an upper level of the dungeon
 	int stairs_up[10][2];
+	///the stairs that lead to an lower level of the dungeon
 	int stairs_down[10][2];
+	///the Player Object
 	Player *player=new Player();
+	///deque  that contains Enemy objects
 	deque<Enemy> enemy[10];
+	///the place where we will render
 	SDL_Renderer *screen;
+	///The object which decides how the enemies move
 	ArtificialIntelligence *npc=new ArtificialIntelligence();
+	///Inventory object
 	Inventory * inv = new Inventory();
+	/// Randomness generator
 	RNG random;
+	///the battle phase
 	Battle battle;
+	///current depth the player is on
 	int dungeon_depth = 0;
+	/// the deepest the player has been
 	int max_achieved_depth = 0;
+	///sound object
 	sound_play * play = new sound_play ("music\\hit.wav");
 	
+	///kills
 	int kills = 0;
 	
+	///the current level map data
 	MapStruct mapTosend;
+	///the inventory
 	InventoryStruct inventoryToSend;
+	///The user Interface where you can see the players stats
 	UserInterfaceStruct UIDataToSend;
 	
+	///The final data struct that will be sent to be processed by the camera class
 	CameraStruct finalCameraData;
 	
 	int player_damage;

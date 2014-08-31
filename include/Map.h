@@ -9,16 +9,27 @@
 #include "MapDataStructs.h"
 using namespace std;
 
-struct RoomDimension{
-	int locx;
-	int locy;
-	int roomx;
-	int roomy;
-	int midx;
-	int midy;
-};
+   
 
 class Map{
+	/** \brief the struct used to help in the creation process of the map
+	 *
+	 */  
+	struct RoomDimension{
+		///the X coord
+		int locx;
+		///the y coord
+		int locy;
+		///the x dimension
+		int roomx;
+		///the y dimension
+		int roomy;
+		/// the middle of the x dimension
+		int midx;
+		///the middle of the y dimension
+		int midy;
+	};
+	
 	MapData map;
 	int stairs_up[2];
 	int stairs_down[2];
