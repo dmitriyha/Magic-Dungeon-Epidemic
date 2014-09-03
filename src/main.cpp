@@ -24,9 +24,8 @@ int main(int argc, char* argv[]){
 		while(SDL_PollEvent( &event )){
 			switch (event.type){
 				case SDL_KEYDOWN:
-					SDL_SetRenderDrawColor( win.getRenderer(), 0xFF, 0xFF, 0xFF, 0xFF );
-					SDL_RenderClear( win.getRenderer() );
 					controls.buttons(event);
+					camera.clear_screen();
 					camera.renderScreen();
 					break;//end case SDL_KEYDOWN:
 				case SDL_QUIT:

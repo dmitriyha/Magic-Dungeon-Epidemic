@@ -518,6 +518,15 @@ void Camera::game_over(){
 	t.render(rect);
 }
 
+/** \brief clears screen in preparation for next frame
+ */     
+
+
+void Camera::clear_screen(){
+	SDL_SetRenderDrawColor( screen, 0xFF, 0xFF, 0xFF, 0xFF );
+	SDL_RenderClear( screen );
+}
+
 Camera::~Camera(){
 	delete player;
 	delete enemy;

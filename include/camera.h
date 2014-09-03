@@ -63,6 +63,7 @@ class Camera{
 	public:
 		Camera(CameraStruct* camData,SDL_Renderer* screen);
 		void renderScreen();
+		void clear_screen();
 		~Camera();
 	private:
 		void renderAll();

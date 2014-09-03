@@ -220,7 +220,7 @@ int ActorManager::dropItem(int inventory_cursor){
 	return inventory_cursor;
 }
 
-/** \brief Takes the selected item and equps it
+/** \brief Takes the selected item and equips it
  *
  * \param inventory_cursor the current selection
  * \return returns the new cursor number
