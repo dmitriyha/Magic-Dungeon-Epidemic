@@ -1,0 +1,448 @@
+# depslib dependency file v1.0
+1400936885 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\actormanager.cpp
+	"ActorManager.h"
+
+1400937101 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\actormanager.h
+	<iostream>
+	"GlobalDef.h"
+	<deque>
+	"EnemyGen.h"
+	"Battle.h"
+	"ArtificialIntelligence.h"
+	<windows.h>
+	"Map.h"
+	"camera.h"
+	"Item.h"
+	"Inventory.h"
+	"PlaceItemsAndEnemies.h"
+	"player.h"
+	"enemy.h"
+	"sound_play.h"
+
+1376742076 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\globaldef.h
+
+1377010746 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\enemygen.h
+	<iostream>
+	<deque>
+	"Character.h"
+	"enemy.h"
+
+1376997608 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\character.h
+	<iostream>
+
+1378467800 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\enemy.h
+	<iostream>
+	"Character.h"
+
+1377158720 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\battle.h
+	<iostream>
+	<cstdlib>
+	<chrono>
+	"RNG.h"
+	"Character.h"
+
+1372242904 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\rng.h
+	<chrono>
+	<cstdlib>
+	"GlobalDef.h"
+
+1374222040 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\artificialintelligence.h
+	<iostream>
+	"GlobalDef.h"
+	"RNG.h"
+
+1400627227 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\map.h
+	<iostream>
+	"GlobalDef.h"
+	<SDL2/SDL.h>
+	<deque>
+	"RNG.h"
+
+1400934155 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\camera.h
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_Image.h>
+	"GlobalDef.h"
+	<deque>
+	"Item.h"
+	"ReadFile.h"
+	<SDL2/SDL_ttf.h>
+	"player.h"
+
+1400627823 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\item.h
+	<iostream>
+	<SDL2/SDL.h>
+	"ReadFile.h"
+
+1368547956 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\readfile.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<cstring>
+	"ReadString.h"
+
+1371565932 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\readstring.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<string>
+	<cstring>
+
+1377162880 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\player.h
+	"Character.h"
+	<iostream>
+
+1400627880 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\inventory.h
+	<iostream>
+	<deque>
+	<SDL2/SDL.h>
+	"Item.h"
+
+1376994884 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\placeitemsandenemies.h
+	"RNG.h"
+	<deque>
+	"GlobalDef.h"
+	"RNG.h"
+	<deque>
+	"Item.h"
+	"Enemy.h"
+	<iostream>
+
+1377081572 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\sound_play.h
+	<iostream>
+	<windows.h>
+	<mmsystem.h>
+	<stdio.h>
+	<string>
+
+1377085000 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\artificialintelligence.cpp
+	"ArtificialIntelligence.h"
+
+1377159034 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\battle.cpp
+	"Battle.h"
+
+1400937973 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\camera.cpp
+	"camera.h"
+
+1375430914 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\character.cpp
+	"Character.h"
+	"GlobalDef.h"
+
+1400936882 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\controls.cpp
+	"Controls.h"
+
+1400934164 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\controls.h
+	<iostream>
+	<SDL2/SDL.h>
+	"ActorManager.h"
+
+1377009934 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\enemy.cpp
+	"enemy.h"
+
+1377013916 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\enemygen.cpp
+	"EnemyGen.h"
+
+1377159528 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\inventory.cpp
+	"Inventory.h"
+
+1376483134 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\item.cpp
+	"Item.h"
+
+1400936717 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\main.cpp
+	<iostream>
+	<SDL2/SDL.h>
+	"SDLHandler.h"
+	"Controls.h"
+
+1400934911 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\sdlhandler.h
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_Image.h>
+	<SDL2/SDL_ttf.h>
+	"GlobalDef.h"
+	"ReadFile.h"
+
+1376493554 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\map.cpp
+	"Map.h"
+
+1377014470 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\placeitemsandenemies.cpp
+	"PlaceItemsAndEnemies.h"
+
+1377163116 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\player.cpp
+	"player.h"
+
+1374661052 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\readfile.cpp
+	"ReadFile.h"
+
+1371568432 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\readstring.cpp
+	"ReadString.h"
+
+1377020764 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\rng.cpp
+	"RNG.h"
+
+1400936547 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\sdlhandler.cpp
+	"SDLHandler.h"
+
+1377081874 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\sound_play.cpp
+	"sound_play.h"
+
+1368210820 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\writefile.cpp
+	"WriteFile.h"
+
+1368548060 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\writefile.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<cstring>
+
+1409732654 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\actormanager.cpp
+	"ActorManager.h"
+	"CameraStruct.h"
+
+1409511605 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\actormanager.h
+	<iostream>
+	"GlobalDef.h"
+	<deque>
+	"EnemyGen.h"
+	"Battle.h"
+	"ArtificialIntelligence.h"
+	<windows.h>
+	"Map.h"
+	"camera.h"
+	"Item.h"
+	"Inventory.h"
+	"PlaceItemsAndEnemies.h"
+	"player.h"
+	"enemy.h"
+	"sound_play.h"
+	"MapDataStructs.h"
+	"CameraStruct.h"
+
+1409733715 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\globaldef.h
+
+1409511919 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\enemygen.h
+	<iostream>
+	<deque>
+	"Character.h"
+	"enemy.h"
+
+1409511820 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\character.h
+	<iostream>
+
+1409511891 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\enemy.h
+	<iostream>
+	"Character.h"
+
+1409511677 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\battle.h
+	<iostream>
+	<cstdlib>
+	<chrono>
+	"RNG.h"
+	"Character.h"
+
+1409512223 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\rng.h
+	<chrono>
+	<cstdlib>
+	"GlobalDef.h"
+
+1409511645 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\artificialintelligence.h
+	<iostream>
+	"GlobalDef.h"
+	"RNG.h"
+	"MapDataStructs.h"
+
+1409512048 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\map.h
+	<iostream>
+	"GlobalDef.h"
+	<SDL2/SDL.h>
+	<deque>
+	"RNG.h"
+	"MapDataStructs.h"
+
+1409744944 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\camera.h
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_Image.h>
+	"GlobalDef.h"
+	<deque>
+	"Item.h"
+	"ReadFile.h"
+	<SDL2/SDL_ttf.h>
+	"player.h"
+	"Texture.h"
+	"TextTexture.h"
+	"MapDataStructs.h"
+	"CameraStruct.h"
+
+1409512009 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\item.h
+	<iostream>
+	<SDL2/SDL.h>
+	"ReadFile.h"
+
+1409512164 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\readfile.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<cstring>
+	"ReadString.h"
+
+1409512189 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\readstring.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<string>
+	<cstring>
+
+1409512128 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\player.h
+	"Character.h"
+	<iostream>
+
+1409511962 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\inventory.h
+	<iostream>
+	<deque>
+	<SDL2/SDL.h>
+	"Item.h"
+
+1409512086 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\placeitemsandenemies.h
+	"RNG.h"
+	<deque>
+	"GlobalDef.h"
+	"RNG.h"
+	<deque>
+	"Item.h"
+	"Enemy.h"
+	<iostream>
+	"MapDataStructs.h"
+
+1377081572 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\sound_play.h
+	<iostream>
+	<windows.h>
+	<mmsystem.h>
+	<stdio.h>
+	<string>
+
+1409238543 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\artificialintelligence.cpp
+	"ArtificialIntelligence.h"
+
+1409239574 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\battle.cpp
+	"Battle.h"
+
+1409163942 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\camera.cpp
+	"camera.h"
+
+1409239844 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\character.cpp
+	"Character.h"
+	"GlobalDef.h"
+
+1409243211 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\controls.cpp
+	"Controls.h"
+
+1409511789 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\controls.h
+	<iostream>
+	<SDL2/SDL.h>
+	"ActorManager.h"
+	"CameraStruct.h"
+
+1409243630 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\enemy.cpp
+	"enemy.h"
+
+1409216535 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\enemygen.cpp
+	"EnemyGen.h"
+
+1409244506 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\inventory.cpp
+	"Inventory.h"
+
+1409245650 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\item.cpp
+	"Item.h"
+
+1409303762 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\map.cpp
+	"Map.h"
+
+1401142850 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\placeitemsandenemies.cpp
+	"PlaceItemsAndEnemies.h"
+
+1377163116 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\player.cpp
+	"player.h"
+
+1374661052 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\readfile.cpp
+	"ReadFile.h"
+
+1371568432 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\readstring.cpp
+	"ReadString.h"
+
+1377020764 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\rng.cpp
+	"RNG.h"
+
+1400936547 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\sdlhandler.cpp
+	"SDLHandler.h"
+
+1400934911 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\sdlhandler.h
+	<iostream>
+	<SDL2/SDL.h>
+	<SDL2/SDL_Image.h>
+	<SDL2/SDL_ttf.h>
+	"GlobalDef.h"
+	"ReadFile.h"
+
+1401024450 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\sound_play.cpp
+	"sound_play.h"
+
+1409305071 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\texture.cpp
+	"Texture.h"
+
+1409512286 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\texture.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<iostream>
+	<string>
+	"GlobalDef.h"
+
+1409164714 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\window.cpp
+	"Window.h"
+
+1409512347 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\window.h
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<iostream>
+	<stdlib.h>
+	<string>
+	"GlobalDef.h"
+
+1368210820 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\writefile.cpp
+	"WriteFile.h"
+
+1368548060 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\writefile.h
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<sstream>
+	<cstring>
+
+1409512260 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\texttexture.h
+	<Texture.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_ttf.h>
+
+1401143333 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\main.cpp
+	<iostream>
+	<SDL2/SDL.h>
+	"Window.h"
+	"Controls.h"
+	"camera.h"
+
+1409304965 source:c:\users\dima\documents\cbworkspace\magic dungeon epidemic\src\texttexture.cpp
+	"TextTexture.h"
+
+1409511001 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\camerastruct.h
+	"MapDataStructs.h"
+
+1409510455 c:\users\dima\documents\cbworkspace\magic dungeon epidemic\include\mapdatastructs.h
+	"Item.h"
+	<deque>
+
