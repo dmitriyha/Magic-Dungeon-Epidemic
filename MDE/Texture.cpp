@@ -52,8 +52,14 @@ Texture::Texture(string path,SDL_Renderer* _screen){
 
 void Texture::render( SDL_Rect offset){
 	//Set rendering space and render to screen
-	offset.w =  width;
-	offset.h=height ;
+	if (width > 70){
+		offset.w = width;
+		offset.h = height;
+	}
+	else{
+		offset.w = TILE_WIDTH;
+		offset.h = TILE_HEIGHT*2;
+	}
 	SDL_RenderCopy( screen, texture, NULL, &offset );
 }
 

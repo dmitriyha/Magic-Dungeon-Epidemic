@@ -46,11 +46,11 @@ class ActorManager{
 	///The object which decides how the enemies move
 	ArtificialIntelligence *npc=new ArtificialIntelligence();
 	///Inventory object
-	Inventory * inv = new Inventory();
+	//Inventory * inv = new Inventory();
 	/// Randomness generator
 	RNG random;
 	///the battle phase
-	Battle battle;
+	//Battle battle;
 	///current depth the player is on
 	int dungeon_depth = 0;
 	/// the deepest the player has been
@@ -77,6 +77,8 @@ public:
 	ActorManager();
 	int playerMovement(int direction);
 	void AI();
+	string getMainWeaponType();
+	bool rangedCombatCheck();
 	int dropItem(int inventory_cursor);
 	int get_inventory_size();
 	int equipItem(int cursor_position);
@@ -85,6 +87,7 @@ public:
 	CameraStruct* getData();
 	~ActorManager();
 private:
+	void rangedCombat(Enemy enemy);
 	void fightAndKillEnemy(int* coords);
 	void checkTileForItems();
 	void level_generator();

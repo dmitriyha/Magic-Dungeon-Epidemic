@@ -71,6 +71,10 @@ string Item::Descriprion(){
 	return description;
 }
 
+void Item::changeItemStat(int change){
+	itemStat = itemStat + change;
+}
+
 /** \brief gets the type(armor, sword,etc) of the Item in string form
  * 
  * \return the type in string form

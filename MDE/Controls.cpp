@@ -46,6 +46,13 @@ void Controls::buttons(SDL_Event event){
 				if (inventory){
 					inventory_cursor=manage->remove_secondary_weapon(inventory_cursor);
 				}
+				else{
+					if (manage->getMainWeaponType() == "bow"){
+						if (manage->rangedCombatCheck()){
+							manage->AI();//...move the enemies...
+						}
+					}
+				}
 				break;
 			case SDLK_DOWN: case SDLK_KP_2:
 				if (inventory){

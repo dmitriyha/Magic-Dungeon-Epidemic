@@ -110,7 +110,9 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 			itemTextures.push_back(temp_rect);		//...load the pictures specified and put them into a list for easy access
 			
 			cursor++;
+			cout << cursor << endl;
 		}
+		
 	}
 	//prepare the cursor with color keying
 	//end preperation
@@ -124,13 +126,14 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 
 void Camera::renderScreen(){
 	
-	print_dmg();
+	
 	if ( camData->inventoryStruct.inventoryMode == true){
 		inventoryRender();
 	}
 	else{renderAll();}
 	
 	user_interface();
+	print_dmg();
 	if(camData->userInterfaceStruct.player->Health()<=0){
 		game_over();
 	}
@@ -143,36 +146,38 @@ void Camera::renderScreen(){
 
 
 void Camera::renderAll(){
-	int x=camData->mapStruct.playerLoc[0]-5;
-	int y=camData->mapStruct.playerLoc[1]-5;
+	int x = camData->mapStruct.playerLoc[0] - (CAMERA_GRID_WIDTH / 2);
+	int y = camData->mapStruct.playerLoc[1] - (CAMERA_GRID_HEIGHT / 2);
 	SDL_Rect offset={0,0,0,0};
 	deque<Item> item;
 	
-	
+	cout << x << " " << y << endl;
 	
 	//the fillowing ifs keep the camera from going out of bounds
-	if (camData->mapStruct.playerLoc[0]<5){
+	if (camData->mapStruct.playerLoc[0]<((CAMERA_GRID_WIDTH / 2))){
 		x=0;
 	}
+
+	else if (camData->mapStruct.playerLoc[0] + ((CAMERA_GRID_WIDTH / 2) + 1) > GRID_WIDTH){
+		x = GRID_WIDTH - CAMERA_GRID_WIDTH;
+	}
 	
-	if (camData->mapStruct.playerLoc[1]<5){
+	if (camData->mapStruct.playerLoc[1]<((CAMERA_GRID_HEIGHT / 2))){
 		y=0;
 	}
 	
-	if(camData->mapStruct.playerLoc[0]+6 > GRID_WIDTH){
-		x=GRID_WIDTH-11;
-	}
 	
-	if(camData->mapStruct.playerLoc[1]+6 > GRID_HEIGHT){
-		y=GRID_HEIGHT-11;
+	
+	else if (camData->mapStruct.playerLoc[1] + ((CAMERA_GRID_HEIGHT / 2) + 1) > GRID_HEIGHT){
+		y = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
 	}
 	
 	int xCorner=x;
 	int yCorner=y;
 	
 	while(y<yCorner+CAMERA_GRID_HEIGHT){		//this renders onlt what is needed to be visible
-		offset.x = (x-xCorner)* TILE_WIDTH+70;		//places the picture in the right place
-		offset.y = (y-yCorner)* TILE_HEIGHT+50;
+		offset.x = (x-xCorner)* TILE_WIDTH;		//places the picture in the right place
+		offset.y = (y-yCorner)* TILE_HEIGHT;
 		
 		item = camData->mapStruct.itemData.itemDataMap[x][y];						//the deque at (x,y) is accessed
 		
@@ -231,11 +236,11 @@ void Camera::renderAll(){
 				}
 			}
 			if (camData->mapStruct.entityData.live[x][y]>1){											//renders live enteties
-				offset.y=offset.y-48;
+				offset.y=offset.y-TILE_HEIGHT;
 				enemy->render(offset);
 			}
 			else if (camData->mapStruct.entityData.live[x][y]==1){								//renders player
-				offset.y=offset.y-48;
+				offset.y = offset.y - TILE_HEIGHT;
 				player->render(offset);
 			}
 			x++;
@@ -279,6 +284,7 @@ void Camera::inventoryRender(){
 			offset.y = offset.y ;
 			invRow=0;
 		}
+		
 	}
 	
 	//cursor offset and placement
@@ -490,18 +496,20 @@ void Camera::print_dmg(){
 	offset1.y = 550;
 	
 	if (camData->userInterfaceStruct.playerDamage>0){
-		damage_text= "You dealt " + static_cast<ostringstream*>( &(ostringstream() << player) )->str();
+		damage_text= "You dealt " + static_cast<ostringstream*>( &(ostringstream() << camData->userInterfaceStruct.playerDamage) )->str();
 		carbon18->setText( damage_text);
 		carbon18->render(offset1);
+		camData->userInterfaceStruct.playerDamage = 0;
 	}
 	
 	offset1.x = 650;
 	offset1.y = 570;
 	
 	if (camData->userInterfaceStruct.enemyDamage>0){
-		damage_text= "Enemy dealt " + static_cast<ostringstream*>( &(ostringstream() << enemy) )->str();
+		damage_text = "Enemy dealt " + static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.enemyDamage))->str();
 		carbon18->setText( damage_text);
 		carbon18->render(offset1);
+		camData->userInterfaceStruct.enemyDamage = 0;
 	}
 	
 }

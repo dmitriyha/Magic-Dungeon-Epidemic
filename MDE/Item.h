@@ -26,6 +26,7 @@ class Item{
 public:
 	Item(int id);
 	int getItemStat();
+	void changeItemStat(int change);
 	string Name();
 	string Descriprion();
 	int getID();

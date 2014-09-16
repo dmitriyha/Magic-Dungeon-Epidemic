@@ -114,9 +114,10 @@ int ActorManager::playerMovement(int direction){
 
 
 void ActorManager::fightAndKillEnemy(int* coord){//player attack calculation function
-	player_damage = battle.Sword(player->Strength(),player->Dexterity(),player->Stamina(),inv->equippedList()[1].getItemStat()+inv->equippedList()[2].getItemStat(),0);
+	player_damage = player->fight(enemy[dungeon_depth][entityData[dungeon_depth].live[coord[0]][coord[1]]]);
 	bool enemyAlive=enemy[dungeon_depth][entityData[dungeon_depth].live[coord[0]][coord[1]]]->Health(player_damage);
-				
+	
+
 	if (!enemyAlive){
 		entityData[dungeon_depth].dead[coord[0]][coord[1]]=entityData[dungeon_depth].live[coord[0]][coord[1]];
 		entityData[dungeon_depth].live[coord[0]][coord[1]]=0;
@@ -136,7 +137,7 @@ void ActorManager::fightAndKillEnemy(int* coord){//player attack calculation fun
 void ActorManager::checkTileForItems(){//checks tile for items and picks up, if inventory not full
 	int *coord=player->getCoords();
 	while(!itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].empty()){
-		if(inv->storeItem(itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].front())==1){
+		if(player->getInventory()->storeItem(itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].front())==1){
 			itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].pop_front();
 		}
 		else{
@@ -182,7 +183,7 @@ void ActorManager::AI(){//ai controller
 			}
 			else if(direction==0){
 				play->play();
-				enemy_damage = battle.Sword(enemy[dungeon_depth][cursor]->Strength(),enemy[dungeon_depth][cursor]->Dexterity(),enemy[dungeon_depth][cursor]->Stamina(),1,inv->equippedList()[0].getItemStat());
+				enemy_damage = Battle::Sword(enemy[dungeon_depth][cursor]->Strength(),enemy[dungeon_depth][cursor]->Dexterity(),enemy[dungeon_depth][cursor]->Stamina(),1,player->getInventory()->equippedList()[0].getItemStat());
 				player->Health(enemy_damage);
 			}
 			else if(direction==-1){
@@ -190,6 +191,10 @@ void ActorManager::AI(){//ai controller
 		}
 		cursor++;
 	}
+}
+
+string ActorManager::getMainWeaponType(){
+	return player->getInventory()->equippedList().at(1).getType();
 }
 
 /** \brief Getter of the current inventory size
@@ -200,22 +205,28 @@ void ActorManager::AI(){//ai controller
 
 
 int ActorManager::get_inventory_size(){
-	return inv->getList().size();
+	return player->getInventory()->getList().size();
+}
+
+
+
+bool ActorManager::rangedCombatCheck(){
+
 }
 
 /** \brief Removes an item from the inventory and places it on the current location of the player
- *
- * \param inventory_cursor the current cursor
- * \return the new cursor, should there have been any change to it
- *
- */     
+*
+* \param inventory_cursor the current cursor
+* \return the new cursor, should there have been any change to it
+*
+*/
 
 
 int ActorManager::dropItem(int inventory_cursor){
 	int *coord=player->getCoords();
-	inventory_cursor=inv->inventory_control(1,inventory_cursor);
-	if (inv->dropped_item().getID() != 0){
-		itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].push_front(inv->dropped_item());
+	inventory_cursor=player->getInventory()->inventory_control(1,inventory_cursor);
+	if (player->getInventory()->dropped_item().getID() != 0){
+		itemLayer[dungeon_depth].itemDataMap[coord[0]][coord[1]].push_front(player->getInventory()->dropped_item());
 	}
 	return inventory_cursor;
 }
@@ -229,7 +240,7 @@ int ActorManager::dropItem(int inventory_cursor){
 
 
 int ActorManager::equipItem(int inventory_cursor){
-	inventory_cursor=inv->inventory_control(2,inventory_cursor);
+	inventory_cursor = player->getInventory()->inventory_control(2, inventory_cursor);
 	return inventory_cursor;
 }
 
@@ -244,7 +255,7 @@ int ActorManager::equipItem(int inventory_cursor){
 
 
 int ActorManager::remove_secondary_weapon(int inventory_cursor){
-	inventory_cursor=inv->inventory_control(3,inventory_cursor);
+	inventory_cursor = player->getInventory()->inventory_control(3, inventory_cursor);
 	return inventory_cursor;
 }
 
@@ -323,8 +334,8 @@ CameraStruct* ActorManager::getData(){
 	UIDataToSend.enemyDamage=enemy_damage;
 	UIDataToSend.playerDamage=player_damage;
 	
-	inventoryToSend.equippedItems=inv->equippedList();
-	inventoryToSend.inventory=inv->getList();
+	inventoryToSend.equippedItems = player->getInventory()->equippedList();
+	inventoryToSend.inventory = player->getInventory()->getList();
 	
 	finalCameraData.mapStruct=mapTosend;
 	finalCameraData.inventoryStruct=inventoryToSend;
@@ -343,6 +354,5 @@ ActorManager::~ActorManager(){
 	}
 
 	delete player;
-	delete inv;
 	delete npc;
 }

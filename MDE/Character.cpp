@@ -57,6 +57,10 @@ bool Character::Health(int damage){
 	}
 }
 
+int Character::fight(Character* character){
+	return 0;
+}
+
 /** \brief  id getter of the Character antity
  *
  * \return the ID of the entity

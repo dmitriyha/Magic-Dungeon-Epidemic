@@ -26,6 +26,7 @@ protected:
 public: 
 
 	
+	virtual int fight(Character * character);
 
 	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID);
 	

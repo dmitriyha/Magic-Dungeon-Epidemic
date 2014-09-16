@@ -1,6 +1,7 @@
 #include"Inventory.h"
 
 Inventory::Inventory(){
+
 }
 
 /** \brief Stores the specified Item

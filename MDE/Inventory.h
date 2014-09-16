@@ -15,7 +15,7 @@ class Inventory{
 	///the list if items in the inventory
 	deque<Item> inventory;
 	///the item in the main hand
-	Item main_hand=Item(0);
+	Item main_hand=Item(12);
 	///the item in the off hand
 	Item off_hand=Item(0);
 	///the item on the chest

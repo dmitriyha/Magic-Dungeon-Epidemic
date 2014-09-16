@@ -29,13 +29,35 @@ void  Player::set_stats(int healths, int strengths, int dexteritys, int witss, i
 	id = ID;
 }
 
+
+
+int Player::fight(Character* character){
+	int damage = 0;
+	if (inventory->equippedList().at(1).getType() == "sword"){
+		damage = Battle::Sword(strength, dexterity, stamina, (inventory->equippedList().at(1).getItemStat() + inventory->equippedList().at(2).getItemStat()), 0);
+		character->Health(damage);
+	}
+
+	else if (inventory->equippedList().at(1).getType() == "bow") {
+		damage = Battle::Bow(dexterity, awareness, luck, inventory->equippedList().at(1).getItemStat());
+		character->Health(damage);
+	}
+	else{
+		damage = Battle::Sword(strength, dexterity, stamina, 0, 0);
+		character->Health(damage);
+	}
+	return damage;
+}
+
+Inventory* Player::getInventory(){
+	return inventory;
+}
+
 /** \brief the getter of health
 *
 * \return the current health
 *
 */
-
-
 int  Player::Health(void){
 	return health;
 }
@@ -177,6 +199,7 @@ int  Player::Luck(){
 }
 
  Player::~ Player(){
+	 delete inventory;
 }
 
 
