@@ -1,0 +1,11 @@
+1,Rusty Sword.,A sword left in water for too long.,2,1,sword,0,0
+2,Rusty Mace.,Even the leather is rusty.,2,1,mace,64,0
+3,Dull Sword.,It has seen better days,4,1,sword,0,48
+4,Bent Mace.,That must have been one hell of a battle.,4,1,mace,64,48
+5,Iron Sword,Slice your enemies easily.,6,1,sword,0,96
+6,Iron Mace,Bash your enemies' skulls in.,6,1,mace,64,96
+7,Cloth.,Clothes made from regular cloth.,1,1,chest,64,144
+8,Leather.,Leather armor made from cow hides.,3,1,chest,128,144
+9,Copper Chainmail.,Chainmail made of copper.,5,1,chest,192,144
+10,Health potion.,Heals you For 10 HP.,10,5,health_potion,0,192
+11,Gold.,Shiny.,0,500,gold,64,192

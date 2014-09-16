@@ -1,0 +1,103 @@
+﻿Build started 9/12/2014 11:05:08 AM.
+     1>Project "C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\MDE\MDE.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Release\\" /Fd"x64\Release\vc120.pdb" /Gd /TP /errorReport:prompt ActorManager.cpp ArtificialIntelligence.cpp Battle.cpp camera.cpp Character.cpp Controls.cpp enemy.cpp EnemyGen.cpp Inventory.cpp Item.cpp main.cpp Map.cpp PlaceItemsAndEnemies.cpp player.cpp ReadFile.cpp ReadString.cpp RNG.cpp sound_play.cpp TextTexture.cpp Texture.cpp Window.cpp WriteFile.cpp
+         ActorManager.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+     1>ActorManager.cpp(155): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>ActorManager.cpp(203): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+         ArtificialIntelligence.cpp
+         Battle.cpp
+         camera.cpp
+     1>camera.cpp(225): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         Character.cpp
+         Controls.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+         enemy.cpp
+         EnemyGen.cpp
+         Inventory.cpp
+     1>Inventory.cpp(34): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         Item.cpp
+         main.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(20): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(21): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\GlobalDef.h(22): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+         Map.cpp
+         PlaceItemsAndEnemies.cpp
+         player.cpp
+     1>player.cpp(15): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>player.cpp(18): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>player.cpp(39): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         ReadFile.cpp
+         ReadString.cpp
+         RNG.cpp
+     1>RNG.cpp(10): warning C4244: 'argument' : conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+         sound_play.cpp
+         TextTexture.cpp
+         Texture.cpp
+         Compiling...
+         Window.cpp
+         WriteFile.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\x64\Release\MDE.exe" /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\x64\Release\MDE.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\x64\Release\MDE.lib" /MACHINE:X64 x64\Release\ActorManager.obj
+         x64\Release\ArtificialIntelligence.obj
+         x64\Release\Battle.obj
+         x64\Release\camera.obj
+         x64\Release\Character.obj
+         x64\Release\Controls.obj
+         x64\Release\enemy.obj
+         x64\Release\EnemyGen.obj
+         x64\Release\Inventory.obj
+         x64\Release\Item.obj
+         x64\Release\main.obj
+         x64\Release\Map.obj
+         x64\Release\PlaceItemsAndEnemies.obj
+         x64\Release\player.obj
+         x64\Release\ReadFile.obj
+         x64\Release\ReadString.obj
+         x64\Release\RNG.obj
+         x64\Release\sound_play.obj
+         x64\Release\TextTexture.obj
+         x64\Release\Texture.obj
+         x64\Release\Window.obj
+         x64\Release\WriteFile.obj
+         Generating code
+     1>c:\users\dima\documents\visual studio 2013\projects\mde\mde\readfile.cpp(48): warning C4715: 'ReadFile::readFile' : not all control paths return a value
+         Finished generating code
+         MDE.vcxproj -> C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\x64\Release\MDE.exe
+     1>Done Building Project "C:\Users\Dima\Documents\Visual Studio 2013\Projects\MDE\MDE\MDE.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.40
