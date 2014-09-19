@@ -1,8 +1,8 @@
 #include "Goblin.h"
 
 
-Goblin::Goblin()
-{
+Goblin::Goblin(){
+
 }
 
 
@@ -21,6 +21,10 @@ Goblin::Goblin()
 *
 */
 
+
+void Goblin::setPrimaryWeapon(Item* item){
+	weapon = item;
+}
 
 void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID){
 	health = healths;

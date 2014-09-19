@@ -43,6 +43,8 @@ int Player::fight(Character* character){
 		character->Health(damage);
 	}
 	else{
+
+
 		damage = Battle::Sword(strength, dexterity, stamina, 0, 0);
 		character->Health(damage);
 	}
@@ -51,6 +53,11 @@ int Player::fight(Character* character){
 
 Inventory* Player::getInventory(){
 	return inventory;
+}
+
+
+void Player::setPrimaryWeapon(Item item){
+	inventory->setPrimaryWeapon(item);
 }
 
 /** \brief the getter of health

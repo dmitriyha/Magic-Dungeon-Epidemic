@@ -43,6 +43,8 @@ public:
 	int Awareness();
 	int Luck();
 
+	void setPrimaryWeapon(Item item);
+
 	void set_xp(int creature_level);
 	int get_level_progress();
 	int get_level();

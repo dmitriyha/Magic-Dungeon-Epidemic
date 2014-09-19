@@ -1,9 +1,17 @@
 #include "enemy.h"
 
+Enemy::Enemy(){
+
+}
+
 /** \brief The Enemy level setter
  *
  *
  */     
+
+void Enemy::setPrimaryWeapon(Item* item){
+	weapon = item;
+}
 
 void Enemy::set_level(int lvl){
 	level=lvl;

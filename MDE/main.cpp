@@ -23,15 +23,15 @@ int main(int argc, char* argv[]){
 	while(quit==false){
 		while(SDL_PollEvent( &event )){
 			switch (event.type){
-				case SDL_KEYDOWN:
-					controls.buttons(event);
-					camera.clear_screen();
-					camera.renderScreen();
-					break;//end case SDL_KEYDOWN:
 				case SDL_QUIT:
 					quit = true;
 					break;
 			}//end switch (event.type)
+
+			controls.buttons(event);
+			camera.clear_screen();
+			camera.renderScreen();
+
 			SDL_RenderPresent( win.getRenderer() );
 		}//end while(SDL_PollEvent( &event ))
 	}//end while(quit==false)

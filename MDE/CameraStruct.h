@@ -58,6 +58,8 @@ struct CameraStruct{
 	MapStruct mapStruct;
 	InventoryStruct inventoryStruct;
 	UserInterfaceStruct userInterfaceStruct;
+	int leftCornerX;
+	int leftCornerY;
 };
 
 

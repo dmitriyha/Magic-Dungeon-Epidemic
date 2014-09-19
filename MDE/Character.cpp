@@ -181,5 +181,9 @@ int Character::Luck(){
 	return luck;
 }
 
+void Character::setPrimaryWeapon(Item item){
+
+}
+
 Character::~Character(){
 }

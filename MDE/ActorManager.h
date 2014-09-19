@@ -18,6 +18,7 @@
 #include "sound_play.h"
 #include "MapDataStructs.h"
 #include "CameraStruct.h"
+#include "BattleHandler.h"
 using namespace std;
 
 /** \brief used to control the actors of the game
@@ -78,7 +79,7 @@ public:
 	int playerMovement(int direction);
 	void AI();
 	string getMainWeaponType();
-	bool rangedCombatCheck();
+	void rangedCombat(int x, int y);
 	int dropItem(int inventory_cursor);
 	int get_inventory_size();
 	int equipItem(int cursor_position);
@@ -87,7 +88,6 @@ public:
 	CameraStruct* getData();
 	~ActorManager();
 private:
-	void rangedCombat(Enemy enemy);
 	void fightAndKillEnemy(int* coords);
 	void checkTileForItems();
 	void level_generator();

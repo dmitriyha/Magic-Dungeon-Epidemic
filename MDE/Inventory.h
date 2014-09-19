@@ -15,7 +15,7 @@ class Inventory{
 	///the list if items in the inventory
 	deque<Item> inventory;
 	///the item in the main hand
-	Item main_hand=Item(12);
+	Item main_hand=Item(0);
 	///the item in the off hand
 	Item off_hand=Item(0);
 	///the item on the chest
@@ -32,6 +32,7 @@ public:
 	Item dropped_item();
 	deque<Item> getList();
 	deque<Item> equippedList();
+	void setPrimaryWeapon(Item item);
 	~Inventory();
 private:
 	void removeItem(int rmItem);

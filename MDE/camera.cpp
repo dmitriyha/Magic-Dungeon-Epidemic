@@ -110,7 +110,7 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 			itemTextures.push_back(temp_rect);		//...load the pictures specified and put them into a list for easy access
 			
 			cursor++;
-			cout << cursor << endl;
+			
 		}
 		
 	}
@@ -151,7 +151,7 @@ void Camera::renderAll(){
 	SDL_Rect offset={0,0,0,0};
 	deque<Item> item;
 	
-	cout << x << " " << y << endl;
+	//cout << x << " " << y << endl;
 	
 	//the fillowing ifs keep the camera from going out of bounds
 	if (camData->mapStruct.playerLoc[0]<((CAMERA_GRID_WIDTH / 2))){
@@ -175,6 +175,9 @@ void Camera::renderAll(){
 	int xCorner=x;
 	int yCorner=y;
 	
+	camData->leftCornerX = xCorner;
+	camData->leftCornerY = yCorner;
+
 	while(y<yCorner+CAMERA_GRID_HEIGHT){		//this renders onlt what is needed to be visible
 		offset.x = (x-xCorner)* TILE_WIDTH;		//places the picture in the right place
 		offset.y = (y-yCorner)* TILE_HEIGHT;

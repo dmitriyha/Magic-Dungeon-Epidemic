@@ -3,7 +3,7 @@
 class Goblin :public Enemy
 {
 public:
-	Goblin();
+	Goblin(void);
 	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID);
 
 	int Health(void);
@@ -22,6 +22,8 @@ public:
 	int Charisma();
 	int Awareness();
 	int Luck();
+
+	void setPrimaryWeapon(Item* item);
 
 	void set_level(int level);
 	int get_level();

@@ -27,6 +27,9 @@ public:
 	void buttons(SDL_Event event);
 	CameraStruct* getData();
 	~Controls();
+private:
+	void keyboard(SDL_Event event);
+	void mouse(SDL_Event event);
 };
 
 #endif

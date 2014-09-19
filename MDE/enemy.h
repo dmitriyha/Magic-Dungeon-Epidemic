@@ -14,9 +14,11 @@ class Enemy : public Character{
 	protected:
 		///the level of the Enemy
 		int level;
+		Item *weapon=new Item(0);
 	
 	public:
-		//Enemy() : Character();
+		Enemy();
+		virtual void setPrimaryWeapon(Item* item);
 		virtual void set_level(int level);
 		virtual int get_level();
 		virtual ~Enemy();

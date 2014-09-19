@@ -11,7 +11,6 @@ Inventory::Inventory(){
  *
  */     
 
-
 int Inventory::storeItem(Item item){//inventosy store function
 	if (inventory.size()<15){
 		inventory.push_back(item);//store items at the back of the list
@@ -160,6 +159,11 @@ deque<Item> Inventory::equippedList(){
 	list.push_back(main_hand);
 	list.push_back(off_hand);
 	return list;
+}
+
+
+void Inventory::setPrimaryWeapon(Item item){
+	main_hand = item;
 }
 
 Inventory::~Inventory(){

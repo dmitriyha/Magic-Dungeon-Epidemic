@@ -22,6 +22,7 @@
     <ClCompile Include="ActorManager.cpp" />
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="BattleHandler.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="ActorManager.h" />
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="BattleHandler.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraStruct.h" />
     <ClInclude Include="Character.h" />

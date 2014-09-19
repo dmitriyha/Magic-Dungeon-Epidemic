@@ -45,7 +45,7 @@ int ActorManager::playerMovement(int direction){
 			}
 			else if(entityData[dungeon_depth].live[coord[0]][coord[1]+1]>0){
 				coord[1]=coord[1]+1;
-				this->fightAndKillEnemy(coord);
+				BattleHandler::handle(player, enemy[dungeon_depth].at(entityData[dungeon_depth].live[coord[0]][coord[1] + 1]));
 				coord[1]=coord[1]-1;
 			}
 			break;
@@ -57,7 +57,7 @@ int ActorManager::playerMovement(int direction){
 			}
 			else if(entityData[dungeon_depth].live[coord[0]-1][coord[1]]>0){
 				coord[0]=coord[0]-1;
-				this->fightAndKillEnemy(coord);
+				BattleHandler::handle(player, enemy[dungeon_depth].at(entityData[dungeon_depth].live[coord[0]][coord[1] + 1]));
 				coord[0]=coord[0]+1;
 			}
 			break;
@@ -69,7 +69,7 @@ int ActorManager::playerMovement(int direction){
 			}
 			else if(entityData[dungeon_depth].live[coord[0]+1][coord[1]]>0){
 				coord[0]=coord[0]+1;
-				this->fightAndKillEnemy(coord);
+				BattleHandler::handle(player, enemy[dungeon_depth].at(entityData[dungeon_depth].live[coord[0]][coord[1] + 1]));
 				coord[0]=coord[0]-1;
 			}
 			break;
@@ -81,7 +81,7 @@ int ActorManager::playerMovement(int direction){
 			}
 			else if(entityData[dungeon_depth].live[coord[0]][coord[1]-1]>0){
 				coord[1]=coord[1]-1;
-				this->fightAndKillEnemy(coord);
+				BattleHandler::handle(player, enemy[dungeon_depth].at(entityData[dungeon_depth].live[coord[0]][coord[1] + 1]));
 				coord[1]=coord[1]+1;
 			}
 			break;
@@ -208,10 +208,73 @@ int ActorManager::get_inventory_size(){
 	return player->getInventory()->getList().size();
 }
 
+/* \BRIEF RANGED COMBAT	
+*   may have bugs regarding the damage... investigate later
+*/
 
+//TODO fix possible bugs assosiated with this method!!!
 
-bool ActorManager::rangedCombatCheck(){
+void ActorManager::rangedCombat(int x,int y){
+	int* playerCoordinates = player->getCoords();
 
+	int clickX, clickY;
+
+	clickX = finalCameraData.leftCornerX + x;
+	clickY = finalCameraData.leftCornerY + y;
+
+	bool combatHappens = false;
+
+	if (entityData[dungeon_depth].live[clickX][clickY]>1){
+		int distanceX = playerCoordinates[0] - clickX;
+		int distanceY = playerCoordinates[1] - clickY;
+		if (distanceX >= -4 && distanceX <= 4 && distanceY == 0){
+			while (distanceX != 0){
+				if (mapLayer[dungeon_depth].mapDim[playerCoordinates[0] - distanceX][playerCoordinates[1]] != '#'){
+					if (distanceX<0){
+						distanceX++;
+					}
+					else{
+						distanceX--;
+					}
+					combatHappens = true;
+				}
+				else{
+					combatHappens = false;
+					cout << "wall encountered" << endl;
+					distanceX = 0;
+				}
+			}
+		}
+		else if (distanceX == 0 && distanceY <= 4 && distanceY >= -4){
+			while (distanceY != 0){
+				if (mapLayer[dungeon_depth].mapDim[playerCoordinates[0] ][playerCoordinates[1] - distanceY] != '#'){
+					if (distanceY<0){
+						distanceY++;
+					}
+					else{
+						distanceY--;
+					}
+					combatHappens = true;
+				}
+				else{
+					combatHappens = false;
+					cout << "wall encountered" << endl;
+					distanceY= 0;
+				}
+			}
+
+		}
+
+		if (combatHappens){
+			int enemyCoord[2] = {0};
+			enemyCoord[0] = clickX;
+			enemyCoord[1] = clickY;
+			fightAndKillEnemy(enemyCoord);
+		}
+
+	}
+
+	//return true;
 }
 
 /** \brief Removes an item from the inventory and places it on the current location of the player

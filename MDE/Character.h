@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include <iostream>
+#include "Item.h"
 using namespace std;
 
 /** \brief the base class of Player and Enemy
@@ -46,6 +47,8 @@ public:
 	virtual int Charisma();
 	virtual int Awareness();
 	virtual int Luck();
+
+	virtual void setPrimaryWeapon(Item item);
 	
 	virtual ~Character();
 };
