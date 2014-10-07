@@ -91,10 +91,149 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 	}
 }
 
+/* \BRIEF RANGED COMBAT
+*   may have bugs regarding the damage... investigate later
+*/
+
+//TODO fix possible bugs assosiated with this method!!!
+
+void PlayerManager::rangedCombat(int x, int y){
+	int* playerCoordinates = player->getCoords();
+
+	int clickX, clickY;
+
+	clickX = dataForManaging->leftCornerX + x;
+	clickY = dataForManaging->leftCornerY + y;
+
+	bool combatHappens = false;
+
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[clickX][clickY]>1){
+		int distanceX = playerCoordinates[0] - clickX;
+		int distanceY = playerCoordinates[1] - clickY;
+		if (distanceX >= -4 && distanceX <= 4 && distanceY == 0){
+			while (distanceX != 0){
+				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates[0] - distanceX][playerCoordinates[1]] != '#'){
+					if (distanceX<0){
+						distanceX++;
+					}
+					else{
+						distanceX--;
+					}
+					combatHappens = true;
+				}
+				else{
+					combatHappens = false;
+					cout << "wall encountered" << endl;
+					distanceX = 0;
+				}
+			}
+		}
+		else if (distanceX == 0 && distanceY <= 4 && distanceY >= -4){
+			while (distanceY != 0){
+				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates[0]][playerCoordinates[1] - distanceY] != '#'){
+					if (distanceY<0){
+						distanceY++;
+					}
+					else{
+						distanceY--;
+					}
+					combatHappens = true;
+				}
+				else{
+					combatHappens = false;
+					cout << "wall encountered" << endl;
+					distanceY = 0;
+				}
+			}
+
+		}
+
+		if (combatHappens){
+			int enemyCoord[2] = { 0 };
+			enemyCoord[0] = clickX;
+			enemyCoord[1] = clickY;
+			fightAndKillEnemy(enemyCoord);
+		}
+
+	}
+
+	//return true;
+}
+
+void PlayerManager::fightAndKillEnemy(int* coord){//player attack calculation function
+	dataForManaging->userInterfaceStruct.playerDamage = player->fight(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]]]);
+	bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]]]->Health(dataForManaging->userInterfaceStruct.playerDamage);
+
+
+	if (!enemyAlive){
+		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord[0]][coord[1]] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]];
+		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
+		player->set_xp(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord[0]][coord[1]]]->get_level());
+		if (dataForManaging->currentLevel == 2){
+			kills++;
+		}
+	}
+}
+
 void PlayerManager::setPlayerPointer(Player* _player){
 	player = _player;
 }
 
+string PlayerManager::getMainWeaponType(){
+	return player->getInventory()->equippedList().at(1).getType();
+}
+
+int PlayerManager::get_inventory_size(){
+	return player->getInventory()->getList().size();
+}
+
+
+int PlayerManager::dropItem(int inventory_cursor){
+	int *coord = player->getCoords();
+	inventory_cursor = player->getInventory()->inventory_control(1, inventory_cursor);
+	if (player->getInventory()->dropped_item().getID() != 0){
+		dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord[0]][coord[1]].push_front(player->getInventory()->dropped_item());
+	}
+	return inventory_cursor;
+}
+
+/** \brief Takes the selected item and equips it
+*
+* \param inventory_cursor the current selection
+* \return returns the new cursor number
+*
+*/
+
+
+int PlayerManager::equipItem(int inventory_cursor){
+	inventory_cursor = player->getInventory()->inventory_control(2, inventory_cursor);
+	return inventory_cursor;
+}
+
+
+
+/** \brief Removes secondary weapon and puts it int the place of the inventory_cursor
+*
+* \param inventory_cursor the current selection
+* \return returns the new cursor number
+*
+*/
+
+
+int PlayerManager::remove_secondary_weapon(int inventory_cursor){
+	inventory_cursor = player->getInventory()->inventory_control(3, inventory_cursor);
+	return inventory_cursor;
+}
+
+bool PlayerManager::check_player_death(){
+	if (kills == 50){
+		return false;
+	}
+	return player->Health(0);
+
+}
+
 PlayerManager::~PlayerManager()
 {
+	delete player;
 }

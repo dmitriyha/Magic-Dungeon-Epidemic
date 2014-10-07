@@ -1,7 +1,7 @@
-﻿Build started 10/7/2014 12:38:13 PM.
+﻿Build started 10/7/2014 2:48:58 PM.
      1>Project "C:\Users\Dima\Documents\GitHub\rogue\MDE\MDE.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ActorManager.cpp EnemyManager.cpp Manager.cpp camera.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ActorManager.cpp EnemyManager.cpp PlayerManager.cpp camera.cpp
          camera.cpp
      1>camera.cpp(149): error C2228: left of '.playerLoc' must have class/struct/union
                  type is 'MapStruct [3]'
@@ -67,8 +67,22 @@
      1>camera.cpp(245): error C2228: left of '.entityData' must have class/struct/union
                  type is 'MapStruct [3]'
      1>camera.cpp(245): error C2228: left of '.live' must have class/struct/union
-         Manager.cpp
+         PlayerManager.cpp
+     1>PlayerManager.cpp(187): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
          EnemyManager.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(24) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(23) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(22) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(22): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(23): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(24): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+     1>EnemyManager.cpp(10): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
          ActorManager.cpp
      1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
                  c:\users\dima\documents\github\rogue\mde\GlobalDef.h(24) : see previous definition of 'SND_ASYNC'
@@ -91,4 +105,4 @@
 
 Build FAILED.
 
-Time Elapsed 00:00:02.69
+Time Elapsed 00:00:04.56
