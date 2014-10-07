@@ -1,6 +1,7 @@
 #ifndef CAMERASTRUCT_H
 #define CAMERASTRUCT_H
 #include "MapDataStructs.h"
+#include "player.h"
 
 /** \brief contains the data required to render the map
  */     
@@ -55,11 +56,12 @@ struct UserInterfaceStruct{
 
 
 struct CameraStruct{
-	MapStruct mapStruct;
+	MapStruct mapStruct[MAX_DEPTH];
 	InventoryStruct inventoryStruct;
 	UserInterfaceStruct userInterfaceStruct;
 	int leftCornerX;
 	int leftCornerY;
+	int currentLevel;
 };
 
 
