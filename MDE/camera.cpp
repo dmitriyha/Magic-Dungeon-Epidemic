@@ -16,8 +16,10 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	camData=_camData;
 	
 	player=new Texture ("img\\char.png",screen);
-	enemy =new Texture("img\\enemy.png",screen);
-	tile_set =new Texture("img\\tile_set.png",screen);
+	//player = new Texture("img\\goblinsword.png", screen);
+	enemy =new Texture("img\\goblinsword.png",screen);
+	tile_set = new Texture("img\\wall.png", screen);
+	//tile_set =new Texture("img\\tile_set.png",screen);
 	inventoryBMP =new Texture("img\\inventory.png",screen);
 	curs = new Texture("img\\cursor.png",screen);
 	item_surface = new Texture("img\\items.png",screen);
@@ -89,6 +91,22 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	stairs_down.y=96;
 	stairs_down.w=64;
 	stairs_down.h=48;
+
+
+	//Player
+	enemylocation.x = 0;
+	enemylocation.y = 0;
+	enemylocation.w = 40;
+	enemylocation.h = 57;
+
+	/*playerlocation.x = 0;
+	playerlocation.y = 0;
+	playerlocation.w = 40;
+	playerlocation.h = 57;*/
+
+
+
+
 	//load all item textures
 	
 	ReadFile read;
@@ -227,7 +245,7 @@ void Camera::renderAll(){
 				}
 			}
 			if (camData->mapStruct.entityData.dead[x][y]>0){											//dead enteties are rendered
-				enemy->render(offset);
+				enemy->renderTile(enemylocation,offset);
 			}
 			if(!item.empty()){											//checks for whether the list is empty...
 				int cursor=item.size()-1;
@@ -239,12 +257,12 @@ void Camera::renderAll(){
 				}
 			}
 			if (camData->mapStruct.entityData.live[x][y]>1){											//renders live enteties
-				offset.y=offset.y-TILE_HEIGHT;
-				enemy->render(offset);
+				//offset.y=offset.y-TILE_HEIGHT;
+				enemy->renderTile(enemylocation,offset);
 			}
 			else if (camData->mapStruct.entityData.live[x][y]==1){								//renders player
-				offset.y = offset.y - TILE_HEIGHT;
-				player->render(offset);
+				
+				player->renderTile(playerlocation,offset);
 			}
 			x++;
 		}//end if(x<xCorner+CAMERA_GRID_WIDTH)
