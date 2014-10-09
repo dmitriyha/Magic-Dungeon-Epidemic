@@ -1,38 +1,9 @@
-﻿Build started 7.10.2014 12:37:04.
-     1>Project "C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\MDE\MDE.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt camera.cpp
-         camera.cpp
-     1>camera.cpp(251): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ActorManager.obj
-         x64\Debug\ArtificialIntelligence.obj
-         x64\Debug\Battle.obj
-         x64\Debug\BattleHandler.obj
-         x64\Debug\camera.obj
-         x64\Debug\Character.obj
-         x64\Debug\EnemyFactory.obj
-         x64\Debug\Controls.obj
-         x64\Debug\enemy.obj
-         x64\Debug\EnemyGen.obj
-         x64\Debug\Goblin.obj
-         x64\Debug\Inventory.obj
-         x64\Debug\Item.obj
-         x64\Debug\main.obj
-         x64\Debug\Map.obj
-         x64\Debug\PlaceItemsAndEnemies.obj
-         x64\Debug\player.obj
-         x64\Debug\ReadFile.obj
-         x64\Debug\ReadString.obj
-         x64\Debug\RNG.obj
-         x64\Debug\sound_play.obj
-         x64\Debug\TextTexture.obj
-         x64\Debug\Texture.obj
-         x64\Debug\Window.obj
-         x64\Debug\WriteFile.obj
-         MDE.vcxproj -> C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\x64\Debug\MDE.exe
-     1>Done Building Project "C:\Users\Joonas\Desktop\Magic-Dungeon-Epidemic-master\MDE\MDE.vcxproj" (Build target(s)).
+﻿Build started 7.10.2014 14:06:45.
+     1>Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         MDE.vcxproj -> C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe
+     1>Done Building Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.44
+Time Elapsed 00:00:00.19

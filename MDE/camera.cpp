@@ -15,8 +15,8 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	screen=_screen;
 	camData=_camData;
 	
-	player=new Texture ("img\\char.png",screen);
-	//player = new Texture("img\\goblinsword.png", screen);
+	//player=new Texture ("img\\char.png",screen);
+	player=new Texture("img\\player0.png", screen);
 	enemy =new Texture("img\\goblinsword.png",screen);
 	tile_set = new Texture("img\\wall.png", screen);
 	//tile_set =new Texture("img\\tile_set.png",screen);
@@ -25,7 +25,6 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	item_surface = new Texture("img\\items.png",screen);
 	UI = new Texture("img\\userinterface.png",screen);
 	level_bar = new Texture("img\\level_bar.png",screen);
-	
 	
 	
 	SDL_Color color={0,0,0};
@@ -99,10 +98,10 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	enemylocation.w = 40;
 	enemylocation.h = 57;
 
-	/*playerlocation.x = 0;
+	playerlocation.x = 0;
 	playerlocation.y = 0;
-	playerlocation.w = 40;
-	playerlocation.h = 57;*/
+	playerlocation.w = 48;
+	playerlocation.h = 58;
 
 
 
@@ -247,6 +246,8 @@ void Camera::renderAll(){
 			if (camData->mapStruct.entityData.dead[x][y]>0){											//dead enteties are rendered
 				enemy->renderTile(enemylocation,offset);
 			}
+			offset.w = TILE_WIDTH;
+			offset.h = TILE_HEIGHT;
 			if(!item.empty()){											//checks for whether the list is empty...
 				int cursor=item.size()-1;
 				while(cursor>=0){
@@ -256,12 +257,14 @@ void Camera::renderAll(){
 					
 				}
 			}
+			offset.w = TILE_WIDTH;
+			offset.h = TILE_HEIGHT * 2;
 			if (camData->mapStruct.entityData.live[x][y]>1){											//renders live enteties
-				//offset.y=offset.y-TILE_HEIGHT;
+				offset.y=offset.y-TILE_HEIGHT;
 				enemy->renderTile(enemylocation,offset);
 			}
 			else if (camData->mapStruct.entityData.live[x][y]==1){								//renders player
-				
+				offset.y = offset.y - TILE_HEIGHT;
 				player->renderTile(playerlocation,offset);
 			}
 			x++;
@@ -271,7 +274,6 @@ void Camera::renderAll(){
 			x=xCorner;
 		}
 	}//end while(y<yCorner+CAMERA_GRID_HEIGHT)
-	
 	
 	
 }
