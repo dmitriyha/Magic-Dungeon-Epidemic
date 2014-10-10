@@ -134,6 +134,15 @@ void Controls::mouse(SDL_Event event){
 		manage->rangedCombat(x / TILE_WIDTH, y / TILE_HEIGHT);
 
 	}
+	//If left mouse button is pressed and t is pressed. Then build a tower
+	if (event.button.button == SDL_BUTTON_LEFT && SDLK_t){
+		if (!inventory){
+			SDL_GetMouseState(&x, &y);
+			Building* tower = BuildingFactory::create_building("stonetower");
+			tower->set_stats(1, 1, 1, 1, 1, 1);
+			//delete npc;
+		}
+	}
 }
 
 /** \brief CameraStruct getter

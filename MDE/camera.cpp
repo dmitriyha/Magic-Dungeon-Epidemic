@@ -25,6 +25,7 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	item_surface = new Texture("img\\items.png",screen);
 	UI = new Texture("img\\userinterface.png",screen);
 	level_bar = new Texture("img\\level_bar.png",screen);
+	stoneTower = new Texture("img\\TowerStone.png", screen);
 	
 	
 	SDL_Color color={0,0,0};
@@ -92,16 +93,23 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	stairs_down.h=48;
 
 
-	//Player
+	//EnemyLocation
 	enemylocation.x = 0;
 	enemylocation.y = 0;
 	enemylocation.w = 40;
 	enemylocation.h = 57;
 
+	//Player
 	playerlocation.x = 0;
 	playerlocation.y = 0;
 	playerlocation.w = 48;
 	playerlocation.h = 58;
+
+	//Stonetower location
+	towerstonelocation.x = 0;
+	towerstonelocation.y = 0;
+	towerstonelocation.w = 115;
+	towerstonelocation.h = 177;
 
 
 

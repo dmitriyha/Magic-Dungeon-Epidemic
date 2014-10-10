@@ -23,6 +23,8 @@
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleHandler.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
@@ -40,6 +42,7 @@
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
     <ClCompile Include="sound_play.cpp" />
+    <ClCompile Include="StoneTower.cpp" />
     <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -50,6 +53,8 @@
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="CameraStruct.h" />
     <ClInclude Include="Character.h" />
@@ -69,6 +74,7 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
+    <ClInclude Include="StoneTower.h" />
     <ClInclude Include="TextTexture.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Window.h" />

@@ -13,15 +13,30 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Buildings">
+      <UniqueIdentifier>{4fad4f3e-735c-4ef7-8037-fc517c02f7f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies">
+      <UniqueIdentifier>{25f92083-37a0-4301-891c-ad7c0cf90ac0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Factories">
+      <UniqueIdentifier>{40668ea1-32ca-4a7c-894a-50f161fbd3f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Texture">
+      <UniqueIdentifier>{98f6db31-0404-4f96-a11e-66510a9cdccf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Battle">
+      <UniqueIdentifier>{94267863-e8a5-4103-bd5f-8838e5e21d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\File">
+      <UniqueIdentifier>{56ea7454-f6e5-4847-bf4b-44b7c0562e11}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActorManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ArtificialIntelligence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="camera.cpp">
@@ -57,22 +72,10 @@
     <ClCompile Include="player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ReadFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ReadString.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RNG.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sound_play.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
@@ -81,14 +84,38 @@
     <ClCompile Include="WriteFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StoneTower.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
     <ClCompile Include="Goblin.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingFactory.cpp">
+      <Filter>Source Files\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source Files\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextTexture.cpp">
+      <Filter>Source Files\Texture</Filter>
+    </ClCompile>
     <ClCompile Include="BattleHandler.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>Source Files\Battle</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadFile.cpp">
+      <Filter>Source Files\File</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadString.cpp">
+      <Filter>Source Files\File</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -96,9 +123,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArtificialIntelligence.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
@@ -140,22 +164,10 @@
     <ClInclude Include="player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ReadFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ReadString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RNG.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sound_play.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
@@ -164,14 +176,38 @@
     <ClInclude Include="WriteFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="StoneTower.h">
+      <Filter>Source Files\Buildings</Filter>
+    </ClInclude>
     <ClInclude Include="Goblin.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
+      <Filter>Source Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingFactory.h">
+      <Filter>Source Files\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextTexture.h">
+      <Filter>Source Files\Texture</Filter>
+    </ClInclude>
     <ClInclude Include="BattleHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>Source Files\Battle</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadFile.h">
+      <Filter>Source Files\File</Filter>
+    </ClInclude>
+    <ClInclude Include="ReadString.h">
+      <Filter>Source Files\File</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

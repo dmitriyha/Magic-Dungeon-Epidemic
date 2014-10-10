@@ -34,6 +34,7 @@ class Camera{
 	Texture* item_surface;
 	Texture* UI;
 	Texture* level_bar;
+	Texture* stoneTower;
 	
 	
 	TextTexture * carbon18;//message
@@ -54,6 +55,7 @@ class Camera{
 
 	SDL_Rect playerlocation;
 	SDL_Rect enemylocation;
+	SDL_Rect towerstonelocation;
 	
 	SDL_Renderer* screen;
 	CameraStruct* camData;
