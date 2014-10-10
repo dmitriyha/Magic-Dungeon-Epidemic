@@ -51,6 +51,9 @@ class Camera{
 	SDL_Rect blank;
 	SDL_Rect stairs_up;
 	SDL_Rect stairs_down;
+
+	SDL_Rect playerlocation;
+	SDL_Rect enemylocation;
 	
 	SDL_Renderer* screen;
 	CameraStruct* camData;

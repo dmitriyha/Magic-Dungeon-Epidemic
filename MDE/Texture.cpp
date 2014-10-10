@@ -77,7 +77,7 @@ void Texture::renderTile( SDL_Rect locOnSpriteSheet,SDL_Rect location ){
 	//Set rendering space and render to screen
 	if(location.w==0&&location.h==0){
 		location.w= TILE_WIDTH;
-		location.h= TILE_HEIGHT ;
+		location.h= TILE_HEIGHT;
 	}
 	SDL_RenderCopy( screen, texture, &locOnSpriteSheet, &location );
 }
