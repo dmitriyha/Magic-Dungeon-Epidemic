@@ -7,7 +7,8 @@
 
 Controls::Controls(){
 	
-	manage= new ActorManager();
+	managePlayer = new PlayerManager();
+	manageEnemies = new EnemyManager();
 	cameraData=manage->getData();
 	cameraData->inventoryStruct.inventory_cursor=inventory_cursor;
 	cameraData->inventoryStruct.inventoryMode=inventory;
@@ -21,7 +22,7 @@ Controls::Controls(){
 
 void Controls::buttons(SDL_Event event){
 	int direction=0;
-	int size = manage->get_inventory_size();
+	int size = managePlayer->get_inventory_size();
 	if (manage->check_player_death()  ){
 		if (event.type == SDL_KEYDOWN){
 			keyboard(event);
