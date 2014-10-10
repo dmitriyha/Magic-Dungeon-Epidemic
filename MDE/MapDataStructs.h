@@ -3,6 +3,8 @@
 
 #include "Item.h"
 #include <deque>
+#include "GlobalDef.h"
+#include "enemy.h"
 
 /** \brief contains the 2 dimensional data of the map, which has the floor and walls as its data set 
  *
@@ -22,6 +24,8 @@ struct EntityData{
 	int live[GRID_WIDTH][GRID_HEIGHT];
 	///the 2D map of all the dead entities
 	int dead[GRID_WIDTH][GRID_HEIGHT];
+	/// enemy deque
+	deque<Enemy*> enemy;
 };
 
 /** \brief contains the data of all the items on the map
