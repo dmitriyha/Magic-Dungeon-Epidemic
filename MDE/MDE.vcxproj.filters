@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActorManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ArtificialIntelligence.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,9 +98,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActorManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ArtificialIntelligence.h">
       <Filter>Header Files</Filter>
     </ClInclude>

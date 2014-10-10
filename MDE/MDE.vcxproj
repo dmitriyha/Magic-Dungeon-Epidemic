@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActorManager.cpp" />
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleHandler.cpp" />
@@ -49,7 +48,6 @@
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActorManager.h" />
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />

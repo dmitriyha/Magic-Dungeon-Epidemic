@@ -67,8 +67,7 @@ int PlayerManager::move(int direction){
 		dataForManaging->currentLevel++;
 		if (dataForManaging->currentLevel > max_achieved_depth){
 			max_achieved_depth++;
-			//TODO move the generater elsewhere
-			//this->level_generator();
+			generateMap();
 		}
 		player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[0], dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[1]);
 	}
@@ -231,6 +230,12 @@ bool PlayerManager::check_player_death(){
 	}
 	return player->Health(0);
 
+}
+
+void PlayerManager::generateMap(){
+	Map a(dataForManaging);
+	EnemyGen b(dataForManaging);
+	PlaceItemsAndEnemies c(dataForManaging);
 }
 
 PlayerManager::~PlayerManager()

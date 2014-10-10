@@ -1,7 +1,34 @@
 #include"EnemyGen.h"
 
 
-EnemyGen::EnemyGen(){
+EnemyGen::EnemyGen(CameraStruct* cam){  //generates 'enemies'amount of enemies and puts them into deque, after witch it is returned
+	int i;
+	int y = 5;
+	int enemies = MAX_ENEMIES;
+	vector<string> characters = getEnemyListForGeneration(cam->currentLevel);
+
+	//RNG random;
+	enemies = enemies + 2;
+	deque<Enemy*> enemy;
+	for (i = 0; i<enemies; i++){
+		if (i == 0 || i == 1){
+			Enemy* npc = EnemyFactory::create_enemy("goblin");
+			npc->set_stats(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			enemy.emplace(enemy.begin() + i, npc);
+			enemy[i]->setCoords(-10, -10);
+			//delete npc;
+		}
+		else{
+			Enemy* npc = EnemyFactory::create_enemy("goblin");
+			npc->set_stats(4 * cam->currentLevel, 5 * cam->currentLevel, 1, 1, 1, 1, 1, 1, 1, i);
+			npc->set_level(cam->currentLevel);
+			enemy.emplace(enemy.begin() + i, npc);
+			//delete npc;
+		}
+
+		y++;
+	}
+	cam->mapStruct[cam->currentLevel].entityData.enemy = enemy;
 }
 
 /** \brief This method is
@@ -11,36 +38,6 @@ EnemyGen::EnemyGen(){
  * \return returns the deque that contains Enemy objects.
  *
  */     
-
-
-deque<Enemy*> EnemyGen::Generate(int enemies, int depth){  //generates 'enemies'amount of enemies and puts them into deque, after witch it is returned
-	int i;
-	int y=5;
-	vector<string> characters= getEnemyListForGeneration(depth);
-	
-	//RNG random;
-	enemies=enemies+2;
-	deque<Enemy*> enemy;
-	for(i=0;i<enemies;i++){
-		if (i==0||i==1){
-			Enemy* npc = EnemyFactory::create_enemy("goblin");
-			npc->set_stats(0,0,0,0,0,0,0,0,0,0);
-			enemy.emplace(enemy.begin()+i,npc);
-			enemy[i]->setCoords(-10,-10);
-			//delete npc;
-		}
-		else{
-			Enemy* npc = EnemyFactory::create_enemy("goblin");
-			npc->set_stats(4*depth,5*depth,1,1,1,1,1,1,1,i);
-			npc->set_level(depth);
-			enemy.emplace(enemy.begin()+i,npc);
-			//delete npc;
-		}		
-		
-		y++;
-	}
-	return enemy;
-}
 
 vector<string> EnemyGen::getEnemyListForGeneration(int depth){
 	vector<string> characters;

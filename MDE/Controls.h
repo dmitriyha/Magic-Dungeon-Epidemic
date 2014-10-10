@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <SDL.h>
-#include "ActorManager.h"
 #include "CameraStruct.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"

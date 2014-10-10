@@ -2,6 +2,9 @@
 #include "Manager.h"
 #include "player.h"
 #include "GlobalDef.h"
+#include "PlaceItemsAndEnemies.h"
+#include "Map.h"
+#include "EnemyGen.h"
 #include <string>
 using namespace std;
 
@@ -23,6 +26,7 @@ public:
 	int equipItem(int inventory_cursor);
 	int remove_secondary_weapon(int inventory_cursor);
 	bool check_player_death();
+	void generateMap();
 	~PlayerManager();
 private:
 	void fightAndKillEnemy(int* coord);
