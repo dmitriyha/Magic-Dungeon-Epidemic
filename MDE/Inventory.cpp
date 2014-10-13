@@ -1,7 +1,9 @@
 #include"Inventory.h"
 
 Inventory::Inventory(){
-
+	inventory.push_back(Item(1));
+	inventory.push_back(Item(1));
+	inventory.push_back(Item(1));
 }
 
 /** \brief Stores the specified Item

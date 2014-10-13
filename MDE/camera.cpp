@@ -301,10 +301,10 @@ void Camera::inventoryRender(){
 		
 		place++;
 		invRow++;
-		offset.x = offset.x ;
+		offset.x = offset.x + 80;
 		if (invRow==3){
 			offset.x = 425;
-			offset.y = offset.y ;
+			offset.y = offset.y + 58;
 			invRow=0;
 		}
 		

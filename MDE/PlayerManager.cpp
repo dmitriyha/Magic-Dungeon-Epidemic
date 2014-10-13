@@ -179,6 +179,7 @@ void PlayerManager::setPlayerPointer(Player* _player){
 	player->set_stats(100,5,5,5,5,5,5,5,5,1);
 	dataForManaging->mapStruct[dataForManaging->currentLevel].playerLoc=player->getCoords();
 	dataForManaging->userInterfaceStruct.player = player;
+	
 }
 
 string PlayerManager::getMainWeaponType(){
@@ -189,6 +190,10 @@ int PlayerManager::get_inventory_size(){
 	return player->getInventory()->getList().size();
 }
 
+void PlayerManager::inventoryData(){
+	dataForManaging->inventoryStruct.inventory = player->getInventory()->getList();
+	dataForManaging->inventoryStruct.equippedItems = player->getInventory()->equippedList();
+}
 
 int PlayerManager::dropItem(int inventory_cursor){
 	int *coord = player->getCoords();

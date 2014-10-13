@@ -131,7 +131,7 @@ void Controls::keyboard(SDL_Event event){
 		}
 
 	}
-	
+	managePlayer->inventoryData();
 
 }
 

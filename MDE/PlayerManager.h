@@ -25,6 +25,7 @@ public:
 	int dropItem(int inventory_cursor);
 	int equipItem(int inventory_cursor);
 	int remove_secondary_weapon(int inventory_cursor);
+	void inventoryData();
 	bool check_player_death();
 	void generateMap();
 	Player* getPlayer();
