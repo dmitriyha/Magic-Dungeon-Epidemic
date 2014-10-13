@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include "EnemyFactory.h"
+#include "CameraStruct.h"
 using namespace std;
 
 /** \brief generates a list of enemies
@@ -18,8 +19,7 @@ using namespace std;
 class EnemyGen{
 	vector<string> getEnemyListForGeneration(int depth);
 public:
-	EnemyGen();
-	deque<Enemy*> Generate(int enemies,int level);
+	EnemyGen( CameraStruct* cam);
 	
 	~EnemyGen();
 };

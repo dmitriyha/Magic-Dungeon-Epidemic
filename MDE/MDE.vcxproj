@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ActorManager.cpp" />
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleHandler.cpp" />
@@ -31,13 +30,16 @@
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyGen.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="PlaceItemsAndEnemies.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="PlayerManager.cpp" />
     <ClCompile Include="ReadFile.cpp" />
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
@@ -49,7 +51,6 @@
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ActorManager.h" />
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />
@@ -62,14 +63,17 @@
     <ClInclude Include="Controls.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyGen.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GlobalDef.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDataStructs.h" />
     <ClInclude Include="PlaceItemsAndEnemies.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="ReadFile.h" />
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
