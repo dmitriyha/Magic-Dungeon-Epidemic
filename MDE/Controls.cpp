@@ -6,13 +6,17 @@
 
 
 Controls::Controls(){
-	
+	cameraData = new CameraStruct;
+	cameraData->currentLevel = 0;
 	managePlayer = new PlayerManager();
 	managePlayer -> setPointers(cameraData);
+	managePlayer->setPlayerPointer(new Player());
 	managePlayer->generateMap();
 	manageEnemies = new EnemyManager();
 	manageEnemies  -> setPointers(cameraData);
+	manageEnemies->setPlayerPointer(managePlayer->getPlayer());
 	//cameraData=manage->getData();
+	
 	cameraData->inventoryStruct.inventory_cursor=inventory_cursor;
 	cameraData->inventoryStruct.inventoryMode=inventory;
 }

@@ -176,6 +176,9 @@ void PlayerManager::fightAndKillEnemy(int* coord){//player attack calculation fu
 
 void PlayerManager::setPlayerPointer(Player* _player){
 	player = _player;
+	player->set_stats(100,5,5,5,5,5,5,5,5,1);
+	dataForManaging->mapStruct[dataForManaging->currentLevel].playerLoc=player->getCoords();
+	dataForManaging->userInterfaceStruct.player = player;
 }
 
 string PlayerManager::getMainWeaponType(){
@@ -233,9 +236,30 @@ bool PlayerManager::check_player_death(){
 }
 
 void PlayerManager::generateMap(){
-	Map a(dataForManaging);
+	RNG random;
+	
+	
+	
 	EnemyGen b(dataForManaging);
+	Map a(dataForManaging);
 	PlaceItemsAndEnemies c(dataForManaging);
+
+	bool placed = false;
+	while (!placed){
+		int x = random.generate(0, GRID_WIDTH);
+		int y = random.generate(0, GRID_HEIGHT);
+		if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] == '.'){
+			player->setCoords(x, y);
+			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] = 1;
+			placed = true;
+		}
+	}
+	
+	
+}
+
+Player* PlayerManager::getPlayer(){
+	return player;
 }
 
 PlayerManager::~PlayerManager()

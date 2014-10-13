@@ -5,7 +5,8 @@ EnemyGen::EnemyGen(CameraStruct* cam){  //generates 'enemies'amount of enemies a
 	int i;
 	int y = 5;
 	int enemies = MAX_ENEMIES;
-	vector<string> characters = getEnemyListForGeneration(cam->currentLevel);
+	int currentLevel = cam->currentLevel + 1;
+	vector<string> characters = getEnemyListForGeneration(currentLevel);
 
 	//RNG random;
 	enemies = enemies + 2;
@@ -20,8 +21,8 @@ EnemyGen::EnemyGen(CameraStruct* cam){  //generates 'enemies'amount of enemies a
 		}
 		else{
 			Enemy* npc = EnemyFactory::create_enemy("goblin");
-			npc->set_stats(4 * cam->currentLevel, 5 * cam->currentLevel, 1, 1, 1, 1, 1, 1, 1, i);
-			npc->set_level(cam->currentLevel);
+			npc->set_stats(4 * currentLevel, 5 * currentLevel, 1, 1, 1, 1, 1, 1, 1, i);
+			npc->set_level(currentLevel);
 			enemy.emplace(enemy.begin() + i, npc);
 			//delete npc;
 		}
