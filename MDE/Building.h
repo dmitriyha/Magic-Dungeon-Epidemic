@@ -31,7 +31,7 @@ public:
 	virtual ~Building();
 
 
-	virtual int fight(Building * Building);
+	//virtual int fight(Building * Building);
 
 	virtual void set_stats(int healths, int strengths, int damage, int accuracy, int lucks, int ID);
 

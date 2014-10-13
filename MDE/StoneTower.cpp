@@ -4,6 +4,20 @@
 StoneTower::StoneTower(){
 
 }
+
+
+/** \brief Sets Stonetowers stats
+*
+* \param health Stonetower's health
+* \param strength Stonetower's strength
+* \param damage Stonetower's damage
+* \param accuracy Stonetower's accuracy
+* \param luck Stonetower's luck
+* \param ID Stonetower's ID
+*
+* \return the current health
+*
+*/
 void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracys, int lucks, int ID){
 	health = healths;
 	strength = strengths;
@@ -40,7 +54,7 @@ bool  StoneTower::Health(int damage){
 	}
 }
 
-/** \brief  id getter of the  StoneTower antity
+/** \brief  id getter of the StoneTower entity
 *
 * \return the ID of the entity
 *
@@ -90,9 +104,9 @@ int  StoneTower::Strength(){
 }
 
 
-/** \brief Strength getter
+/** \brief Damage getter
 *
-* \return strength attribute
+* \return damage attribute
 *
 */
 int  StoneTower::Damage(){

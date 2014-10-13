@@ -4,14 +4,20 @@ Enemy::Enemy(){
 
 }
 
-/** \brief The Enemy level setter
- *
- *
- */     
+/** \brief The Enemy primary weapon setter
+*
+*
+*/
 
 void Enemy::setPrimaryWeapon(Item* item){
 	weapon = item;
 }
+
+/** \brief The Enemy level setter
+*
+*
+*/
+
 
 void Enemy::set_level(int lvl){
 	level=lvl;

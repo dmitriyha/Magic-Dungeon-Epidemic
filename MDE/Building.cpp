@@ -3,7 +3,11 @@
 Building::Building(){
 
 }
-
+/** \brief Sets building stats
+*
+* \return the current health
+*
+*/
 void  Building::set_stats(int healths, int strengths, int damages, int accuracys, int lucks, int ID){
 	health = healths;
 	strength = strengths;
@@ -26,7 +30,7 @@ int  Building::Health(void){
 
 /** \brief the damage function
 *
-* \return if the entity is alive, returns true, if dead, returns false
+* \return if the building is alive, returns true, if dead, returns false
 *
 */
 
@@ -40,7 +44,7 @@ bool  Building::Health(int damage){
 	}
 }
 
-/** \brief  id getter of the  Building antity
+/** \brief  id getter of the building
 *
 * \return the ID of the entity
 *
@@ -51,7 +55,7 @@ int  Building::getID(){
 	return id;
 }
 
-/** \brief lets the entity know where it is on the map
+/** \brief lets the building know where it is on the map
 *
 * \param x the x cordinate on the map
 * \param y the y coordinate on the map
@@ -64,7 +68,7 @@ void  Building::setCoords(int x, int y){
 	coord[1] = y;
 }
 
-/** \brief the coordinate getter of the entity
+/** \brief the coordinate getter of the building
 *
 * \return a 2 element array with x and y coordinates
 *

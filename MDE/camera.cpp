@@ -275,7 +275,10 @@ void Camera::renderAll(){
 				offset.y = offset.y - TILE_HEIGHT;
 				player->renderTile(playerlocation,offset);
 			}
+			//Tee tähän tower renderointi
+			
 			x++;
+
 		}//end if(x<xCorner+CAMERA_GRID_WIDTH)
 		if(x==xCorner+CAMERA_GRID_WIDTH){
 			y++;

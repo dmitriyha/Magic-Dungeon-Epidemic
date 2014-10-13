@@ -129,19 +129,38 @@ void Controls::keyboard(SDL_Event event){
 
 void Controls::mouse(SDL_Event event){
 	int x, y;
-	if (event.button.button == SDL_BUTTON_LEFT){
+	switch (event.button.button){
+
+	case SDL_BUTTON_LEFT:
+	//if (event.button.button == SDL_BUTTON_LEFT){
 		SDL_GetMouseState(&x, &y);
 		manage->rangedCombat(x / TILE_WIDTH, y / TILE_HEIGHT);
 
-	}
-	//If left mouse button is pressed and t is pressed. Then build a tower
-	if (event.button.button == SDL_BUTTON_LEFT && SDLK_t){
-		if (!inventory){
+	//}
+	break;
+	case SDL_BUTTON_RIGHT:
+		//If left mouse button is pressed and t is pressed. Then build a tower
+		
+			int *coord = manage->getPlayerCoords();
+
+			int playerXcoord = coord[0], playerYcoord = coord[0];
 			SDL_GetMouseState(&x, &y);
-			Building* tower = BuildingFactory::create_building("stonetower");
-			tower->set_stats(1, 1, 1, 1, 1, 1);
-			//delete npc;
-		}
+			x = x / TILE_WIDTH;
+			y = y / TILE_HEIGHT;
+			/*for (int i = 0; i < 7;i++){
+
+			}*/
+			if (!inventory){//&& x == playerXcoord + 1 || x == playerXcoord - 1)
+				Building* tower = BuildingFactory::create_building("stonetower");
+				tower->set_stats(1, 1, 1, 1, 1, 1);
+				tower->set_level(1);
+				tower->setCoords(x, y);
+				mapdata.buildingDataMap[x][y] = tower;
+				//entityData.live[x][y] = enemy[cursor + 2]->getID();
+				//delete npc;
+			
+			}
+		break;
 	}
 }
 

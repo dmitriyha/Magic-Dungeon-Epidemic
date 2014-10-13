@@ -32,7 +32,9 @@ ActorManager::ActorManager(){
  * \return Returns 1 if movement action was successful, 0 if that direction does not exist in the definition of the controls 
  *
  */     
-
+int* ActorManager::getPlayerCoords() {
+	return player->getCoords();
+}
 
 int ActorManager::playerMovement(int direction){
 	int *coord=player->getCoords();

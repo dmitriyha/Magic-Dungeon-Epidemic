@@ -28,6 +28,7 @@ using namespace std;
 
 
 class ActorManager{
+
 	///this is the struct that tracks the alive and dead entities
 	EntityData entityData[10];
 	///where the map data is stored
@@ -85,6 +86,8 @@ public:
 	int equipItem(int cursor_position);
 	int remove_secondary_weapon(int cursor_position);
 	bool check_player_death();
+	//Get players goordinates
+	int* getPlayerCoords();
 	CameraStruct* getData();
 	~ActorManager();
 private:
