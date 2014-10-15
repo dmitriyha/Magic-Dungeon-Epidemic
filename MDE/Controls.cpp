@@ -132,7 +132,7 @@ void Controls::keyboard(SDL_Event event){
 
 	}
 	managePlayer->inventoryData();
-
+	cameraData->inventoryStruct.inventory_cursor = inventory_cursor;
 }
 
 void Controls::mouse(SDL_Event event){

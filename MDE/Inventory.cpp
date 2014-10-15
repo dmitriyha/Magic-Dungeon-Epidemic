@@ -90,10 +90,11 @@ int Inventory::inventory_control(int mode, int inventory_cursor){
 						else{
 							main_hand = inventory[inventory_cursor - 1];
 							this->removeItem(inventory_cursor);
+							if (size <= inventory_cursor){
+								inventory_cursor--;
+							}
 						}
-						if(size <= inventory_cursor){
-							inventory_cursor--;
-						}
+						
 					}
 				}//end else if(main_hand.getType() != "bow" && main_hand.getType() !=...
 				else{
@@ -126,8 +127,8 @@ int Inventory::inventory_control(int mode, int inventory_cursor){
  */     
 
 void Inventory::removeItem(int rmItem){
-	if(rmItem>0){
-		inventory.erase(inventory.begin()+(rmItem-1));//remove the specified item
+	if (rmItem > 0){
+		inventory.erase(inventory.begin() + (rmItem - 1));//remove the specified item
 	}
 }
 

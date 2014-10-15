@@ -293,6 +293,7 @@ void Camera::inventoryRender(){
 	
 	//SDL_BlitSurface(UI,NULL,screen,NULL);
 	inventoryBMP->render (offset);
+
 	
 	offset.x = 425;		//places the picture in the right place
 	offset.y = 173;
@@ -310,6 +311,7 @@ void Camera::inventoryRender(){
 		
 	}
 	
+
 	//cursor offset and placement
 	if(camData->inventoryStruct.inventory.size() > 0){
 		offset.x = 425 + (((camData->inventoryStruct.inventory_cursor - 1) % 3) * 80);
@@ -346,7 +348,6 @@ void Camera::inventoryRender(){
 		offset.y = 186;
 		item_surface->renderTile((itemTextures[camData->inventoryStruct.equippedItems[2].getID()-1]),offset);
 	}
-	
 	
 }
 
