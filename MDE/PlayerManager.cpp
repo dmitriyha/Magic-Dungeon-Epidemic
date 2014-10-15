@@ -17,7 +17,7 @@ int PlayerManager::move(int direction){
 		}
 		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]>0){
 			coord[1] = coord[1] + 1;
-			BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]));
+			fightAndKillEnemy(coord);
 			coord[1] = coord[1] - 1;
 		}
 		break;
@@ -29,7 +29,7 @@ int PlayerManager::move(int direction){
 		}
 		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] - 1][coord[1]]>0){
 			coord[0] = coord[0] - 1;
-			BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]));
+			fightAndKillEnemy(coord);
 			coord[0] = coord[0] + 1;
 		}
 		break;
@@ -41,7 +41,7 @@ int PlayerManager::move(int direction){
 		}
 		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] + 1][coord[1]]>0){
 			coord[0] = coord[0] + 1;
-			BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]));
+			fightAndKillEnemy(coord);
 			coord[0] = coord[0] - 1;
 		}
 		break;
@@ -53,7 +53,7 @@ int PlayerManager::move(int direction){
 		}
 		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] - 1]>0){
 			coord[1] = coord[1] - 1;
-			BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]));
+			fightAndKillEnemy(coord);
 			coord[1] = coord[1] + 1;
 		}
 		break;
@@ -160,7 +160,7 @@ void PlayerManager::rangedCombat(int x, int y){
 }
 
 void PlayerManager::fightAndKillEnemy(int* coord){//player attack calculation function
-	dataForManaging->userInterfaceStruct.playerDamage = player->fight(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]]]);
+	dataForManaging->userInterfaceStruct.playerDamage = BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]));
 	bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]]]->Health(dataForManaging->userInterfaceStruct.playerDamage);
 
 
