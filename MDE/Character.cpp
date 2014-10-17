@@ -57,6 +57,14 @@ bool Character::Health(int damage){
 	}
 }
 
+void Character::render(){
+
+}
+
+void Character::setTexture(Texture* _texture){
+	texture = _texture;
+}
+
 int Character::fight(Character* character){
 	return 0;
 }

@@ -182,5 +182,10 @@ Map::Map(CameraStruct* cam){
 
 }
 
+Texture Map::getMapAsTexture(){
+	Texture tex;
+	tex.
+}
+
 Map::~Map(){
 }

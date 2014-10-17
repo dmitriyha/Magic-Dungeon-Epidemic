@@ -37,9 +37,8 @@ class Map{
 	int stairs_down[2];
 public:
 	Map(CameraStruct* cam);
-	MapData getMap ();
-	int * get_stairs_up();
-	int * get_stairs_down();
+	Texture getMapAsTexture();
+	
 	~Map();
 };
 #endif

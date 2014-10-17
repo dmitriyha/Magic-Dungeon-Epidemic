@@ -13,7 +13,10 @@ using namespace std;
 
 
 class Texture{
-	
+	SDL_Texture* texture;
+	SDL_Renderer* renderer;
+	int width;
+	int height;
 	public:
 		Texture();
 		Texture(string path,SDL_Renderer* screen);
@@ -21,14 +24,12 @@ class Texture{
 		void renderTile( SDL_Rect textureLoc,SDL_Rect renderQuad);
 		~Texture();
 	protected:
-		///The texture that will be blitted.
-		SDL_Texture* texture; 
-		///The screen that the texture will be blitted to.
-		SDL_Renderer* screen;
-		/// the width of the input picture.
-		int width;
-		/// the height of the input picture.
-		int height;
+		void makeTexture(string path);
+		void makeBlankTexture(int _width, int _height);
+		SDL_Rect getSize();
+		SDL_Texture* getTexture();
+		void setRenderer(SDL_Renderer* _renderer);
+		SDL_Renderer* getRenderer();
 		void free();
 	private:
 		

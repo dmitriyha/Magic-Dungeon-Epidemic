@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Item.h"
+#include "Texture.h"
 using namespace std;
 
 /** \brief the base class of Player and Enemy
@@ -11,6 +12,8 @@ using namespace std;
 
 class Character{
 protected:
+	Texture* texture;
+
 	int health;
 	
 	int strength;
@@ -28,6 +31,9 @@ public:
 
 	
 	virtual int fight(Character * character);
+
+	void setTexture(Texture* _texture);
+	void render();
 
 	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID);
 	

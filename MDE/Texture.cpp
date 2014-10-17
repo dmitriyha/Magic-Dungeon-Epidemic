@@ -1,36 +1,25 @@
 #include "Texture.h"
-/** \brief used for inheritance
- *
- */    
 Texture::Texture(){
-}
-
-/** \brief Creates a Texture with picture at given path.
- *
- * \param path The path of the target image to be loaded.
- * \param _screen The top level screen that has to be acquired at the beginning of the program, where the texture will be blitted.
- *
- */     
-
-Texture::Texture(string path,SDL_Renderer* _screen){
-	screen=_screen;
 	texture = NULL;
 	width = height = 0;
 	
 	free();
-	
-	SDL_Surface* loadedSurface = IMG_Load( path.c_str() );
-	if( loadedSurface == NULL ){
-		cout<<"Unable to load image "<< path.c_str()<<"  SDL_image Error: " << IMG_GetError() <<endl;
+}
+
+void Texture::makeTexture(string path){//makes a texture from the picture
+	free();
+	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+	if (loadedSurface == NULL){
+		cout << "Unable to load image " << path.c_str() << "  SDL_image Error: " << IMG_GetError() << endl;
 	}
 	else{
 		//Color key image
-		SDL_SetColorKey( loadedSurface, SDL_TRUE, SDL_MapRGB( loadedSurface->format, 0, 0xFF, 0xFF ) );
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 128, 128, 128));
 
 		//Create texture from surface pixels
-        texture = SDL_CreateTextureFromSurface( screen, loadedSurface );
-		if( texture == NULL ){
-			cout<<"Unable to create texture from "<<path.c_str()<<" SDL Error: "<< SDL_GetError() <<endl;
+		texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+		if (texture == NULL){
+			cout << "Unable to create texture from " << path.c_str() << " SDL Error: " << SDL_GetError() << endl;
 		}
 		else{
 			//Get image dimensions
@@ -39,57 +28,50 @@ Texture::Texture(string path,SDL_Renderer* _screen){
 		}
 
 		//Get rid of old loaded surface
-		SDL_FreeSurface( loadedSurface );
+		SDL_FreeSurface(loadedSurface);
 	}
 }
 
-/** \brief Render this texture at the given location.
- *
- * \param offset The location where the texture will be blitted.
- *
- */     
+void Texture::makeBlankTexture(int _width, int _height){//makes a canvas
+	free();
+	//Create uninitialized texture 
+	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, _width, _height);
+	if (texture == NULL) {
+		cout << "Unable to create blank texture! SDL Error: " << SDL_GetError() << endl;
+	}
+	else {
+		width = _width;
+		height = _height;
+	}
+}
 
+SDL_Rect Texture::getSize(){
+	SDL_Rect size;
+	size.w = width;
+	size.h = height;
+	return size;
+}
 
-void Texture::render( SDL_Rect offset){
-	//Set rendering space and render to screen
-	if (width > 70){
-		offset.w = width;
-		offset.h = height;
+SDL_Texture* Texture::getTexture(){//gets the texture object
+	if (texture == NULL) {
+		return NULL;
 	}
 	else{
-		offset.w = TILE_WIDTH;
-		offset.h = TILE_HEIGHT*2;
+		return texture;
 	}
-	SDL_RenderCopy( screen, texture, NULL, &offset );
 }
 
-/** \brief Use this for sprite textures
- *
- * Render the certain sprite tile in a certain location on the screen
- *
- * \param locOnSpriteSheet The top right corner location of the wanted sprite on the sprite sheet.
- * \param location Where the sprite will be on the screen
- *
- */     
-
-
-void Texture::renderTile( SDL_Rect locOnSpriteSheet,SDL_Rect location ){
-	//Set rendering space and render to screen
-	if(location.w==0&&location.h==0){
-		location.w= TILE_WIDTH;
-		location.h= TILE_HEIGHT;
-	}
-	SDL_RenderCopy( screen, texture, &locOnSpriteSheet, &location );
+void Texture::setRenderer(SDL_Renderer* _renderer){//sets the renderer object
+	renderer = _renderer;
 }
 
-/** \brief Frees the resources allocated to this Texture.
- *
- */     
+SDL_Renderer* Texture::getRenderer(){//gets the renderer object
+	return renderer;
+}
 
-
-void Texture::free(){
-	if( texture != NULL ){
-		SDL_DestroyTexture( texture );
+void Texture::free(){//frees the texture
+	if (texture != NULL){
+		SDL_DestroyTexture(texture);
 		texture = NULL;
 		width = 0;
 		height = 0;

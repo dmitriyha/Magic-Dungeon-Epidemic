@@ -17,9 +17,15 @@ class Window{
 	bool success=false;
 	SDL_Window* window = NULL;
 	SDL_Renderer* renderer = NULL;
+	int winWidth = WINDOW_WIDTH;//the initial width of the window
+	int winHeight = WINDOW_HEIGHT;//the initial height of the window
 	public:
 		Window(string );
+		void renderFrame();
 		SDL_Renderer* getRenderer();
+		SDL_Window* getWindow();
+		SDL_Renderer* getRenderer();
+		bool windowExists();
 		~Window();
 	protected:
 	private:

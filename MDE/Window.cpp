@@ -23,7 +23,7 @@ Window::Window(string windowName){
 		}
 
 		//Create window
-		window = SDL_CreateWindow( windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN );
+		window = SDL_CreateWindow( windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, winWidth, winHeight, SDL_WINDOW_SHOWN );
 		if( window == NULL )
 		{
 			cout<<"Window could not be created! SDL Error: "<< SDL_GetError() <<endl;
@@ -56,6 +56,10 @@ Window::Window(string windowName){
 	if( TTF_Init() == -1 ) { }
 }
 
+void Window::renderFrame(){
+
+}
+
 /** \brief Returns the object where we will blit everything
  * 
  * \return The object where we will blit everything
@@ -65,6 +69,18 @@ Window::Window(string windowName){
 
 SDL_Renderer* Window::getRenderer(){
 	return renderer;
+}
+
+SDL_Window* Window::getWindow(){
+	return window;//return the pointer to the window object
+}
+
+SDL_Renderer* Window::getRenderer(){
+	return renderer;//return the pointer to the renderer object
+}
+
+bool Window::windowExists(){
+	return success;//return the window was created flag
 }
 
 /** \brief SDL cleanup.
