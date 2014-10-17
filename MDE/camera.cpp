@@ -163,29 +163,29 @@ void Camera::renderScreen(){
 
 
 void Camera::renderAll(){
-	int x = camData->mapStruct.playerLoc[0] - (CAMERA_GRID_WIDTH / 2);
-	int y = camData->mapStruct.playerLoc[1] - (CAMERA_GRID_HEIGHT / 2);
+	int x = camData->mapStruct[camData->currentLevel].playerLoc[0] - (CAMERA_GRID_WIDTH / 2);
+	int y = camData->mapStruct[camData->currentLevel].playerLoc[1] - (CAMERA_GRID_HEIGHT / 2);
 	SDL_Rect offset={0,0,0,0};
 	deque<Item> item;
 	
 	//cout << x << " " << y << endl;
 	
 	//the fillowing ifs keep the camera from going out of bounds
-	if (camData->mapStruct.playerLoc[0]<((CAMERA_GRID_WIDTH / 2))){
+	if (camData->mapStruct[camData->currentLevel].playerLoc[0]<((CAMERA_GRID_WIDTH / 2))){
 		x=0;
 	}
 
-	else if (camData->mapStruct.playerLoc[0] + ((CAMERA_GRID_WIDTH / 2) + 1) > GRID_WIDTH){
+	else if (camData->mapStruct[camData->currentLevel].playerLoc[0] + ((CAMERA_GRID_WIDTH / 2) + 1) > GRID_WIDTH){
 		x = GRID_WIDTH - CAMERA_GRID_WIDTH;
 	}
 	
-	if (camData->mapStruct.playerLoc[1]<((CAMERA_GRID_HEIGHT / 2))){
+	if (camData->mapStruct[camData->currentLevel].playerLoc[1]<((CAMERA_GRID_HEIGHT / 2))){
 		y=0;
 	}
 	
 	
 	
-	else if (camData->mapStruct.playerLoc[1] + ((CAMERA_GRID_HEIGHT / 2) + 1) > GRID_HEIGHT){
+	else if (camData->mapStruct[camData->currentLevel].playerLoc[1] + ((CAMERA_GRID_HEIGHT / 2) + 1) > GRID_HEIGHT){
 		y = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
 	}
 	
@@ -199,51 +199,51 @@ void Camera::renderAll(){
 		offset.x = (x-xCorner)* TILE_WIDTH;		//places the picture in the right place
 		offset.y = (y-yCorner)* TILE_HEIGHT;
 		
-		item = camData->mapStruct.itemData.itemDataMap[x][y];						//the deque at (x,y) is accessed
+		item = camData->mapStruct[camData->currentLevel].itemData.itemDataMap[x][y];						//the deque at (x,y) is accessed
 		
 		if(x<xCorner+CAMERA_GRID_WIDTH){
-			if (camData->mapStruct.mapData.mapDim[x][y]=='.'){								//floor is rendered
+			if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y]=='.'){								//floor is rendered
 				tile_set->renderTile(floor,offset);
 			}
-			else if (camData->mapStruct.mapData.mapDim[x][y]=='u'){								//stairs are rendered
+			else if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y]=='u'){								//stairs are rendered
 				tile_set->renderTile(stairs_up,offset);
 			}
-			else if (camData->mapStruct.mapData.mapDim[x][y]=='d'){								//stairs are is rendered
+			else if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y]=='d'){								//stairs are is rendered
 				tile_set->renderTile(stairs_down,offset);
 			}
-			else if(camData->mapStruct.mapData.mapDim[x][y]=='#'){								//walls are rendered
-				if(camData->mapStruct.mapData.mapDim[x + 1][y] == '#' && camData->mapStruct.mapData.mapDim[x][y + 1] == '#' && camData->mapStruct.mapData.mapDim[x + 1][y + 1] == '.'){
+			else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y]=='#'){								//walls are rendered
+				if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x + 1][y] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x + 1][y + 1] == '.'){
 					tile_set->renderTile(top_left_corner,offset);
 				}
-				else if(camData->mapStruct.mapData.mapDim[x + 1][y] == '#' && camData->mapStruct.mapData.mapDim[x][y - 1] == '#' && camData->mapStruct.mapData.mapDim[x + 1][y - 1] == '.'){
+				else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x + 1][y] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y - 1] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x + 1][y - 1] == '.'){
 					tile_set->renderTile(bottom_left_corner,offset);
 				}
-				else if(camData->mapStruct.mapData.mapDim[x - 1][y] == '#' && camData->mapStruct.mapData.mapDim[x][y - 1] == '#' && camData->mapStruct.mapData.mapDim[x - 1][y - 1] == '.'){
+				else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y - 1] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y - 1] == '.'){
 					tile_set->renderTile(bottom_right_corner,offset);
 				}
-				else if(camData->mapStruct.mapData.mapDim[x - 1][y] == '#' && camData->mapStruct.mapData.mapDim[x][y + 1] == '#' && camData->mapStruct.mapData.mapDim[x - 1][y + 1] == '.'){
+				else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '#' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y + 1] == '.'){
 					tile_set->renderTile(top_right_corner,offset);
 				}
-				else if (camData->mapStruct.mapData.mapDim[x + 1][y] == '.' && camData->mapStruct.mapData.mapDim[x - 1][y] == '#'){
+				else if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x + 1][y] == '.' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y] == '#'){
 					tile_set->renderTile(left_wall,offset);
 				}
-				else if (camData->mapStruct.mapData.mapDim[x][y - 1] == '.' && camData->mapStruct.mapData.mapDim[x][y + 1] == '#'){
+				else if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y - 1] == '.' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '#'){
 					tile_set->renderTile(bottom_wall,offset);
 				}
-				else if (camData->mapStruct.mapData.mapDim[x - 1][y] == '.' && camData->mapStruct.mapData.mapDim[x][y + 1] == '#'){
+				else if (camData->mapStruct[camData->currentLevel].mapData.mapDim[x - 1][y] == '.' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '#'){
 					tile_set->renderTile(right_wall,offset);
 				}
-				else if(camData->mapStruct.mapData.mapDim[x][y + 1] == '.' && camData->mapStruct.mapData.mapDim[x][y - 1] == '#'){
+				else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '.' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y - 1] == '#'){
 					tile_set->renderTile(top_wall,offset);
 				}
-				else if(camData->mapStruct.mapData.mapDim[x][y + 1] == '.' && camData->mapStruct.mapData.mapDim[x][y - 1] == '.'){
+				else if(camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y + 1] == '.' && camData->mapStruct[camData->currentLevel].mapData.mapDim[x][y - 1] == '.'){
 					tile_set->renderTile(top_wall,offset);
 				}
 				else{
 					tile_set->renderTile(blank,offset);
 				}
 			}
-			if (camData->mapStruct.entityData.dead[x][y]>0){											//dead enteties are rendered
+			if (camData->mapStruct[camData->currentLevel].entityData.dead[x][y]>0){											//dead enteties are rendered
 				enemy->renderTile(enemylocation,offset);
 			}
 			offset.w = TILE_WIDTH;
@@ -259,11 +259,11 @@ void Camera::renderAll(){
 			}
 			offset.w = TILE_WIDTH;
 			offset.h = TILE_HEIGHT * 2;
-			if (camData->mapStruct.entityData.live[x][y]>1){											//renders live enteties
+			if (camData->mapStruct[camData->currentLevel].entityData.live[x][y]>1){											//renders live enteties
 				offset.y=offset.y-TILE_HEIGHT;
 				enemy->renderTile(enemylocation,offset);
 			}
-			else if (camData->mapStruct.entityData.live[x][y]==1){								//renders player
+			else if (camData->mapStruct[camData->currentLevel].entityData.live[x][y]==1){								//renders player
 				offset.y = offset.y - TILE_HEIGHT;
 				player->renderTile(playerlocation,offset);
 			}
@@ -293,6 +293,7 @@ void Camera::inventoryRender(){
 	
 	//SDL_BlitSurface(UI,NULL,screen,NULL);
 	inventoryBMP->render (offset);
+
 	
 	offset.x = 425;		//places the picture in the right place
 	offset.y = 173;
@@ -301,15 +302,16 @@ void Camera::inventoryRender(){
 		
 		place++;
 		invRow++;
-		offset.x = offset.x ;
+		offset.x = offset.x + 80;
 		if (invRow==3){
 			offset.x = 425;
-			offset.y = offset.y ;
+			offset.y = offset.y + 58;
 			invRow=0;
 		}
 		
 	}
 	
+
 	//cursor offset and placement
 	if(camData->inventoryStruct.inventory.size() > 0){
 		offset.x = 425 + (((camData->inventoryStruct.inventory_cursor - 1) % 3) * 80);
@@ -346,7 +348,6 @@ void Camera::inventoryRender(){
 		offset.y = 186;
 		item_surface->renderTile((itemTextures[camData->inventoryStruct.equippedItems[2].getID()-1]),offset);
 	}
-	
 	
 }
 

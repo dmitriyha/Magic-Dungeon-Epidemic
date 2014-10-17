@@ -16,6 +16,11 @@
 #define TILE_HEIGHT 24
 ///the max room count in the game
 #define MAX_ROOMS 25
+///the max amount of levels
+#define MAX_DEPTH 3
+///the max amount of enemies
+#define MAX_ENEMIES 50
+
 
 #define SND_FILENAME 0x20000
 #define SND_LOOP 8

@@ -8,7 +8,7 @@
  */     
 
 
-Map::Map(int depth){
+Map::Map(CameraStruct* cam){
 	int x=0,y=0;//map coordinates
 	int maxRoom=0;//maximum desired rooms
 	bool keep=true;//whether a room is kept, or a new one is generated
@@ -19,11 +19,11 @@ Map::Map(int depth){
 	RoomDimension RoomD; //definition of struct
 	deque<RoomDimension> rooms;//deque list creation for dimension storage
 	RNG random;
-	
+	mapData = cam;
 	
 	while(y<GRID_HEIGHT){
 		if(x<GRID_WIDTH){
-			map.mapDim[x][y]='#';
+			mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y]='#';
 			x++;
 		}
 		else if(x==GRID_WIDTH){
@@ -59,10 +59,10 @@ Map::Map(int depth){
 		
 		while(y<RoomD.roomy&&keep){//checks whether the space to be occupied by the room is free or not
 			if(x<RoomD.roomx){
-				if(map.mapDim[RoomD.locx+x][RoomD.locy+y]=='#'){
+				if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[RoomD.locx + x][RoomD.locy + y] == '#'){
 					x++;
 				}
-				else if(map.mapDim[RoomD.locx+x][RoomD.locy+y]=='.'){
+				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[RoomD.locx + x][RoomD.locy + y] == '.'){
 					keep=false; //sets the throw away flag
 				}
 			}
@@ -79,15 +79,15 @@ Map::Map(int depth){
 			while(y<RoomD.roomy){
 				if(x<RoomD.roomx){
 					if (x==0||x==RoomD.roomx-1){
-						map.mapDim[RoomD.locx+x][RoomD.locy+y]='#';
+						mapData->mapStruct[mapData->currentLevel].mapData.mapDim[RoomD.locx + x][RoomD.locy + y] = '#';
 						x++;
 					}
 					else if (y==0||y==RoomD.roomy-1){
-						map.mapDim[RoomD.locx+x][RoomD.locy+y]='#';
+						mapData->mapStruct[mapData->currentLevel].mapData.mapDim[RoomD.locx + x][RoomD.locy + y] = '#';
 						x++;
 					}
 					else{
-						map.mapDim[RoomD.locx+x][RoomD.locy+y]='.';
+						mapData->mapStruct[mapData->currentLevel].mapData.mapDim[RoomD.locx + x][RoomD.locy + y] = '.';
 						x++;
 					}
 				}
@@ -131,7 +131,7 @@ Map::Map(int depth){
 			else if (x==rooms[cursor+1].midx+1 && y==rooms[cursor+1].midy+1){
 				pathGen=false;
 			}
-			map.mapDim[x][y]='.';
+			mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = '.';
 		}//end while(pathGen)
 		cursor++;//cursor is the room number in the list
 		pathGen=true;
@@ -145,67 +145,41 @@ Map::Map(int depth){
 	while (!placed){
 		x=random.generate(0,GRID_WIDTH); //generates the x coordinate
 		y=random.generate(0,GRID_HEIGHT);//generates the y coordinate
-		if (depth == 0){
-			if(map.mapDim[x][y] == '.'){
+		if (mapData->currentLevel == 0){
+			if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
 				stairs_up[0]=x;
 				stairs_up[1]=y;
-				map.mapDim[x][y]='u';
+				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'u';
 				placed = 1;
 			}
 		}
-		else if(depth == 1){
-			if(stairways_placed == 0 && map.mapDim[x][y] == '.'){
+		else if(mapData->currentLevel == 1){
+			if (stairways_placed == 0 && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
 				stairs_up[0]=x;
 				stairs_up[1]=y;
-				map.mapDim[x][y]='u';
+				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'u';
 				stairways_placed ++;
 			}
-			else if(stairways_placed == 1 && map.mapDim[x][y] == '.'){
+			else if (stairways_placed == 1 && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
 				stairs_down[0]=x;
 				stairs_down[1]=y;
-				map.mapDim[x][y]='d';
+				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'd';
 				placed ++;
 			}
 		}
-		else if (depth == 2){
-			if(map.mapDim[x][y] == '.'){
+		else if (mapData->currentLevel == 2){
+			if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
 				stairs_down[0]=x;
 				stairs_down[1]=y;
-				map.mapDim[x][y]='d';
+				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'd';
 				placed = 1;
 			}
 		}
 	}
-}
 
-/** \brief Gets a ready MapData object
- *
- * \return a ready MapData object
- *
- */     
+	mapData->mapStruct[mapData->currentLevel].stairsUp = stairs_up;
+	mapData->mapStruct[mapData->currentLevel].stairsDown = stairs_down;
 
-MapData Map::getMap (){;
-	return map;
-}
-
-/** \brief gets the location the up stairs in array form
- *
- * \return location of stairs in array form
- *
- */     
-
-
-int * Map::get_stairs_up(){
-	return stairs_up;
-}
-
-/** \brief gets the down location stairs in array form
- *
- * \return location of stairs in array form
- *
- */     
-int * Map::get_stairs_down(){
-	return stairs_down;
 }
 
 Map::~Map(){

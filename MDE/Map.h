@@ -7,6 +7,7 @@
 #include <deque>
 #include "RNG.h"
 #include "MapDataStructs.h"
+#include "CameraStruct.h"
 using namespace std;
 
 /** \brief generates a map and returns it with the getters
@@ -31,12 +32,11 @@ class Map{
 		///the middle of the y dimension
 		int midy;
 	};
-	
-	MapData map;
+	CameraStruct* mapData;
 	int stairs_up[2];
 	int stairs_down[2];
 public:
-	Map(int depth);
+	Map(CameraStruct* cam);
 	MapData getMap ();
 	int * get_stairs_up();
 	int * get_stairs_down();

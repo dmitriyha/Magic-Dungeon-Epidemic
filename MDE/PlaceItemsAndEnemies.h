@@ -9,6 +9,7 @@
 #include "Item.h"
 #include "enemy.h"
 #include <iostream>
+#include "CameraStruct.h"
 #include "MapDataStructs.h"
 using namespace std;
 
@@ -18,14 +19,12 @@ using namespace std;
 
 
 class PlaceItemsAndEnemies{
-	ItemData itemLayer;
-	EntityData entityData;
-	deque<Enemy*> enemy;
+
+	CameraStruct* enemyData;
+
+	
 public:
-	PlaceItemsAndEnemies(MapData map, deque<Enemy*> baddies, int level);
-	deque<Enemy*> getEnemyList();
-	EntityData getLiveEnemies();
-	ItemData getItems();
+	PlaceItemsAndEnemies(CameraStruct* cam);
 	~PlaceItemsAndEnemies();
 };
 
