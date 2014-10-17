@@ -2,6 +2,7 @@
 #define CAMERASTRUCT_H
 #include "MapDataStructs.h"
 #include "player.h"
+#include "BuildingStruct.h"
 
 /** \brief contains the data required to render the map
  */     
@@ -59,6 +60,7 @@ struct CameraStruct{
 	MapStruct mapStruct[MAX_DEPTH];
 	InventoryStruct inventoryStruct;
 	UserInterfaceStruct userInterfaceStruct;
+	BuildingData buildData;
 	int leftCornerX;
 	int leftCornerY;
 	int currentLevel;

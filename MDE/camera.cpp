@@ -265,6 +265,7 @@ void Camera::renderAll(){
 					
 				}
 			}
+			
 			offset.w = TILE_WIDTH;
 			offset.h = TILE_HEIGHT * 2;
 			if (camData->mapStruct[camData->currentLevel].entityData.live[x][y]>1){											//renders live enteties
@@ -274,6 +275,15 @@ void Camera::renderAll(){
 			else if (camData->mapStruct[camData->currentLevel].entityData.live[x][y]==1){								//renders player
 				offset.y = offset.y - TILE_HEIGHT;
 				player->renderTile(playerlocation,offset);
+			}
+
+			int coord1[2] = {0,0};
+			if (buildData->building-> != NULL){
+				//if (buildData->building->getCoords() != NULL){
+				if (x == coord1[0] && y == coord1[1]){											//renders live enteties
+					offset.y = offset.y - TILE_HEIGHT;
+					stoneTower->renderTile(towerstonelocation, offset);
+				}
 			}
 			//Tee tähän tower renderointi
 			
@@ -579,4 +589,5 @@ Camera::~Camera(){
 	delete UI;
 	delete level_bar ;
 	delete carbon18;
+	delete stoneTower;
 }

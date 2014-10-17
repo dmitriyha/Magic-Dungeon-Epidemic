@@ -31,6 +31,12 @@
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{56ea7454-f6e5-4847-bf4b-44b7c0562e11}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ActionManager">
+      <UniqueIdentifier>{d6e1725e-e5d2-42c0-9872-992c072d7cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\StructsHeaders">
+      <UniqueIdentifier>{cf5f7392-6b36-4b9a-92ab-4a3497401885}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArtificialIntelligence.cpp">
@@ -78,9 +84,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WriteFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="StoneTower.cpp">
       <Filter>Source Files\Buildings</Filter>
     </ClCompile>
@@ -118,10 +121,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ActionManager</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ActionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WriteFile.cpp">
+      <Filter>Source Files\File</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,9 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraStruct.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
@@ -156,9 +159,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapDataStructs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlaceItemsAndEnemies.h">
@@ -216,10 +216,19 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\ActionManager</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\ActionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraStruct.h">
+      <Filter>Source Files\StructsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingStruct.h">
+      <Filter>Source Files\StructsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="MapDataStructs.h">
+      <Filter>Source Files\StructsHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,8 @@
 #include "player.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
+#include "BuildingStruct.h"
+
 using namespace std;
 
 /** \brief Handles all of the games controls and is the game way to the logic of the game
@@ -23,17 +25,20 @@ class Controls{
 	int inventory_cursor=1;
 	///first run flag
 	bool first_run=true;
-	///manages the player
+	
+
+
+///manages the player
 	PlayerManager *managePlayer;
 	///manages the enemies
 	EnemyManager * manageEnemies;
 	///the camera data to be handled in Camera
 	CameraStruct* cameraData;
-
+	BuildingData *buildData;
+	
 	MapData mapdata;
 
-
-	Building* building;
+	//Building* building;
 public:
 	Controls();
 	void buttons(SDL_Event event);

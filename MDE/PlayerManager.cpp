@@ -6,6 +6,16 @@ PlayerManager::PlayerManager()
 	
 }
 
+/* \brief gets players coordinates
+*   
+* \return players coordinates. Save this to example int *coord = . coord[0] is x coordinate, coord[1] is y coordinate.
+*/
+int* PlayerManager::getPlayerCoord(){
+
+	return player->getCoords();
+}
+
+
 int PlayerManager::move(int direction){
 	int *coord = player->getCoords();
 	switch (direction){

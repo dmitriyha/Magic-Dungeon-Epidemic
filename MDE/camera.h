@@ -14,6 +14,9 @@
 #include "TextTexture.h"
 #include "MapDataStructs.h"
 #include "CameraStruct.h"
+#include "PlayerManager.h"
+#include "BuildingStruct.h"
+
 using namespace std;
 
 /** \brief Where all the rendering happens
@@ -24,7 +27,7 @@ class Camera{
 	
 	deque<SDL_Rect> itemTextures;
 	deque<int> item_number;
-	
+	BuildingData* buildData;
 	///the textures
 	Texture* player;
 	Texture* enemy;

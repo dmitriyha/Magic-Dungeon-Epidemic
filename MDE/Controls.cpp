@@ -149,7 +149,7 @@ void Controls::mouse(SDL_Event event){
 	case SDL_BUTTON_RIGHT:
 		//If left mouse button is pressed and t is pressed. Then build a tower
 		
-			int *coord = manage->getPlayerCoords();
+		int *coord = managePlayer->getPlayerCoord();
 
 			int playerXcoord = coord[0], playerYcoord = coord[0];
 			SDL_GetMouseState(&x, &y);
@@ -159,18 +159,18 @@ void Controls::mouse(SDL_Event event){
 
 			}*/
 			if (!inventory){//&& x == playerXcoord + 1 || x == playerXcoord - 1)
-				Building* tower = BuildingFactory::create_building("stonetower");
-				tower->set_stats(1, 1, 1, 1, 1, 1);
-				tower->set_level(1);
-				tower->setCoords(x, y);
-				mapdata.buildingDataMap[x][y] = tower;
-				//entityData.live[x][y] = enemy[cursor + 2]->getID();
-				//delete npc;
-			
+				
+				buildData->building = BuildingFactory::create_building("stonetower");
+				buildData->building->set_stats(1, 1, 1, 1, 1, 1);
+				buildData->building->set_level(1);
+				buildData->building->setCoords(x, y);
+				mapdata.buildingDataMap[x][y] = buildData->building;
 			}
 		break;
 	}
 }
+
+
 
 /** \brief CameraStruct getter
  *

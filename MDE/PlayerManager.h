@@ -27,6 +27,7 @@ public:
 	int remove_secondary_weapon(int inventory_cursor);
 	bool check_player_death();
 	void generateMap();
+	int* getPlayerCoord();
 	Player* getPlayer();
 	~PlayerManager();
 private:
