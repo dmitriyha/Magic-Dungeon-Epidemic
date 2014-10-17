@@ -11,7 +11,7 @@ Controls::Controls(){
 	managePlayer = new PlayerManager();
 	managePlayer -> setPointers(cameraData);
 	managePlayer->setPlayerPointer(new Player());
-	managePlayer->generateMap();
+	//managePlayer->generateMap();
 	manageEnemies = new EnemyManager();
 	manageEnemies  -> setPointers(cameraData);
 	manageEnemies->setPlayerPointer(managePlayer->getPlayer());

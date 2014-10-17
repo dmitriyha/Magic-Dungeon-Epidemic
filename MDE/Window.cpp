@@ -7,7 +7,7 @@
  */     
 
 
-Window::Window(string windowName){
+Window::Window(){
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
 	{
@@ -23,7 +23,7 @@ Window::Window(string windowName){
 		}
 
 		//Create window
-		window = SDL_CreateWindow( windowName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, winWidth, winHeight, SDL_WINDOW_SHOWN );
+		window = SDL_CreateWindow( "Magic Dungeon Epidemic", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, winWidth, winHeight, SDL_WINDOW_SHOWN );
 		if( window == NULL )
 		{
 			cout<<"Window could not be created! SDL Error: "<< SDL_GetError() <<endl;
@@ -54,22 +54,15 @@ Window::Window(string windowName){
 		}
 	}
 	if( TTF_Init() == -1 ) { }
+	if (success){
+		canvas = new Texture();
+		canvas->makeBlankTexture(winWidth,winHeight);
+	}
 }
 
 void Window::renderFrame(){
 
-}
-
-/** \brief Returns the object where we will blit everything
- * 
- * \return The object where we will blit everything
- *
- */     
-
-
-SDL_Renderer* Window::getRenderer(){
-	return renderer;
-}
+}    
 
 SDL_Window* Window::getWindow(){
 	return window;//return the pointer to the window object

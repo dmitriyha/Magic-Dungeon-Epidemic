@@ -13,23 +13,24 @@ using namespace std;
 
 
 class Texture{
-	SDL_Texture* texture;
-	SDL_Renderer* renderer;
-	int width;
-	int height;
+	
+	
 	public:
 		Texture();
-		Texture(string path,SDL_Renderer* screen);
-		void render( SDL_Rect offset );
-		void renderTile( SDL_Rect textureLoc,SDL_Rect renderQuad);
-		~Texture();
-	protected:
 		void makeTexture(string path);
 		void makeBlankTexture(int _width, int _height);
 		SDL_Rect getSize();
 		SDL_Texture* getTexture();
 		void setRenderer(SDL_Renderer* _renderer);
 		SDL_Renderer* getRenderer();
+		
+		~Texture();
+	protected:
+		SDL_Texture* texture;
+		SDL_Renderer* renderer;
+		int width;
+		int height;
+		
 		void free();
 	private:
 		

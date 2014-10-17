@@ -37,7 +37,7 @@ class Map{
 	int stairs_down[2];
 public:
 	Map(CameraStruct* cam);
-	Texture getMapAsTexture();
+	Texture* getMapAsTexture(SDL_Renderer* renderer);
 	
 	~Map();
 };
