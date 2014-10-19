@@ -20,6 +20,8 @@ protected:
 	int next_level=400;
 	int lvl_points=0;
 public:
+	Player();
+
 	int fight(Character * character);
 
 	Inventory* getInventory();

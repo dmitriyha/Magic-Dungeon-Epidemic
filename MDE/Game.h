@@ -13,6 +13,7 @@ class Game
 	SDL_Event event;
 	CameraStruct* camData=new CameraStruct;
 
+	Map *map;
 	Texture* mapTexture;
 
 	Window win ;

@@ -16,14 +16,18 @@ using namespace std;
 
 
 class Window{
-	bool success=false;
+	bool success=true;
 	SDL_Window* window = NULL;
 	SDL_Renderer* renderer = NULL;
-	Texture* canvas;
+	SDL_Rect canvasSize;
+	Texture canvas;
 	int winWidth = WINDOW_WIDTH;//the initial width of the window
 	int winHeight = WINDOW_HEIGHT;//the initial height of the window
+	SDL_Rect sceneSize;
+	SDL_Rect cameraLocation;
 	public:
 		Window( );
+		void setCanvasSize(Texture* texture);
 		void renderFrame();
 		SDL_Window* getWindow();
 		SDL_Renderer* getRenderer();

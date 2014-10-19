@@ -182,8 +182,8 @@ Map::Map(CameraStruct* cam){
 
 }
 
-Texture* Map::getMapAsTexture(SDL_Renderer* renderer){
-	Texture* tex = new Texture();
+Texture* Map::getMapAsTexture(){
+	tex = new Texture();
 	tex->setRenderer(renderer);
 	tex->makeBlankTexture(GRID_WIDTH*TILE_WIDTH, GRID_HEIGHT*TILE_HEIGHT);
 	Texture tile_set;
@@ -281,46 +281,47 @@ Texture* Map::getMapAsTexture(SDL_Renderer* renderer){
 			offset.y = y * TILE_HEIGHT;
 
 			if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){								//floor is rendered
-				SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &floor);
+				SDL_RenderCopy(renderer, tile_set.getTexture(), &floor,&offset);
 			}
 			else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == 'u'){
-				SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &stairs_up);
+				SDL_RenderCopy(renderer, tile_set.getTexture(),  &stairs_up,&offset);
 			}
 			else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == 'd'){
-				SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &stairs_down);
+				SDL_RenderCopy(renderer, tile_set.getTexture(),  &stairs_down,&offset);
 			}
 			else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '#'){								//walls are rendered
 				if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x + 1][y] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x + 1][y + 1] == '.'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &top_left_corner);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &top_left_corner, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x + 1][y] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y - 1] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x + 1][y - 1] == '.'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &bottom_left_corner);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &bottom_left_corner, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y - 1] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y - 1] == '.'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &bottom_right_corner);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &bottom_right_corner, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '#' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y + 1] == '.'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &top_right_corner);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &top_right_corner, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x + 1][y] == '.' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y] == '#'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &left_wall);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &left_wall, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y - 1] == '.' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '#'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &bottom_wall);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &bottom_wall, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x - 1][y] == '.' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '#'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &right_wall);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &right_wall, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '.' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y - 1] == '#'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &top_wall);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &top_wall, &offset);
 				}
 				else if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y + 1] == '.' && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y - 1] == '.'){
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &top_wall);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &top_wall, &offset);
 				}
 				else{
-					SDL_RenderCopy(renderer, tile_set.getTexture(), &offset, &blank);
+					SDL_RenderCopy(renderer, tile_set.getTexture(), &blank, &offset);
 				}
 			}
+			//SDL_RenderPresent(renderer);
 			x++;
 		}
 		x = 0;
@@ -329,6 +330,14 @@ Texture* Map::getMapAsTexture(SDL_Renderer* renderer){
 
 	SDL_SetRenderTarget(renderer, NULL);
 	return tex;
+}
+
+void Map::render(){
+	SDL_RenderCopy(renderer, tex->getTexture(), NULL, NULL);
+}
+
+void Map::setRenderer(SDL_Renderer* _renderer){
+	renderer = _renderer;
 }
 
 Map::~Map(){

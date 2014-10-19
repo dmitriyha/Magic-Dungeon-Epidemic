@@ -8,6 +8,10 @@
 
 
 Window::Window(){
+
+	sceneSize = { 0, 0, TILE_WIDTH*CAMERA_GRID_WIDTH, TILE_HEIGHT*CAMERA_GRID_HEIGHT };
+	cameraLocation = { 0, 0, TILE_WIDTH*CAMERA_GRID_WIDTH, TILE_HEIGHT*CAMERA_GRID_HEIGHT };
+
 	//Initialize SDL
 	if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
 	{
@@ -54,14 +58,30 @@ Window::Window(){
 		}
 	}
 	if( TTF_Init() == -1 ) { }
+}
+
+void Window::setCanvasSize(Texture* texture){
+	//if window was created, initialise the canvas
 	if (success){
-		canvas = new Texture();
-		canvas->makeBlankTexture(winWidth,winHeight);
+		canvasSize = texture->getSize();
+		canvas.setRenderer(renderer);
+		canvas.makeBlankTexture(canvasSize.w, canvasSize.h);
+		cout << canvasSize.w << canvasSize.h << endl;
 	}
 }
 
-void Window::renderFrame(){
 
+void Window::renderFrame(){
+	SDL_SetRenderTarget(renderer, NULL); //set the window back as the rendering target
+
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(renderer);
+
+
+	SDL_RenderCopy(renderer, canvas.getTexture(), &cameraLocation, &sceneSize);
+
+	SDL_RenderPresent(renderer); //show the screen
+	SDL_SetRenderTarget(renderer, canvas.getTexture());//set the canvas as the rendering target
 }    
 
 SDL_Window* Window::getWindow(){

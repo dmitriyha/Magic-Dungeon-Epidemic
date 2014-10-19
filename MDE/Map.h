@@ -32,12 +32,18 @@ class Map{
 		///the middle of the y dimension
 		int midy;
 	};
+	SDL_Renderer* renderer;
+	Texture* tex;
+
 	CameraStruct* mapData;
 	int stairs_up[2];
 	int stairs_down[2];
 public:
 	Map(CameraStruct* cam);
-	Texture* getMapAsTexture(SDL_Renderer* renderer);
+	Texture* getMapAsTexture();
+	void render();
+	void setRenderer(SDL_Renderer* _renderer);
+
 	
 	~Map();
 };

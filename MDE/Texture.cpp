@@ -14,7 +14,7 @@ void Texture::makeTexture(string path){//makes a texture from the picture
 	}
 	else{
 		//Color key image
-		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 128, 128, 128));
+		SDL_SetColorKey(loadedSurface, SDL_TRUE, SDL_MapRGB(loadedSurface->format, 0, 255, 255));
 
 		//Create texture from surface pixels
 		texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);

@@ -1,5 +1,13 @@
 #include "player.h"
 
+Player::Player(){
+	charSprite.x = 0;
+	charSprite.y = 0;
+	charSprite.w = 48;
+	charSprite.h = 58;
+
+}
+
 /** \brief sets the stats of the  Player entity
 *
 * \param healths max health
