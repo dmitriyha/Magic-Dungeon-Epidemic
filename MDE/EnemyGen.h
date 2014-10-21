@@ -19,7 +19,7 @@ using namespace std;
 class EnemyGen{
 	vector<string> getEnemyListForGeneration(int depth);
 public:
-	EnemyGen( CameraStruct* cam);
+	EnemyGen( CameraStruct* cam,Texture* texture);
 	
 	~EnemyGen();
 };

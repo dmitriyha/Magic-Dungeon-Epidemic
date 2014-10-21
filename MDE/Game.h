@@ -15,12 +15,14 @@ class Game
 
 	Map *map;
 	Texture* mapTexture;
+	PlayerManager managePlayer;
+	EnemyManager manageEnemy;
 
 	Window win ;
 	//Controls controls;
 	bool quit = false;
 
-	Player player;
+	
 public:
 	
 

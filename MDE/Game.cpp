@@ -5,7 +5,12 @@ Game::Game()
 {
 	camData->currentLevel = 0;
 	map= new Map(camData);
-	EnemyGen b(camData);
+
+	Texture* enemyTexture = new Texture();
+	enemyTexture->setRenderer(win.getRenderer());
+	enemyTexture->makeTexture("img\\goblinsword.png");
+
+	EnemyGen b(camData,enemyTexture);
 	PlaceItemsAndEnemies c(camData);
 
 	map->setRenderer(win.getRenderer());
@@ -16,8 +21,14 @@ Game::Game()
 	Texture* texture = new Texture();
 	texture->setRenderer(win.getRenderer());
 	texture->makeTexture("img\\player0.png");
-	player.setTexture(texture);
+	Player* player = new Player();
+	player->setTexture(texture);
 
+	managePlayer.setPointers(camData);
+	managePlayer.setPlayerPointer(player);
+
+	manageEnemy.setPointers(camData);
+	manageEnemy.setPlayerPointer(player);
 }
 
 void Game::run(){
@@ -25,21 +36,33 @@ void Game::run(){
 	if (win.windowExists()){
 		while (quit == false){
 			while (SDL_PollEvent(&event)){
+				
+
 				switch (event.type){
-				case SDL_QUIT:
-					quit = true;
-					break;
+					case SDL_KEYDOWN:
+						managePlayer.eventHandler(event);
+						break;
+					case SDL_QUIT:
+						quit = true;
+						break;
 				}//end switch (event.type)
 
 				//controls.buttons(event);
 
 			}//end while(SDL_PollEvent( &event ))
+			if (managePlayer.playerMoved){
+				manageEnemy.move(0);
+				managePlayer.playerMoved = false;
+			}
+
 			map->render();
-			player.render();
+			
+			manageEnemy.renderEnemy();
+			managePlayer.render();
 
 			//SDL_RenderCopy(win.getRenderer(), mapTexture->getTexture(), NULL, NULL);
 
-			win.renderFrame();
+			win.renderFrame(managePlayer.getPlayerCoord());
 		}//end while(quit==false)
 	}
 }

@@ -6,75 +6,177 @@ PlayerManager::PlayerManager()
 	
 }
 
+void PlayerManager::render(){
+	player->render();
+}
+
+int* PlayerManager::getPlayerCoord(){
+	return player->getCoords();
+}
+
+
+void PlayerManager::eventHandler(SDL_Event event){
+	int direction = 0;
+	int size = player->getInventory()->getList().size();
+
+
+	switch (event.key.keysym.sym){
+		case SDLK_i:
+			if (!inventory){		//sets inventory to visible
+				inventory = true;
+			}
+			else{				//hides inventory
+				inventory = false;
+			}
+			break;
+		case SDLK_d:
+			if (inventory){
+				inventory_cursor = dropItem(inventory_cursor);
+			}
+			break;
+		case SDLK_w:
+			if (inventory){
+				inventory_cursor = equipItem(inventory_cursor);
+			}
+			break;
+		case SDLK_r:
+			if (inventory){
+				inventory_cursor = remove_secondary_weapon(inventory_cursor);
+			}
+
+			break;
+		case SDLK_DOWN: case SDLK_KP_2:
+			if (inventory){
+				inventory_cursor = inventory_cursor + 3;
+				if (inventory_cursor > size){
+					inventory_cursor = size;
+				}
+			}
+			else{
+				direction = 2;
+			}
+			break;
+		case SDLK_UP: case SDLK_KP_8:
+			if (inventory){
+				inventory_cursor = inventory_cursor - 3;
+				if (inventory_cursor <= 0){
+					inventory_cursor = 1;
+				}
+			}
+			else{
+				direction = 8;
+			}
+			break;
+		case SDLK_LEFT: case SDLK_KP_4:
+			if (inventory){
+				inventory_cursor--;
+				if (inventory_cursor <= 0){
+					inventory_cursor = 1;
+				}
+			}
+			else{
+				direction = 4;
+			}
+			break;
+		case SDLK_RIGHT: case SDLK_KP_6:
+			if (inventory){
+				inventory_cursor++;
+				if (inventory_cursor > size){
+					inventory_cursor = size;
+				}
+			}
+			else{
+				direction = 6;
+			}
+			break;
+		case SDLK_ESCAPE://also hides inventory when escape is pressed
+			if (inventory){
+				inventory = false;
+			}
+			break;
+	}//end switch(event.key.keysym.sym)
+	if (size == 0){
+		inventory_cursor = 1;
+	}
+	if (!inventory){
+		if (move(direction) || event.key.keysym.sym == SDLK_SPACE){//if player moved...
+			playerMoved = true;
+		}
+
+	}
+	inventoryData();
+	dataForManaging->inventoryStruct.inventory_cursor = inventory_cursor;
+}
+
 int PlayerManager::move(int direction){
 	int *coord = player->getCoords();
 	switch (direction){
-	case 2://down               
-		if (coord[1]<GRID_HEIGHT - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1] + 1] != '#'){
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
-			coord[1] = coord[1] + 1;
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
+		case 2://down               
+			if (coord[1]<GRID_HEIGHT - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1] + 1] != '#'){
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
+				coord[1] = coord[1] + 1;
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
+			}
+			else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]>0){
+				coord[1] = coord[1] + 1;
+				fightAndKillEnemy(coord);
+				coord[1] = coord[1] - 1;
+			}
+			break;
+		case 4://left        
+			if (coord[0]>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] - 1][coord[1]] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0] - 1][coord[1]] != '#'){
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
+				coord[0] = coord[0] - 1;
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
+			}
+			else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] - 1][coord[1]]>0){
+				coord[0] = coord[0] - 1;
+				fightAndKillEnemy(coord);
+				coord[0] = coord[0] + 1;
+			}
+			break;
+		case 6: //right
+			if (coord[0]<GRID_WIDTH - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] + 1][coord[1]] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0] + 1][coord[1]] != '#'){
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
+				coord[0] = coord[0] + 1;
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
+			}
+			else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] + 1][coord[1]]>0){
+				coord[0] = coord[0] + 1;
+				fightAndKillEnemy(coord);
+				coord[0] = coord[0] - 1;
+			}
+			break;
+		case 8://up 
+			if (coord[1]>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] - 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1] - 1] != '#'){
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
+				coord[1] = coord[1] - 1;
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
+			}
+			else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] - 1]>0){
+				coord[1] = coord[1] - 1;
+				fightAndKillEnemy(coord);
+				coord[1] = coord[1] + 1;
+			}
+			break;
+		default:
+			return 0;
+			break;
+		}//end switch(event.key.keysym.sym)
+		checkTileForItems();
+		// checks for stariways up or down
+		if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1]] == 'u') {
+			dataForManaging->currentLevel++;
+			if (dataForManaging->currentLevel > max_achieved_depth){
+				max_achieved_depth++;
+				//generateMap();
+			}
+			player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[0], dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[1]);
 		}
-		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] + 1]>0){
-			coord[1] = coord[1] + 1;
-			fightAndKillEnemy(coord);
-			coord[1] = coord[1] - 1;
+		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1]] == 'd'){
+			dataForManaging->currentLevel--;
+			player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp[0], dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp[1]);
 		}
-		break;
-	case 4://left        
-		if (coord[0]>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] - 1][coord[1]] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0] - 1][coord[1]] != '#'){
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
-			coord[0] = coord[0] - 1;
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
-		}
-		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] - 1][coord[1]]>0){
-			coord[0] = coord[0] - 1;
-			fightAndKillEnemy(coord);
-			coord[0] = coord[0] + 1;
-		}
-		break;
-	case 6: //right
-		if (coord[0]<GRID_WIDTH - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] + 1][coord[1]] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0] + 1][coord[1]] != '#'){
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
-			coord[0] = coord[0] + 1;
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
-		}
-		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0] + 1][coord[1]]>0){
-			coord[0] = coord[0] + 1;
-			fightAndKillEnemy(coord);
-			coord[0] = coord[0] - 1;
-		}
-		break;
-	case 8://up 
-		if (coord[1]>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] - 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1] - 1] != '#'){
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 0;
-			coord[1] = coord[1] - 1;
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1]] = 1;
-		}
-		else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord[0]][coord[1] - 1]>0){
-			coord[1] = coord[1] - 1;
-			fightAndKillEnemy(coord);
-			coord[1] = coord[1] + 1;
-		}
-		break;
-	default:
-		return 0;
-		break;
-	}//end switch(event.key.keysym.sym)
-	checkTileForItems();
-	// checks for stariways up or down
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1]] == 'u') {
-		dataForManaging->currentLevel++;
-		if (dataForManaging->currentLevel > max_achieved_depth){
-			max_achieved_depth++;
-			//generateMap();
-		}
-		player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[0], dataForManaging->mapStruct[dataForManaging->currentLevel].stairsDown[1]);
-	}
-	else if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord[0]][coord[1]] == 'd'){
-		dataForManaging->currentLevel--;
-		player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp[0], dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp[1]);
-	}
 	return 1;
 }
 
@@ -177,10 +279,28 @@ void PlayerManager::fightAndKillEnemy(int* coord){//player attack calculation fu
 void PlayerManager::setPlayerPointer(Player* _player){
 	player = _player;
 	player->set_stats(100,5,5,5,5,5,5,5,5,1);
+
+	RNG random;
+
+	bool placed = false;
+	while (!placed){
+		int x = random.generate(0, GRID_WIDTH);
+		int y = random.generate(0, GRID_HEIGHT);
+		if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] == '.'){
+			player->setCoords(x, y);
+			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] = 1;
+			placed = true;
+		}
+	}
+
+
+
 	dataForManaging->mapStruct[dataForManaging->currentLevel].playerLoc=player->getCoords();
 	dataForManaging->userInterfaceStruct.player = player;
 	
 }
+
+
 
 string PlayerManager::getMainWeaponType(){
 	return player->getInventory()->equippedList().at(1).getType();
@@ -239,33 +359,14 @@ bool PlayerManager::check_player_death(){
 	return player->Health(0);
 
 }
-/*
-void PlayerManager::generateMap(){
-	RNG random;
-	
-	
-	
-	EnemyGen b(dataForManaging);
-	Map a(dataForManaging);
-	PlaceItemsAndEnemies c(dataForManaging);
 
-	bool placed = false;
-	while (!placed){
-		int x = random.generate(0, GRID_WIDTH);
-		int y = random.generate(0, GRID_HEIGHT);
-		if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] == '.'){
-			player->setCoords(x, y);
-			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[x][y] = 1;
-			placed = true;
-		}
-	}
-	
-	
-}*/
+
 
 Player* PlayerManager::getPlayer(){
 	return player;
 }
+
+
 
 PlayerManager::~PlayerManager()
 {

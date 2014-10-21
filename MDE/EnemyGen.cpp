@@ -1,7 +1,7 @@
 #include"EnemyGen.h"
 
 
-EnemyGen::EnemyGen(CameraStruct* cam){  //generates 'enemies'amount of enemies and puts them into deque, after witch it is returned
+EnemyGen::EnemyGen(CameraStruct* cam, Texture* texture){  //generates 'enemies'amount of enemies and puts them into deque, after witch it is returned
 	int i;
 	int y = 5;
 	int enemies = MAX_ENEMIES;
@@ -23,6 +23,7 @@ EnemyGen::EnemyGen(CameraStruct* cam){  //generates 'enemies'amount of enemies a
 			Enemy* npc = EnemyFactory::create_enemy("goblin");
 			npc->set_stats(4 * currentLevel, 5 * currentLevel, 1, 1, 1, 1, 1, 1, 1, i);
 			npc->set_level(currentLevel);
+			npc->setTexture(texture);
 			enemy.emplace(enemy.begin() + i, npc);
 			//delete npc;
 		}

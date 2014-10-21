@@ -28,7 +28,7 @@ class Window{
 	public:
 		Window( );
 		void setCanvasSize(Texture* texture);
-		void renderFrame();
+		void renderFrame(int* playerLoc);
 		SDL_Window* getWindow();
 		SDL_Renderer* getRenderer();
 		bool windowExists();
