@@ -14,6 +14,7 @@ public:
 	EnemyManager();
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
+	void renderEnemy();
 	~EnemyManager();
 };
 

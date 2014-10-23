@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <string>
 #include "GlobalDef.h"
+#include "Texture.h"
+
 using namespace std;
 
 /** \brief the Graphics engine
@@ -14,12 +16,23 @@ using namespace std;
 
 
 class Window{
-	bool success=false;
+	bool success=true;
 	SDL_Window* window = NULL;
 	SDL_Renderer* renderer = NULL;
+	SDL_Rect canvasSize;
+	Texture canvas;
+	int winWidth = WINDOW_WIDTH;//the initial width of the window
+	int winHeight = WINDOW_HEIGHT;//the initial height of the window
+	SDL_Rect sceneSize;
+	SDL_Rect cameraLocation;
 	public:
-		Window(string );
+		Window( );
+		void setCanvasSize(Texture* texture);
+		void renderFrame(int* playerLoc);
+		SDL_Window* getWindow();
 		SDL_Renderer* getRenderer();
+		bool windowExists();
+		void setCanvas(Texture* _texture);
 		~Window();
 	protected:
 	private:

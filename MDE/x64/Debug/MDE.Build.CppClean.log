@@ -3,6 +3,7 @@ c:\users\dima\documents\github\rogue\mde\x64\debug\vc120.idb
 c:\users\dima\documents\github\rogue\mde\x64\debug\enemy.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\enemygen.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\enemymanager.obj
+c:\users\dima\documents\github\rogue\mde\x64\debug\game.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\goblin.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\inventory.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\item.obj
@@ -16,14 +17,12 @@ c:\users\dima\documents\github\rogue\mde\x64\debug\readfile.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\readstring.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\rng.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\sound_play.obj
-c:\users\dima\documents\github\rogue\mde\x64\debug\texttexture.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\texture.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\window.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\writefile.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\artificialintelligence.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\battle.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\battlehandler.obj
-c:\users\dima\documents\github\rogue\mde\x64\debug\camera.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\character.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\enemyfactory.obj
 c:\users\dima\documents\github\rogue\mde\x64\debug\controls.obj

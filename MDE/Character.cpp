@@ -57,6 +57,17 @@ bool Character::Health(int damage){
 	}
 }
 
+void Character::render(){
+
+	SDL_Rect charLoc = { coord[0] * TILE_WIDTH, ((coord[1]-1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
+
+	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+}
+
+void Character::setTexture(Texture* _texture){
+	texture = _texture;
+}
+
 int Character::fight(Character* character){
 	return 0;
 }

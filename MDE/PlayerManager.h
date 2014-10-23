@@ -11,13 +11,22 @@ using namespace std;
 class PlayerManager : public Manager
 {
 	Player *player;
+	bool inventory = false;
+	int inventory_cursor = 1;
 	int max_achieved_depth = 0;
 	int kills = 0;
+	
 public:
+	bool playerMoved = false;
+
 	PlayerManager();
+
+	void render();
+	int* getPlayerCoord();
+	void eventHandler(SDL_Event event);
+
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
-	void setPlayer(Player* player);
 	void checkTileForItems();
 	void rangedCombat(int x, int y);
 	string getMainWeaponType();
@@ -27,7 +36,7 @@ public:
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
 	bool check_player_death();
-	void generateMap();
+	//void generateMap();
 	Player* getPlayer();
 	~PlayerManager();
 private:

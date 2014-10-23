@@ -22,13 +22,16 @@
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleHandler.cpp" />
-    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="camera.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyGen.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -42,7 +45,9 @@
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
     <ClCompile Include="sound_play.cpp" />
-    <ClCompile Include="TextTexture.cpp" />
+    <ClCompile Include="TextTexture.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WriteFile.cpp" />
@@ -51,7 +56,9 @@
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />
-    <ClInclude Include="camera.h" />
+    <ClInclude Include="camera.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="CameraStruct.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EnemyFactory.h" />
@@ -59,6 +66,7 @@
     <ClInclude Include="enemy.h" />
     <ClInclude Include="EnemyGen.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GlobalDef.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Inventory.h" />
@@ -73,7 +81,9 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
-    <ClInclude Include="TextTexture.h" />
+    <ClInclude Include="TextTexture.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WriteFile.h" />
