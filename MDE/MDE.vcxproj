@@ -87,14 +87,10 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
-<<<<<<< HEAD
     <ClInclude Include="StoneTower.h" />
-    <ClInclude Include="TextTexture.h" />
-=======
     <ClInclude Include="TextTexture.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
->>>>>>> origin/master
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WriteFile.h" />
