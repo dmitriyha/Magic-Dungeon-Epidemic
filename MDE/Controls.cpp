@@ -19,6 +19,7 @@ Controls::Controls(){
 	
 	cameraData->inventoryStruct.inventory_cursor=inventory_cursor;
 	cameraData->inventoryStruct.inventoryMode=inventory;
+	buildData = &cameraData->buildData;
 }
 
 /** \brief the definition of all of the controls
@@ -143,7 +144,7 @@ void Controls::mouse(SDL_Event event){
 	//if (event.button.button == SDL_BUTTON_LEFT){
 		SDL_GetMouseState(&x, &y);
 		managePlayer->rangedCombat(x / TILE_WIDTH, y / TILE_HEIGHT);
-
+		cout <<"Hiiri " << x << " " << y  << endl;
 	//}
 	break;
 	case SDL_BUTTON_RIGHT:
@@ -159,18 +160,29 @@ void Controls::mouse(SDL_Event event){
 
 			}*/
 			if (!inventory){//&& x == playerXcoord + 1 || x == playerXcoord - 1)
-				
+			/*	Building* tower  = BuildingFactory::create_building("stonetower");
+				tower->set_stats(1, 1, 1, 1, 1, 1);
+				tower->set_level(1);
+				tower->setCoords(x, y);
+				mapdata.buildingDataMap[x][y] = tower;*/
+
+
 				buildData->building = BuildingFactory::create_building("stonetower");
 				buildData->building->set_stats(1, 1, 1, 1, 1, 1);
 				buildData->building->set_level(1);
 				buildData->building->setCoords(x, y);
 				mapdata.buildingDataMap[x][y] = buildData->building;
+				
 			}
 		break;
 	}
 }
 
+Building*  Controls::GetBuilding(){
 
+	return buildData->building;
+
+}
 
 /** \brief CameraStruct getter
  *

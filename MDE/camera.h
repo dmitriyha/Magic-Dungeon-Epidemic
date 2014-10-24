@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <SDL.h>
+
 #include <SDL_Image.h>
 #include "GlobalDef.h"
 #include <deque>
@@ -12,10 +13,14 @@
 #include "player.h"
 #include "Texture.h"
 #include "TextTexture.h"
+#include "Building.h"
+#include "BuildingFactory.h"
 #include "MapDataStructs.h"
 #include "CameraStruct.h"
 #include "PlayerManager.h"
 #include "BuildingStruct.h"
+
+
 
 using namespace std;
 
@@ -27,7 +32,9 @@ class Camera{
 	
 	deque<SDL_Rect> itemTextures;
 	deque<int> item_number;
-	BuildingData* buildData;
+	BuildingData *buildData;
+	Building* building;
+	MapData mapdata;
 	///the textures
 	Texture* player;
 	Texture* enemy;
@@ -67,11 +74,13 @@ class Camera{
 	TTF_Font * carbon = TTF_OpenFont( "img\\carbon.ttf", 18);
 	
 	SDL_Rect offset;
+	bool rakennusAlustettu;
 	
 	public:
 		Camera(CameraStruct* camData,SDL_Renderer* screen);
 		void renderScreen();
 		void clear_screen();
+		void setBuilding(Building* _building);
 		~Camera();
 	private:
 		void renderAll();

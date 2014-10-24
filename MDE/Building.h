@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 using namespace std;
 
 /** \brief The Enemy entity, that contains all of the data relevant to it
@@ -11,6 +12,8 @@ using namespace std;
 
 
 class Building{
+
+
 protected:
 	///the level of the Enemy
 	int level;
@@ -26,6 +29,7 @@ protected:
 
 public:
 	Building();
+	
 	virtual void set_level(int level);
 	virtual int get_level();
 	virtual ~Building();
