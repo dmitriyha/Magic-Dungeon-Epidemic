@@ -185,6 +185,7 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 	while (!dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord[0]][coord[1]].empty()){
 		if (player->getInventory()->storeItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord[0]][coord[1]].front()) == 1){
 			dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord[0]][coord[1]].pop_front();
+
 		}
 		else{
 			break;

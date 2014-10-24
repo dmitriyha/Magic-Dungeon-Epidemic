@@ -60,8 +60,12 @@ bool Character::Health(int damage){
 void Character::render(){
 
 	SDL_Rect charLoc = { coord[0] * TILE_WIDTH, ((coord[1]-1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
-
-	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	if (health > 0){
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	}
+	else {
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSpriteDead, &charLoc);
+	}
 }
 
 void Character::setTexture(Texture* _texture){

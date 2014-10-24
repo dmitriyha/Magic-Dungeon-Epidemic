@@ -6,6 +6,7 @@ Player::Player(){
 	charSprite.w = 48;
 	charSprite.h = 58;
 
+	charSpriteDead = { 0, 0, 0, 0 };
 }
 
 /** \brief sets the stats of the  Player entity

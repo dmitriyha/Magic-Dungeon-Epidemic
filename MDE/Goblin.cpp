@@ -3,6 +3,7 @@
 
 Goblin::Goblin(){
 	charSprite = { 0, 0, 40, 57 };
+	charSpriteDead = { 188, 270, 50, 50 };
 }
 
 

@@ -29,6 +29,8 @@ protected:
 	int coord[2];
 
 	SDL_Rect charSprite;
+	SDL_Rect charSpriteDead;
+
 public: 
 
 	
