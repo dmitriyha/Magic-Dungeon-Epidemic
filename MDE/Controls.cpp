@@ -11,7 +11,7 @@ Controls::Controls(){
 	managePlayer = new PlayerManager();
 	managePlayer -> setPointers(cameraData);
 	managePlayer->setPlayerPointer(new Player());
-	managePlayer->generateMap();
+	//managePlayer->generateMap();
 	manageEnemies = new EnemyManager();
 	manageEnemies  -> setPointers(cameraData);
 	manageEnemies->setPlayerPointer(managePlayer->getPlayer());
@@ -131,8 +131,8 @@ void Controls::keyboard(SDL_Event event){
 		}
 
 	}
-	
-
+	managePlayer->inventoryData();
+	cameraData->inventoryStruct.inventory_cursor = inventory_cursor;
 }
 
 void Controls::mouse(SDL_Event event){

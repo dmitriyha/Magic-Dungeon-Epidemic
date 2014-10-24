@@ -5,6 +5,15 @@ EnemyManager::EnemyManager()
 {
 }
 
+void EnemyManager::renderEnemy(){
+	int size = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.size();
+	int cursor = 2;
+	while (cursor - 2 < size - 2){
+		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(cursor)->render();
+		cursor++;
+	}
+}
+
 int EnemyManager::move(int direction){
 	int *playerLoc = player->getCoords();
 	int size = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.size();

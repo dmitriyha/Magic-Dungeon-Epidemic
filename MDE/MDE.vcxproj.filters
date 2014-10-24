@@ -129,6 +129,9 @@
     <ClCompile Include="WriteFile.cpp">
       <Filter>Source Files\File</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArtificialIntelligence.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="MapDataStructs.h">
       <Filter>Source Files\StructsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,9 +2,13 @@
 
 
 Goblin::Goblin(){
-
+	charSprite = { 0, 0, 40, 57 };
 }
 
+
+void Goblin::setPrimaryWeapon(Item* item){
+	weapon = item;
+}
 
 /** \brief sets the stats of the  Goblin entity
 *
@@ -20,12 +24,6 @@ Goblin::Goblin(){
 * \param ID the ID of this entity
 *
 */
-
-
-void Goblin::setPrimaryWeapon(Item* item){
-	weapon = item;
-}
-
 void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID){
 	health = healths;
 	strength = strengths;
