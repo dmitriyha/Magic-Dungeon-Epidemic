@@ -3,17 +3,23 @@
 #include "Window.h"
 #include "Controls.h"
 #include "camera.h"
+#include "Building.h"
 using namespace std;
+
+Building* GetBuilding();
 
 //sdl event struct
 SDL_Event event;
+Building* building;
+Controls controls;
 
 int main(int argc, char* argv[]){
     //freopen( "CON", "wt", stdout );
     
 	Window win("Magic Dungeon Epidemic");
 	SDL_Renderer * screen=win.getRenderer();
-	Controls controls;
+	
+	
 	Camera camera(controls.getData(),screen);
 	camera.renderScreen();
 	bool quit=false;
@@ -30,7 +36,12 @@ int main(int argc, char* argv[]){
 
 			controls.buttons(event);
 			camera.clear_screen();
+			building=GetBuilding();
+			camera.setBuilding(building);
 			camera.renderScreen();
+			
+			
+			
 
 			SDL_RenderPresent( win.getRenderer() );
 		}//end while(SDL_PollEvent( &event ))
@@ -39,4 +50,9 @@ int main(int argc, char* argv[]){
 	//fclose (stdout);
 	
 	return 0;
+}
+
+Building*  GetBuilding(){
+	building=controls.GetBuilding();
+	return building;
 }

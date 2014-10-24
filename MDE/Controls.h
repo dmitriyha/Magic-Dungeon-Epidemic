@@ -6,11 +6,12 @@
 #include "CameraStruct.h"
 #include "Building.h"
 #include "BuildingFactory.h"
-#include "Building.h"
 #include "player.h"
 #include "PlayerManager.h"
 #include "EnemyManager.h"
 #include "BuildingStruct.h"
+#include "Building.h"
+
 
 using namespace std;
 
@@ -38,12 +39,15 @@ class Controls{
 	
 	MapData mapdata;
 
+
+
 	//Building* building;
 public:
 	Controls();
 	void buttons(SDL_Event event);
 	CameraStruct* getData();
 	~Controls();
+	Building* GetBuilding();
 private:
 	void keyboard(SDL_Event event);
 	void mouse(SDL_Event event);
