@@ -36,8 +36,8 @@ class Map{
 	Texture* tex;
 
 	CameraStruct* mapData;
-	int stairs_up[2];
-	int stairs_down[2];
+	LocationCoordinates stairs_up;
+	LocationCoordinates stairs_down;
 public:
 	Map(CameraStruct* cam);
 	Texture* getMapAsTexture();

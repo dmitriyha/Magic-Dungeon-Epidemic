@@ -114,8 +114,7 @@ int  Player::getID(){
 
 
 void  Player::setCoords(int x, int y){
-	coord[0] = x;
-	coord[1] = y;
+	coord={ x, y };
 }
 
 /** \brief the coordinate getter of the entity
@@ -126,7 +125,7 @@ void  Player::setCoords(int x, int y){
 
 
 
-int*  Player::getCoords(){
+LocationCoordinates Player::getCoords(){
 	return coord;
 }
 

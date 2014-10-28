@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Item.h"
 #include "Texture.h"
+#include "LocationCoordinate.h"
 using namespace std;
 
 /** \brief the base class of Player and Enemy
@@ -25,8 +26,8 @@ protected:
 	int awareness;
 	int luck;
 	int id;
-	
-	int coord[2];
+
+	LocationCoordinates coord;
 
 	SDL_Rect charSprite;
 	SDL_Rect charSpriteDead;
@@ -47,7 +48,7 @@ public:
 	virtual int getID();
 	
 	virtual void setCoords(int, int);
-	virtual int* getCoords();
+	virtual LocationCoordinates  getCoords();
 	
 	virtual int Strength();
 	virtual int Dexterity();

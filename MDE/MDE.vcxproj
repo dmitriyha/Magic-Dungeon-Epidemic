@@ -73,6 +73,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemRenderer.h" />
+    <ClInclude Include="LocationCoordinate.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDataStructs.h" />

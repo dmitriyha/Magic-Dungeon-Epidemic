@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include"ReadFile.h"
 #include "Texture.h"
+#include "LocationCoordinate.h"
 using namespace std;
 
 /** \brief the item class, which has all the required data to function as an item
@@ -27,7 +28,7 @@ class Item{
 	/// item is equpped flag
 	bool equipped = false;
 	/// location on map
-	int * locationOnMap;
+	LocationCoordinates  locationOnMap;
 	/// item texture
 	Texture* texture;
 	///item Sprite
@@ -43,7 +44,7 @@ public:
 	string Descriprion();
 	int getID();
 	string getType();
-	void setAsUnequpped(int * mapLoc);
+	void setAsUnequipped(LocationCoordinates mapLoc);
 	void setAsEquipped();
 	void setTexture(Texture* _texture);
 	~Item();

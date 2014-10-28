@@ -5,11 +5,15 @@ ItemRenderer::ItemRenderer()
 {
 }
 
-void ItemRenderer::renderItem(int* renderLoc){
+void ItemRenderer::renderItem(LocationCoordinates  renderLoc){
 	int cursor = 0;
-	while (camData->mapStruct[camData->currentLevel].itemData.itemDataMap[renderLoc[0]][renderLoc[1]].size()>cursor){
-		camData->mapStruct[camData->currentLevel].itemData.itemDataMap[renderLoc[0]][renderLoc[1]].at(cursor).render();
-		cursor++;
+	for (int i = 0; i < GRID_WIDTH; i++){
+		for (int j = 0; j < GRID_HEIGHT; j++){
+			while (camData->mapStruct[camData->currentLevel].itemData.itemDataMap[i][j].size()>cursor){
+				camData->mapStruct[camData->currentLevel].itemData.itemDataMap[i][j].at(cursor).render();
+				cursor++;
+			}
+		}
 	}
 }
 

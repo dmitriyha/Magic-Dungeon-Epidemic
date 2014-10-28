@@ -62,10 +62,11 @@ void Game::run(){
 			}
 
 			map->render();
-			
+			renderItem.renderItem(managePlayer.getPlayerCoord());
+
 			manageEnemy.renderEnemy();
 			managePlayer.render();
-			renderItem.renderItem(managePlayer.getPlayerCoord());
+			
 			//SDL_RenderCopy(win.getRenderer(), mapTexture->getTexture(), NULL, NULL);
 
 			win.renderFrame(managePlayer.getPlayerCoord());

@@ -85,8 +85,7 @@ int  Goblin::getID(){
 
 
 void  Goblin::setCoords(int x, int y){
-	coord[0] = x;
-	coord[1] = y;
+	coord = { x, y };
 }
 
 /** \brief the coordinate getter of the entity
@@ -97,7 +96,7 @@ void  Goblin::setCoords(int x, int y){
 
 
 
-int*  Goblin::getCoords(){
+LocationCoordinates   Goblin::getCoords(){
 	return coord;
 }
 

@@ -8,7 +8,7 @@ class ItemRenderer
 	CameraStruct* camData;
 public:
 	ItemRenderer();
-	void renderItem(int* renderLoc);
+	void renderItem(LocationCoordinates  renderLoc);
 	void setPointer(CameraStruct* _camData);
 	void setIconTexture(Texture* _itemIcons);
 	Texture* getItemTexture();

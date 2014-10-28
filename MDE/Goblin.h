@@ -12,7 +12,7 @@ public:
 	int getID();
 
 	void setCoords(int, int);
-	int* getCoords();
+	LocationCoordinates  getCoords();
 
 	int Strength();
 	int Dexterity();

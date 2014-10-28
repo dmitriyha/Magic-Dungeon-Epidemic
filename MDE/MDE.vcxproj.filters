@@ -197,6 +197,9 @@
     <ClInclude Include="ItemRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LocationCoordinate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="img\airmole.ttf">

@@ -43,7 +43,7 @@ void Item::render(){
 
 	}
 	else {
-		itemOnScreen = { locationOnMap[0] * TILE_WIDTH, locationOnMap[1] * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
+		itemOnScreen = { locationOnMap.x * TILE_WIDTH, locationOnMap.y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
 		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &itemSprite, &itemOnScreen);
 	}
 }
@@ -96,15 +96,14 @@ string Item::getType(){
 	return type;
 }
 
-void Item::setAsUnequpped(int * mapLoc){
+void Item::setAsUnequipped(LocationCoordinates  mapLoc){
 	equipped = false;
 	locationOnMap = mapLoc;
 }
 
 void Item::setAsEquipped(){
 	equipped = true;
-	locationOnMap[0] = -1;
-	locationOnMap[1] = -1;
+	locationOnMap = { -1, -1 };
 }
 
 void Item::setTexture(Texture* _texture){
