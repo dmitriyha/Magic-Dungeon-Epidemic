@@ -13,6 +13,7 @@ void ItemRenderer::renderItem(LocationCoordinates  renderLoc){
 				camData->mapStruct[camData->currentLevel].itemData.itemDataMap[i][j].at(cursor).render();
 				cursor++;
 			}
+			cursor = 0;
 		}
 	}
 }
