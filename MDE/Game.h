@@ -5,6 +5,7 @@
 #include "Controls.h"
 #include "camera.h"
 #include <string>
+#include "ItemRenderer.h"
 using namespace std;
 
 
@@ -17,6 +18,7 @@ class Game
 	Texture* mapTexture;
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
+	ItemRenderer renderItem;
 
 	Window win ;
 	//Controls controls;

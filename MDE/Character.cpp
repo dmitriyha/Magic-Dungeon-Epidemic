@@ -59,9 +59,13 @@ bool Character::Health(int damage){
 
 void Character::render(){
 
-	SDL_Rect charLoc = { coord[0] * TILE_WIDTH, ((coord[1]-1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
-
-	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
+	if (health > 0){
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	}
+	else {
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSpriteDead, &charLoc);
+	}
 }
 
 void Character::setTexture(Texture* _texture){
@@ -91,9 +95,8 @@ int Character::getID(){
  */     
 
 
-void Character::setCoords(int x,int y){
-	coord[0]=x;
-	coord[1]=y;
+void Character::setCoords(int x, int y){
+	coord={ x, y };
 }
 
 /** \brief the coordinate getter of the entity
@@ -104,7 +107,7 @@ void Character::setCoords(int x,int y){
 
 
 
-int* Character::getCoords(){
+LocationCoordinates  Character::getCoords(){
 	return coord;
 }
 

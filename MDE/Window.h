@@ -8,7 +8,7 @@
 #include <string>
 #include "GlobalDef.h"
 #include "Texture.h"
-
+#include "LocationCoordinate.h"
 using namespace std;
 
 /** \brief the Graphics engine
@@ -28,7 +28,7 @@ class Window{
 	public:
 		Window( );
 		void setCanvasSize(Texture* texture);
-		void renderFrame(int* playerLoc);
+		void renderFrame(LocationCoordinates playerLoc);
 		SDL_Window* getWindow();
 		SDL_Renderer* getRenderer();
 		bool windowExists();
