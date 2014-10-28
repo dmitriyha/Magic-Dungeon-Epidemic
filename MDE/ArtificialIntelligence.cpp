@@ -14,136 +14,136 @@ ArtificialIntelligence::ArtificialIntelligence(){
  */     
 
 
-int ArtificialIntelligence::direction(int* playerLoc,int* coord,EntityData liveEntities,MapData mapLayer){
-	if(abs(playerLoc[0]-coord[0]) + abs(playerLoc[1]-coord[1])<=7){//controls player visibility
+int ArtificialIntelligence::direction(LocationCoordinates  playerLoc,LocationCoordinates coord,EntityData liveEntities,MapData mapLayer){
+	if(abs(playerLoc.x-coord.x) + abs(playerLoc.y-coord.y)<=7){//controls player visibility
 		int choice=rand.generate(1,2);
-		if (playerLoc[0]<coord[0]&&playerLoc[1]<coord[1] ){ //move diagonally towards palyer up and left
-			if(liveEntities.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#' && choice == 1){//move left
+		if (playerLoc.x<coord.x&&playerLoc.y<coord.y ){ //move diagonally towards palyer up and left
+			if(liveEntities.live[coord.x-1][coord.y] == 0 && mapLayer.mapDim[coord.x-1][coord.y]!='#' && choice == 1){//move left
 				return 4;
 			}
-			else if(liveEntities.live[coord[0]][coord[1]-1] == 0 && mapLayer.mapDim[coord[0]][coord[1]-1]!='#'){//move up
+			else if(liveEntities.live[coord.x][coord.y-1] == 0 && mapLayer.mapDim[coord.x][coord.y-1]!='#'){//move up
 				return 8;
 			}
 			else{
 				return -1;
 			}
 		}
-		else if (playerLoc[0]>coord[0]&&playerLoc[1]>coord[1] ){//move diagonally towards palyer down and right
+		else if (playerLoc.x>coord.x&&playerLoc.y>coord.y ){//move diagonally towards palyer down and right
 		
-			if(liveEntities.live[coord[0]][coord[1]+1] == 0 && mapLayer.mapDim[coord[0]][coord[1]+1]!='#' && choice == 1){//move down
+			if(liveEntities.live[coord.x][coord.y+1] == 0 && mapLayer.mapDim[coord.x][coord.y+1]!='#' && choice == 1){//move down
 				return 2;
 			}
-			else if(liveEntities.live[coord[0]+1][coord[1]] == 0 && mapLayer.mapDim[coord[0]+1][coord[1]]!='#'){//move right
+			else if(liveEntities.live[coord.x+1][coord.y] == 0 && mapLayer.mapDim[coord.x+1][coord.y]!='#'){//move right
 				return 6;
 			}	
 			else{
 				return -1;
 			}
 		}
-		else if (playerLoc[0]>coord[0]&&playerLoc[1]<coord[1] ){//move diagonally towards palyer up and right
-			if(liveEntities.live[coord[0]][coord[1]-1] == 0 && mapLayer.mapDim[coord[0]][coord[1]-1]!='#' && choice == 1){//move up
+		else if (playerLoc.x>coord.x&&playerLoc.y<coord.y ){//move diagonally towards palyer up and right
+			if(liveEntities.live[coord.x][coord.y-1] == 0 && mapLayer.mapDim[coord.x][coord.y-1]!='#' && choice == 1){//move up
 				return 8;
 			}
-			else if(liveEntities.live[coord[0]+1][coord[1]] == 0 && mapLayer.mapDim[coord[0]+1][coord[1]]!='#'){//move right
+			else if(liveEntities.live[coord.x+1][coord.y] == 0 && mapLayer.mapDim[coord.x+1][coord.y]!='#'){//move right
 				return 6;
 			}
 			else{
 				return -1;
 			}
 		}
-		else if (playerLoc[0]<coord[0]&&playerLoc[1]>coord[1] ){//move diagonally towards palyer down and left
-			if(liveEntities.live[coord[0]][coord[1]+1] == 0 && mapLayer.mapDim[coord[0]][coord[1]+1]!='#'){//move down
+		else if (playerLoc.x<coord.x&&playerLoc.y>coord.y ){//move diagonally towards palyer down and left
+			if(liveEntities.live[coord.x][coord.y+1] == 0 && mapLayer.mapDim[coord.x][coord.y+1]!='#'){//move down
 				return 2;
 			}
-			else if(liveEntities.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#'){//move left
+			else if(liveEntities.live[coord.x-1][coord.y] == 0 && mapLayer.mapDim[coord.x-1][coord.y]!='#'){//move left
 				return 4;
 			}	
 			else{
 				return -1;
 			}
 		}
-		else if(playerLoc[0]==coord[0]&&playerLoc[1]<coord[1] ){//move up
-			if (liveEntities.live[coord[0]][coord[1]-1] == 1){
+		else if(playerLoc.x==coord.x&&playerLoc.y<coord.y ){//move up
+			if (liveEntities.live[coord.x][coord.y-1] == 1){
 				return 0;
 			}
-			else if(liveEntities.live[coord[0]][coord[1]-1] > 1 || mapLayer.mapDim[coord[0]][coord[1]-1]=='#'){//up
-				if(liveEntities.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#'  && choice == 1){//move left
+			else if(liveEntities.live[coord.x][coord.y-1] > 1 || mapLayer.mapDim[coord.x][coord.y-1]=='#'){//up
+				if(liveEntities.live[coord.x-1][coord.y] == 0 && mapLayer.mapDim[coord.x-1][coord.y]!='#'  && choice == 1){//move left
 					return 4;
 				}
-				else if(liveEntities.live[coord[0]+1][coord[1]] == 0 && mapLayer.mapDim[coord[0]+1][coord[1]]!='#'){//move right
+				else if(liveEntities.live[coord.x+1][coord.y] == 0 && mapLayer.mapDim[coord.x+1][coord.y]!='#'){//move right
 					return 6;
 				}
 				else{
 					return -1;
 				}
 			}
-			else if(liveEntities.live[coord[0]][coord[1]-1] == 0 && mapLayer.mapDim[coord[0]][coord[1]-1]!='#'){
+			else if(liveEntities.live[coord.x][coord.y-1] == 0 && mapLayer.mapDim[coord.x][coord.y-1]!='#'){
 				return 8;
 			}
 			else{
 				return -1;
 			}
 		}
-		else if(playerLoc[0]==coord[0]&&playerLoc[1]>coord[1] ){//move down
-			if(liveEntities.live[coord[0]][coord[1]+1] == 1){
+		else if(playerLoc.x==coord.x&&playerLoc.y>coord.y ){//move down
+			if(liveEntities.live[coord.x][coord.y+1] == 1){
 				return 0;
 			}
-			else if(liveEntities.live[coord[0]][coord[1]+1] > 1 || mapLayer.mapDim[coord[0]][coord[1]+1]=='#'){//down
-				if(liveEntities.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#'  && choice == 1){//move left
+			else if(liveEntities.live[coord.x][coord.y+1] > 1 || mapLayer.mapDim[coord.x][coord.y+1]=='#'){//down
+				if(liveEntities.live[coord.x-1][coord.y] == 0 && mapLayer.mapDim[coord.x-1][coord.y]!='#'  && choice == 1){//move left
 					return 4;
 				}
-				else if(liveEntities.live[coord[0]+1][coord[1]] == 0 && mapLayer.mapDim[coord[0]+1][coord[1]]!='#'){//move right
+				else if(liveEntities.live[coord.x+1][coord.y] == 0 && mapLayer.mapDim[coord.x+1][coord.y]!='#'){//move right
 					return 6;
 				}
 				else{
 					return -1;
 				}
 			}
-			else if(liveEntities.live[coord[0]][coord[1]+1] == 0 && mapLayer.mapDim[coord[0]][coord[1]+1]!='#'){
+			else if(liveEntities.live[coord.x][coord.y+1] == 0 && mapLayer.mapDim[coord.x][coord.y+1]!='#'){
 				return 2;
 			}
 			else{
 				return -1;
 			}
 		}
-		else if(playerLoc[0]<coord[0]&&playerLoc[1]==coord[1]){//move left
-			if (liveEntities.live[coord[0]-1][coord[1]] == 1){
+		else if(playerLoc.x<coord.x&&playerLoc.y==coord.y){//move left
+			if (liveEntities.live[coord.x-1][coord.y] == 1){
 				return 0;
 			}
-			else if(liveEntities.live[coord[0]-1][coord[1]] > 1 || mapLayer.mapDim[coord[0]-1][coord[1]]=='#'){//left
-				if( liveEntities.live[coord[0]][coord[1]-1] == 0 && mapLayer.mapDim[coord[0]][coord[1]-1]!='#'  && choice == 1){//move up
+			else if(liveEntities.live[coord.x-1][coord.y] > 1 || mapLayer.mapDim[coord.x-1][coord.y]=='#'){//left
+				if( liveEntities.live[coord.x][coord.y-1] == 0 && mapLayer.mapDim[coord.x][coord.y-1]!='#'  && choice == 1){//move up
 					return 8;
 				}
-				else if( liveEntities.live[coord[0]][coord[1]+1] == 0 && mapLayer.mapDim[coord[0]][coord[1]+1]!='#'){//move down
+				else if( liveEntities.live[coord.x][coord.y+1] == 0 && mapLayer.mapDim[coord.x][coord.y+1]!='#'){//move down
 					return 2;
 				}
 				else{
 					return -1;
 				}
 			}
-			else if( liveEntities.live[coord[0]-1][coord[1]] == 0 && mapLayer.mapDim[coord[0]-1][coord[1]]!='#'){
+			else if( liveEntities.live[coord.x-1][coord.y] == 0 && mapLayer.mapDim[coord.x-1][coord.y]!='#'){
 				return 4;
 			}
 			else{
 				return -1;
 			}
 		}
-		else if(playerLoc[0]>coord[0]&&playerLoc[1]==coord[1]){//move right
-			if(liveEntities.live[coord[0]+1][coord[1]] == 1){
+		else if(playerLoc.x>coord.x&&playerLoc.y==coord.y){//move right
+			if(liveEntities.live[coord.x+1][coord.y] == 1){
 				return 0;
 			}
-			else if(liveEntities.live[coord[0]+1][coord[1]] > 1 || mapLayer.mapDim[coord[0]+1][coord[1]]=='#'){//right
-				if(liveEntities.live[coord[0]][coord[1]+1] == 0 && mapLayer.mapDim[coord[0]][coord[1]+1]!='#' && choice == 1){//move down
+			else if(liveEntities.live[coord.x+1][coord.y] > 1 || mapLayer.mapDim[coord.x+1][coord.y]=='#'){//right
+				if(liveEntities.live[coord.x][coord.y+1] == 0 && mapLayer.mapDim[coord.x][coord.y+1]!='#' && choice == 1){//move down
 					return 2;
 				}
-				else if(liveEntities.live[coord[0]][coord[1]-1] == 0 && mapLayer.mapDim[coord[0]][coord[1]-1]!='#'){//move up
+				else if(liveEntities.live[coord.x][coord.y-1] == 0 && mapLayer.mapDim[coord.x][coord.y-1]!='#'){//move up
 					return 8;
 				}
 				else{
 					return -1;
 				}
 			}
-			else if(liveEntities.live[coord[0]+1][coord[1]] == 0 && mapLayer.mapDim[coord[0]+1][coord[1]]!='#'){
+			else if(liveEntities.live[coord.x+1][coord.y] == 0 && mapLayer.mapDim[coord.x+1][coord.y]!='#'){
 				return 6;
 			}
 			else{
