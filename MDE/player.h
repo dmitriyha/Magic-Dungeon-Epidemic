@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Inventory.h"
 #include "Battle.h"
+#include "LocationCoordinate.h"
 using namespace std;
 
 
@@ -34,7 +35,7 @@ public:
 	int getID();
 
 	void setCoords(int, int);
-	int* getCoords();
+	LocationCoordinates  getCoords();
 
 	int Strength();
 	int Dexterity();

@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "EnemyGen.h"
 #include <string>
+#include "LocationCoordinate.h"
 using namespace std;
 
 class PlayerManager : public Manager
@@ -22,7 +23,7 @@ public:
 	PlayerManager();
 
 	void render();
-	int* getPlayerCoord();
+	LocationCoordinates  getPlayerCoord();
 	void eventHandler(SDL_Event event);
 
 	void setPlayerPointer(Player* _player);
@@ -41,6 +42,6 @@ public:
 	Player* getPlayer();
 	~PlayerManager();
 private:
-	void fightAndKillEnemy(int* coord);
+	void fightAndKillEnemy(LocationCoordinates coord);
 };
 

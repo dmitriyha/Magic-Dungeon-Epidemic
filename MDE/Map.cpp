@@ -147,30 +147,27 @@ Map::Map(CameraStruct* cam){
 		y=random.generate(0,GRID_HEIGHT);//generates the y coordinate
 		if (mapData->currentLevel == 0){
 			if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
-				stairs_up[0]=x;
-				stairs_up[1]=y;
+				stairs_up = {x,y};
+
 				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'u';
 				placed = 1;
 			}
 		}
 		else if(mapData->currentLevel == 1){
 			if (stairways_placed == 0 && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
-				stairs_up[0]=x;
-				stairs_up[1]=y;
+				stairs_up = { x, y };
 				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'u';
 				stairways_placed ++;
 			}
 			else if (stairways_placed == 1 && mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
-				stairs_down[0]=x;
-				stairs_down[1]=y;
+				stairs_down={x,y};
 				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'd';
 				placed ++;
 			}
 		}
 		else if (mapData->currentLevel == 2){
 			if (mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] == '.'){
-				stairs_down[0]=x;
-				stairs_down[1]=y;
+				stairs_down = { x, y };
 				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'd';
 				placed = 1;
 			}

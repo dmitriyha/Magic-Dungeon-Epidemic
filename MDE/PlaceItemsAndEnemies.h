@@ -24,7 +24,7 @@ class PlaceItemsAndEnemies{
 
 	
 public:
-	PlaceItemsAndEnemies(CameraStruct* cam);
+	PlaceItemsAndEnemies(CameraStruct* cam,Texture* texture);
 	~PlaceItemsAndEnemies();
 };
 

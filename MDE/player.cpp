@@ -6,6 +6,7 @@ Player::Player(){
 	charSprite.w = 48;
 	charSprite.h = 58;
 
+	charSpriteDead = { 0, 0, 0, 0 };
 }
 
 /** \brief sets the stats of the  Player entity
@@ -113,8 +114,7 @@ int  Player::getID(){
 
 
 void  Player::setCoords(int x, int y){
-	coord[0] = x;
-	coord[1] = y;
+	coord={ x, y };
 }
 
 /** \brief the coordinate getter of the entity
@@ -125,7 +125,7 @@ void  Player::setCoords(int x, int y){
 
 
 
-int*  Player::getCoords(){
+LocationCoordinates Player::getCoords(){
 	return coord;
 }
 

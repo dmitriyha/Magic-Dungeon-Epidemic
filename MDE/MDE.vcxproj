@@ -37,6 +37,7 @@
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="ItemRenderer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -77,6 +78,8 @@
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="ItemRenderer.h" />
+    <ClInclude Include="LocationCoordinate.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDataStructs.h" />
