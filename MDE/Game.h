@@ -7,6 +7,7 @@
 #include "buildingManager.h"
 #include <string>
 #include "ItemRenderer.h"
+#include "LocationCoordinate.h"
 using namespace std;
 
 
@@ -19,7 +20,7 @@ class Game
 	Texture* mapTexture;
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
-	BuildingManager* managebuilding = new BuildingManager();
+	BuildingManager managebuilding;
 	ItemRenderer renderItem;
 
 	Window win ;

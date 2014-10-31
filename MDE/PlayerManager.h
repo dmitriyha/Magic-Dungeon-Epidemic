@@ -21,7 +21,6 @@ class PlayerManager : public Manager
 	int kills = 0;
 	int mouseCoordX, mouseCoordY;
 	BuildingData *buildData;
-	BuildingManager *buildingManager;
 	
 public:
 	bool playerMoved = false;
@@ -31,7 +30,7 @@ public:
 	void render();
 	LocationCoordinates  getPlayerCoord();
 	void eventHandler(SDL_Event event);
-	void mouseEventHandler(SDL_Event event);
+	LocationCoordinates mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
 	void checkTileForItems();

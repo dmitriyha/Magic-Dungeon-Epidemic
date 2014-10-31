@@ -34,7 +34,11 @@ Game::Game()
 	player->setTexture(texture);
 
 	//Initialize building texture 
-	managebuilding->initializeBuildings(camData);
+	Texture* stonetower = new Texture();
+	stonetower->setRenderer(win.getRenderer());
+	stonetower->makeTexture("img\\TowerStone.png");
+
+	managebuilding.initializeBuildings(stonetower);
 
 	//initialize game logic 
 	managePlayer.setPointers(camData);
@@ -48,6 +52,7 @@ void Game::run(){
 	//PlaySound("music\\game1.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
 	if (win.windowExists()){
 		while (quit == false){
+			LocationCoordinates mouseClick{ -1, -1 };
 			while (SDL_PollEvent(&event)){
 				
 
@@ -56,7 +61,10 @@ void Game::run(){
 						managePlayer.eventHandler(event);
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
-						managePlayer.mouseEventHandler(event);
+						mouseClick=managePlayer.mouseEventHandler(event);
+						if (mouseClick.x > -1){
+							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
+						}
 						break;
 					case SDL_QUIT:
 						quit = true;
@@ -77,10 +85,8 @@ void Game::run(){
 			manageEnemy.renderEnemy();
 			managePlayer.render();
 
-			if (managebuilding->FirstBuildingBuilt() == true){
-			managebuilding->render();
-			cout << "renderoidään rakennusta";
-			}
+			managebuilding.render();
+			
 
 			//SDL_RenderCopy(win.getRenderer(), mapTexture->getTexture(), NULL, NULL);
 

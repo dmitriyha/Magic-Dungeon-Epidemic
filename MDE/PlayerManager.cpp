@@ -115,32 +115,61 @@ void PlayerManager::eventHandler(SDL_Event event){
 	dataForManaging->inventoryStruct.inventory_cursor = inventory_cursor;
 }
 
-void PlayerManager::mouseEventHandler(SDL_Event event){
+LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
+	LocationCoordinates coord = getPlayerCoord();
+	int playerXcoord = coord.x, playerYcoord = coord.y;
+	int upperCornerX = 0;
+	int upperCornerY = 0;
 	switch (event.button.button){
 
-	case SDL_BUTTON_LEFT:
-		//if (event.button.button == SDL_BUTTON_LEFT){
-		SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
-		rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
-		cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
-		//}
-		break;
-	case SDL_BUTTON_RIGHT:
-		//If left mouse button is pressed and t is pressed. Then build a tower
+		case SDL_BUTTON_LEFT:
+			//if (event.button.button == SDL_BUTTON_LEFT){
+			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+			rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
+			cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
+			//}
+			return LocationCoordinates{ -1, -1 };
+			break;
+		case SDL_BUTTON_RIGHT:
+			//If left mouse button is pressed and t is pressed. Then build a tower
 
-		LocationCoordinates coord = getPlayerCoord();
-
-		int playerXcoord = coord.x, playerYcoord = coord.y;
-
-		SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
-		mouseCoordX = mouseCoordX / TILE_WIDTH;
-		mouseCoordY = mouseCoordY / TILE_HEIGHT;
-
-		if (!inventory){
 			
-			buildingManager->CreateBuilding("stonetower", mouseCoordX, mouseCoordY, 1);
-		}
-		break;
+
+			
+
+			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+			mouseCoordX = mouseCoordX / TILE_WIDTH;
+			mouseCoordY = mouseCoordY / TILE_HEIGHT;
+
+			upperCornerX = player->getCoords().x - CAMERA_GRID_WIDTH / 2;
+			upperCornerY = player->getCoords().y - CAMERA_GRID_HEIGHT / 2;
+
+			if (upperCornerX < 0){
+				upperCornerX = 0;
+			}
+			if (upperCornerX + CAMERA_GRID_WIDTH > GRID_WIDTH){
+				upperCornerX = GRID_WIDTH - CAMERA_GRID_WIDTH;
+			}
+
+
+			if (upperCornerY < 0){
+				upperCornerY = 0;
+			}
+			if (upperCornerY + CAMERA_GRID_HEIGHT > GRID_HEIGHT){
+				upperCornerY = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
+			}
+
+			mouseCoordX += upperCornerX;
+			mouseCoordX += upperCornerY;
+
+			if (!inventory){
+
+				return LocationCoordinates{ mouseCoordX, mouseCoordY };
+			}
+			break;
+		default:
+			return LocationCoordinates{ -1, -1 };
+			break;
 	}
 }
 

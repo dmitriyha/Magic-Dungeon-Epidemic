@@ -7,7 +7,10 @@ BuildingManager::BuildingManager()
 }
 
 void BuildingManager::render(){
-	building->render();
+	for (int i = 0; buildingList.size() > i; i++){
+		buildingList.at(i)->render();
+
+	}
 }
 
 //Creates a Building.
@@ -41,6 +44,9 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 		tower->setTexture(stonetower);
 		tower->setCoords(CoordX, CoordY);
 		mapdata.buildingDataMap[CoordX][CoordY] = tower; 
+
+		buildingList.push_back(tower);
+
 		buildingBuilt = true;
 	}
 	
@@ -50,22 +56,28 @@ bool BuildingManager::FirstBuildingBuilt(){
 }
 
 
-void BuildingManager::initializeBuildings(CameraStruct* camData){
+void BuildingManager::initializeBuildings(CameraStruct* camData, Texture* _stonetower){
 	buildingBuilt = false;
 	
 	//initialize buildingData object
 	buildData = &camData->buildData;
-	building = GetBuilding();
-	setBuilding(building);
+	//building = GetBuilding();
+	//setBuilding(building);
 	
 	//Set textures
-	stonetower = new Texture();
-	stonetower->setRenderer(win.getRenderer());
-	stonetower->makeTexture("img\\TowerStone.png");
+	stonetower = _stonetower;
 
 
 }
 
+void BuildingManager::initializeBuildings(Texture* _stonetower){
+	buildingBuilt = false;
+
+	//Set textures
+	stonetower = _stonetower;
+
+
+}
 
 Building*  BuildingManager::GetBuilding(){
 
@@ -74,7 +86,7 @@ Building*  BuildingManager::GetBuilding(){
 }
 
 void BuildingManager::setBuilding(Building* _building){
-	building = _building;
+	//building = _building;
 }
 
 

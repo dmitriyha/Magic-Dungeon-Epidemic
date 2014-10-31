@@ -6,6 +6,7 @@
 #include "Window.h"
 #include <vector>
 #include "CameraStruct.h"
+#include "Texture.h"
 
 using namespace std;
 
@@ -15,16 +16,16 @@ class BuildingManager : public Manager
 
 public:
 	Texture* stonetower;
-	Window win;
 	BuildingData *buildData;
 	MapData mapdata;
 	CameraStruct* camData;
-	Building* building;
+	vector<Building*> buildingList;
 
 	BuildingManager();
 	
 	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level);
-	void initializeBuildings(CameraStruct* camData);
+	void initializeBuildings(CameraStruct* camData, Texture* _stonetower);
+	void initializeBuildings(Texture* _stonetower);
 	Building* GetBuilding();
 	void setBuilding(Building* _building);
 	void render();
