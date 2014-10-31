@@ -29,9 +29,22 @@ Item::Item(int id){							//defines everything an item needs
 		string stack =read.readFile("item_data.csv",id,5);
 		maxStack=atoi(stack.c_str());
 		type=read.readFile("item_data.csv",id,6);
+		int xCoord = atoi(read.readFile("item_data.csv", id, 7).c_str());
+		int yCoord = atoi(read.readFile("item_data.csv", id, 8).c_str());
+		itemSprite = { xCoord, yCoord, 64, 48 };
 	}
 	else{
 		itemStat=0;
+	}
+}
+
+void Item::render(){
+	if (equipped){
+
+	}
+	else {
+		itemOnScreen = { locationOnMap.x * TILE_WIDTH, locationOnMap.y * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &itemSprite, &itemOnScreen);
 	}
 }
 
@@ -81,6 +94,20 @@ void Item::changeItemStat(int change){
  */  
 string Item::getType(){
 	return type;
+}
+
+void Item::setAsUnequipped(LocationCoordinates  mapLoc){
+	equipped = false;
+	locationOnMap = mapLoc;
+}
+
+void Item::setAsEquipped(){
+	equipped = true;
+	locationOnMap = { -1, -1 };
+}
+
+void Item::setTexture(Texture* _texture){
+	texture = _texture;
 }
 
 Item::~Item(){

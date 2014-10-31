@@ -6,6 +6,7 @@
 #include "camera.h"
 #include "buildingManager.h"
 #include <string>
+#include "ItemRenderer.h"
 using namespace std;
 
 
@@ -19,6 +20,7 @@ class Game
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
 	BuildingManager* managebuilding = new BuildingManager();
+	ItemRenderer renderItem;
 
 	Window win ;
 	//Controls controls;

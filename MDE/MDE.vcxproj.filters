@@ -155,6 +155,8 @@
     </ClCompile>
     <ClCompile Include="BuildingManager.cpp">
       <Filter>Source Files\ActionManager</Filter>
+    <ClCompile Include="ItemRenderer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +264,12 @@
     </ClInclude>
     <ClInclude Include="BuildingManager.h">
       <Filter>Source Files\ActionManager.h</Filter>
+    </ClInclude>
+    <ClInclude Include="ItemRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationCoordinate.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

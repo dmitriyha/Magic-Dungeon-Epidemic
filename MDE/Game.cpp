@@ -11,8 +11,14 @@ Game::Game()
 	enemyTexture->setRenderer(win.getRenderer());
 	enemyTexture->makeTexture("img\\goblinsword.png");
 
+	Texture* itemTexture=new Texture();
+	itemTexture->setRenderer(win.getRenderer());
+	itemTexture->makeTexture("img\\items.png");
+
+	renderItem.setPointer(camData);
+
 	EnemyGen b(camData,enemyTexture);
-	PlaceItemsAndEnemies c(camData);
+	PlaceItemsAndEnemies c(camData,itemTexture);
 
 	//map Render
 	map->setRenderer(win.getRenderer());
@@ -66,7 +72,8 @@ void Game::run(){
 			}
 
 			map->render();
-			
+			renderItem.renderItem(managePlayer.getPlayerCoord());
+
 			manageEnemy.renderEnemy();
 			managePlayer.render();
 

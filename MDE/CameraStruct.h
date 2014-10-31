@@ -10,11 +10,11 @@
 
 struct MapStruct{
 	/// the 2d array with the player location
-	int* playerLoc;
+	LocationCoordinates  playerLoc;
 	/// the 2d array with the location of the up stairs
-	int* stairsUp;
+	LocationCoordinates  stairsUp;
 	/// the 2d array with the down stairs
-	int* stairsDown;
+	LocationCoordinates  stairsDown;
 	///contains the data of the map
 	MapData mapData;
 	///contains the data of the enemies
