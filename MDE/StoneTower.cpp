@@ -74,8 +74,8 @@ int  StoneTower::getID(){
 
 
 void  StoneTower::setCoords(int x, int y){
-	coord[0] = x;
-	coord[1] = y;
+	coord.x = x;
+	coord.y = y;
 }
 
 /** \brief the coordinate getter of the entity
@@ -86,7 +86,8 @@ void  StoneTower::setCoords(int x, int y){
 
 
 
-int*  StoneTower::getCoords(){
+LocationCoordinates  StoneTower::getCoords(){
+
 	return coord;
 }
 

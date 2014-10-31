@@ -1,5 +1,6 @@
 #pragma once
 #include "Building.h"
+#include "LocationCoordinate.h"
 class StoneTower :public Building
 {
 public:
@@ -12,7 +13,7 @@ public:
 	int getID();
 
 	void setCoords(int, int);
-	int* getCoords();
+	LocationCoordinates getCoords();
 
 	int Strength();
 	int Accuracy();

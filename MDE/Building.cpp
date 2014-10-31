@@ -20,7 +20,7 @@ void  Building::set_stats(int healths, int strengths, int damages, int accuracys
 
 void Building::render(){
 
-	SDL_Rect charLoc = { coord[0] * TILE_WIDTH, ((coord[1] - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
+	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
 
 	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
 }
@@ -73,8 +73,8 @@ int  Building::getID(){
 
 
 void  Building::setCoords(int x, int y){
-	coord[0] = x;
-	coord[1] = y;
+	coord.x = x;
+	coord.y = y;
 }
 
 /** \brief the coordinate getter of the building
@@ -85,7 +85,7 @@ void  Building::setCoords(int x, int y){
 
 
 
-int*  Building::getCoords(){
+LocationCoordinates Building::getCoords(){
 	return coord;
 }
 

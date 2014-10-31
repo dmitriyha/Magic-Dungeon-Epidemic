@@ -150,9 +150,10 @@ void Controls::mouse(SDL_Event event){
 	case SDL_BUTTON_RIGHT:
 		//If left mouse button is pressed and t is pressed. Then build a tower
 		
-		int *coord = managePlayer->getPlayerCoord();
+		//int *coord = managePlayer->getPlayerCoord();
+		LocationCoordinates coord = managePlayer->getPlayerCoord();
 
-			int playerXcoord = coord[0], playerYcoord = coord[0];
+			int playerXcoord = coord.x, playerYcoord = coord.y;
 			SDL_GetMouseState(&x, &y);
 			x = x / TILE_WIDTH;
 			y = y / TILE_HEIGHT;

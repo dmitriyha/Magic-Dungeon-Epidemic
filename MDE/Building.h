@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Texture.h"
+#include "LocationCoordinate.h"
 
 
 using namespace std;
@@ -29,7 +30,7 @@ protected:
 	int luck;
 	int id;
 
-	int coord[2];
+	LocationCoordinates coord;
 	SDL_Rect charSprite;
 
 public:
@@ -53,7 +54,7 @@ public:
 	virtual int getID();
 
 	virtual void setCoords(int, int);
-	virtual int* getCoords();
+	virtual LocationCoordinates getCoords();
 
 	virtual int Strength();
 	virtual int Accuracy();
