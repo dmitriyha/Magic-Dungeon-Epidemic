@@ -155,6 +155,7 @@
     </ClCompile>
     <ClCompile Include="BuildingManager.cpp">
       <Filter>Source Files\ActionManager</Filter>
+	</ClCompile>
     <ClCompile Include="ItemRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
