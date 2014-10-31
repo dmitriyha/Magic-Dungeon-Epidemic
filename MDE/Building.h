@@ -2,6 +2,7 @@
 #define Build_H
 
 #include <iostream>
+#include "Texture.h"
 
 
 using namespace std;
@@ -15,8 +16,11 @@ class Building{
 
 
 protected:
+	Texture* texture;
+
 	///the level of the Enemy
 	int level;
+	//
 	int health;
 
 	int strength;
@@ -26,6 +30,7 @@ protected:
 	int id;
 
 	int coord[2];
+	SDL_Rect charSprite;
 
 public:
 	Building();
@@ -41,6 +46,9 @@ public:
 
 	virtual int Health(void);
 	virtual bool Health(int);
+
+	void render();
+	void setTexture(Texture* _texture);
 
 	virtual int getID();
 

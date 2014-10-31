@@ -167,11 +167,12 @@ void Controls::mouse(SDL_Event event){
 				mapdata.buildingDataMap[x][y] = tower;*/
 
 
-				buildData->building = BuildingFactory::create_building("stonetower");
-				buildData->building->set_stats(1, 1, 1, 1, 1, 1);
-				buildData->building->set_level(1);
-				buildData->building->setCoords(x, y);
-				mapdata.buildingDataMap[x][y] = buildData->building;
+				//buildData->building = BuildingFactory::create_building("stonetower");
+				//buildData->building->set_stats(1, 1, 1, 1, 1, 1);
+				//buildData->building->set_level(1);
+				//buildData->building->setTexture(texture);
+				//buildData->building->setCoords(x, y);
+				//mapdata.buildingDataMap[x][y] = buildData->building;
 				
 			}
 		break;

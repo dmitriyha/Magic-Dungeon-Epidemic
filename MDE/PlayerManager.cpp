@@ -3,7 +3,7 @@
 
 PlayerManager::PlayerManager()
 {
-	
+
 }
 
 void PlayerManager::render(){
@@ -98,6 +98,8 @@ void PlayerManager::eventHandler(SDL_Event event){
 				inventory = false;
 			}
 			break;
+
+		
 	}//end switch(event.key.keysym.sym)
 	if (size == 0){
 		inventory_cursor = 1;
@@ -111,6 +113,35 @@ void PlayerManager::eventHandler(SDL_Event event){
 	inventoryData();
 	dataForManaging->inventoryStruct.inventory_cursor = inventory_cursor;
 }
+
+void PlayerManager::mouseEventHandler(SDL_Event event){
+	switch (event.button.button){
+
+	case SDL_BUTTON_LEFT:
+		//if (event.button.button == SDL_BUTTON_LEFT){
+		SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+		rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
+		cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
+		//}
+		break;
+	case SDL_BUTTON_RIGHT:
+		//If left mouse button is pressed and t is pressed. Then build a tower
+
+		int *coord = getPlayerCoord();
+
+		int playerXcoord = coord[0], playerYcoord = coord[0];
+		SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+		mouseCoordX = mouseCoordX / TILE_WIDTH;
+		mouseCoordY = mouseCoordY / TILE_HEIGHT;
+
+		if (!inventory){
+			
+			buildingManager->CreateBuilding("stonetower", mouseCoordX, mouseCoordY, 1);
+		}
+		break;
+	}
+}
+
 
 int PlayerManager::move(int direction){
 	int *coord = player->getCoords();

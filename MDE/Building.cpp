@@ -17,13 +17,22 @@ void  Building::set_stats(int healths, int strengths, int damages, int accuracys
 	id = ID;
 }
 
+
+void Building::render(){
+
+	SDL_Rect charLoc = { coord[0] * TILE_WIDTH, ((coord[1] - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
+
+	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+}
+
+void Building::setTexture(Texture* _texture){
+	texture = _texture;
+}
 /** \brief the getter of health
 *
 * \return the current health
 *
 */
-
-
 int  Building::Health(void){
 	return health;
 }

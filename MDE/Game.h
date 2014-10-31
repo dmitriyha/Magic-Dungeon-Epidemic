@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Controls.h"
 #include "camera.h"
+#include "buildingManager.h"
 #include <string>
 using namespace std;
 
@@ -17,6 +18,7 @@ class Game
 	Texture* mapTexture;
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
+	BuildingManager* managebuilding = new BuildingManager();
 
 	Window win ;
 	//Controls controls;

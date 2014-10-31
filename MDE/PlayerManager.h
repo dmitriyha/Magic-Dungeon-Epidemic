@@ -5,7 +5,11 @@
 #include "PlaceItemsAndEnemies.h"
 #include "Map.h"
 #include "EnemyGen.h"
+#include "Building.h"
+#include "BuildingFactory.h"
+#include "BuildingManager.h"
 #include <string>
+
 using namespace std;
 
 class PlayerManager : public Manager
@@ -15,6 +19,9 @@ class PlayerManager : public Manager
 	int inventory_cursor = 1;
 	int max_achieved_depth = 0;
 	int kills = 0;
+	int mouseCoordX, mouseCoordY;
+	BuildingData *buildData;
+	BuildingManager *buildingManager;
 	
 public:
 	bool playerMoved = false;
@@ -24,7 +31,7 @@ public:
 	void render();
 	int* getPlayerCoord();
 	void eventHandler(SDL_Event event);
-
+	void mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
 	void checkTileForItems();
@@ -36,7 +43,7 @@ public:
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
 	bool check_player_death();
-	int* getPlayerCoord();
+	
 	//void generateMap();
 	Player* getPlayer();
 	~PlayerManager();

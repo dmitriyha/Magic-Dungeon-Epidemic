@@ -27,7 +27,7 @@ protected:
 	int id;
 	
 	int coord[2];
-
+	//Location and size in the sprite sheet
 	SDL_Rect charSprite;
 public: 
 

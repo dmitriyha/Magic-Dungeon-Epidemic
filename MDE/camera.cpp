@@ -1,16 +1,14 @@
 #include "camera.h"
 
-/** \brief Camera class constructor.
- *
- * This class is responsible for showing stuff on the screen
- *
- * \param _camData Pointer to CameraStruct, which holds all of the data of the logic
- * \param _screen The surface where we will be blitting.
- * 
- *
- */     
-
-
+// \brief Camera class constructor.
+//
+// This class is responsible for showing stuff on the screen
+//
+// \param _camData Pointer to CameraStruct, which holds all of the data of the logic
+// \param _screen The surface where we will be blitting.
+// 
+//
+ //     
 Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	screen=_screen;
 	camData=_camData;

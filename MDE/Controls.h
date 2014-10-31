@@ -29,7 +29,7 @@ class Controls{
 	
 
 
-///manages the player
+	///manages the player
 	PlayerManager *managePlayer;
 	///manages the enemies
 	EnemyManager * manageEnemies;

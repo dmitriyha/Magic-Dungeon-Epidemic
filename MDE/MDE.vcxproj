@@ -24,6 +24,7 @@
     <ClCompile Include="BattleHandler.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
+    <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -61,6 +62,7 @@
     <ClInclude Include="BattleHandler.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingFactory.h" />
+    <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="BuildingStruct.h" />
     <ClInclude Include="camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
