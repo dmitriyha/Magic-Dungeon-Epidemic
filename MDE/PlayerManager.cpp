@@ -160,7 +160,7 @@ LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 			}
 
 			mouseCoordX += upperCornerX;
-			mouseCoordX += upperCornerY;
+			mouseCoordY += upperCornerY;
 
 			if (!inventory){
 
