@@ -46,10 +46,9 @@
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
     <ClCompile Include="sound_play.cpp" />
-    <ClCompile Include="TextTexture.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
@@ -84,10 +83,9 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
-    <ClInclude Include="TextTexture.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="TextTexture.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WriteFile.h" />
   </ItemGroup>

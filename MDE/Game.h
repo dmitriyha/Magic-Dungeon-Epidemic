@@ -7,29 +7,23 @@
 #include <string>
 #include "ItemRenderer.h"
 using namespace std;
-
-
 class Game
 {
 	SDL_Event event;
 	CameraStruct* camData=new CameraStruct;
-
 	Map *map;
 	Texture* mapTexture;
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
 	ItemRenderer renderItem;
-
 	Window win ;
+	UserInterface ui;
 	//Controls controls;
 	bool quit = false;
-
-	
 public:
-	
-
 	Game();
 	void run();
 	~Game();
+private:
+	void initialize();
 };
-

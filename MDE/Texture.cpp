@@ -47,6 +47,8 @@ void Texture::makeBlankTexture(int _width, int _height){//makes a canvas
 
 SDL_Rect Texture::getSize(){
 	SDL_Rect size;
+	size.x = 0;
+	size.y = 0;
 	size.w = width;
 	size.h = height;
 	return size;

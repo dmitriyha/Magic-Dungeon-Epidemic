@@ -1,19 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include <iostream>
-#include <SDL.h>
-#include <SDL_Image.h>
-#include "GlobalDef.h"
-#include <deque>
-#include "Item.h"
-#include "ReadFile.h"
-#include <SDL_ttf.h>
-#include "player.h"
-#include "Texture.h"
-#include "TextTexture.h"
-#include "MapDataStructs.h"
-#include "CameraStruct.h"
+
 using namespace std;
 
 /** \brief Where all the rendering happens

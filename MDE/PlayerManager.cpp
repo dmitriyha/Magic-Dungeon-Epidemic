@@ -315,6 +315,7 @@ int PlayerManager::get_inventory_size(){
 void PlayerManager::inventoryData(){
 	dataForManaging->inventoryStruct.inventory = player->getInventory()->getList();
 	dataForManaging->inventoryStruct.equippedItems = player->getInventory()->equippedList();
+	dataForManaging->inventoryStruct.inventoryMode = inventory;
 }
 
 int PlayerManager::dropItem(int inventory_cursor){
