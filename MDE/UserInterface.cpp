@@ -4,6 +4,11 @@
 UserInterface::UserInterface(){
 }
 
+/**	\brief	initializes the UI with the required data and textures
+*	\param CameraStruct * _camData the camera data pointer that is shared with the whole program
+*	\param Texture * _backgroundTexture pointer to BG texture
+*	\param Texture * _itemTexture poiter to the texture that has item pictures
+*/
 void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTexture, Texture* _itemTexture){
 	backroundTexture = _backgroundTexture;
 	itemTexture = _itemTexture;
@@ -13,7 +18,7 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 	carbon18 = new TextTexture();
 	carbon18->setRenderer(backroundTexture->getRenderer());
 	SDL_Color col = { 0, 0, 0, 0 };
-	carbon18->initialise("img\\carbon.ttf",col,18);
+	carbon18->initialise("img\\carbon.ttf", col, 18);
 
 	level_bar = new Texture;
 	level_bar->setRenderer(backroundTexture->getRenderer());
@@ -28,46 +33,53 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 	curs->makeTexture("img\\cursor.png");
 }
 
+/**	\brief renders the UI to the screen, making it visible to the user
+*
+*/
 void UserInterface::render(){
 
 	if (camData->inventoryStruct.inventoryMode){//if in inventory mode
 		inventory();//render the inventory
 	}
-	
+
 	background();//render the bacground of the user interface
 	text();//render the text of the user interface
 
 	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
-	
+
 }
 
+
+/**	\brief	render the outer part of the whole user interface
+*
+*/
 void UserInterface::background(){
 	SDL_RenderCopy(backroundTexture->getRenderer(), backroundTexture->getTexture(), NULL, &backroundTexture->getSize());
-	
+
 }
 
+/**	\brief	render all the text on the screen
+*
+*/
 void UserInterface::text(){
+	//the offset of the text to be shown on the screen
+	SDL_Rect offset = { 0, 0, 0, 0 };
 
-	SDL_Rect offset = { 0, 0, 0,0};
-	SDL_Rect textSize;
+
+
+	//overall the pattern here is the same: set the location, se the text, se the size 
+
 
 	offset.x = 707;
 	offset.y = 0;
-	carbon18->setText("Magic Dungeon");
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize,&offset );
 
+	setText("Magic Dungeon", offset);
 
 
 	offset.x = 737;
 	offset.y = 20;
-	carbon18->setText("Epidemic");
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText("Epidemic", offset);
+
 
 	offset.x = 707;
 
@@ -76,74 +88,51 @@ void UserInterface::text(){
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Strength()))->str();
 	string strength = "Strength:..." + converted_int;
 	offset.y = 50;
-	carbon18->setText(strength);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+
+	setText(strength, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Dexterity()))->str();
 	string dexterity = "Dexterity:.." + converted_int;
 	offset.y = 70;
-	carbon18->setText(dexterity);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(dexterity, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Wits()))->str();
 	string wits = "Wits:......." + converted_int;
 	offset.y = 90;
-	carbon18->setText(wits);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(wits, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Sanity()))->str();
 	string sanity = "Sanity:....." + converted_int;
 	offset.y = 110;
-	carbon18->setText(sanity);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(sanity, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Stamina()))->str();
 	string stamina = "Stamina:...." + converted_int;
 	offset.y = 130;
-	carbon18->setText(stamina);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(stamina, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Charisma()))->str();
 	string charisma = "Charisma:..." + converted_int;
 	offset.y = 150;
-	carbon18->setText(charisma);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(charisma, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Awareness()))->str();
 	string awareness = "Awareness:.." + converted_int;
 	offset.y = 170;
-	carbon18->setText(awareness);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(awareness, offset);
+
 
 	converted_int = static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Luck()))->str();
 	string luck = "Luck:......." + converted_int;
 	offset.y = 190;
-	carbon18->setText(luck);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(luck, offset);
+
 
 	//make function in this class for this
 
@@ -151,11 +140,8 @@ void UserInterface::text(){
 	offset.y = 225;
 
 
-	carbon18->setText("Level Progress");
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText("Level Progress", offset);
+
 
 	offset.x = 707;
 	offset.y = 245;
@@ -191,67 +177,45 @@ void UserInterface::text(){
 	string health = "Health: " + (static_cast<ostringstream*>(&(ostringstream() << camData->userInterfaceStruct.player->Health())))->str();
 	offset.x = 707;
 	offset.y = 275;
-	carbon18->setText(health);
-	textSize = carbon18->getSize();
-	offset.h = textSize.h;
-	offset.w = textSize.w;
-	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+	setText(health, offset);
+
 
 
 	offset.x = 10;
 	offset.y = 530;
 
 	if (camData->inventoryStruct.inventoryMode == false){
-		carbon18->setText("Arrow keys to move.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("Arrow keys to move.", offset);
 
 		offset.y = 550;
-		carbon18->setText("I - Inventory.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("I - Inventory.", offset);
+
 
 		offset.y = 570;
-		carbon18->setText("[SPACE] - Wait one turn");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("[SPACE] - Wait one turn", offset);
+
 	}
 	else{
-		carbon18->setText("W - Equip item.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("W - Equip item.", offset);
+
 
 		offset.y = 550;
-		carbon18->setText("R - Remove secondary weapon.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("R - Remove secondary weapon.", offset);
+
 
 		offset.y = 570;
-		carbon18->setText("D - Drop item.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("D - Drop item.", offset);
+
 
 		offset.y = 590;
-		carbon18->setText("ESC/I - Back to game.");
-		textSize = carbon18->getSize();
-		offset.h = textSize.h;
-		offset.w = textSize.w;
-		SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+		setText("ESC/I - Back to game.", offset);
+
 	}
 }
 
+/**	\brief	shows the inventory to the user
+*
+*/
 void UserInterface::inventory(){
 	SDL_RenderCopy(inventoryBackground->getRenderer(), inventoryBackground->getTexture(), NULL, &inventoryBackground->getSize());
 
@@ -268,8 +232,8 @@ void UserInterface::inventory(){
 
 	offset.x = 425;		//places the picture in the right place
 	offset.y = 173;
-	while (camData->inventoryStruct.inventory.size()>place){
-		camData->inventoryStruct.inventory[place].render(offset) ;
+	while (camData->inventoryStruct.inventory.size() > place){
+		camData->inventoryStruct.inventory[place].render(offset);
 
 		place++;
 		invRow++;
@@ -320,7 +284,22 @@ void UserInterface::inventory(){
 		camData->inventoryStruct.equippedItems[2].render(offset);
 	}
 
-	
+
+}
+
+/**	\brief	show the specified text at the specified location
+*	\param	string text the string to be printed
+*	\param	SDL_Rect offset where it will be printed on the screen
+*/
+void UserInterface::setText(string text, SDL_Rect offset){
+	SDL_Rect textSize;
+
+	carbon18->setText(text);
+	textSize = carbon18->getSize();
+	offset.h = textSize.h;
+	offset.w = textSize.w;
+	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
+
 }
 
 UserInterface::~UserInterface()
