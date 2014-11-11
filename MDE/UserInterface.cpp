@@ -30,14 +30,14 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 
 void UserInterface::render(){
 
-	if (camData->inventoryStruct.inventoryMode){
-		inventory();
+	if (camData->inventoryStruct.inventoryMode){//if in inventory mode
+		inventory();//render the inventory
 	}
 	
-	background();
-	text();
+	background();//render the bacground of the user interface
+	text();//render the text of the user interface
 
-	SDL_RenderPresent(backroundTexture->getRenderer());
+	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
 	
 }
 
@@ -253,10 +253,12 @@ void UserInterface::text(){
 }
 
 void UserInterface::inventory(){
+	SDL_RenderCopy(inventoryBackground->getRenderer(), inventoryBackground->getTexture(), NULL, &inventoryBackground->getSize());
+
 
 	int place = 0;
 	int invRow = 0;
-	SDL_Rect offset = { 0, 0, 0, 0 };
+	SDL_Rect offset = { 0, 0, 64, 48 };
 
 	offset.x = 0;		//places the picture in the right place
 	offset.y = 0;
@@ -267,7 +269,7 @@ void UserInterface::inventory(){
 	offset.x = 425;		//places the picture in the right place
 	offset.y = 173;
 	while (camData->inventoryStruct.inventory.size()>place){
-		item_surface->renderTile((itemTextures[camData->inventoryStruct.inventory[place].getID() - 1]), offset);
+		camData->inventoryStruct.inventory[place].render(offset) ;
 
 		place++;
 		invRow++;
@@ -285,7 +287,7 @@ void UserInterface::inventory(){
 	if (camData->inventoryStruct.inventory.size() > 0){
 		offset.x = 425 + (((camData->inventoryStruct.inventory_cursor - 1) % 3) * 80);
 		offset.y = 173 + (((camData->inventoryStruct.inventory_cursor - 1) / 3) * 58);
-		curs->render(offset);
+		SDL_RenderCopy(curs->getRenderer(), curs->getTexture(), NULL, &offset);
 
 		/*SDL_Rect message_offset;
 		message_offset.x=10;
@@ -295,7 +297,7 @@ void UserInterface::inventory(){
 		//description=IMG_Load("img\\description.png");
 		carbon18->setText(camData->inventoryStruct.inventory[camData->inventoryStruct.inventory_cursor - 1].Descriprion());
 		//SDL_BlitSurface(message,NULL,description,&message_offset);
-		carbon18->render(offset);
+		//carbon18->render(offset);
 		//SDL_FreeSurface(description);
 	}
 
@@ -303,22 +305,22 @@ void UserInterface::inventory(){
 	if (camData->inventoryStruct.equippedItems[0].getID() != 0){
 		offset.x = 143;
 		offset.y = 186;
-		item_surface->renderTile((itemTextures[camData->inventoryStruct.equippedItems[0].getID() - 1]), offset);
+		camData->inventoryStruct.equippedItems[0].render(offset);
 	}
 
 	if (camData->inventoryStruct.equippedItems[1].getID() != 0){
 		offset.x = 31;
 		offset.y = 186;
-		item_surface->renderTile((itemTextures[camData->inventoryStruct.equippedItems[1].getID() - 1]), offset);
+		camData->inventoryStruct.equippedItems[1].render(offset);
 	}
 
 	if (camData->inventoryStruct.equippedItems[2].getID() != 0){
 		offset.x = 256;
 		offset.y = 186;
-		item_surface->renderTile((itemTextures[camData->inventoryStruct.equippedItems[2].getID() - 1]), offset);
+		camData->inventoryStruct.equippedItems[2].render(offset);
 	}
 
-	SDL_RenderCopy(inventoryBackground->getRenderer(), inventoryBackground->getTexture(), NULL, &inventoryBackground->getSize());
+	
 }
 
 UserInterface::~UserInterface()

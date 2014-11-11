@@ -48,6 +48,14 @@ void Item::render(){
 	}
 }
 
+void Item::render(SDL_Rect location){
+	if (itemStat != 0){
+		location.h = 48;
+		location.w = 64;
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &itemSprite, &location);
+	}
+}
+
 /** \brief Gets the item ID, as defined in the item_data.csv
  * 
  * \return the ID of this Item object

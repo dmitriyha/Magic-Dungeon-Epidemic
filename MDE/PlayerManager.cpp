@@ -163,7 +163,7 @@ int PlayerManager::move(int direction){
 			return 0;
 			break;
 		}//end switch(event.key.keysym.sym)
-		checkTileForItems();
+		
 		// checks for stariways up or down
 		if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y] == 'u') {
 			dataForManaging->currentLevel++;
@@ -178,6 +178,7 @@ int PlayerManager::move(int direction){
 			player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp.x, dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp.y);
 		}
 		player->setCoords(coord.x, coord.y);
+		checkTileForItems();
 	return 1;
 }
 

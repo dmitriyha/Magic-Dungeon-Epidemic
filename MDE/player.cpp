@@ -262,7 +262,8 @@ int Player::get_level_progress(){
  *
  * \return the lvl of the player
  *
- */     
+ */   
+
 int Player::get_level(){
 	return level;
 }

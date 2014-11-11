@@ -118,6 +118,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4D198B02-F729-4606-91E2-6489CCAB5712}</ProjectGuid>
     <RootNamespace>MDE</RootNamespace>
+    <ProjectName>MDE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
