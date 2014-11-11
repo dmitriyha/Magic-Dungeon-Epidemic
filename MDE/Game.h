@@ -8,6 +8,7 @@
 #include <string>
 #include "ItemRenderer.h"
 #include "LocationCoordinate.h"
+#include "PlaceItemsAndEnemies.h"
 using namespace std;
 
 
@@ -23,6 +24,7 @@ class Game
 	BuildingManager managebuilding;
 	ItemRenderer renderItem;
 
+
 	Window win ;
 	//Controls controls;
 	bool quit = false;
@@ -30,9 +32,11 @@ class Game
 	
 public:
 	
-
+	
 	Game();
 	void run();
 	~Game();
+private:
+	int turn;
 };
 

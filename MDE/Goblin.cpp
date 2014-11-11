@@ -25,7 +25,7 @@ void Goblin::setPrimaryWeapon(Item* item){
 * \param ID the ID of this entity
 *
 */
-void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID){
+void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -35,7 +35,6 @@ void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, i
 	charisma = charismas;
 	awareness = awarenesss;
 	luck = lucks;
-	id = ID;
 }
 
 /** \brief the getter of health
@@ -100,8 +99,10 @@ LocationCoordinates   Goblin::getCoords(){
 	return coord;
 }
 
-
-
+//Sets id
+void Goblin::set_Id(int _id){
+	id = _id;
+}
 
 
 /** \brief Strength getter
@@ -191,6 +192,9 @@ int  Goblin::Luck(){
 
 void Goblin::set_level(int lvl){
 	level = lvl;
+
+
+	
 }
 
 /** \brief the level getter

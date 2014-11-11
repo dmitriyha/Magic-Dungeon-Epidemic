@@ -3,6 +3,7 @@
 
 EnemyGen::EnemyGen(CameraStruct* cam, Texture* texture){  //generates 'enemies'amount of enemies and puts them into deque, after witch it is returned
 	int i;
+	bool firstEnemy=true;
 	int y = 5;
 	int enemies = MAX_ENEMIES;
 	int currentLevel = cam->currentLevel + 1;
@@ -13,15 +14,16 @@ EnemyGen::EnemyGen(CameraStruct* cam, Texture* texture){  //generates 'enemies'a
 	deque<Enemy*> enemy;
 	for (i = 0; i<enemies; i++){
 		if (i == 0 || i == 1){
-			Enemy* npc = EnemyFactory::create_enemy("goblin");
-			npc->set_stats(0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+			Enemy* npc = EnemyFactory::create_enemy("goblin", firstEnemy);
+			npc->set_Id(0);
 			enemy.emplace(enemy.begin() + i, npc);
 			enemy[i]->setCoords(-10, -10);
 			//delete npc;
+			firstEnemy = false;
 		}
 		else{
-			Enemy* npc = EnemyFactory::create_enemy("goblin");
-			npc->set_stats(4 * currentLevel, 5 * currentLevel, 1, 1, 1, 1, 1, 1, 1, i);
+			Enemy* npc = EnemyFactory::create_enemy("goblin", firstEnemy);
+			npc->set_Id(i);
 			npc->set_level(currentLevel);
 			npc->setTexture(texture);
 			enemy.emplace(enemy.begin() + i, npc);

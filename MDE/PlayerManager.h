@@ -29,7 +29,7 @@ public:
 
 	void render();
 	LocationCoordinates  getPlayerCoord();
-	void eventHandler(SDL_Event event);
+	void eventHandler(SDL_Event event, int& turn);
 	LocationCoordinates mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);

@@ -16,7 +16,7 @@ struct MapData{
 	char mapDim[GRID_WIDTH][GRID_HEIGHT];
 
 	//Buildings that are found on the floor
-	Building* buildingDataMap[GRID_WIDTH][GRID_HEIGHT];
+	int buildingDataMap[GRID_WIDTH][GRID_HEIGHT];
 };
 /** \brief Contains the data of where the life and the dead entities are for rendering purposes
  *

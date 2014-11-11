@@ -5,12 +5,13 @@ class StoneTower :public Building
 {
 public:
 	StoneTower(void);
-	void set_stats(int healths, int strengths,int damage, int accuracy,int luck, int ID);
+	void set_stats(int healths, int strengths,int damage, int accuracy,int luck);
 
 	int Health(void);
 	bool Health(int);
 
 	int getID();
+	void set_Id(int _id);
 
 	void setCoords(int, int);
 	LocationCoordinates getCoords();
@@ -22,6 +23,7 @@ public:
 
 	void set_level(int level);
 	int get_level();
+	
 
 	~StoneTower();
 };

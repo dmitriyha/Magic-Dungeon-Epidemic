@@ -1,9 +1,9 @@
-#ifndef Build_H
-#define Build_H
+#pragma once
 
 #include <iostream>
 #include "Texture.h"
 #include "LocationCoordinate.h"
+//#include "BuildingManager.h"
 
 
 using namespace std;
@@ -14,7 +14,8 @@ using namespace std;
 
 
 class Building{
-
+public:
+	//BuildingManager* buildManager;
 
 protected:
 	Texture* texture;
@@ -30,6 +31,7 @@ protected:
 	int luck;
 	int id;
 
+	
 	LocationCoordinates coord;
 	SDL_Rect charSprite;
 
@@ -43,13 +45,16 @@ public:
 
 	//virtual int fight(Building * Building);
 
-	virtual void set_stats(int healths, int strengths, int damage, int accuracy, int lucks, int ID);
+	virtual void set_stats(int healths, int strengths, int damage, int accuracy, int lucks);
 
 	virtual int Health(void);
 	virtual bool Health(int);
+	virtual void set_Id(int _id);
 
 	void render();
 	void setTexture(Texture* _texture);
+
+
 
 	virtual int getID();
 
@@ -63,4 +68,3 @@ public:
 
 };
 
-#endif

@@ -12,14 +12,14 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 	RNG random;
 	
 
-	enemyData = cam;
+	entityData = cam;
 
 	int cursor=0,x=0,y=0;
 	
 	while(y<GRID_HEIGHT){//initialises entityData to 0
 		if(x<GRID_WIDTH){
-			enemyData->mapStruct[enemyData->currentLevel].entityData.live[x][y] = 0;
-			enemyData->mapStruct[enemyData->currentLevel].entityData.dead[x][y] = 0;
+			entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] = 0;
+			entityData->mapStruct[entityData->currentLevel].entityData.dead[x][y] = 0;
 			x++;
 		}
 		if(x==GRID_WIDTH){
@@ -28,15 +28,15 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 		}
 	}
 
-	while (cursor < enemyData->mapStruct[enemyData->currentLevel].entityData.enemy.size() - 2){
+	while (cursor < entityData->mapStruct[entityData->currentLevel].entityData.enemy.size() - 2){
 		int i;
 		for(i=0;i<50000;i++)
 		x=random.generate(0,GRID_WIDTH); //generates the x coordinate
 		y=random.generate(0,GRID_HEIGHT);//generates the y coordinate
 		
-		if (enemyData->mapStruct[enemyData->currentLevel].mapData.mapDim[x][y] == '.' && enemyData->mapStruct[enemyData->currentLevel].entityData.live[x][y] == 0){//sets enemies to random locations
-			enemyData->mapStruct[enemyData->currentLevel].entityData.enemy[cursor + 2]->setCoords(x, y);
-			enemyData->mapStruct[enemyData->currentLevel].entityData.live[x][y] = enemyData->mapStruct[enemyData->currentLevel].entityData.enemy[cursor + 2]->getID();
+		if (entityData->mapStruct[entityData->currentLevel].mapData.mapDim[x][y] == '.' && entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] == 0){//sets enemies to random locations
+			entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->setCoords(x, y);
+			entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] = entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->getID();
 			cursor++;
 		}
 	}
@@ -48,9 +48,9 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 		y=random.generate(0,GRID_HEIGHT);//generates the y coordinate
 		LocationCoordinates coord = {x,y};
 
-		if (enemyData->mapStruct[enemyData->currentLevel].mapData.mapDim[x][y] == '.'){//generates and places 50 random items to 50 random locations
+		if (entityData->mapStruct[entityData->currentLevel].mapData.mapDim[x][y] == '.'){//generates and places 50 random items to 50 random locations
 			int rand;
-			if (enemyData->currentLevel == 0){
+			if (entityData->currentLevel == 0){
 				rand=random.generate(1,3);
 				if (rand == 3){
 					rand=7;
@@ -58,9 +58,9 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 				Item it(rand);
 				it.setTexture(texture);
 				it.setAsUnequipped(coord);
-				enemyData->mapStruct[enemyData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
+				entityData->mapStruct[entityData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
 			}
-			else if (enemyData->currentLevel == 1){
+			else if (entityData->currentLevel == 1){
 				rand=random.generate(1,6);
 				if (rand > 4){
 					rand=rand+2;
@@ -68,14 +68,14 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 				Item it(rand);
 				it.setTexture(texture);
 				it.setAsUnequipped(coord);
-				enemyData->mapStruct[enemyData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
+				entityData->mapStruct[entityData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
 			}
-			else if (enemyData->currentLevel == 2){
+			else if (entityData->currentLevel == 2){
 				rand=random.generate(1,9);
 				Item it(rand);
 				it.setTexture(texture);
 				it.setAsUnequipped(coord);
-				enemyData->mapStruct[enemyData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
+				entityData->mapStruct[entityData->currentLevel].itemData.itemDataMap[x][y].push_back(it);
 			}
 			cursor++;
 		}

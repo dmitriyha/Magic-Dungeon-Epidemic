@@ -28,35 +28,35 @@
     <Filter Include="Source Files\File">
       <UniqueIdentifier>{56ea7454-f6e5-4847-bf4b-44b7c0562e11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\StructsHeaders">
-      <UniqueIdentifier>{cf5f7392-6b36-4b9a-92ab-4a3497401885}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ActionManager.h">
-      <UniqueIdentifier>{44872130-bafa-41ef-afa7-9715266e3cc7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Battle.h">
-      <UniqueIdentifier>{edd823a2-ffba-4725-9e6d-248e72c97c39}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Buildings.h">
-      <UniqueIdentifier>{437d5964-bd45-411d-abbe-f3e9ecc425aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies.h">
-      <UniqueIdentifier>{a45f3e8a-10af-48e4-83af-ea7395fdbbce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Factories.h">
-      <UniqueIdentifier>{8b11098f-7625-45f5-bc9b-510e3e741e27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\File.h">
-      <UniqueIdentifier>{9d0107af-d2da-44cc-a51d-8acfa3133512}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Texture.h">
-      <UniqueIdentifier>{815ce0ac-15e2-4f18-83dd-4e5f99ced624}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Battle">
       <UniqueIdentifier>{94267863-e8a5-4103-bd5f-8838e5e21d06}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ActionManager">
       <UniqueIdentifier>{d6e1725e-e5d2-42c0-9872-992c072d7cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ActionManager.h">
+      <UniqueIdentifier>{44872130-bafa-41ef-afa7-9715266e3cc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Battle.h">
+      <UniqueIdentifier>{edd823a2-ffba-4725-9e6d-248e72c97c39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Buildings.h">
+      <UniqueIdentifier>{437d5964-bd45-411d-abbe-f3e9ecc425aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemies.h">
+      <UniqueIdentifier>{a45f3e8a-10af-48e4-83af-ea7395fdbbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factories.h">
+      <UniqueIdentifier>{8b11098f-7625-45f5-bc9b-510e3e741e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\File.h">
+      <UniqueIdentifier>{9d0107af-d2da-44cc-a51d-8acfa3133512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Texture.h">
+      <UniqueIdentifier>{815ce0ac-15e2-4f18-83dd-4e5f99ced624}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StructsHeaders">
+      <UniqueIdentifier>{cf5f7392-6b36-4b9a-92ab-4a3497401885}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -155,7 +155,7 @@
     </ClCompile>
     <ClCompile Include="BuildingManager.cpp">
       <Filter>Source Files\ActionManager</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="ItemRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -204,67 +204,67 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CameraStruct.h">
-      <Filter>Source Files\StructsHeaders</Filter>
+      <Filter>Header Files\StructsHeaders</Filter>
     </ClInclude>
     <ClInclude Include="BuildingStruct.h">
-      <Filter>Source Files\StructsHeaders</Filter>
+      <Filter>Header Files\StructsHeaders</Filter>
     </ClInclude>
     <ClInclude Include="MapDataStructs.h">
-      <Filter>Source Files\StructsHeaders</Filter>
+      <Filter>Header Files\StructsHeaders</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
-      <Filter>Source Files\ActionManager.h</Filter>
+      <Filter>Header Files\ActionManager.h</Filter>
     </ClInclude>
     <ClInclude Include="PlayerManager.h">
-      <Filter>Source Files\ActionManager.h</Filter>
+      <Filter>Header Files\ActionManager.h</Filter>
     </ClInclude>
     <ClInclude Include="Battle.h">
-      <Filter>Source Files\Battle.h</Filter>
+      <Filter>Header Files\Battle.h</Filter>
     </ClInclude>
     <ClInclude Include="BattleHandler.h">
-      <Filter>Source Files\Battle.h</Filter>
+      <Filter>Header Files\Battle.h</Filter>
     </ClInclude>
     <ClInclude Include="StoneTower.h">
-      <Filter>Source Files\Buildings.h</Filter>
+      <Filter>Header Files\Buildings.h</Filter>
     </ClInclude>
     <ClInclude Include="Goblin.h">
-      <Filter>Source Files\Enemies.h</Filter>
+      <Filter>Header Files\Enemies.h</Filter>
     </ClInclude>
     <ClInclude Include="EnemyFactory.h">
-      <Filter>Source Files\Factories.h</Filter>
+      <Filter>Header Files\Factories.h</Filter>
     </ClInclude>
     <ClInclude Include="BuildingFactory.h">
-      <Filter>Source Files\Factories.h</Filter>
+      <Filter>Header Files\Factories.h</Filter>
     </ClInclude>
     <ClInclude Include="ReadString.h">
-      <Filter>Source Files\File.h</Filter>
+      <Filter>Header Files\File.h</Filter>
     </ClInclude>
     <ClInclude Include="ReadFile.h">
-      <Filter>Source Files\File.h</Filter>
+      <Filter>Header Files\File.h</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
-      <Filter>Source Files\Texture.h</Filter>
+      <Filter>Header Files\Texture.h</Filter>
     </ClInclude>
     <ClInclude Include="TextTexture.h">
-      <Filter>Source Files\Texture.h</Filter>
+      <Filter>Header Files\Texture.h</Filter>
     </ClInclude>
     <ClInclude Include="Building.h">
-      <Filter>Source Files\Factories.h</Filter>
+      <Filter>Header Files\Factories.h</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>Source Files\Factories.h</Filter>
+      <Filter>Header Files\Factories.h</Filter>
     </ClInclude>
     <ClInclude Include="enemy.h">
-      <Filter>Source Files\Factories.h</Filter>
+      <Filter>Header Files\Factories.h</Filter>
     </ClInclude>
     <ClInclude Include="WriteFile.h">
-      <Filter>Source Files\File.h</Filter>
+      <Filter>Header Files\File.h</Filter>
     </ClInclude>
     <ClInclude Include="BuildingManager.h">
-      <Filter>Source Files\ActionManager.h</Filter>
+      <Filter>Header Files\ActionManager.h</Filter>
     </ClInclude>
     <ClInclude Include="ItemRenderer.h">
       <Filter>Header Files</Filter>

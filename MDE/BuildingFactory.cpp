@@ -10,8 +10,12 @@
 */
 Building* BuildingFactory::create_building(string buildingType){
 
+
+
 	if (buildingType == "stonetower"){
-		return new StoneTower();
+		StoneTower* stonetower = new StoneTower();
+		stonetower->set_stats(1, 1, 1, 1, 1);
+		return stonetower;
 	}
 
 }

@@ -18,13 +18,12 @@ StoneTower::StoneTower(){
 * \return the current health
 *
 */
-void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracys, int lucks, int ID){
+void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracys, int lucks){
 	health = healths;
 	strength = strengths;
 	damage = damages;
 	accuracy = accuracys;
 	luck = lucks;
-	id = ID;
 }
 
 /** \brief the getter of health
@@ -76,6 +75,11 @@ int  StoneTower::getID(){
 void  StoneTower::setCoords(int x, int y){
 	coord.x = x;
 	coord.y = y;
+}
+
+//Sets id
+void StoneTower::set_Id(int _id){
+	id = _id;
 }
 
 /** \brief the coordinate getter of the entity
@@ -160,6 +164,7 @@ void StoneTower::set_level(int lvl){
 int StoneTower::get_level(){
 	return level;
 }
+
 
 
 StoneTower::~StoneTower()

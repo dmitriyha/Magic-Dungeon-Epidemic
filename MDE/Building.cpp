@@ -8,14 +8,14 @@ Building::Building(){
 * \return the current health
 *
 */
-void  Building::set_stats(int healths, int strengths, int damages, int accuracys, int lucks, int ID){
+void  Building::set_stats(int healths, int strengths, int damages, int accuracys, int lucks){
 	health = healths;
 	strength = strengths;
 	damage = damages;
 	accuracy = accuracys;
 	luck = lucks;
-	id = ID;
 }
+
 
 
 void Building::render(){
@@ -51,6 +51,9 @@ bool  Building::Health(int damage){
 	else{
 		return false;
 	}
+}
+void Building::set_Id(int _id){
+	id = _id;
 }
 
 /** \brief  id getter of the building

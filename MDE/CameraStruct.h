@@ -19,6 +19,8 @@ struct MapStruct{
 	MapData mapData;
 	///contains the data of the enemies
 	EntityData entityData;
+	///contains the data of the buildings
+	EntityDataOfBuildings entityDataBuildings;
 	///contains the data of the items
 	ItemData itemData;
 };

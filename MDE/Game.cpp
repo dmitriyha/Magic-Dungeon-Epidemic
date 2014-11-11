@@ -5,6 +5,7 @@ Game::Game()
 {
 	camData->currentLevel = 0;
 	map= new Map(camData);
+	turn = 0;
 
 	//Enemy Texture
 	Texture* enemyTexture = new Texture();
@@ -33,12 +34,13 @@ Game::Game()
 	Player* player = new Player();
 	player->setTexture(texture);
 
+
 	//Initialize building texture 
 	Texture* stonetower = new Texture();
 	stonetower->setRenderer(win.getRenderer());
 	stonetower->makeTexture("img\\TowerStone.png");
 
-	managebuilding.initializeBuildings(stonetower);
+	managebuilding.initializeBuildings(camData,stonetower,player);
 
 	//initialize game logic 
 	managePlayer.setPointers(camData);
@@ -58,11 +60,13 @@ void Game::run(){
 
 				switch (event.type){
 					case SDL_KEYDOWN:
-						managePlayer.eventHandler(event);
+						managePlayer.eventHandler(event,turn);
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						mouseClick=managePlayer.mouseEventHandler(event);
+
 						if (mouseClick.x > -1){
+
 							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
 						}
 						break;
