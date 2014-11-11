@@ -1,9 +1,9 @@
 #include"Inventory.h"
 
 Inventory::Inventory(){
+	/*inventory.push_back(Item(1));
 	inventory.push_back(Item(1));
-	inventory.push_back(Item(1));
-	inventory.push_back(Item(1));
+	inventory.push_back(Item(1));*/
 }
 
 /** \brief Stores the specified Item
@@ -62,7 +62,7 @@ int Inventory::inventory_control(int mode, int inventory_cursor){
 					inventory[inventory_cursor - 1]= temp;
 				}
 			}//end if(inventory[inventory_cursor-1].getType() == "chest")
-			if(inventory[inventory_cursor-1].getType() == "sword" || inventory[inventory_cursor-1].getType() == "mace" || inventory[inventory_cursor-1].getType() == "bow" || inventory[inventory_cursor-1].getType() == "crossbow" || inventory[inventory_cursor-1].getType() == "staff"){
+			else if(inventory[inventory_cursor-1].getType() == "sword" || inventory[inventory_cursor-1].getType() == "mace" || inventory[inventory_cursor-1].getType() == "bow" || inventory[inventory_cursor-1].getType() == "crossbow" || inventory[inventory_cursor-1].getType() == "staff"){
 				//equip any weapon
 				if (main_hand.getID() == 0){  
 					main_hand = inventory[inventory_cursor - 1];

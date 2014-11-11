@@ -66,17 +66,12 @@ void Window::setCanvasSize(Texture* texture){
 		canvasSize = texture->getSize();
 		canvas.setRenderer(renderer);
 		canvas.makeBlankTexture(canvasSize.w, canvasSize.h);
-		cout << canvasSize.w << canvasSize.h << endl;
 	}
 }
 
 
 void Window::renderFrame(LocationCoordinates playerLoc){
-	SDL_SetRenderTarget(renderer, NULL); //set the window back as the rendering target
-
-	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	SDL_RenderClear(renderer);
-
+	
 	int upperCornerX = playerLoc.x - CAMERA_GRID_WIDTH / 2;
 	int upperCornerY = playerLoc.y - CAMERA_GRID_HEIGHT / 2;
 
@@ -100,9 +95,12 @@ void Window::renderFrame(LocationCoordinates playerLoc){
 
 	SDL_RenderCopy(renderer, canvas.getTexture(), &cameraLocation, &sceneSize);
 
-	SDL_RenderPresent(renderer); //show the screen
-	SDL_SetRenderTarget(renderer, canvas.getTexture());//set the canvas as the rendering target
+	
 }    
+
+void Window::renderWindow(){
+	SDL_RenderPresent(renderer); //show the screen
+}
 
 SDL_Window* Window::getWindow(){
 	return window;//return the pointer to the window object
@@ -114,6 +112,20 @@ SDL_Renderer* Window::getRenderer(){
 
 bool Window::windowExists(){
 	return success;//return the window was created flag
+}
+
+
+void Window::setCanvasAsTarget(){
+	SDL_SetRenderTarget(renderer, canvas.getTexture());//set the canvas as the rendering target
+}
+
+void Window::setWindowAsTarget(){
+	SDL_SetRenderTarget(renderer, NULL); //set the window back as the rendering target
+}
+
+void Window::clearScreen(){
+	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	SDL_RenderClear(renderer);
 }
 
 /** \brief SDL cleanup.

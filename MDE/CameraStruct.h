@@ -37,7 +37,7 @@ struct InventoryStruct{
 	///the current location of the cursor in the inventory
 	int inventory_cursor;
 	///how the inventory should work
-	bool inventoryMode;
+	bool inventoryMode=false;
 };
 
 /** \brief the struct used in the rendering of the user interface.

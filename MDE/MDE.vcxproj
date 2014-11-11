@@ -51,9 +51,8 @@
     <ClCompile Include="sound_play.cpp" />
     <ClCompile Include="StoneTower.cpp" />
     <ClCompile Include="TextTexture.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
@@ -94,9 +93,8 @@
     <ClInclude Include="sound_play.h" />
     <ClInclude Include="StoneTower.h" />
     <ClInclude Include="TextTexture.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WriteFile.h" />
   </ItemGroup>
@@ -129,6 +127,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{4D198B02-F729-4606-91E2-6489CCAB5712}</ProjectGuid>
     <RootNamespace>MDE</RootNamespace>
+    <ProjectName>MDE</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

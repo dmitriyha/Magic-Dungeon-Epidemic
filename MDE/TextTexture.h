@@ -13,8 +13,9 @@
 class TextTexture : public Texture{
 	
 	public:
-		TextTexture(string path,SDL_Color textColor,int fontSize,SDL_Renderer* screen);
+		TextTexture();
 		void setText(string text);
+		void initialise(string path, SDL_Color textColor, int fontSize);
 		~TextTexture();
 	protected:
 		

@@ -13,22 +13,27 @@
  *
  */     
 
-TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Renderer* _screen):Texture(){
-	path=_path;
-	screen=_screen;
+TextTexture::TextTexture():Texture(){
 	texture = NULL;
 	width = height = 0;
 	
-	textColor=_textColor;
 	
 	free();
 	
-	font = TTF_OpenFont( path.c_str(), fontSize );
-	if(font==NULL){
-		cout<<"this was null"<<endl;
-		
-	}
 	
+	
+}
+
+void TextTexture::initialise(string _path, SDL_Color _textColor, int fontSize){
+	free();
+	path = _path;
+	textColor = _textColor;
+
+	font = TTF_OpenFont(path.c_str(), fontSize);
+	if (font == NULL){
+		cout << "this was null" << endl;
+
+	}
 }
 
 /** \brief Sets the text to be used for this texture Object.
@@ -41,6 +46,8 @@ TextTexture::TextTexture(string _path,SDL_Color _textColor,int fontSize,SDL_Rend
  *
  */     
 
+
+
 void TextTexture::setText(string text){
 	free();
 	if(font==NULL){
@@ -51,7 +58,7 @@ void TextTexture::setText(string text){
 	
 	
 	
-	texture = SDL_CreateTextureFromSurface( screen, textSurf );
+	texture = SDL_CreateTextureFromSurface( renderer, textSurf );
 	if( texture == NULL ){
 		cout<<"Unable to create texture from "<<path.c_str()<<" SDL Error: "<< SDL_GetError() <<endl;
 	}

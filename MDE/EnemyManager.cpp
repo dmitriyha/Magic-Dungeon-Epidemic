@@ -64,11 +64,6 @@ void EnemyManager::setPlayerPointer(Player* _player){
 
 EnemyManager::~EnemyManager()
 {
-	for (int i = 0; i < MAX_DEPTH; i++){
-		for (int j = 0; j < dataForManaging->mapStruct[i].entityData.enemy.size(); j++){
-			delete dataForManaging->mapStruct[i].entityData.enemy.at(j); //release memory used by these objects
-
-		}
-	}
+	
 	delete npc;
 }

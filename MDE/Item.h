@@ -38,6 +38,7 @@ class Item{
 public:
 	Item(int id);
 	void render();
+	void render(SDL_Rect location);
 	int getItemStat();
 	void changeItemStat(int change);
 	string Name();

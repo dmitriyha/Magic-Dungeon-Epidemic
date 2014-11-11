@@ -1,46 +1,26 @@
-﻿Build started 11.11.2014 14:02:41.
-     1>Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" on node 2 (Build target(s)).
+﻿Build started 11/7/2014 2:31:50 PM.
+     1>Project "C:\Users\Dima\Documents\GitHub\rogue\MDE\MDE.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ArtificialIntelligence.cpp Building.cpp BuildingFactory.cpp BuildingManager.cpp Controls.cpp EnemyGen.cpp EnemyManager.cpp Game.cpp ItemRenderer.cpp Manager.cpp Map.cpp PlaceItemsAndEnemies.cpp PlayerManager.cpp StoneTower.cpp main.cpp
-         EnemyManager.cpp
-     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
-                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(37) : see previous definition of 'SND_ASYNC'
-     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
-                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(36) : see previous definition of 'SND_LOOP'
-     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
-                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(35) : see previous definition of 'SND_FILENAME'
-     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(35): warning C4005: 'SND_FILENAME' : macro redefinition
-                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
-     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(36): warning C4005: 'SND_LOOP' : macro redefinition
-                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
-     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(37): warning C4005: 'SND_ASYNC' : macro redefinition
-                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
-     1>EnemyManager.cpp(9): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-     1>EnemyManager.cpp(19): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-         BuildingManager.cpp
-         BuildingFactory.cpp
-         Generating Code...
-     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\buildingfactory.cpp(20): warning C4715: 'BuildingFactory::create_building' : not all control paths return a value
-         Skipping... (no relevant changes detected)
-         StoneTower.cpp
-         PlaceItemsAndEnemies.cpp
-         Map.cpp
-         Manager.cpp
-         ItemRenderer.cpp
-         EnemyGen.cpp
-         Building.cpp
-         ArtificialIntelligence.cpp
-         main.cpp
-         PlayerManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Game.cpp UserInterface.cpp
+         UserInterface.cpp
          Game.cpp
-         Controls.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(27) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(26) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\dima\documents\github\rogue\mde\GlobalDef.h(25) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(25): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(26): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\dima\documents\github\rogue\mde\GlobalDef.h(27): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ArtificialIntelligence.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dima\Documents\GitHub\rogue\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Dima\Documents\GitHub\rogue\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dima\Documents\GitHub\rogue\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ArtificialIntelligence.obj
          x64\Debug\Battle.obj
          x64\Debug\BattleHandler.obj
-         x64\Debug\Building.obj
-         x64\Debug\BuildingFactory.obj
-         x64\Debug\BuildingManager.obj
          x64\Debug\Character.obj
          x64\Debug\EnemyFactory.obj
          x64\Debug\Controls.obj
@@ -62,13 +42,14 @@
          x64\Debug\ReadString.obj
          x64\Debug\RNG.obj
          x64\Debug\sound_play.obj
-         x64\Debug\StoneTower.obj
+         x64\Debug\TextTexture.obj
          x64\Debug\Texture.obj
+         x64\Debug\UserInterface.obj
          x64\Debug\Window.obj
          x64\Debug\WriteFile.obj
-         MDE.vcxproj -> C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe
-     1>Done Building Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" (Build target(s)).
+         MDE.vcxproj -> C:\Users\Dima\Documents\GitHub\rogue\x64\Debug\MDE.exe
+     1>Done Building Project "C:\Users\Dima\Documents\GitHub\rogue\MDE\MDE.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.59
+Time Elapsed 00:00:02.44

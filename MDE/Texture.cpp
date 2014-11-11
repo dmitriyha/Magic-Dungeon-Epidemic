@@ -6,6 +6,9 @@ Texture::Texture(){
 	free();
 }
 
+/**	\brief	creates an image from the specified file
+*	\param	the file to make the texture out of
+*/
 void Texture::makeTexture(string path){//makes a texture from the picture
 	free();
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
@@ -32,6 +35,10 @@ void Texture::makeTexture(string path){//makes a texture from the picture
 	}
 }
 
+/**	\brief	make this texture objext a blank one
+*	\param	the width of this texture
+*	\param	the height of this texture
+*/
 void Texture::makeBlankTexture(int _width, int _height){//makes a canvas
 	free();
 	//Create uninitialized texture 
@@ -45,13 +52,21 @@ void Texture::makeBlankTexture(int _width, int _height){//makes a canvas
 	}
 }
 
+/**	\brief get the size of this texture
+*	\return	the size in SDL_Rect form
+*/
 SDL_Rect Texture::getSize(){
 	SDL_Rect size;
+	size.x = 0;
+	size.y = 0;
 	size.w = width;
 	size.h = height;
 	return size;
 }
 
+/**	\brief	gets the SDL_Texture object of this texture
+*	\return	returns the SDL_Texture
+*/
 SDL_Texture* Texture::getTexture(){//gets the texture object
 	if (texture == NULL) {
 		return NULL;
@@ -61,14 +76,22 @@ SDL_Texture* Texture::getTexture(){//gets the texture object
 	}
 }
 
+/**	\brief	set renderer for rendering purposes
+*	\param	SDL_Renderer* object
+*/
 void Texture::setRenderer(SDL_Renderer* _renderer){//sets the renderer object
 	renderer = _renderer;
 }
 
+/**	\brief	get renderer for rendering purposes
+*	\return	SDL_Renderer* object
+*/
 SDL_Renderer* Texture::getRenderer(){//gets the renderer object
 	return renderer;
 }
 
+/**	\brief	frees this object for deletion or reuse
+*/
 void Texture::free(){//frees the texture
 	if (texture != NULL){
 		SDL_DestroyTexture(texture);

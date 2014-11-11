@@ -9,6 +9,8 @@
 #include "GlobalDef.h"
 #include "Texture.h"
 #include "LocationCoordinate.h"
+#include "UserInterface.h"
+
 using namespace std;
 
 /** \brief the Graphics engine
@@ -25,14 +27,21 @@ class Window{
 	int winHeight = WINDOW_HEIGHT;//the initial height of the window
 	SDL_Rect sceneSize;
 	SDL_Rect cameraLocation;
+
+	UserInterface ui;
+
 	public:
 		Window( );
 		void setCanvasSize(Texture* texture);
 		void renderFrame(LocationCoordinates playerLoc);
+		void renderWindow();
 		SDL_Window* getWindow();
 		SDL_Renderer* getRenderer();
 		bool windowExists();
 		void setCanvas(Texture* _texture);
+		void setCanvasAsTarget();
+		void setWindowAsTarget();
+		void clearScreen();
 		~Window();
 	protected:
 	private:
