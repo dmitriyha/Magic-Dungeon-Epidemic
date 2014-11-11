@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SDL.h>
 #include "Texture.h"
 #include "TextTexture.h"
@@ -7,7 +8,7 @@
 class UserInterface{
 	//the texture in the backgtound of t
 	Texture* backroundTexture;
-	
+
 	//the level bar texture
 	Texture* level_bar;
 
@@ -26,10 +27,10 @@ class UserInterface{
 	//the texture used for text rendering
 	TextTexture* carbon18;
 
-	
+
 public:
 	UserInterface();
-	void initialize(CameraStruct* _camData,Texture* _backgroundTexture,Texture* _itemTexture);
+	void initialize(CameraStruct* _camData, Texture* _backgroundTexture, Texture* _itemTexture);
 	void render();
 	~UserInterface();
 private:
@@ -37,6 +38,6 @@ private:
 	void text();
 	void inventory();
 
-	void setText(string text,SDL_Rect offset);
+	void setText(string text, SDL_Rect offset);
 };
 
