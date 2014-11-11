@@ -38,5 +38,6 @@ public:
 	~Game();
 private:
 	int turn;
+	int buildingCooldown;
 };
 

@@ -17,7 +17,10 @@ void  Building::set_stats(int healths, int strengths, int damages, int accuracys
 }
 
 
-
+/** \brief Renders the building
+*
+*
+*/
 void Building::render(){
 
 	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
@@ -25,6 +28,11 @@ void Building::render(){
 	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
 }
 
+
+/** \brief Renders the building
+*
+* \param Texture _texture: The thexture whic you want to place to the building
+*/
 void Building::setTexture(Texture* _texture){
 	texture = _texture;
 }
@@ -39,7 +47,7 @@ int  Building::Health(void){
 
 /** \brief the damage function
 *
-* \return if the building is alive, returns true, if dead, returns false
+* \return int damage: if the building is alive, returns true, if dead, returns false
 *
 */
 
@@ -52,6 +60,11 @@ bool  Building::Health(int damage){
 		return false;
 	}
 }
+/** \brief sets building id
+*
+* \return int id: id which you want to place to the building
+*
+*/
 void Building::set_Id(int _id){
 	id = _id;
 }
@@ -61,40 +74,29 @@ void Building::set_Id(int _id){
 * \return the ID of the entity
 *
 */
-
-
 int  Building::getID(){
 	return id;
 }
 
 /** \brief lets the building know where it is on the map
 *
-* \param x the x cordinate on the map
-* \param y the y coordinate on the map
+* \param int x: the x cordinate on the map
+* \param int y: the y coordinate on the map
 *
 */
-
-
 void  Building::setCoords(int x, int y){
 	coord.x = x;
 	coord.y = y;
 }
 
-/** \brief the coordinate getter of the building
+/** \brief the gets building coordinates
 *
 * \return a 2 element array with x and y coordinates
 *
 */
-
-
-
 LocationCoordinates Building::getCoords(){
 	return coord;
 }
-
-
-
-
 
 /** \brief Strength getter
 *
@@ -120,33 +122,23 @@ int  Building::Damage(){
 * \return accuracy attribute
 *
 */
-
-
 int  Building::Accuracy(){
 	return accuracy;
 }
-
-
-
-
-
-
 
 /** \brief Luck getter
 *
 * \return Luck attribute
 *
 */
-
 int  Building::Luck(){
 	return luck;
 }
 
 /** \brief The Enemy level setter
 *
-*
+* \param int lvl: The level which you want to give your building
 */
-
 void Building::set_level(int lvl){
 	level = lvl;
 }
@@ -156,8 +148,6 @@ void Building::set_level(int lvl){
 * \return the level of Enemy
 *
 */
-
-
 int Building::get_level(){
 	return level;
 }

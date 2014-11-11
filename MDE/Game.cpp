@@ -61,13 +61,18 @@ void Game::run(){
 				switch (event.type){
 					case SDL_KEYDOWN:
 						managePlayer.eventHandler(event,turn);
+						if (managebuilding.GetBuildingCooldown("stonetower") == false){
+							managebuilding.stoneTowerCooldown--;
+							cout << "Stonetower Cooldown on " << managebuilding.stoneTowerCooldown << "\n";
+						}
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						mouseClick=managePlayer.mouseEventHandler(event);
 
-						if (mouseClick.x > -1){
+						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("stonetower")==true){
 
 							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
+							managebuilding.SetBuildingCooldown("stonetower");
 						}
 						break;
 					case SDL_QUIT:

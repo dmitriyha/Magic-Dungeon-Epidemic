@@ -109,6 +109,7 @@ void PlayerManager::eventHandler(SDL_Event event, int& turn ){
 		if (move(direction) || event.key.keysym.sym == SDLK_SPACE){//if player moved...
 			playerMoved = true;
 			turn++;
+
 			cout << turn;
 			cout << "\n";
 		}

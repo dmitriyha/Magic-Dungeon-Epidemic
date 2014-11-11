@@ -3,20 +3,18 @@
 
 /** \brief sets the stats of the Character entity
  *
- * \param healths max health
- * \param strengths the initial strength
- * \param dexteritys the initialdexterity
- * \param witss the initial wits
- * \param sanitys the initial sanity
- * \param staminas the initial stamina
- * \param charismas the initialcharisma
- * \param awarenesss the initial awareness
- * \param lucks the initial luck
- * \param ID the ID of this entity
+ * \param int healths: max health
+ * \param int strengths: the initial strength
+ * \param int dexteritys: the initialdexterity
+ * \param int witss: the initial wits
+ * \param int sanitys: the initial sanity
+ * \param int staminas: the initial stamina
+ * \param int charismas: the initialcharisma
+ * \param int awarenesss: the initial awareness
+ * \param int lucks: the initial luck
+ * \param int ID: the ID of this entity
  *
  */     
-
-
 void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID){
 	health=healths;
 	strength=strengths;
@@ -35,8 +33,6 @@ void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int
  * \return the current health
  *
  */     
-
-
 int Character::Health(void){
 	return health;
 }
@@ -46,7 +42,6 @@ int Character::Health(void){
  * \return if the entity is alive, returns true, if dead, returns false
  *
  */    
-
 bool Character::Health(int damage){
 	health=health-damage;
 	if (health>0){
@@ -57,6 +52,10 @@ bool Character::Health(int damage){
 	}
 }
 
+/** \brief renders the character
+*
+*
+*/
 void Character::render(){
 
 	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
@@ -68,9 +67,15 @@ void Character::render(){
 	}
 }
 
+/** \brief Sets the texture to the character
+*
+* \param Texture* _texture: The texture which you want to set to character
+*
+*/
 void Character::setTexture(Texture* _texture){
 	texture = _texture;
 }
+
 
 int Character::fight(Character* character){
 	return 0;

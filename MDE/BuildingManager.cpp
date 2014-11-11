@@ -6,6 +6,10 @@ BuildingManager::BuildingManager()
 	
 }
 
+/** \brief render: Renders the buildings.
+*
+*
+*/
 void BuildingManager::render(){
 	for (int i = 0; buildingList.size() > i; i++){
 		buildingList.at(i)->render();
@@ -13,11 +17,16 @@ void BuildingManager::render(){
 	}
 }
 
-//Creates a Building.
-//BuildingName description: name of the building you want to build
-//CoordX description: X coordinate, where you want to build your building
-//CoordY description: Y coordinate, where you want to build your building
-//level description: level where you want yor building build
+
+
+/** \brief CreateBuilding: Creates a Building.
+*
+* \param string BuildingName: name of the building you want to build
+* \param int CoordX: X coordinate, where you want to build your building
+* \param int CoordY: Y coordinate, where you want to build your building
+* \param int depth: Current depth or level. Level 1 is depth=1
+*
+*/
 void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth){
 
 	if (BuildingName == "stonetower"){
@@ -28,7 +37,7 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			Building* tower = BuildingFactory::create_building("stonetower");
 			id++;
 			tower->set_Id(id);
-			tower->set_level(1);
+			tower->set_level(depth);
 			tower->setTexture(stonetower);
 			tower->setCoords(CoordX, CoordY);
 			
@@ -36,7 +45,6 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 
 			buildingList.push_back(tower);
 			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
-			buildingBuilt = true;
 			cout << "Rakennus on laitettu\n";
 
 			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
@@ -50,9 +58,12 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 	
 }
 
-//Creates collision to the Building.
-//CoordX description: X coordinate, where you want the collision of your building
-//CoordY description: Y coordinate, where you want the collision of your building
+/** \brief Collision: Creates collision to the Building.
+*
+* \param CoordX: X coordinate, where you want the collision of your building
+* \param CoordY: Y coordinate, where you want the collision of your building
+*
+*/
 void BuildingManager::Collision(int CoordX, int CoordY){
 
 
@@ -68,13 +79,47 @@ void BuildingManager::Collision(int CoordX, int CoordY){
 }
 
 
-int BuildingManager::GetId(){
-	return id;
+/** \brief SetBuildingCooldown: Sets cooldown for a building.
+*
+* \param string building: name of the building you just build
+*
+*/
+void BuildingManager::SetBuildingCooldown (string building){
+	if (building == "stonetower"){
+		stoneTowerCooldown = 4;
+	}
+}
+/** \brief GetBuildingCooldown: Gets building cooldown
+*
+* \param string building: name of the building which cooldown you want to check
+* \return true if cooldown is zero. Return false is cooldown is not yet ended.
+*
+*/
+bool BuildingManager::GetBuildingCooldown(string building){
+	
+	if (building == "stonetower"){
+		if (stoneTowerCooldown > 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+
+	}
+	else{
+		return true;
+	}
+
 }
 
-//CanBuildBuildingHere is used when creating a building. It is used to check if you can build your building.
-//CoordX description: X coordinate, where you want to build your building
-//CoordY description: Y coordinate, where you want to build your building
+
+/** \brief CanBuildBuildingHere is used when creating a building. It is used to check if you can build your building.
+*
+* \param int CoordX: X coordinate, where you want to build your building
+* \param int CoordY: Y coordinate, where you want to build your building
+* \return true if we can build building here. Return false if we can't build building here. 
+* 
+*/
 bool BuildingManager::CanBuildBuildingHere(int CoordX, int CoordY){
 
 	//if playerIsHere is true, then player is in the selected tile.
@@ -86,8 +131,10 @@ bool BuildingManager::CanBuildBuildingHere(int CoordX, int CoordY){
 	//if enemyIsHere is true, then enemy is in the selected tile.
 	bool enemyIsHere = false;
 
+	//If buildingIsHere is true, then building is already in the selected tile
 	bool buildingIsHere = false;
 
+	//If wallIsHere is true, then wall is already in the selected tile
 	bool wallIsHere = false;
 
 	//If player is in the selected tile
@@ -127,27 +174,34 @@ bool BuildingManager::CanBuildBuildingHere(int CoordX, int CoordY){
 	}
 }
 
-
-bool BuildingManager::FirstBuildingBuilt(){
-	return buildingBuilt;
-}
-
-//initializeBuildings is used when you initialize buildings. Is called only once. 
-//_camData description: CameraStruct object which BuildingData you want to initialize.
-//_buildinTexture  description: Texture object which you want to initialize.
-//_player  description: Player object is pass to BuildinManager because we need to use it's coordinates
+/** \brief initializeBuildings is used when you initialize buildings. Is called only once.
+*
+* \param _camData: CameraStruct object which BuildingData you want to initialize.
+* \param _buildinTexture: Texture object which you want to initialize.
+* \param _player: Player object is pass to BuildinManager because we need to use it's coordinates
+*
+*/
 void BuildingManager::initializeBuildings(CameraStruct* _camData, Texture* _buildinTexture, Player* _player){
-	int y = 0, x = 0, depth = 0;
+	//Current X entityDataBuildings coordinate
+	int y = 0,
+	//Current Y entityDataBuildings coordinate
+	x = 0,
+	// Current level. Level 1 is depth=0
+	depth = 0;
+	//Initialize id
 	id = 0;
-	buildingBuilt = false;
+
+	//Cooldown
+	stoneTowerCooldown = 0;
+
 	camData = _camData;
 	//initialize buildingData object
 	buildData = &camData->buildData;
 	//building = GetBuilding();
-	//setBuilding(building);
 	player = _player;
 	//Set textures
 	stonetower = _buildinTexture;
+
 	while (depth <= 2){
 
 		while (y<GRID_HEIGHT){//initialises entityData to 0
@@ -169,26 +223,16 @@ void BuildingManager::initializeBuildings(CameraStruct* _camData, Texture* _buil
 }
 
 
-Building*  BuildingManager::GetBuilding(){
-
-	return buildData->building;
-
-}
-
-void BuildingManager::setBuilding(Building* _building){
-	//building = _building;
-}
 
 
 /** \brief This method is
 *
-* \param enemies The amount enemies to be generated.
-* \param depth the depth of the dungeon used to tweak the difficulty of the level
+* \param depth: Current level. Level 1 is depth=1.
 * \return returns the deque that contains Enemy objects.
 *
 */
-
 deque<string> BuildingManager::getBuildingListForGeneration(int depth){
+
 	deque<string> buildings;
 	if (depth == 1){
 		buildings.push_back("stonetower");

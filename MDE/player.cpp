@@ -39,8 +39,13 @@ void  Player::set_stats(int healths, int strengths, int dexteritys, int witss, i
 }
 
 
-
+/** \brief handels the fighting
+*
+* \param Character* character: The defending character. The one who is receiving damage
+*
+*/
 int Player::fight(Character* character){
+	//damage to be inflicted
 	int damage = 0;
 	if (inventory->equippedList().at(1).getType() == "sword"){
 		damage = Battle::Sword(strength, dexterity, stamina, (inventory->equippedList().at(1).getItemStat() + inventory->equippedList().at(2).getItemStat()), 0);
@@ -52,8 +57,6 @@ int Player::fight(Character* character){
 		character->Health(damage);
 	}
 	else{
-
-
 		damage = Battle::Sword(strength, dexterity, stamina, 0, 0);
 		character->Health(damage);
 	}
@@ -64,7 +67,11 @@ Inventory* Player::getInventory(){
 	return inventory;
 }
 
-
+/** \brief sets the primary weapon
+*
+* \param Item item: The item which you want to set as primary weapon
+*
+*/
 void Player::setPrimaryWeapon(Item item){
 	inventory->setPrimaryWeapon(item);
 }
@@ -83,7 +90,6 @@ int  Player::Health(void){
 * \return if the entity is alive, returns true, if dead, returns false
 *
 */
-
 bool  Player::Health(int damage){
 	health = health - damage;
 	if (health>0){
@@ -99,8 +105,6 @@ bool  Player::Health(int damage){
 * \return the ID of the entity
 *
 */
-
-
 int  Player::getID(){
 	return id;
 }
@@ -111,8 +115,6 @@ int  Player::getID(){
 * \param y the y coordinate on the map
 *
 */
-
-
 void  Player::setCoords(int x, int y){
 	coord={ x, y };
 }
@@ -122,15 +124,9 @@ void  Player::setCoords(int x, int y){
 * \return a 2 element array with x and y coordinates
 *
 */
-
-
-
 LocationCoordinates Player::getCoords(){
 	return coord;
 }
-
-
-
 
 
 /** \brief Strength getter
@@ -147,8 +143,6 @@ int  Player::Strength(){
 * \return dexterity attribute
 *
 */
-
-
 int  Player::Dexterity(){
 	return dexterity;
 }
@@ -158,7 +152,6 @@ int  Player::Dexterity(){
 * \return Wits attribute
 *
 */
-
 int  Player::Wits(){
 	return wits;
 }
@@ -168,7 +161,6 @@ int  Player::Wits(){
 * \return Sanity attribute
 *
 */
-
 int  Player::Sanity(){
 	return sanity;
 }
@@ -178,7 +170,6 @@ int  Player::Sanity(){
 * \return Stamina attribute
 *
 */
-
 int  Player::Stamina(){
 	return stamina;
 }
@@ -188,7 +179,6 @@ int  Player::Stamina(){
 * \return Charisma attribute
 *
 */
-
 int  Player::Charisma(){
 	return charisma;
 }
@@ -198,7 +188,6 @@ int  Player::Charisma(){
 * \return Awareness attribute
 *
 */
-
 int  Player::Awareness(){
 	return awareness;
 }
@@ -208,10 +197,10 @@ int  Player::Awareness(){
 * \return Luck attribute
 *
 */
-
 int  Player::Luck(){
 	return luck;
 }
+
 
  Player::~ Player(){
 	 delete inventory;
@@ -223,8 +212,6 @@ int  Player::Luck(){
  * \param creature_level the level of the creature that was killed
  *
  */     
-
-
 void Player::set_xp(int creature_level){
 	if (level == creature_level){
 		xp=xp+(10*level);
@@ -250,8 +237,6 @@ void Player::set_xp(int creature_level){
  * \return the lvl progress in integer form
  *
  */     
-
-
 int Player::get_level_progress(){
 	float prog = ((float)xp / (float)next_level)*100;
 	int progress = prog;

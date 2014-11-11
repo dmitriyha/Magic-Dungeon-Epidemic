@@ -33,19 +33,17 @@ public:
 	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);
 	void initializeBuildings(Texture* _buildinTexture);
-	Building* GetBuilding();
-	void setBuilding(Building* _building);
 	void render();
-	bool FirstBuildingBuilt();
+	void SetBuildingCooldown(string building);
+	bool GetBuildingCooldown(string building);
 	deque<string> getBuildingListForGeneration(int depth);
 	void free();
-	int GetId();
 	void Collision(int CoordX, int CoordY);
-	
+	int stoneTowerCooldown;
 	~BuildingManager();
 private:
-	bool buildingBuilt;
 	int id;
+	
 };
 
 
