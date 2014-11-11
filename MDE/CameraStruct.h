@@ -2,6 +2,7 @@
 #define CAMERASTRUCT_H
 #include "MapDataStructs.h"
 #include "player.h"
+#include "BuildingStruct.h"
 
 /** \brief contains the data required to render the map
  */     
@@ -18,6 +19,8 @@ struct MapStruct{
 	MapData mapData;
 	///contains the data of the enemies
 	EntityData entityData;
+	///contains the data of the buildings
+	EntityDataOfBuildings entityDataBuildings;
 	///contains the data of the items
 	ItemData itemData;
 };
@@ -59,6 +62,7 @@ struct CameraStruct{
 	MapStruct mapStruct[MAX_DEPTH];
 	InventoryStruct inventoryStruct;
 	UserInterfaceStruct userInterfaceStruct;
+	BuildingData buildData;
 	int leftCornerX;
 	int leftCornerY;
 	int currentLevel;

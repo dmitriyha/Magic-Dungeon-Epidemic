@@ -4,16 +4,31 @@
 Game::Game()
 {
 	initialize();
+
 }
 
 void Game::run(){
 	//PlaySound("music\\game1.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
 	if (win.windowExists()){
 		while (quit == false){
+			LocationCoordinates mouseClick{ -1, -1 };
 			while (SDL_PollEvent(&event)){
 				switch (event.type){
 					case SDL_KEYDOWN:
-						managePlayer.eventHandler(event);
+						managePlayer.eventHandler(event,turn);
+						if (managebuilding.GetBuildingCooldown("stonetower") == false){
+							managebuilding.stoneTowerCooldown--;
+							cout << "Stonetower Cooldown on " << managebuilding.stoneTowerCooldown << "\n";
+						}
+						break; 
+					case SDL_MOUSEBUTTONDOWN:
+						mouseClick=managePlayer.mouseEventHandler(event);
+
+						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("stonetower")==true){
+
+							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
+							managebuilding.SetBuildingCooldown("stonetower");
+						}
 						break;
 					case SDL_QUIT:
 						quit = true;
@@ -35,7 +50,10 @@ void Game::run(){
 			
 			manageEnemy.renderEnemy();
 			managePlayer.render();
+
+			managebuilding.render();
 			
+
 			//SDL_RenderCopy(win.getRenderer(), mapTexture->getTexture(), NULL, NULL);
 			
 			win.setWindowAsTarget();

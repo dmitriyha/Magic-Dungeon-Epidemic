@@ -4,12 +4,13 @@ class Goblin :public Enemy
 {
 public:
 	Goblin(void);
-	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID);
+	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks);
 
 	int Health(void);
 	bool Health(int);
 
 	int getID();
+	void set_Id(int _id);
 
 	void setCoords(int, int);
 	LocationCoordinates  getCoords();

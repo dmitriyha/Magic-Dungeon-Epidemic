@@ -26,9 +26,11 @@ protected:
 	int awareness;
 	int luck;
 	int id;
+	
 
 	LocationCoordinates coord;
 
+	//Location and size in the sprite sheet
 	SDL_Rect charSprite;
 	SDL_Rect charSpriteDead;
 

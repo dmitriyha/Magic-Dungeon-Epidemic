@@ -5,6 +5,9 @@
 #include "PlaceItemsAndEnemies.h"
 #include "Map.h"
 #include "EnemyGen.h"
+#include "Building.h"
+#include "BuildingFactory.h"
+#include "BuildingManager.h"
 #include <string>
 #include "LocationCoordinate.h"
 using namespace std;
@@ -16,6 +19,8 @@ class PlayerManager : public Manager
 	int inventory_cursor = 1;
 	int max_achieved_depth = 0;
 	int kills = 0;
+	int mouseCoordX, mouseCoordY;
+	BuildingData *buildData;
 	
 public:
 	bool playerMoved = false;
@@ -24,8 +29,8 @@ public:
 
 	void render();
 	LocationCoordinates  getPlayerCoord();
-	void eventHandler(SDL_Event event);
-
+	void eventHandler(SDL_Event event, int& turn);
+	LocationCoordinates mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
 	void checkTileForItems();
@@ -37,6 +42,7 @@ public:
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
 	bool check_player_death();
+	
 	//void generateMap();
 	Player* getPlayer();
 	~PlayerManager();

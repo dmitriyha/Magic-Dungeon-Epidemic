@@ -4,6 +4,7 @@
 #include "GlobalDef.h"
 #include"RNG.h"
 #include "MapDataStructs.h"
+#include "CameraStruct.h"
 using namespace std;
 
 /** \brief The class that decides which way the enemies move 
@@ -13,9 +14,10 @@ using namespace std;
 
 class ArtificialIntelligence{
 	RNG rand;
+	//CameraStruct* dataForManaging;
 public:
 	ArtificialIntelligence();
-	int direction(LocationCoordinates  PlayerLoc,LocationCoordinates coord,EntityData liveEntities,MapData maplayer);
+	int direction(LocationCoordinates  PlayerLoc, LocationCoordinates coord, EntityData liveEntities, MapData maplayer, CameraStruct* dataForManaging);
 	~ArtificialIntelligence();
 };
 

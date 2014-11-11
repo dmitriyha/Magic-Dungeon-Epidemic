@@ -4,5 +4,5 @@
 class EnemyFactory
 {
 	public:
-		static Enemy* create_enemy(string enemyType);
+		static Enemy* create_enemy(string enemyType, bool firstEnemy);
 };

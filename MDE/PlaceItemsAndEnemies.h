@@ -20,7 +20,7 @@ using namespace std;
 
 class PlaceItemsAndEnemies{
 
-	CameraStruct* enemyData;
+	CameraStruct* entityData;
 
 	
 public:

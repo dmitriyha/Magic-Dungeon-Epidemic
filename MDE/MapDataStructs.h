@@ -2,6 +2,7 @@
 #define MAPSDATATRUCTS_H
 
 #include "Item.h"
+#include "Building.h"
 #include <deque>
 #include "GlobalDef.h"
 #include "enemy.h"
@@ -13,7 +14,9 @@
 struct MapData{
 	///the map data set
 	char mapDim[GRID_WIDTH][GRID_HEIGHT];
-	
+
+	//Buildings that are found on the floor
+	int buildingDataMap[GRID_WIDTH][GRID_HEIGHT];
 };
 /** \brief Contains the data of where the life and the dead entities are for rendering purposes
  *
@@ -36,6 +39,7 @@ struct EntityData{
 struct ItemData{
 	///items that are found on the floor
 	deque <Item> itemDataMap[GRID_WIDTH][GRID_HEIGHT];
+
 };
 
 #endif // MAPSDATATRUCTS_H

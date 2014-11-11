@@ -3,19 +3,24 @@
 
 PlayerManager::PlayerManager()
 {
-	
+
 }
 
 void PlayerManager::render(){
 	player->render();
 }
 
-LocationCoordinates  PlayerManager::getPlayerCoord(){
+
+/* \brief gets players coordinates
+*   
+* \return players coordinates. Save this to example int *coord = . coord[0] is x coordinate, coord[1] is y coordinate.
+*/
+
+LocationCoordinates PlayerManager::getPlayerCoord(){
 	return player->getCoords();
 }
 
-
-void PlayerManager::eventHandler(SDL_Event event){
+void PlayerManager::eventHandler(SDL_Event event, int& turn ){
 	int direction = 0;
 	int size = player->getInventory()->getList().size();
 
@@ -94,6 +99,8 @@ void PlayerManager::eventHandler(SDL_Event event){
 				inventory = false;
 			}
 			break;
+
+		
 	}//end switch(event.key.keysym.sym)
 	if (size == 0){
 		inventory_cursor = 1;
@@ -101,6 +108,10 @@ void PlayerManager::eventHandler(SDL_Event event){
 	if (!inventory){
 		if (move(direction) || event.key.keysym.sym == SDLK_SPACE){//if player moved...
 			playerMoved = true;
+			turn++;
+
+			cout << turn;
+			cout << "\n";
 		}
 
 	}
@@ -108,14 +119,80 @@ void PlayerManager::eventHandler(SDL_Event event){
 	dataForManaging->inventoryStruct.inventory_cursor = inventory_cursor;
 }
 
+LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
+	LocationCoordinates coord = getPlayerCoord();
+	int playerXcoord = coord.x, playerYcoord = coord.y;
+	int upperCornerX = 0;
+	int upperCornerY = 0;
+	switch (event.button.button){
+
+		case SDL_BUTTON_LEFT:
+			//if (event.button.button == SDL_BUTTON_LEFT){
+			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+			rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
+			cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
+			//}
+			return LocationCoordinates{ -1, -1 };
+			break;
+		case SDL_BUTTON_RIGHT:
+			//If left mouse button is pressed and t is pressed. Then build a tower
+
+			
+
+			
+
+			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
+			mouseCoordX = mouseCoordX / TILE_WIDTH;
+			mouseCoordY = mouseCoordY / TILE_HEIGHT;
+
+			upperCornerX = player->getCoords().x - CAMERA_GRID_WIDTH / 2;
+			upperCornerY = player->getCoords().y - CAMERA_GRID_HEIGHT / 2;
+
+			if (upperCornerX < 0){
+				upperCornerX = 0;
+			}
+			if (upperCornerX + CAMERA_GRID_WIDTH > GRID_WIDTH){
+				upperCornerX = GRID_WIDTH - CAMERA_GRID_WIDTH;
+			}
+
+
+			if (upperCornerY < 0){
+				upperCornerY = 0;
+			}
+			if (upperCornerY + CAMERA_GRID_HEIGHT > GRID_HEIGHT){
+				upperCornerY = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
+			}
+
+			mouseCoordX += upperCornerX;
+			mouseCoordY += upperCornerY;
+
+			if (!inventory){
+
+				return LocationCoordinates{ mouseCoordX, mouseCoordY };
+			}
+			break;
+		default:
+			return LocationCoordinates{ -1, -1 };
+			break;
+	}
+}
+
+
 int PlayerManager::move(int direction){
 	LocationCoordinates coord = player->getCoords();
 	switch (direction){
-		case 2://down               
-			if (coord.y<GRID_HEIGHT - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y + 1] != '#'){
+		case 2://down
+
+			if (coord.y<GRID_HEIGHT - 1 && 
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1] == 0 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y + 1] != '#'&&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1]==0
+				){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y = coord.y + 1;
+				//Collision check
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;
+
 			}
 			else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1]>0){
 				coord.y = coord.y + 1;
@@ -124,7 +201,11 @@ int PlayerManager::move(int direction){
 			}
 			break;
 		case 4://left        
-			if (coord.x>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x - 1][coord.y] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x - 1][coord.y] != '#'){
+			if (coord.x>0 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x - 1][coord.y] == 0 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x - 1][coord.y] != '#' &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x - 1][coord.y] == 0){
+
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.x = coord.x - 1;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;
@@ -136,7 +217,10 @@ int PlayerManager::move(int direction){
 			}
 			break;
 		case 6: //right
-			if (coord.x<GRID_WIDTH - 1 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x + 1][coord.y] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x + 1][coord.y] != '#'){
+			if (coord.x<GRID_WIDTH - 1 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x + 1][coord.y] == 0 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x + 1][coord.y] != '#' &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x + 1][coord.y] == 0){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.x = coord.x + 1;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;
@@ -148,7 +232,9 @@ int PlayerManager::move(int direction){
 			}
 			break;
 		case 8://up 
-			if (coord.y>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y - 1] == 0 && dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y - 1] != '#'){
+			if (coord.y>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y - 1] == 0 &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y - 1] != '#' &&
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y - 1] == 0){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y = coord.y - 1;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;
@@ -212,41 +298,41 @@ void PlayerManager::rangedCombat(int x, int y){
 	bool combatHappens = false;
 
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[clickX][clickY]>1){
-		int distanceX = playerCoordinates.x - clickX;
-		int distanceY = playerCoordinates.y - clickY;
-		if (distanceX >= -4 && distanceX <= 4 && distanceY == 0){
-			while (distanceX != 0){
-				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x - distanceX][playerCoordinates.y] != '#'){
-					if (distanceX<0){
-						distanceX++;
+		int rangeX = playerCoordinates.x - clickX;
+		int rangeY = playerCoordinates.y - clickY;
+		if (rangeX >= -4 && rangeX <= 4 && rangeY == 0){
+			while (rangeX != 0){
+				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x - rangeX][playerCoordinates.y] != '#'){
+					if (rangeX<0){
+						rangeX++;
 					}
 					else{
-						distanceX--;
+						rangeX--;
 					}
 					combatHappens = true;
 				}
 				else{
 					combatHappens = false;
 					cout << "wall encountered" << endl;
-					distanceX = 0;
+					rangeX = 0;
 				}
 			}
 		}
-		else if (distanceX == 0 && distanceY <= 4 && distanceY >= -4){
-			while (distanceY != 0){
-				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x][playerCoordinates.y - distanceY] != '#'){
-					if (distanceY<0){
-						distanceY++;
+		else if (rangeX == 0 && rangeY <= 4 && rangeY >= -4){
+			while (rangeY != 0){
+				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x][playerCoordinates.y - rangeY] != '#'){
+					if (rangeY<0){
+						rangeY++;
 					}
 					else{
-						distanceY--;
+						rangeY--;
 					}
 					combatHappens = true;
 				}
 				else{
 					combatHappens = false;
 					cout << "wall encountered" << endl;
-					distanceY = 0;
+					rangeY = 0;
 				}
 			}
 

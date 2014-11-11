@@ -22,6 +22,9 @@
     <ClCompile Include="ArtificialIntelligence.cpp" />
     <ClCompile Include="Battle.cpp" />
     <ClCompile Include="BattleHandler.cpp" />
+    <ClCompile Include="Building.cpp" />
+    <ClCompile Include="BuildingFactory.cpp" />
+    <ClCompile Include="BuildingManager.cpp" />
     <ClCompile Include="camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -46,7 +49,8 @@
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
     <ClCompile Include="sound_play.cpp" />
-    <ClCompile Include="TextTexture.cpp" />
+    <ClCompile Include="StoneTower.cpp" />
+    <ClCompile Include="TextTexture.cpp">
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -56,6 +60,10 @@
     <ClInclude Include="ArtificialIntelligence.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />
+    <ClInclude Include="Building.h" />
+    <ClInclude Include="BuildingFactory.h" />
+    <ClInclude Include="BuildingManager.h" />
+    <ClInclude Include="BuildingStruct.h" />
     <ClInclude Include="camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -83,7 +91,8 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
-    <ClInclude Include="TextTexture.h" />
+    <ClInclude Include="StoneTower.h" />
+    <ClInclude Include="TextTexture.h">
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Window.h" />

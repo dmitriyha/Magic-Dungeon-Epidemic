@@ -4,8 +4,11 @@
 #include "Window.h"
 #include "Controls.h"
 #include "camera.h"
+#include "buildingManager.h"
 #include <string>
 #include "ItemRenderer.h"
+#include "LocationCoordinate.h"
+#include "PlaceItemsAndEnemies.h"
 using namespace std;
 class Game
 {
@@ -15,6 +18,7 @@ class Game
 	Texture* mapTexture;
 	PlayerManager managePlayer;
 	EnemyManager manageEnemy;
+	BuildingManager managebuilding;
 	ItemRenderer renderItem;
 	Window win ;
 	UserInterface ui;
@@ -26,4 +30,6 @@ public:
 	~Game();
 private:
 	void initialize();
+	int turn;
+	int buildingCooldown;
 };

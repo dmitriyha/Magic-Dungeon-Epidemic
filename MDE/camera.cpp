@@ -1,20 +1,21 @@
 #include "camera.h"
 
-/** \brief Camera class constructor.
- *
- * This class is responsible for showing stuff on the screen
- *
- * \param _camData Pointer to CameraStruct, which holds all of the data of the logic
- * \param _screen The surface where we will be blitting.
- * 
- *
- */     
-
-
+// \brief Camera class constructor.
+//
+// This class is responsible for showing stuff on the screen
+//
+// \param _camData Pointer to CameraStruct, which holds all of the data of the logic
+// \param _screen The surface where we will be blitting.
+// 
+//
+ //     
 Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	screen=_screen;
 	camData=_camData;
-	
+	buildData = &camData->buildData;
+
+	rakennusAlustettu = false;
+
 	//player=new Texture ("img\\char.png",screen);
 	player=new Texture("img\\player0.png", screen);
 	enemy =new Texture("img\\goblinsword.png",screen);
@@ -25,6 +26,7 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	item_surface = new Texture("img\\items.png",screen);
 	UI = new Texture("img\\userinterface.png",screen);
 	level_bar = new Texture("img\\level_bar.png",screen);
+	stoneTower = new Texture("img\\TowerStone.png", screen);
 	
 	
 	SDL_Color color={0,0,0};
@@ -92,16 +94,23 @@ Camera::Camera(CameraStruct* _camData,SDL_Renderer* _screen){
 	stairs_down.h=48;
 
 
-	//Player
+	//EnemyLocation
 	enemylocation.x = 0;
 	enemylocation.y = 0;
 	enemylocation.w = 40;
 	enemylocation.h = 57;
 
+	//Player
 	playerlocation.x = 0;
 	playerlocation.y = 0;
 	playerlocation.w = 48;
 	playerlocation.h = 58;
+
+	//Stonetower location
+	towerstonelocation.x = 0;
+	towerstonelocation.y = 0;
+	towerstonelocation.w = 115;
+	towerstonelocation.h = 177;
 
 
 
@@ -257,6 +266,7 @@ void Camera::renderAll(){
 					
 				}
 			}
+			
 			offset.w = TILE_WIDTH;
 			offset.h = TILE_HEIGHT * 2;
 			if (camData->mapStruct[camData->currentLevel].entityData.live[x][y]>1){											//renders live enteties
@@ -267,7 +277,54 @@ void Camera::renderAll(){
 				offset.y = offset.y - TILE_HEIGHT;
 				player->renderTile(playerlocation,offset);
 			}
+			
+			/*if (rakennusAlustettu == false){
+			Building* tower = BuildingFactory::create_building("stonetower");
+			tower = BuildingFactory::create_building("stonetower");
+			tower->set_stats(1, 1, 1, 1, 1, 1);
+			tower->set_level(1);
+			tower->setCoords(0, 0);
+			mapdata.buildingDataMap[0][0] = tower;
+			rakennusAlustettu = true;*/
+			/*Building* tower  = BuildingFactory::create_building("stonetower");
+			buildData->building = tower;*/
+
+			buildData->building  = BuildingFactory::create_building("stonetower");
+			buildData->building->set_stats(1, 1, 1, 1, 1, 0);
+			buildData->building->set_level(1);
+			buildData->building->setCoords(0, 0);
+			mapdata.buildingDataMap[0][0] = buildData->building;
+			rakennusAlustettu = true;
+			buildData->building = building;
+
+
+			
+			
+			if (camData->mapStruct->mapData.buildingDataMap[x][y] != NULL){
+				int* coord1; //= {0};
+				//if (buildData->building->getID()==1){
+
+
+					coord1 = buildData->building->getCoords();
+					//cout << coord1[0] << " " << coord1[1] << endl;
+				//}
+				//if (buildData->building->getCoords() != NULL){
+					coord1[0] = TILE_WIDTH*coord1[0];
+					coord1[1] = TILE_HEIGHT*coord1[1];
+					//cout <<"Coord1 " << coord1[0] << " " << coord1[1] << endl;
+				if (x == coord1[0] && y == coord1[1]){											//renders live enteties
+					//offset.y = offset.y -TILE_HEIGHT;
+					//offset.x = offset.x -TILE_WIDTH;
+					//SDL_GetMouseState(&offset.x, &offset.y);
+					offset.x = x* TILE_WIDTH;
+					offset.y = y*TILE_HEIGHT;
+					stoneTower->renderTile(towerstonelocation, offset);
+				}
+			}
+			//Tee tähän tower renderointi
+			
 			x++;
+
 		}//end if(x<xCorner+CAMERA_GRID_WIDTH)
 		if(x==xCorner+CAMERA_GRID_WIDTH){
 			y++;
@@ -276,6 +333,17 @@ void Camera::renderAll(){
 	}//end while(y<yCorner+CAMERA_GRID_HEIGHT)
 	
 	
+}
+//
+//Building* Camera::GetBuilding(Building* buildings){
+//	
+//	building = buildings;
+//	return building;
+//}
+
+
+void Camera::setBuilding(Building* _building){
+	building = _building;
 }
 
 /** \brief Renders the inventory screen
@@ -350,7 +418,6 @@ void Camera::inventoryRender(){
 	}
 	
 }
-
 /** \brief Renders the user interface (the stuff around the main screen and inventory
  *
  *
@@ -569,4 +636,5 @@ Camera::~Camera(){
 	delete UI;
 	delete level_bar ;
 	delete carbon18;
+	delete stoneTower;
 }
