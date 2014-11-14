@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "TextTexture.h"
 #include "CameraStruct.h"
+#include "Button.h";
 
 class UserInterface{
 	//the texture in the backgtound of t
@@ -27,6 +28,7 @@ class UserInterface{
 	//the texture used for text rendering
 	TextTexture* carbon18;
 
+	Button stoneTower;
 
 public:
 	UserInterface();

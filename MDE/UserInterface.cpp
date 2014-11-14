@@ -31,6 +31,13 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 	curs = new Texture();
 	curs->setRenderer(backroundTexture->getRenderer());
 	curs->makeTexture("img\\cursor.png");
+
+	Texture* t = new Texture();
+	t->setRenderer(backroundTexture->getRenderer());
+	t->makeTexture("img\\TowerStone.png");
+
+	stoneTower.setTexture(t);
+	stoneTower.setLocation(705, 307);
 }
 
 /**	\brief renders the UI to the screen, making it visible to the user
@@ -44,6 +51,8 @@ void UserInterface::render(){
 
 	background();//render the bacground of the user interface
 	text();//render the text of the user interface
+
+	stoneTower.render();
 
 	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
 
