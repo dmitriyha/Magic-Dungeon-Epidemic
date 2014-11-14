@@ -5,15 +5,15 @@
 #include "Item.h"
 #include "Texture.h"
 #include "LocationCoordinate.h"
+#include "Object.h"
 using namespace std;
 
 /** \brief the base class of Player and Enemy
  */     
 
 
-class Character{
+class Character:public Object{
 protected:
-	Texture* texture;
 
 	int health;
 	
@@ -31,7 +31,7 @@ protected:
 	LocationCoordinates coord;
 
 	//Location and size in the sprite sheet
-	SDL_Rect charSprite;
+	
 	SDL_Rect charSpriteDead;
 
 public: 
@@ -39,7 +39,8 @@ public:
 	
 	virtual int fight(Character * character);
 
-	void setTexture(Texture* _texture);
+	
+
 	void render();
 
 	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID);

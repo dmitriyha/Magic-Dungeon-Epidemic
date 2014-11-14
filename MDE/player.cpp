@@ -1,10 +1,10 @@
 #include "player.h"
 
 Player::Player(){
-	charSprite.x = 0;
-	charSprite.y = 0;
-	charSprite.w = 48;
-	charSprite.h = 58;
+	sprite.x = 0;
+	sprite.y = 0;
+	sprite.w = 48;
+	sprite.h = 58;
 
 	charSpriteDead = { 0, 0, 0, 0 };
 }

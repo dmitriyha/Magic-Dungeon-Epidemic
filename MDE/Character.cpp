@@ -58,24 +58,14 @@ bool Character::Health(int damage){
 */
 void Character::render(){
 
-	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
+	location = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
 	if (health > 0){
-		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+		Object::render();
 	}
 	else {
-		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSpriteDead, &charLoc);
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSpriteDead, &location);
 	}
 }
-
-/** \brief Sets the texture to the character
-*
-* \param Texture* _texture: The texture which you want to set to character
-*
-*/
-void Character::setTexture(Texture* _texture){
-	texture = _texture;
-}
-
 
 int Character::fight(Character* character){
 	return 0;

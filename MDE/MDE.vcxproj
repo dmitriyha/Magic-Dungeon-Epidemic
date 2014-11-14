@@ -25,6 +25,7 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingManager.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="camera.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
@@ -42,6 +43,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Object.cpp" />
     <ClCompile Include="PlaceItemsAndEnemies.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="PlayerManager.cpp" />
@@ -64,6 +66,7 @@
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="BuildingStruct.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="camera.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
@@ -85,6 +88,7 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDataStructs.h" />
     <ClInclude Include="MouseCoordinates.h" />
+    <ClInclude Include="Object.h" />
     <ClInclude Include="PlaceItemsAndEnemies.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="PlayerManager.h" />

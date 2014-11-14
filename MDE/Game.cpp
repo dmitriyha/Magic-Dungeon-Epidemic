@@ -4,7 +4,6 @@
 Game::Game()
 {
 	initialize();
-
 }
 
 void Game::run(){
@@ -34,8 +33,6 @@ void Game::run(){
 						quit = true;
 						break;
 				}//end switch (event.type)
-
-				//controls.buttons(event);
 
 			}//end while(SDL_PollEvent( &event ))
 			if (managePlayer.playerMoved){
