@@ -52,8 +52,6 @@ void Game::run(){
 			managePlayer.render();
 
 			managebuilding.render();
-			
-
 			//SDL_RenderCopy(win.getRenderer(), mapTexture->getTexture(), NULL, NULL);
 			
 			win.setWindowAsTarget();
@@ -100,6 +98,13 @@ void Game::initialize(){
 
 	manageEnemy.setPointers(camData);
 	manageEnemy.setPlayerPointer(player);
+
+	//Initialize building texture
+	Texture* stonetower = new Texture();
+	stonetower->setRenderer(win.getRenderer());
+	stonetower->makeTexture("img\\TowerStone.png");
+	managebuilding.initializeBuildings(camData, stonetower, player);
+
 
 	Texture* uiTexture = new Texture();
 	uiTexture->setRenderer(win.getRenderer());
