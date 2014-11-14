@@ -3,6 +3,7 @@
 #include "MapDataStructs.h"
 #include "player.h"
 #include "BuildingStruct.h"
+#include "LocationCoordinate.h"
 
 /** \brief contains the data required to render the map
  */     
@@ -63,8 +64,7 @@ struct CameraStruct{
 	InventoryStruct inventoryStruct;
 	UserInterfaceStruct userInterfaceStruct;
 	BuildingData buildData;
-	int leftCornerX;
-	int leftCornerY;
+	LocationCoordinates leftCorner;
 	int currentLevel;
 };
 

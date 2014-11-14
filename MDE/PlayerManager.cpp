@@ -119,7 +119,7 @@ void PlayerManager::eventHandler(SDL_Event event, int& turn ){
 	dataForManaging->inventoryStruct.inventory_cursor = inventory_cursor;
 }
 
-LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
+MouseCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 	LocationCoordinates coord = getPlayerCoord();
 	int playerXcoord = coord.x, playerYcoord = coord.y;
 	int upperCornerX = 0;
@@ -132,15 +132,10 @@ LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 			rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
 			cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
 			//}
-			return LocationCoordinates{ -1, -1 };
+			return MouseCoordinates{ -1, -1,NONE };
 			break;
 		case SDL_BUTTON_RIGHT:
-			//If left mouse button is pressed and t is pressed. Then build a tower
-
-			
-
-			
-
+			//If left right button is pressed and t is pressed. Then build a tower
 			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
 			mouseCoordX = mouseCoordX / TILE_WIDTH;
 			mouseCoordY = mouseCoordY / TILE_HEIGHT;
@@ -168,11 +163,11 @@ LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 
 			if (!inventory){
 
-				return LocationCoordinates{ mouseCoordX, mouseCoordY };
+				return MouseCoordinates{ mouseCoordX, mouseCoordY,RIGHT};
 			}
 			break;
 		default:
-			return LocationCoordinates{ -1, -1 };
+			return MouseCoordinates{ -1, -1 , NONE};
 			break;
 	}
 }
@@ -290,16 +285,16 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 void PlayerManager::rangedCombat(int x, int y){
 	LocationCoordinates  playerCoordinates = player->getCoords();
 
-	int clickX, clickY;
+	LocationCoordinates click;
 
-	clickX = dataForManaging->leftCornerX + x;
-	clickY = dataForManaging->leftCornerY + y;
+	click.x = dataForManaging->leftCorner.x + x;
+	click.y = dataForManaging->leftCorner.y + y;
 
 	bool combatHappens = false;
 
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[clickX][clickY]>1){
-		int rangeX = playerCoordinates.x - clickX;
-		int rangeY = playerCoordinates.y - clickY;
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[click.x][click.y]>1){
+		int rangeX = playerCoordinates.x - click.x;
+		int rangeY = playerCoordinates.y - click.y;
 		if (rangeX >= -4 && rangeX <= 4 && rangeY == 0){
 			while (rangeX != 0){
 				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x - rangeX][playerCoordinates.y] != '#'){
@@ -340,8 +335,7 @@ void PlayerManager::rangedCombat(int x, int y){
 
 		if (combatHappens){
 			LocationCoordinates enemyCoord = { 0,0 };
-			enemyCoord.x = clickX;
-			enemyCoord.y = clickY;
+			enemyCoord = click;
 			fightAndKillEnemy(enemyCoord);
 		}
 

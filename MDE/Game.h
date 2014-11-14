@@ -8,6 +8,7 @@
 #include <string>
 #include "ItemRenderer.h"
 #include "LocationCoordinate.h"
+#include "MouseCoordinates.h"
 #include "PlaceItemsAndEnemies.h"
 using namespace std;
 class Game

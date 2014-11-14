@@ -84,6 +84,7 @@
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MapDataStructs.h" />
+    <ClInclude Include="MouseCoordinates.h" />
     <ClInclude Include="PlaceItemsAndEnemies.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="PlayerManager.h" />

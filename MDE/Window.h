@@ -1,5 +1,5 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#pragma once
+
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -30,6 +30,8 @@ class Window{
 
 	UserInterface ui;
 
+	LocationCoordinates upperCorner;
+
 	public:
 		Window( );
 		void setCanvasSize(Texture* texture);
@@ -42,9 +44,8 @@ class Window{
 		void setCanvasAsTarget();
 		void setWindowAsTarget();
 		void clearScreen();
+		LocationCoordinates Window::getUpperCorner();
 		~Window();
 	protected:
 	private:
 };
-
-#endif // WINDOW_H

@@ -284,6 +284,9 @@
     <ClInclude Include="TextTexture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MouseCoordinates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="img\airmole.ttf">

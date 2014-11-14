@@ -72,26 +72,28 @@ void Window::setCanvasSize(Texture* texture){
 
 void Window::renderFrame(LocationCoordinates playerLoc){
 	
-	int upperCornerX = playerLoc.x - CAMERA_GRID_WIDTH / 2;
-	int upperCornerY = playerLoc.y - CAMERA_GRID_HEIGHT / 2;
+	upperCorner.x = playerLoc.x - CAMERA_GRID_WIDTH / 2;
+	upperCorner.y = playerLoc.y - CAMERA_GRID_HEIGHT / 2;
 
-	if (upperCornerX < 0){
-		upperCornerX = 0;
+	if (upperCorner.x < 0){
+		upperCorner.x = 0;
 	}
-	if (upperCornerX + CAMERA_GRID_WIDTH > GRID_WIDTH){
-		upperCornerX = GRID_WIDTH - CAMERA_GRID_WIDTH;
-	}
-
-
-	if (upperCornerY < 0){
-		upperCornerY = 0;
-	}
-	if (upperCornerY + CAMERA_GRID_HEIGHT > GRID_HEIGHT){
-		upperCornerY = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
+	if (upperCorner.x + CAMERA_GRID_WIDTH > GRID_WIDTH){
+		upperCorner.x = GRID_WIDTH - CAMERA_GRID_WIDTH;
 	}
 
-	cameraLocation.x = (upperCornerX)* TILE_WIDTH;
-	cameraLocation.y = (upperCornerY)* TILE_HEIGHT;
+
+	if (upperCorner.y < 0){
+		upperCorner.y = 0;
+	}
+	if (upperCorner.y + CAMERA_GRID_HEIGHT > GRID_HEIGHT){
+		upperCorner.y = GRID_HEIGHT - CAMERA_GRID_HEIGHT;
+	}
+
+	
+
+	cameraLocation.x = (upperCorner.x)* TILE_WIDTH;
+	cameraLocation.y = (upperCorner.y)* TILE_HEIGHT;
 
 	SDL_RenderCopy(renderer, canvas.getTexture(), &cameraLocation, &sceneSize);
 
@@ -126,6 +128,10 @@ void Window::setWindowAsTarget(){
 void Window::clearScreen(){
 	SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 	SDL_RenderClear(renderer);
+}
+
+LocationCoordinates Window::getUpperCorner(){
+	return upperCorner;
 }
 
 /** \brief SDL cleanup.

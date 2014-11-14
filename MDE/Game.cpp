@@ -10,8 +10,9 @@ Game::Game()
 void Game::run(){
 	//PlaySound("music\\game1.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
 	if (win.windowExists()){
+		camData->leftCorner = win.getUpperCorner();
 		while (quit == false){
-			LocationCoordinates mouseClick{ -1, -1 };
+			MouseCoordinates mouseClick{ -1, -1, NONE };
 			while (SDL_PollEvent(&event)){
 				switch (event.type){
 					case SDL_KEYDOWN:
@@ -22,10 +23,9 @@ void Game::run(){
 						}
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
-						mouseClick=managePlayer.mouseEventHandler(event);
+						mouseClick = managePlayer.mouseEventHandler(event);
 
-						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("stonetower")==true){
-
+						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown("stonetower")==true){
 							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
 							managebuilding.SetBuildingCooldown("stonetower");
 						}
@@ -47,7 +47,6 @@ void Game::run(){
 			
 			renderItem.renderItem(managePlayer.getPlayerCoord());
 
-			
 			manageEnemy.renderEnemy();
 			managePlayer.render();
 

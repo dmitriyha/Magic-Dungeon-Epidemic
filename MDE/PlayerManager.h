@@ -10,6 +10,7 @@
 #include "BuildingManager.h"
 #include <string>
 #include "LocationCoordinate.h"
+#include "MouseCoordinates.h"
 using namespace std;
 
 class PlayerManager : public Manager
@@ -30,7 +31,7 @@ public:
 	void render();
 	LocationCoordinates  getPlayerCoord();
 	void eventHandler(SDL_Event event, int& turn);
-	LocationCoordinates mouseEventHandler(SDL_Event event);
+	MouseCoordinates mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
 	void checkTileForItems();
