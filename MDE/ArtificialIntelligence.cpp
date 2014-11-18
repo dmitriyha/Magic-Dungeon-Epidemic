@@ -3,6 +3,32 @@
 ArtificialIntelligence::ArtificialIntelligence(){
 }
 
+
+
+int ArtificialIntelligence::IfThereIsBuilding(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord){
+
+	int buildingID = 0;
+	Building* building = new Building();
+	if (dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[xCoord][yCoord]>0){
+		buildingID = dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[xCoord][yCoord];
+		building = dataForManaging->mapStruct[currentdepth].entityDataBuildings.building.at(buildingID-1);
+		if (building->getType() == 0){
+			return 0;
+		}
+		 else if (building->getType() == 1){
+			return 1;
+		}
+		else if (building->getType() == 2){
+			return 2;
+		}
+		else{
+			return 99;
+		}
+	}
+	else{
+		return 99;
+	}
+}
 /** \brief Returns a calculated direction for the enemy to take
  *
  * \param playerLoc The array of the player location
@@ -12,8 +38,6 @@ ArtificialIntelligence::ArtificialIntelligence(){
  * \return returns the direction code as defined on the num pad, 0 for attack, -1 for do nothing
  *
  */     
-
-
 int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCoordinates coord, EntityData liveEntities, MapData mapLayer, CameraStruct* dataForManaging){
 	if(abs(playerLoc.x-coord.x) + abs(playerLoc.y-coord.y)<=7){//controls player visibility
 
@@ -22,14 +46,16 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 
 			if (liveEntities.live[coord.x - 1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x - 1][coord.y] != '#' &&
-				choice == 1 &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0){
+				choice == 1 && 
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0)){
 				//move left
 				return 4;
 			}
 			else if(liveEntities.live[coord.x][coord.y-1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y-1]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0)){
 				//move up
 				return 8;
 			}
@@ -42,13 +68,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			if(liveEntities.live[coord.x][coord.y+1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y+1]!='#' &&
 				choice == 1 &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0){ //toimii
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y + 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0)){ //toimii
 				//move down
 				return 2;
 			}
 			else if(liveEntities.live[coord.x+1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x+1][coord.y]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x+1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0)){
 				//move right
 				return 6;
 			}	
@@ -60,13 +88,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			if(liveEntities.live[coord.x][coord.y-1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y-1]!='#' &&
 				choice == 1 &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0)){
 				//move up
 				return 8;
 			}
 			else if(liveEntities.live[coord.x+1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x+1][coord.y]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x +1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0)){
 				//move right
 				return 6;
 			}
@@ -77,13 +107,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 		else if (playerLoc.x<coord.x&&playerLoc.y>coord.y ){//move diagonally towards palyer down and left
 			if(liveEntities.live[coord.x][coord.y+1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y+1]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y + 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0)){
 				//move down
 				return 2;
 			}
 			else if(liveEntities.live[coord.x-1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x-1][coord.y]!='#' && 
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y ) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0)){
 				//move left
 				return 4;
 			}	
@@ -100,13 +132,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 				if(liveEntities.live[coord.x-1][coord.y] == 0 &&
 					mapLayer.mapDim[coord.x-1][coord.y]!='#'  &&
 					choice == 1 &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y ) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0)){
 					//move left
 					return 4;
 				}
 				else if(liveEntities.live[coord.x+1][coord.y] == 0 &&
 					mapLayer.mapDim[coord.x+1][coord.y]!='#' &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x + 1, coord.y ) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0)){
 					//move right
 					return 6;
 				}
@@ -116,7 +150,8 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			}
 			else if(liveEntities.live[coord.x][coord.y-1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y-1]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0)){
 				return 8;
 			}
 			else{
@@ -132,13 +167,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 				if(liveEntities.live[coord.x-1][coord.y] == 0 &&
 					mapLayer.mapDim[coord.x-1][coord.y]!='#'  &&
 					choice == 1 &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y ) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0)){
 					//move left
 					return 4;
 				}
 				else if(liveEntities.live[coord.x+1][coord.y] == 0 &&
 					mapLayer.mapDim[coord.x+1][coord.y]!='#' &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x + 1, coord.y ) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0)){
 					//move right
 					return 6;
 				}
@@ -148,7 +185,8 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			}
 			else if(liveEntities.live[coord.x][coord.y+1] == 0 &&
 				mapLayer.mapDim[coord.x][coord.y+1]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y + 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0)){
 				return 2;
 			}
 			else{
@@ -164,13 +202,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 				if( liveEntities.live[coord.x][coord.y-1] == 0 &&
 					mapLayer.mapDim[coord.x][coord.y-1]!='#'  &&
 					choice == 1 &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0)){
 					//move up
 					return 8;
 				}
 				else if( liveEntities.live[coord.x][coord.y+1] == 0 &&
 					mapLayer.mapDim[coord.x][coord.y+1]!='#' &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y + 1) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0)){
 					//move down
 					return 2;
 				}
@@ -180,7 +220,8 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			}
 			else if( liveEntities.live[coord.x-1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x-1][coord.y]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y ) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x-1][coord.y] == 0)){
 				return 4;
 			}
 			else{
@@ -196,13 +237,15 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 				if(liveEntities.live[coord.x][coord.y+1] == 0 &&
 					mapLayer.mapDim[coord.x][coord.y+1]!='#' &&
 					choice == 1 &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y + 1) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1] == 0)){
 					//move down
 					return 2;
 				}
 				else if(liveEntities.live[coord.x][coord.y-1] == 0 &&
 					mapLayer.mapDim[coord.x][coord.y-1]!='#' &&
-					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0){
+					(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+					dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y-1] == 0)){
 					//move up
 					return 8;
 				}
@@ -212,7 +255,8 @@ int ArtificialIntelligence::direction(LocationCoordinates  playerLoc, LocationCo
 			}
 			else if(liveEntities.live[coord.x+1][coord.y] == 0 &&
 				mapLayer.mapDim[coord.x+1][coord.y]!='#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x + 1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x+1][coord.y] == 0)){
 				return 6;
 			}
 			else{

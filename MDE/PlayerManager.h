@@ -42,6 +42,7 @@ public:
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
 	bool check_player_death();
+	int IfThereIsBuilding(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord);
 	
 	//void generateMap();
 	Player* getPlayer();

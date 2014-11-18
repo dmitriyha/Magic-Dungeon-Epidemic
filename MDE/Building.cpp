@@ -8,12 +8,18 @@ Building::Building(){
 * \return the current health
 *
 */
-void  Building::set_stats(int healths, int strengths, int damages, int accuracys, int lucks){
+void  Building::set_stats(int healths, int strengths, int damages, int accuracys, int lucks, int attackCooldowns){
 	health = healths;
 	strength = strengths;
 	damage = damages;
 	accuracy = accuracys;
 	luck = lucks;
+	attackCooldown = attackCooldowns;
+}
+
+
+int Building::GetCooldown(){
+	return attackCooldown;
 }
 
 
@@ -152,7 +158,21 @@ int Building::get_level(){
 	return level;
 }
 
-
+//
+///** \brief handels the fighting
+//*
+//* \param building* building: The defending building. The one who is receiving damage
+//*
+//*/
+//int Building::fight(Character* chracter){
+//	//damage to be inflicted
+//	int damage = 0;
+//	
+//		damage = 3;
+//		chracter->Health(damage);
+//
+//	return damage;
+//}
 Building::~Building()
 {
 }

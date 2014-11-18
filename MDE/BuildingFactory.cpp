@@ -9,12 +9,17 @@
 */
 Building* BuildingFactory::create_building(string buildingType){
 
-
-
 	if (buildingType == "stonetower"){
 		StoneTower* stonetower = new StoneTower();
 		stonetower->set_stats(1, 1, 1, 1, 1);
+		stonetower->setType(TOWER);
 		return stonetower;
+	}
+	if (buildingType == "spiketrap"){
+		SpikeTrap* spiketrap = new SpikeTrap();
+		spiketrap->set_stats(1, 1, 1, 1, 1);
+		spiketrap->setType(TRAP);
+		return spiketrap;
 	}
 
 }

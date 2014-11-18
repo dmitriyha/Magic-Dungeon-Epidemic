@@ -2,7 +2,7 @@
 
 
 StoneTower::StoneTower(){
-	charSprite = { 0, 0, 115, 177 };
+	charSprite = { 0, 67, 115, 177 };
 }
 
 

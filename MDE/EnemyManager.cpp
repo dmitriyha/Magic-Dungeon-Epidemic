@@ -28,6 +28,7 @@ int EnemyManager::move(int direction){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y--;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[cursor]->getID();
+			
 			}
 			else if (directionAI == 2){//move down
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
@@ -51,12 +52,67 @@ int EnemyManager::move(int direction){
 			}
 			else if (directionAI == -1){
 			}
+
+			if (IsTrapBelowTheEnemy(coord.x, coord.y) == true){
+				//vihollinen jäi ansaan
+				TrapTriggered(dataForManaging->currentLevel, coord.x, coord.y);
+				cout << "Vihollinen jäi ansaan" << endl;
+				
+			}
 		}
 		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[cursor]->setCoords(coord.x, coord.y);
 		cursor++;
 	}
 	return 0;
 }
+bool EnemyManager::IsTrapBelowTheEnemy(int coordX, int coordY){
+	bool trapIsHere = false;
+	bool enemyIsHere = false;
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY]>0){
+		enemyIsHere = true;
+	}
+
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coordX][coordY]>0){
+		trapIsHere = true;
+	}
+	if (enemyIsHere == true && trapIsHere == true){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
+void EnemyManager::TrapTriggered(int currentdepth, int coordX, int coordY){
+	int buildingID = 0;
+	int enemyID = 0;
+	Building* building = new Building();
+	Enemy* enemy = new Enemy();
+	if (dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[coordX][coordY] > 0){
+		buildingID = dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[coordX][coordY];
+		building = dataForManaging->mapStruct[currentdepth].entityDataBuildings.building.at(buildingID - 1);
+		enemyID = dataForManaging->mapStruct[currentdepth].entityData.live[coordX][coordY];
+		enemy = dataForManaging->mapStruct[currentdepth].entityData.enemy.at(enemyID - 1);
+	}
+	cout << "Ansan damage on " << building->Damage() << endl;
+
+	dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
+	
+		//BattleHandler::handleBuilding(building, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY]));
+	bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY]]->Health(dataForManaging->userInterfaceStruct.buildingDamage);
+
+
+	/*if (!enemyAlive){
+		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord.x][coord.y] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y];
+		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
+		player->set_xp(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord.x][coord.y]]->get_level());
+		if (dataForManaging->currentLevel == 2){
+			kills++;
+		}
+	}*/
+}
+
 
 void EnemyManager::setPlayerPointer(Player* _player){
 	player = _player;

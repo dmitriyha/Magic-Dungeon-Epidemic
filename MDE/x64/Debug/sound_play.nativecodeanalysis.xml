@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DEFECTS><DEFECT><SFA><FILEPATH>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\</FILEPATH><FILENAME>sound_play.cpp</FILENAME><LINE>119</LINE><COLUMN>9</COLUMN></SFA><DEFECTCODE>6031</DEFECTCODE><DESCRIPTION>Return value ignored: 'ReadFile'.</DESCRIPTION><FUNCTION>sound_play::loadAudioBlock</FUNCTION><DECORATED>?loadAudioBlock@sound_play@@QEAAPEADPEBDPEAK@Z</DECORATED><FUNCLINE>92</FUNCLINE><PATH/></DEFECT></DEFECTS>

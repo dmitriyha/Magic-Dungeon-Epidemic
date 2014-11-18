@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Item.h"
 #include "Texture.h"
+#include "Building.h"
 #include "LocationCoordinate.h"
 using namespace std;
 
@@ -37,7 +38,8 @@ protected:
 public: 
 
 	
-	virtual int fight(Character * character);
+	virtual int fight(Character* character);
+//	virtual int fight(Building* building);
 
 	void setTexture(Texture* _texture);
 	void render();

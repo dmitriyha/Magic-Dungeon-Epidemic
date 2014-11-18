@@ -3,7 +3,6 @@
 #include "SDL.h"
 #include "Window.h"
 #include "Controls.h"
-#include "camera.h"
 #include "buildingManager.h"
 #include <string>
 #include "ItemRenderer.h"
@@ -31,5 +30,6 @@ public:
 private:
 	void initialize();
 	int turn;
-	int buildingCooldown;
+	int towerCooldown;
+	int trapCooldown;
 };

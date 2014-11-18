@@ -177,7 +177,30 @@ LocationCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 	}
 }
 
+int PlayerManager::IfThereIsBuilding(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord){
 
+	int buildingID = 0;
+	Building* building = new Building();
+	if (dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[xCoord][yCoord]>0){
+		buildingID = dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[xCoord][yCoord];
+		building = dataForManaging->mapStruct[currentdepth].entityDataBuildings.building.at(buildingID - 1);
+		if (building->getType() == 0){
+			return 0;
+		}
+		else if (building->getType() == 1){
+			return 1;
+		}
+		else if (building->getType() == 2){
+			return 2;
+		}
+		else{
+			return 99;
+		}
+	}
+	else{
+		return 99;
+	}
+}
 int PlayerManager::move(int direction){
 	LocationCoordinates coord = player->getCoords();
 	switch (direction){
@@ -186,8 +209,9 @@ int PlayerManager::move(int direction){
 			if (coord.y<GRID_HEIGHT - 1 && 
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1] == 0 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y + 1] != '#'&&
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y+1) <= 0 ||
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y+1]==0
-				){
+				)){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y = coord.y + 1;
 				//Collision check
@@ -204,7 +228,8 @@ int PlayerManager::move(int direction){
 			if (coord.x>0 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x - 1][coord.y] == 0 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x - 1][coord.y] != '#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x - 1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x - 1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x - 1][coord.y] == 0)){
 
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.x = coord.x - 1;
@@ -220,7 +245,8 @@ int PlayerManager::move(int direction){
 			if (coord.x<GRID_WIDTH - 1 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x + 1][coord.y] == 0 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x + 1][coord.y] != '#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x + 1][coord.y] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x + 1, coord.y) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x + 1][coord.y] == 0)){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.x = coord.x + 1;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;
@@ -234,7 +260,8 @@ int PlayerManager::move(int direction){
 		case 8://up 
 			if (coord.y>0 && dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y - 1] == 0 &&
 				dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[coord.x][coord.y - 1] != '#' &&
-				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y - 1] == 0){
+				(IfThereIsBuilding(dataForManaging, dataForManaging->currentLevel, coord.x, coord.y - 1) <= 0 ||
+				dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[coord.x][coord.y - 1] == 0)){
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y = coord.y - 1;
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 1;

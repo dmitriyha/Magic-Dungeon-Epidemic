@@ -14,6 +14,8 @@ public:
 	EnemyManager();
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
+	bool IsTrapBelowTheEnemy(int coordX, int coordY);
+	void TrapTriggered(int currentdepth, int coordX, int coordY);
 	void renderEnemy();
 	~EnemyManager();
 };

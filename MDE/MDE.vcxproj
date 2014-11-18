@@ -25,18 +25,15 @@
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingFactory.cpp" />
     <ClCompile Include="BuildingManager.cpp" />
-    <ClCompile Include="camera.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="EnemyFactory.cpp" />
-    <ClCompile Include="Controls.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="EnemyGen.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="SpikeTrap.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemRenderer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -64,9 +61,7 @@
     <ClInclude Include="BuildingFactory.h" />
     <ClInclude Include="BuildingManager.h" />
     <ClInclude Include="BuildingStruct.h" />
-    <ClInclude Include="camera.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClInclude>
+    <ClInclude Include="BuildingTypes.h" />
     <ClInclude Include="CameraStruct.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="EnemyFactory.h" />
@@ -78,6 +73,7 @@
     <ClInclude Include="GlobalDef.h" />
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="SpikeTrap.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemRenderer.h" />
     <ClInclude Include="LocationCoordinate.h" />
