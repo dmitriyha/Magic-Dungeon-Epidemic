@@ -23,6 +23,9 @@ class Game
 	ItemRenderer renderItem;
 	Window win ;
 	UserInterface ui;
+
+	string nextBuilding = "none";
+
 	//Controls controls;
 	bool quit = false;
 public:

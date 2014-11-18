@@ -29,12 +29,12 @@ void BuildingManager::render(){
 */
 void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth){
 
-	if (BuildingName == "stonetower"){
+	if (BuildingName != "none"){
 	
 		
 		if (CanBuildBuildingHere(CoordX,CoordY) == true){
 
-			Building* tower = BuildingFactory::create_building("stonetower");
+			Building* tower = BuildingFactory::create_building(BuildingName);
 			id++;
 			tower->set_Id(id);
 			tower->set_level(depth);
@@ -51,6 +51,7 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			Collision(CoordX, CoordY);
 			cursor++;
 
+			SetBuildingCooldown(BuildingName);
 		}
 		
 	}

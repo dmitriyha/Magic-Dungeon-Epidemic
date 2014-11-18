@@ -40,6 +40,15 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 	stoneTower.setLocation(705, 307);
 }
 
+string UserInterface::eventHandler(SDL_Event event){
+	if (stoneTower.isPressed(event)){
+		return "stonetower";
+	}
+	else{
+		return "none";
+	}
+}
+
 /**	\brief renders the UI to the screen, making it visible to the user
 *
 */
@@ -310,6 +319,7 @@ void UserInterface::setText(string text, SDL_Rect offset){
 	SDL_RenderCopy(carbon18->getRenderer(), carbon18->getTexture(), &textSize, &offset);
 
 }
+
 
 UserInterface::~UserInterface()
 {

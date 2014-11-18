@@ -33,6 +33,7 @@ class UserInterface{
 public:
 	UserInterface();
 	void initialize(CameraStruct* _camData, Texture* _backgroundTexture, Texture* _itemTexture);
+	string eventHandler(SDL_Event event);
 	void render();
 	~UserInterface();
 private:
