@@ -17,7 +17,7 @@ class BuildingManager : public Manager
 
 
 public:
-	Texture* stonetower;
+	Texture* building;
 	BuildingData *buildData;
 	MapData mapdata;
 	CameraStruct* camData;
@@ -38,8 +38,9 @@ public:
 	bool GetBuildingCooldown(string building);
 	deque<string> getBuildingListForGeneration(int depth);
 	void free();
-	void Collision(int CoordX, int CoordY);
-	int stoneTowerCooldown;
+	void Collision(int CoordX, int CoordY, int id);
+	int towerCooldown;
+	int trapCooldown;
 	~BuildingManager();
 private:
 	int id;

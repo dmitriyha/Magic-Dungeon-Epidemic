@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Building.h"
 #include "StoneTower.h"
+#include "SpikeTrap.h"
 
 using namespace std;
 

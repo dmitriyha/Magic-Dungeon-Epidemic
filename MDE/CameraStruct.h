@@ -50,8 +50,10 @@ struct UserInterfaceStruct{
 	Player* player;
 	///the damage inflicted on the player
 	int playerDamage;
-	///the damage inflicted by the player
+	///the damage inflicted by the enemy
 	int enemyDamage;
+	///the damage inflicted by the building
+	int buildingDamage;
 };
 
 /** \brief the struct used to render the whole screen. Used as a container for easier transportation

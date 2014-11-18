@@ -3,6 +3,9 @@
 #include <iostream>
 #include "Texture.h"
 #include "LocationCoordinate.h"
+#include "BuildingTypes.h"
+#include "Character.h"
+
 //#include "BuildingManager.h"
 
 
@@ -17,7 +20,14 @@ class Building{
 public:
 	//BuildingManager* buildManager;
 
+	void setType(BuildingTypes t){ types = t; };
+
+	BuildingTypes getType(){ return types; };
+
+
+	
 protected:
+	BuildingTypes types;
 	Texture* texture;
 
 	///the level of the Enemy
@@ -30,6 +40,7 @@ protected:
 	int accuracy;
 	int luck;
 	int id;
+	int attackCooldown;
 
 	
 	LocationCoordinates coord;
@@ -40,10 +51,11 @@ public:
 	
 	virtual void set_level(int level);
 	virtual int get_level();
+	virtual int GetCooldown();
 	virtual ~Building();
 
 
-	virtual void set_stats(int healths, int strengths, int damage, int accuracy, int lucks);
+	virtual void set_stats(int healths, int strengths, int damage, int accuracy, int lucks,int attackCooldowns);
 
 	virtual int Health(void);
 	virtual bool Health(int);
@@ -60,6 +72,7 @@ public:
 	virtual LocationCoordinates getCoords();
 
 	virtual int Strength();
+	//virtual int fight(Character* chracter);
 	virtual int Accuracy();
 	virtual int Luck();
 	virtual int Damage();

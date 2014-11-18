@@ -1,39 +1,45 @@
-#include "StoneTower.h""
+#include "SpikeTrap.h""
 
 
-StoneTower::StoneTower(){
-	charSprite = { 0, 67, 115, 177 };
+SpikeTrap::SpikeTrap(){
+	charSprite = { 0, 0, 120, 65 };
 }
 
 
-/** \brief Sets Stonetowers stats
+
+
+
+/** \brief Sets SpikeTraps stats
 *
-* \param health Stonetower's health
-* \param strength Stonetower's strength
-* \param damage Stonetower's damage
-* \param accuracy Stonetower's accuracy
-* \param luck Stonetower's luck
-* \param ID Stonetower's ID
+* \param health SpikeTrap's health
+* \param strength SpikeTrap's strength
+* \param damage SpikeTrap's damage
+* \param accuracy SpikeTrap's accuracy
+* \param luck SpikeTrap's luck
+* \param ID SpikeTrap's ID
 *
 * \return the current health
 *
 */
-void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracys, int lucks){
+void  SpikeTrap::set_stats(int healths, int strengths, int damages, int accuracys, int lucks, int attackCooldowns){
 	health = healths;
 	strength = strengths;
 	damage = damages;
 	accuracy = accuracys;
 	luck = lucks;
+	attackCooldown = attackCooldowns;
 }
+
+
+
+
 
 /** \brief the getter of health
 *
 * \return the current health
 *
 */
-
-
-int  StoneTower::Health(void){
+int  SpikeTrap::Health(void){
 	return health;
 }
 
@@ -43,7 +49,7 @@ int  StoneTower::Health(void){
 *
 */
 
-bool  StoneTower::Health(int damage){
+bool  SpikeTrap::Health(int damage){
 	health = health - damage;
 	if (health>0){
 		return true;
@@ -53,14 +59,14 @@ bool  StoneTower::Health(int damage){
 	}
 }
 
-/** \brief  id getter of the StoneTower entity
+/** \brief  id getter of the SpikeTrap entity
 *
 * \return the ID of the entity
 *
 */
 
 
-int  StoneTower::getID(){
+int  SpikeTrap::getID(){
 	return id;
 }
 
@@ -72,13 +78,13 @@ int  StoneTower::getID(){
 */
 
 
-void  StoneTower::setCoords(int x, int y){
+void  SpikeTrap::setCoords(int x, int y){
 	coord.x = x;
 	coord.y = y;
 }
 
 //Sets id
-void StoneTower::set_Id(int _id){
+void SpikeTrap::set_Id(int _id){
 	id = _id;
 }
 
@@ -90,7 +96,7 @@ void StoneTower::set_Id(int _id){
 
 
 
-LocationCoordinates  StoneTower::getCoords(){
+LocationCoordinates  SpikeTrap::getCoords(){
 
 	return coord;
 }
@@ -104,7 +110,7 @@ LocationCoordinates  StoneTower::getCoords(){
 * \return strength attribute
 *
 */
-int  StoneTower::Strength(){
+int  SpikeTrap::Strength(){
 	return strength;
 }
 
@@ -114,7 +120,7 @@ int  StoneTower::Strength(){
 * \return damage attribute
 *
 */
-int  StoneTower::Damage(){
+int  SpikeTrap::Damage(){
 	return damage;
 }
 
@@ -125,7 +131,7 @@ int  StoneTower::Damage(){
 */
 
 
-int  StoneTower::Accuracy(){
+int  SpikeTrap::Accuracy(){
 	return accuracy;
 }
 
@@ -141,7 +147,7 @@ int  StoneTower::Accuracy(){
 *
 */
 
-int  StoneTower::Luck(){
+int  SpikeTrap::Luck(){
 	return luck;
 }
 
@@ -150,7 +156,7 @@ int  StoneTower::Luck(){
 *
 */
 
-void StoneTower::set_level(int lvl){
+void SpikeTrap::set_level(int lvl){
 	level = lvl;
 }
 
@@ -161,12 +167,12 @@ void StoneTower::set_level(int lvl){
 */
 
 
-int StoneTower::get_level(){
+int SpikeTrap::get_level(){
 	return level;
 }
 
 
 
-StoneTower::~StoneTower()
+SpikeTrap::~SpikeTrap()
 {
 }

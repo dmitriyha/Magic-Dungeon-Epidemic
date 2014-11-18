@@ -70,6 +70,10 @@ void Character::render(){
 int Character::fight(Character* character){
 	return 0;
 }
+//
+//int Character::fight(Building* building){
+//	return 0;
+//}
 
 /** \brief  id getter of the Character antity
  *

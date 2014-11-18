@@ -58,15 +58,15 @@
     <Filter Include="Header Files\StructsHeaders">
       <UniqueIdentifier>{cf5f7392-6b36-4b9a-92ab-4a3497401885}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Traps">
+      <UniqueIdentifier>{d2d2a1d6-475c-4fb4-a405-f4f35ef6b830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Traps">
+      <UniqueIdentifier>{7b788004-ccb9-49a4-925b-393a1fc5ff48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArtificialIntelligence.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Controls.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EnemyGen.cpp">
@@ -170,13 +170,13 @@
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Source Files</Filter>
+	</ClCompile>
+    <ClCompile Include="SpikeTrap.cpp">
+      <Filter>Source Files\Traps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArtificialIntelligence.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controls.h">
@@ -297,6 +297,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
+		<Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpikeTrap.h">
+      <Filter>Header Files\Traps</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingTypes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

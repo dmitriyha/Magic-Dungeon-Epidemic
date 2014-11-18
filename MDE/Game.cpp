@@ -17,17 +17,27 @@ void Game::run(){
 					case SDL_KEYDOWN:
 						managePlayer.eventHandler(event,turn);
 						if (managebuilding.GetBuildingCooldown("stonetower") == false){
-							managebuilding.stoneTowerCooldown--;
-							cout << "Stonetower Cooldown on " << managebuilding.stoneTowerCooldown << "\n";
+							managebuilding.towerCooldown--;
+							cout << "Tower Cooldown on " << managebuilding.towerCooldown << "\n";
+						}
+						if (managebuilding.GetBuildingCooldown("spiketrap") == false){
+							managebuilding.trapCooldown--;
+							cout << "Trap Cooldown on " << managebuilding.trapCooldown << "\n";
 						}
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
-
+						/*
 						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown("stonetower")==true && nextBuilding != "none"){
 							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
-							//managebuilding.SetBuildingCooldown("stonetower");
+
+							managebuilding.SetBuildingCooldown("stonetower");
+						}*/
+						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("spiketrap") == true){
+
+						managebuilding.CreateBuilding("spiketrap", mouseClick.x, mouseClick.y, 1);
+						managebuilding.SetBuildingCooldown("spiketrap");
 						}
 
 						nextBuilding=ui.eventHandler(event);
@@ -100,10 +110,10 @@ void Game::initialize(){
 	manageEnemy.setPlayerPointer(player);
 
 	//Initialize building texture
-	Texture* stonetower = new Texture();
-	stonetower->setRenderer(win.getRenderer());
-	stonetower->makeTexture("img\\TowerStone.png");
-	managebuilding.initializeBuildings(camData, stonetower, player);
+	Texture* building = new Texture();
+	building->setRenderer(win.getRenderer());
+	building->makeTexture("img\\Building.png");
+	managebuilding.initializeBuildings(camData, building, player);
 
 
 	Texture* uiTexture = new Texture();

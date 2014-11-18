@@ -38,7 +38,7 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			id++;
 			tower->set_Id(id);
 			tower->set_level(depth);
-			tower->setTexture(stonetower);
+			tower->setTexture(building);
 			tower->setCoords(CoordX, CoordY);
 			
 			mapdata.buildingDataMap[CoordX][CoordY]=1; 
@@ -48,12 +48,37 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			cout << "Rakennus on laitettu\n";
 
 			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
-			Collision(CoordX, CoordY);
+			Collision(CoordX, CoordY, id);
 			cursor++;
 
 			SetBuildingCooldown(BuildingName);
 		}
 		
+	}
+	if (BuildingName == "spiketrap"){
+
+
+		if (CanBuildBuildingHere(CoordX, CoordY) == true){
+
+			Building* spiketrap = BuildingFactory::create_building("spiketrap");
+			id++;
+			spiketrap->set_Id(id);
+			spiketrap->set_level(depth);
+			spiketrap->setTexture(building);
+			spiketrap->setCoords(CoordX, CoordY);
+
+			mapdata.buildingDataMap[CoordX][CoordY] = 1;
+
+			buildingList.push_back(spiketrap);
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+			cout << "Rakennus on laitettu\n";
+
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+			Collision(CoordX, CoordY,id);
+			cursor++;
+
+		}
+
 	}
 	
 	
@@ -65,11 +90,11 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 * \param CoordY: Y coordinate, where you want the collision of your building
 *
 */
-void BuildingManager::Collision(int CoordX, int CoordY){
+void BuildingManager::Collision(int CoordX, int CoordY, int id){
 
 
 	if (camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] == 0 && camData->mapStruct[camData->currentLevel].mapData.mapDim[CoordX][CoordY] != '#'){
-		camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = 1;
+		camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = id;
 	}
 
 	/*else if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1]>0){
@@ -85,12 +110,15 @@ void BuildingManager::Collision(int CoordX, int CoordY){
 * \param string building: name of the building you just build
 *
 */
-void BuildingManager::SetBuildingCooldown (string building){
+void BuildingManager::SetBuildingCooldown(string building){
 	if (building == "stonetower"){
-		stoneTowerCooldown = 4;
+		towerCooldown = 4;
+	}
+	if (building == "spiketrap"){
+		trapCooldown = 4;
 	}
 }
-/** \brief GetBuildingCooldown: Gets building cooldown
+/** \brief GettowerCooldown: Gets building cooldown
 *
 * \param string building: name of the building which cooldown you want to check
 * \return true if cooldown is zero. Return false is cooldown is not yet ended.
@@ -99,7 +127,16 @@ void BuildingManager::SetBuildingCooldown (string building){
 bool BuildingManager::GetBuildingCooldown(string building){
 	
 	if (building == "stonetower"){
-		if (stoneTowerCooldown > 0){
+		if (towerCooldown > 0){
+			return false;
+		}
+		else{
+			return true;
+		}
+
+	}
+	if (building == "spiketrap"){
+		if (trapCooldown > 0){
 			return false;
 		}
 		else{
@@ -112,6 +149,7 @@ bool BuildingManager::GetBuildingCooldown(string building){
 	}
 
 }
+
 
 
 /** \brief CanBuildBuildingHere is used when creating a building. It is used to check if you can build your building.
@@ -193,7 +231,9 @@ void BuildingManager::initializeBuildings(CameraStruct* _camData, Texture* _buil
 	id = 0;
 
 	//Cooldown
-	stoneTowerCooldown = 0;
+	towerCooldown = 0;
+
+	
 
 	camData = _camData;
 	//initialize buildingData object
@@ -201,7 +241,7 @@ void BuildingManager::initializeBuildings(CameraStruct* _camData, Texture* _buil
 	//building = GetBuilding();
 	player = _player;
 	//Set textures
-	stonetower = _buildinTexture;
+	building = _buildinTexture;
 
 	while (depth <= 2){
 
