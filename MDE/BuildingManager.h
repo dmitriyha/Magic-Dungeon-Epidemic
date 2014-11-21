@@ -8,6 +8,7 @@
 #include <deque>
 #include "CameraStruct.h"
 #include "Texture.h"
+#include "UserInterface.h"
 #include "PlaceItemsAndEnemies.h"
 
 using namespace std;
@@ -30,20 +31,20 @@ public:
 
 	BuildingManager();
 	bool CanBuildBuildingHere(int CoordX, int CoordY);
-	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level);
+	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level, UserInterface ui, SDL_Event event);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);
 	void initializeBuildings(Texture* _buildinTexture);
 	void render();
-	void SetBuildingCooldown(string building);
-	bool GetBuildingCooldown(string building);
+	void SetBuildingCooldown();
+	bool GetBuildingCooldown();
 	deque<string> getBuildingListForGeneration(int depth);
 	void free();
 	void Collision(int CoordX, int CoordY, int id);
-	int towerCooldown;
-	int trapCooldown;
+	int buildingCooldown;
 	~BuildingManager();
 private:
 	int id;
+	string nextBuilding = "none";
 	
 };
 

@@ -13,7 +13,7 @@ public:
 	int getID();
 	void set_Id(int _id);
 
-	int GetCooldown(int attackCooldown);
+	int GetCooldown();
 
 	void setCoords(int, int);
 	LocationCoordinates getCoords();

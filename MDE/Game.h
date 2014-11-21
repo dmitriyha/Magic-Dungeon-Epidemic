@@ -9,11 +9,13 @@
 #include "LocationCoordinate.h"
 #include "MouseCoordinates.h"
 #include "PlaceItemsAndEnemies.h"
+#include "AttackCooldownStruct.h"
 using namespace std;
 class Game
 {
 	SDL_Event event;
 	CameraStruct* camData=new CameraStruct;
+	AttackCooldownStruct* attackCooldownStruct = new AttackCooldownStruct;
 	Map *map;
 	Texture* mapTexture;
 	PlayerManager managePlayer;
@@ -36,4 +38,5 @@ private:
 	int turn;
 	int towerCooldown;
 	int trapCooldown;
+	void TrapAttackCooldownCheck();
 };

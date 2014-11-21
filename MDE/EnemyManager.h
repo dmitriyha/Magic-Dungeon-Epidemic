@@ -3,6 +3,7 @@
 #include "sound_play.h"
 #include "player.h"
 #include "ArtificialIntelligence.h"
+#include "AttackCooldownStruct.h"
 
 class EnemyManager :
 	public Manager
@@ -13,9 +14,9 @@ class EnemyManager :
 public:
 	EnemyManager();
 	void setPlayerPointer(Player* _player);
-	int move(int direction);
+	int move(AttackCooldownStruct* attackCooldownStruct);
 	bool IsTrapBelowTheEnemy(int coordX, int coordY);
-	void TrapTriggered(int currentdepth, int coordX, int coordY);
+	void TrapTriggered(int currentdepth, int coordX, int coordY, AttackCooldownStruct* attackCooldownStruct);
 	void renderEnemy();
 	~EnemyManager();
 };

@@ -72,7 +72,6 @@ public:
 	virtual LocationCoordinates getCoords();
 
 	virtual int Strength();
-	//virtual int fight(Character* chracter);
 	virtual int Accuracy();
 	virtual int Luck();
 	virtual int Damage();

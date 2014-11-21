@@ -295,7 +295,6 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 	while (!dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].empty()){
 		if (player->getInventory()->storeItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front()) == 1){
 			dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].pop_front();
-
 		}
 		else{
 			break;
@@ -306,9 +305,6 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 /* \BRIEF RANGED COMBAT
 *   may have bugs regarding the damage... investigate later
 */
-
-//TODO fix possible bugs assosiated with this method!!!
-
 void PlayerManager::rangedCombat(int x, int y){
 	LocationCoordinates  playerCoordinates = player->getCoords();
 
