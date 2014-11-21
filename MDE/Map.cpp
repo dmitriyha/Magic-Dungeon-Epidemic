@@ -207,64 +207,64 @@ Texture* Map::getMapAsTexture(){
 
 	//sprite rect set;
 	floor.x = 64;
-	floor.y = 48;
+	floor.y = 64;
 	floor.w = 64;
-	floor.h = 48;
+	floor.h = 64;
 
 	top_wall.x = 64;
 	top_wall.y = 0;
 	top_wall.w = 64;
-	top_wall.h = 48;
+	top_wall.h = 64;
 
 	top_left_corner.x = 0;
 	top_left_corner.y = 0;
 	top_left_corner.w = 64;
-	top_left_corner.h = 48;
+	top_left_corner.h = 64;
 
 	left_wall.x = 0;
-	left_wall.y = 48;
+	left_wall.y = 64;
 	left_wall.w = 64;
-	left_wall.h = 48;
+	left_wall.h = 64;
 
 	bottom_left_corner.x = 0;
-	bottom_left_corner.y = 96;
+	bottom_left_corner.y = 128;
 	bottom_left_corner.w = 64;
-	bottom_left_corner.h = 48;
+	bottom_left_corner.h = 64;
 
 	bottom_wall.x = 64;
-	bottom_wall.y = 96;
+	bottom_wall.y = 128;
 	bottom_wall.w = 64;
-	bottom_wall.h = 48;
+	bottom_wall.h = 64;
 
 	bottom_right_corner.x = 128;
-	bottom_right_corner.y = 96;
+	bottom_right_corner.y = 128;
 	bottom_right_corner.w = 64;
-	bottom_right_corner.h = 48;
+	bottom_right_corner.h = 64;
 
 	right_wall.x = 128;
-	right_wall.y = 48;
+	right_wall.y = 64;
 	right_wall.w = 64;
-	right_wall.h = 48;
+	right_wall.h = 64;
 
 	top_right_corner.x = 128;
 	top_right_corner.y = 0;
 	top_right_corner.w = 64;
-	top_right_corner.h = 48;
+	top_right_corner.h = 64;
 
 	blank.x = 192;
 	blank.y = 0;
 	blank.w = 64;
-	blank.h = 48;
+	blank.h = 64;
 
 	stairs_up.x = 192;
-	stairs_up.y = 48;
+	stairs_up.y = 64;
 	stairs_up.w = 64;
-	stairs_up.h = 48;
+	stairs_up.h = 64;
 
 	stairs_down.x = 192;
-	stairs_down.y = 96;
+	stairs_down.y = 128;
 	stairs_down.w = 64;
-	stairs_down.h = 48;
+	stairs_down.h = 64;
 
 
 	SDL_SetRenderTarget(renderer, tex->getTexture());

@@ -5,10 +5,10 @@
 #define GRID_HEIGHT 50
 ///how wide the rendered map is
 
-#define CAMERA_GRID_WIDTH 22
+#define CAMERA_GRID_WIDTH 19
 
 ///how high the rendered map is
-#define CAMERA_GRID_HEIGHT 22
+#define CAMERA_GRID_HEIGHT 19
 
 ///the window width in pixels
 #define WINDOW_WIDTH 939
@@ -17,10 +17,10 @@
 #define WINDOW_HEIGHT 713
 
 /// the tile width in pixels
-#define TILE_WIDTH 32
+#define TILE_WIDTH 37
 
 ///the tile height in pixels
-#define TILE_HEIGHT 24
+#define TILE_HEIGHT 37
 
 ///the max room count in the game
 #define MAX_ROOMS 25

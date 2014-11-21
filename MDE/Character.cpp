@@ -68,7 +68,7 @@ bool Character::Health(int damage){
 void Character::render(){
 	lastTickCount = currentTickCount;
 	currentTickCount = SDL_GetTicks();
-	location = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
+	location = { coord.x * TILE_WIDTH, coord.y  * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
 	if (health > 0){
 		if (direction == 2){
 			sprite = faceDown;
