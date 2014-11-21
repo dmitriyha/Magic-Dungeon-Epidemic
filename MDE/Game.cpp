@@ -25,10 +25,14 @@ void Game::run(){
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
 
-						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
-							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1, ui,event);
-			
+						if (nextBuilding == "none"){
+							nextBuilding = ui.eventHandler(event);
 						}
+
+						if (managebuilding.CreateBuilding(nextBuilding, mouseClick, 1, event)){
+							nextBuilding = "none";
+						}
+						
 					
 						break;
 					case SDL_QUIT:

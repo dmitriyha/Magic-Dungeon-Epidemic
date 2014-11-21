@@ -10,6 +10,7 @@
 #include "Texture.h"
 #include "UserInterface.h"
 #include "PlaceItemsAndEnemies.h"
+#include "MouseCoordinates.h"
 
 using namespace std;
 
@@ -31,7 +32,7 @@ public:
 
 	BuildingManager();
 	bool CanBuildBuildingHere(int CoordX, int CoordY);
-	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level, UserInterface ui, SDL_Event event);
+	bool CreateBuilding(string BuildingName, MouseCoordinates coord, int level, SDL_Event event);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);
 	void initializeBuildings(Texture* _buildinTexture);
 	void render();
@@ -45,6 +46,7 @@ public:
 private:
 	int id;
 	string nextBuilding = "none";
+	bool buildingNotPlaced = true;
 	
 };
 

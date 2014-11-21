@@ -22,68 +22,41 @@ void BuildingManager::render(){
 /** \brief CreateBuilding: Creates a Building.
 *
 * \param string BuildingName: name of the building you want to build
-* \param int CoordX: X coordinate, where you want to build your building
-* \param int CoordY: Y coordinate, where you want to build your building
+* \param MouseCoordinates coord:  coordinates, where you want to build your building and the button pressed
 * \param int depth: Current depth or level. Level 1 is depth=1
 *
 */
-void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth, UserInterface ui, SDL_Event event){
-
-	if (BuildingName != "none"){
+bool BuildingManager::CreateBuilding(string buildingName, MouseCoordinates mouseClick, int depth, SDL_Event event){
 	
-		
-		if (CanBuildBuildingHere(CoordX,CoordY) == true){
+	if (buildingName != "none" ){
+		if (mouseClick.button == RIGHT && GetBuildingCooldown()){
+			if (CanBuildBuildingHere(mouseClick.x, mouseClick.y) == true){
 
-			Building* tower = BuildingFactory::create_building(BuildingName);
-			id++;
-			tower->set_Id(id);
-			tower->set_level(depth);
-			tower->setTexture(building);
-			tower->setCoords(CoordX, CoordY);
-			
-			mapdata.buildingDataMap[CoordX][CoordY]=1; 
+				Building* tower = BuildingFactory::create_building(buildingName);
+				id++;
+				tower->set_Id(id);
+				tower->set_level(depth);
+				tower->setTexture(building);
+				tower->setCoords(mouseClick.x, mouseClick.y);
 
-			buildingList.push_back(tower);
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
-			cout << "Rakennus on laitettu\n";
+				mapdata.buildingDataMap[mouseClick.x][mouseClick.y] = 1;
 
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
-			Collision(CoordX, CoordY, id);
-			cursor++;
+				buildingList.push_back(tower);
+				camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+				cout << "Rakennus on laitettu\n";
 
-			SetBuildingCooldown();
-			nextBuilding = ui.eventHandler(event);
+				camData->mapStruct[camData->currentLevel].entityDataBuildings.live[mouseClick.x][mouseClick.y] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+				Collision(mouseClick.x, mouseClick.y, id);
+				cursor++;
 
+				SetBuildingCooldown();
+				return true;
+			}
+			else { return false; }
 		}
-		
+		else { return false; }
 	}
-	if (BuildingName == "spiketrap"){
-
-
-		if (CanBuildBuildingHere(CoordX, CoordY) == true){
-
-			Building* spiketrap = BuildingFactory::create_building("spiketrap");
-			id++;
-			spiketrap->set_Id(id);
-			spiketrap->set_level(depth);
-			spiketrap->setTexture(building);
-			spiketrap->setCoords(CoordX, CoordY);
-
-			mapdata.buildingDataMap[CoordX][CoordY] = 1;
-
-			buildingList.push_back(spiketrap);
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
-			cout << "Rakennus on laitettu\n";
-
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
-			Collision(CoordX, CoordY,id);
-			cursor++;
-
-		}
-
-	}
-	
-	
+	else { return false; }
 }
 
 /** \brief Collision: Creates collision to the Building.
