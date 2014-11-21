@@ -31,6 +31,10 @@ void  SpikeTrap::set_stats(int healths, int strengths, int damages, int accuracy
 }
 
 
+int SpikeTrap::GetCooldown(){
+	return attackCooldown;
+}
+
 
 
 

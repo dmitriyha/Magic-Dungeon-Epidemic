@@ -16,32 +16,20 @@ void Game::run(){
 				switch (event.type){
 					case SDL_KEYDOWN:
 						managePlayer.eventHandler(event,turn);
-						if (managebuilding.GetBuildingCooldown("stonetower") == false){
-							managebuilding.towerCooldown--;
-							cout << "Tower Cooldown on " << managebuilding.towerCooldown << "\n";
-						}
-						if (managebuilding.GetBuildingCooldown("spiketrap") == false){
-							managebuilding.trapCooldown--;
-							cout << "Trap Cooldown on " << managebuilding.trapCooldown << "\n";
+						if (managebuilding.GetBuildingCooldown() == false){
+							managebuilding.buildingCooldown--;
+							cout << "Rakennus cooldown on " << managebuilding.buildingCooldown << "\n";
 						}
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
-						/*
-						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown("stonetower")==true && nextBuilding != "none"){
-							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
-
-							managebuilding.SetBuildingCooldown("stonetower");
-						}*/
-						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("spiketrap") == true){
-
-						managebuilding.CreateBuilding("spiketrap", mouseClick.x, mouseClick.y, 1);
-						managebuilding.SetBuildingCooldown("spiketrap");
+						
+						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
+							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1, ui,event);
+				
 						}
-
-						nextBuilding=ui.eventHandler(event);
-
+					
 						break;
 					case SDL_QUIT:
 						quit = true;
@@ -50,7 +38,7 @@ void Game::run(){
 
 			}//end while(SDL_PollEvent( &event ))
 			if (managePlayer.playerMoved){
-				manageEnemy.move(0);
+				manageEnemy.move(attackCooldownStruct);
 				managePlayer.playerMoved = false;
 			}
 			
@@ -74,6 +62,20 @@ void Game::run(){
 		}//end while(quit==false)
 	}
 }
+void Game::TrapAttackCooldownCheck(){
+	int i;
+	int size = attackCooldownStruct->attackCooldownIDs.size();
+	int cooldown;
+	Building* building = new Building;
+	for (i = 0; i < size; i++){
+		building=attackCooldownStruct->attackCooldownIDs.at(i);
+		cooldown=building->GetCooldown();
+	}
+	
+	
+}
+
+
 
 void Game::initialize(){
 	camData->currentLevel = 0;

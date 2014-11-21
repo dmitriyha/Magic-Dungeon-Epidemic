@@ -14,7 +14,7 @@ void EnemyManager::renderEnemy(){
 	}
 }
 
-int EnemyManager::move(int direction){
+int EnemyManager::move(AttackCooldownStruct* attackCooldownStruct){
 	LocationCoordinates playerLoc = player->getCoords();
 	int size = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.size();
 	int cursor = 2;
@@ -55,7 +55,7 @@ int EnemyManager::move(int direction){
 
 			if (IsTrapBelowTheEnemy(coord.x, coord.y) == true){
 				//vihollinen jäi ansaan
-				TrapTriggered(dataForManaging->currentLevel, coord.x, coord.y);
+				TrapTriggered(dataForManaging->currentLevel, coord.x, coord.y,attackCooldownStruct);
 				cout << "Vihollinen jäi ansaan" << endl;
 				
 			}
@@ -84,7 +84,7 @@ bool EnemyManager::IsTrapBelowTheEnemy(int coordX, int coordY){
 }
 
 
-void EnemyManager::TrapTriggered(int currentdepth, int coordX, int coordY){
+void EnemyManager::TrapTriggered(int currentdepth, int coordX, int coordY, AttackCooldownStruct* attackCooldownStruct){
 	int buildingID = 0;
 	int enemyID = 0;
 	Building* building = new Building();
@@ -92,6 +92,7 @@ void EnemyManager::TrapTriggered(int currentdepth, int coordX, int coordY){
 	if (dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[coordX][coordY] > 0){
 		buildingID = dataForManaging->mapStruct[currentdepth].entityDataBuildings.live[coordX][coordY];
 		building = dataForManaging->mapStruct[currentdepth].entityDataBuildings.building.at(buildingID - 1);
+		attackCooldownStruct->attackCooldownIDs.push_back(building);
 		enemyID = dataForManaging->mapStruct[currentdepth].entityData.live[coordX][coordY];
 		enemy = dataForManaging->mapStruct[currentdepth].entityData.enemy.at(enemyID - 1);
 	}

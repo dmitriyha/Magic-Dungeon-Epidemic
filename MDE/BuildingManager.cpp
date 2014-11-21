@@ -27,7 +27,7 @@ void BuildingManager::render(){
 * \param int depth: Current depth or level. Level 1 is depth=1
 *
 */
-void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth){
+void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth, UserInterface ui, SDL_Event event){
 
 	if (BuildingName != "none"){
 	
@@ -51,7 +51,9 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			Collision(CoordX, CoordY, id);
 			cursor++;
 
-			SetBuildingCooldown(BuildingName);
+			SetBuildingCooldown();
+			nextBuilding = ui.eventHandler(event);
+
 		}
 		
 	}
@@ -110,13 +112,8 @@ void BuildingManager::Collision(int CoordX, int CoordY, int id){
 * \param string building: name of the building you just build
 *
 */
-void BuildingManager::SetBuildingCooldown(string building){
-	if (building == "stonetower"){
-		towerCooldown = 4;
-	}
-	if (building == "spiketrap"){
-		trapCooldown = 4;
-	}
+void BuildingManager::SetBuildingCooldown(){
+		buildingCooldown = 4;
 }
 /** \brief GettowerCooldown: Gets building cooldown
 *
@@ -124,29 +121,14 @@ void BuildingManager::SetBuildingCooldown(string building){
 * \return true if cooldown is zero. Return false is cooldown is not yet ended.
 *
 */
-bool BuildingManager::GetBuildingCooldown(string building){
+bool BuildingManager::GetBuildingCooldown(){
 	
-	if (building == "stonetower"){
-		if (towerCooldown > 0){
+		if (buildingCooldown > 0){
 			return false;
 		}
 		else{
 			return true;
 		}
-
-	}
-	if (building == "spiketrap"){
-		if (trapCooldown > 0){
-			return false;
-		}
-		else{
-			return true;
-		}
-
-	}
-	else{
-		return true;
-	}
 
 }
 
@@ -229,10 +211,6 @@ void BuildingManager::initializeBuildings(CameraStruct* _camData, Texture* _buil
 	depth = 0;
 	//Initialize id
 	id = 0;
-
-	//Cooldown
-	towerCooldown = 0;
-
 	
 
 	camData = _camData;

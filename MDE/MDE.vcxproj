@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArtificialIntelligence.h" />
+    <ClInclude Include="AttackCooldownStruct.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="BattleHandler.h" />
     <ClInclude Include="Building.h" />

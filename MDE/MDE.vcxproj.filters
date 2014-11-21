@@ -170,7 +170,7 @@
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Source Files</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="SpikeTrap.cpp">
       <Filter>Source Files\Traps</Filter>
     </ClCompile>
@@ -297,13 +297,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-		<Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SpikeTrap.h">
       <Filter>Header Files\Traps</Filter>
     </ClInclude>
     <ClInclude Include="BuildingTypes.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackCooldownStruct.h">
+      <Filter>Header Files\StructsHeaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
