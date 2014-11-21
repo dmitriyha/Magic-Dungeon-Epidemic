@@ -286,6 +286,7 @@ int PlayerManager::move(int direction){
 			player->setCoords(dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp.x, dataForManaging->mapStruct[dataForManaging->currentLevel].stairsUp.y);
 		}
 		player->setCoords(coord.x, coord.y);
+		player->setDirection(direction);
 		checkTileForItems();
 	return 1;
 }

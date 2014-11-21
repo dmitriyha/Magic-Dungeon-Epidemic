@@ -14,7 +14,11 @@ using namespace std;
 
 
 class Character:public Object{
-	int direction;
+	int direction=2;
+	int lastTickCount = 0;
+	int currentTickCount = 0;
+	int timer = 0;
+	bool moved = false;
 protected:
 
 	int health;

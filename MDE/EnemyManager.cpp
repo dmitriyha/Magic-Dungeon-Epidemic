@@ -24,6 +24,7 @@ int EnemyManager::move(AttackCooldownStruct* attackCooldownStruct){
 		if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[cursor]->Health(0)){
 
 			int directionAI = npc->direction(playerLoc, coord, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData, dataForManaging->mapStruct[dataForManaging->currentLevel].mapData, dataForManaging);
+			dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[cursor]->setDirection(directionAI);
 			if (directionAI == 8){//move up
 				dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 				coord.y--;

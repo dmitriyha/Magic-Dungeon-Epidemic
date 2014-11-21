@@ -3,9 +3,9 @@
 
 Character::Character(){
 	faceUp = { 0, 0, 64, 64 };
-	faceLeft = { 64, 0, 64, 64 };
-	faceRight = { 128, 0, 64, 64 };
-	faceDown = { 192, 0, 64, 64 };
+	faceLeft = { 0, 64, 64, 64 };
+	faceDown = { 0, 128, 64, 64 };
+	faceRight = { 0, 192, 64, 64 };
 }
 
 /** \brief sets the stats of the Character entity
@@ -66,10 +66,42 @@ bool Character::Health(int damage){
 *
 */
 void Character::render(){
-
+	lastTickCount = currentTickCount;
+	currentTickCount = SDL_GetTicks();
 	location = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
 	if (health > 0){
-		sprite = faceDown;
+		if (direction == 2){
+			sprite = faceDown;
+		}
+		else if (direction == 4){
+			sprite = faceLeft;
+		}
+		else if (direction == 6){
+			sprite = faceRight;
+		}
+		else if (direction == 8){
+			sprite = faceUp;
+		}
+		if (moved){
+			
+			timer += (currentTickCount - lastTickCount);
+
+			if (timer > 200){
+				sprite.x = 64;
+				if (timer > 400){
+					sprite.x = 128;
+					if (timer > 600){
+						sprite.x = 192;
+						if (timer > 800){
+							sprite.x = 256;
+							timer = 0;
+							moved = false;
+							//lastTickCount = currentTickCount = 0;
+						}
+					}
+				}
+			}
+		}
 		Object::render();
 	}
 	else {
@@ -206,7 +238,10 @@ void Character::setPrimaryWeapon(Item item){
 }
 
 void Character::setDirection(int _direction){
-	direction = _direction;
+	if (_direction != -1){
+		direction = _direction;
+		moved = true;
+	}
 }
 
 Character::~Character(){
