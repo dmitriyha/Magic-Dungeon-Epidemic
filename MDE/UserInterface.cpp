@@ -47,6 +47,11 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 	spikeTrap.setLocation(770, 307);
 }
 
+/** \brief handles the nutten events on the ui
+*	\param event the SDL_Event struct
+*
+*	\return the detected button as string
+*/
 string UserInterface::eventHandler(SDL_Event event){
 	if (stoneTower.isPressed(event)){
 		return "stonetower";

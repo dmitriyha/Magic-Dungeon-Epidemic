@@ -8,7 +8,6 @@ Enemy::Enemy(){
 *
 *
 */
-
 void Enemy::setPrimaryWeapon(Item* item){
 	weapon = item;
 }
@@ -17,8 +16,6 @@ void Enemy::setPrimaryWeapon(Item* item){
 *
 *
 */
-
-
 void Enemy::set_level(int lvl){
 	level=lvl;
 }
@@ -33,8 +30,6 @@ void Enemy::set_Id(int _id){
  * \return the level of Enemy
  *
  */     
-
-
 int Enemy::get_level(){
 	return level;
 }
