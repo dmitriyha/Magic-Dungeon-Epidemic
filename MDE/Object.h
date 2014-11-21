@@ -7,7 +7,7 @@ class Object
 public:
 	Object();
 	virtual void render();
-	void setTexture(Texture* _texture);
+	virtual void setTexture(Texture* _texture);
 	~Object();
 protected:
 	Texture* texture; 

@@ -1,6 +1,13 @@
 #include "Character.h"
 #include "GlobalDef.h"
 
+Character::Character(){
+	faceUp = { 0, 0, 64, 64 };
+	faceLeft = { 64, 0, 64, 64 };
+	faceRight = { 128, 0, 64, 64 };
+	faceDown = { 192, 0, 64, 64 };
+}
+
 /** \brief sets the stats of the Character entity
  *
  * \param int healths: max health
@@ -28,11 +35,13 @@ void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int
 	id=ID;
 }
 
+
+
 /** \brief the getter of health
  *
  * \return the current health
  *
- */     
+ */
 int Character::Health(void){
 	return health;
 }
@@ -60,6 +69,7 @@ void Character::render(){
 
 	location = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT *2};
 	if (health > 0){
+		sprite = faceDown;
 		Object::render();
 	}
 	else {
@@ -102,10 +112,7 @@ void Character::setCoords(int x, int y){
  * 
  * \return a 2 element array with x and y coordinates
  *
- */     
-
-
-
+ */
 LocationCoordinates  Character::getCoords(){
 	return coord;
 }
@@ -196,6 +203,10 @@ int Character::Luck(){
 
 void Character::setPrimaryWeapon(Item item){
 
+}
+
+void Character::setDirection(int _direction){
+	direction = _direction;
 }
 
 Character::~Character(){

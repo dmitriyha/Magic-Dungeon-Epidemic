@@ -34,15 +34,25 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 
 	Texture* t = new Texture();
 	t->setRenderer(backroundTexture->getRenderer());
-	t->makeTexture("img\\TowerStone.png");
+	t->makeTexture("img\\Building.png");
 
-	stoneTower.setTexture(t);
+	SDL_Rect stoneTowerSprite{ 0, 65, 121, 174 };
+
+	stoneTower.setTexture(t,stoneTowerSprite);
 	stoneTower.setLocation(705, 307);
+
+	SDL_Rect spikeTrapSprite{ 0, 0, 121, 65 };
+
+	spikeTrap.setTexture(t, spikeTrapSprite);
+	spikeTrap.setLocation(770, 307);
 }
 
 string UserInterface::eventHandler(SDL_Event event){
 	if (stoneTower.isPressed(event)){
 		return "stonetower";
+	}
+	else if (spikeTrap.isPressed(event)){
+		return "spiketrap";
 	}
 	else{
 		return "none";
@@ -62,6 +72,7 @@ void UserInterface::render(){
 	text();//render the text of the user interface
 
 	stoneTower.render();
+	spikeTrap.render();
 
 	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
 

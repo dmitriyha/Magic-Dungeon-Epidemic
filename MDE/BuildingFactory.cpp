@@ -17,7 +17,7 @@ Building* BuildingFactory::create_building(string buildingType){
 	}
 	if (buildingType == "spiketrap"){
 		SpikeTrap* spiketrap = new SpikeTrap();
-		spiketrap->set_stats(1, 1, 1, 1, 1);
+		spiketrap->set_stats(1, 1, 1, 1, 1,4);
 		spiketrap->setType(TRAP);
 		return spiketrap;
 	}

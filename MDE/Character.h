@@ -14,6 +14,7 @@ using namespace std;
 
 
 class Character:public Object{
+	int direction;
 protected:
 
 	int health;
@@ -35,8 +36,13 @@ protected:
 	
 	SDL_Rect charSpriteDead;
 
-public: 
+	SDL_Rect faceUp;
+	SDL_Rect faceLeft;
+	SDL_Rect faceRight;
+	SDL_Rect faceDown;
 
+public: 
+	Character();
 	
 	virtual int fight(Character* character);
 //	virtual int fight(Building* building);
@@ -65,6 +71,8 @@ public:
 	virtual int Luck();
 
 	virtual void setPrimaryWeapon(Item item);
+
+	void setDirection(int direction);
 	
 	virtual ~Character();
 };

@@ -28,16 +28,11 @@ void Game::run(){
 					case SDL_MOUSEBUTTONDOWN:
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
-						/*
-						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown("stonetower")==true && nextBuilding != "none"){
-							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1);
+						
+						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown(nextBuilding)==true && nextBuilding != "none"){
+							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1);
 
-							managebuilding.SetBuildingCooldown("stonetower");
-						}*/
-						if (mouseClick.x > -1 && managebuilding.GetBuildingCooldown("spiketrap") == true){
-
-						managebuilding.CreateBuilding("spiketrap", mouseClick.x, mouseClick.y, 1);
-						managebuilding.SetBuildingCooldown("spiketrap");
+							//managebuilding.SetBuildingCooldown(nextBuilding);
 						}
 
 						nextBuilding=ui.eventHandler(event);
@@ -81,7 +76,7 @@ void Game::initialize(){
 
 	Texture* enemyTexture = new Texture();
 	enemyTexture->setRenderer(win.getRenderer());
-	enemyTexture->makeTexture("img\\goblinsword.png");
+	enemyTexture->makeTexture("img\\BODY_male.png");
 
 	Texture* itemTexture = new Texture();
 	itemTexture->setRenderer(win.getRenderer());
@@ -99,7 +94,8 @@ void Game::initialize(){
 
 	Texture* texture = new Texture();
 	texture->setRenderer(win.getRenderer());
-	texture->makeTexture("img\\player0.png");
+
+	texture->makeTexture("img\\BODY_male.png");
 	Player* player = new Player();
 	player->setTexture(texture);
 

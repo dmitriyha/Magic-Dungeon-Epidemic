@@ -3,11 +3,11 @@
 
 Button::Button()
 {
-	sprite = { 0, 0, 115, 177 };
+	//sprite = { 0, 0, 115, 177 };
 }
 
 void Button::setLocation(int x, int y){
-	SDL_Rect loc=texture->getSize();
+	SDL_Rect loc=sprite;
 	location = { x, y, loc.w/2, loc.h/2 };
 }
 
@@ -30,6 +30,11 @@ bool Button::isPressed(SDL_Event event){
 		return false;
 		break;
 	}
+}
+
+void Button::setTexture(Texture* _texture, SDL_Rect _sprite){
+	Object::setTexture(_texture);
+	sprite = _sprite;
 }
 
 Button::~Button()

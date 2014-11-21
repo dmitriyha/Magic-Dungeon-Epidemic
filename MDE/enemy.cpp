@@ -1,7 +1,7 @@
 #include "enemy.h"
 
 Enemy::Enemy(){
-
+	Character::Character();
 }
 
 /** \brief The Enemy primary weapon setter

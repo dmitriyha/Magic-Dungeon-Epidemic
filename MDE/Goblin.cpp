@@ -2,7 +2,9 @@
 
 
 Goblin::Goblin(){
-	sprite = { 0, 0, 40, 57 };
+	
+	Enemy::Enemy();
+
 	charSpriteDead = { 188, 270, 50, 50 };
 }
 

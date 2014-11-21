@@ -29,6 +29,7 @@ class UserInterface{
 	TextTexture* carbon18;
 
 	Button stoneTower;
+	Button spikeTrap;
 
 public:
 	UserInterface();
