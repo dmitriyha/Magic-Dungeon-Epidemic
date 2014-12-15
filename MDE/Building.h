@@ -52,6 +52,7 @@ public:
 	virtual void set_level(int level);
 	virtual int get_level();
 	virtual int GetCooldown();
+	void SetCooldown(int minus);
 	virtual ~Building();
 
 

@@ -38,5 +38,6 @@ private:
 	int turn;
 	int towerCooldown;
 	int trapCooldown;
-	void TrapAttackCooldownCheck();
+	void TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct);
+	void debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct);
 };

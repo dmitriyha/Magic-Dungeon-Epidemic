@@ -45,6 +45,11 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 
 	spikeTrap.setTexture(t, spikeTrapSprite);
 	spikeTrap.setLocation(770, 307);
+
+	//SDL_Rect woodBarricadeSprite{ 0, 0, 121, 65 };
+	SDL_Rect woodBarricadeSprite{ 37, 240, 52, 61 };
+	woodBarricade.setTexture(t, woodBarricadeSprite);
+	woodBarricade.setLocation(705, 390);
 }
 
 string UserInterface::eventHandler(SDL_Event event){
@@ -53,6 +58,9 @@ string UserInterface::eventHandler(SDL_Event event){
 	}
 	else if (spikeTrap.isPressed(event)){
 		return "spiketrap";
+	}
+	else if (woodBarricade.isPressed(event)){
+		return "woodbarricade";
 	}
 	else{
 		return "none";
@@ -73,6 +81,7 @@ void UserInterface::render(){
 
 	stoneTower.render();
 	spikeTrap.render();
+	woodBarricade.render();
 
 	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
 

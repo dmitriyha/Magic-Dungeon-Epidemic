@@ -30,6 +30,7 @@ class UserInterface{
 
 	Button stoneTower;
 	Button spikeTrap;
+	Button woodBarricade;
 
 public:
 	UserInterface();

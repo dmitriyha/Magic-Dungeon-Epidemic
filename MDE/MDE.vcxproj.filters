@@ -64,6 +64,12 @@
     <Filter Include="Header Files\Traps">
       <UniqueIdentifier>{7b788004-ccb9-49a4-925b-393a1fc5ff48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Barricade.h">
+      <UniqueIdentifier>{557e22ce-472d-49ff-8e29-01cfa64f3bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Barricade.h">
+      <UniqueIdentifier>{27d6e56e-a7f4-439f-85fb-6c2cb20593c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ArtificialIntelligence.cpp">
@@ -173,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="SpikeTrap.cpp">
       <Filter>Source Files\Traps</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodBarricade.cpp">
+      <Filter>Source Files\Barricade.h</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="AttackCooldownStruct.h">
       <Filter>Header Files\StructsHeaders</Filter>
+    </ClInclude>
+    <ClInclude Include="WoodBarricade.h">
+      <Filter>Header Files\Barricade.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

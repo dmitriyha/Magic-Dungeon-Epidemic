@@ -11,7 +11,7 @@ Building* BuildingFactory::create_building(string buildingType){
 
 	if (buildingType == "stonetower"){
 		StoneTower* stonetower = new StoneTower();
-		stonetower->set_stats(1, 1, 1, 1, 1);
+		stonetower->set_stats(4, 1, 1, 1, 1);
 		stonetower->setType(TOWER);
 		return stonetower;
 	}
@@ -20,6 +20,12 @@ Building* BuildingFactory::create_building(string buildingType){
 		spiketrap->set_stats(1, 1, 1, 1, 1,4);
 		spiketrap->setType(TRAP);
 		return spiketrap;
+	}
+	if (buildingType == "woodbarricade"){
+		WoodBarricade* woodbarricade = new WoodBarricade();
+		woodbarricade->set_stats(4, 1, 1, 1, 1, 4);
+		woodbarricade->setType(BARRICADE);
+		return woodbarricade;
 	}
 
 }

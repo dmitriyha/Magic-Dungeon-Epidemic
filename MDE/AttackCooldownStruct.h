@@ -11,5 +11,5 @@ using namespace std;
 
 struct AttackCooldownStruct{
 	//Lista sis‰lt‰‰ rakennuksien id:t mill‰ on attackcooldown.
-	vector<Building*> attackCooldownIDs;
+	vector<Building*> attackCooldowns;
 };

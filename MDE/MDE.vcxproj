@@ -53,6 +53,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WoodBarricade.cpp" />
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="WoodBarricade.h" />
     <ClInclude Include="WriteFile.h" />
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,10 @@ public:
 	bool IsTrapBelowTheEnemy(int coordX, int coordY);
 	void TrapTriggered(int currentdepth, int coordX, int coordY, AttackCooldownStruct* attackCooldownStruct);
 	void renderEnemy();
+	void KillEnemy(int coordX, int coordY, CameraStruct *dataForManaging);
+	void EnemyAttacksBuilding(CameraStruct* dataForManaging, int currentdepth, int BuildingCoordX, int BuildingCoordY, int EnemyCoordX, int EnemyCoordY);
+	bool CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Building* building);
+	Enemy* GetEnemy(CameraStruct* dataForManaging, int currentdepth, int EnemyCoordX, int EnemyCoordY);
 	~EnemyManager();
 };
 

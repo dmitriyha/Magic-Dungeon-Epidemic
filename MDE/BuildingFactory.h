@@ -3,6 +3,7 @@
 #include "Building.h"
 #include "StoneTower.h"
 #include "SpikeTrap.h"
+#include "WoodBarricade.h"
 
 using namespace std;
 

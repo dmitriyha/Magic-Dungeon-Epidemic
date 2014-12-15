@@ -78,7 +78,32 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
 			Collision(CoordX, CoordY,id);
 			cursor++;
+			nextBuilding = ui.eventHandler(event);
+		}
 
+	}
+	if (BuildingName == "woodbarricade"){
+
+
+		if (CanBuildBuildingHere(CoordX, CoordY) == true){
+
+			Building* woodbarricade = BuildingFactory::create_building("woodbarricade");
+			id++;
+			woodbarricade->set_Id(id);
+			woodbarricade->set_level(depth);
+			woodbarricade->setTexture(building);
+			woodbarricade->setCoords(CoordX, CoordY);
+
+			mapdata.buildingDataMap[CoordX][CoordY] = 1;
+
+			buildingList.push_back(woodbarricade);
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+			cout << "Rakennus on laitettu\n";
+
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+			Collision(CoordX, CoordY, id);
+			cursor++;
+			nextBuilding = ui.eventHandler(event);
 		}
 
 	}

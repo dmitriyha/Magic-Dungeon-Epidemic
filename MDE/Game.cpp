@@ -20,16 +20,19 @@ void Game::run(){
 							managebuilding.buildingCooldown--;
 							cout << "Rakennus cooldown on " << managebuilding.buildingCooldown << "\n";
 						}
+						TrapAttackCooldownCheck(attackCooldownStruct);
+						debugPrintAttackCooldowns(attackCooldownStruct);
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
 
 						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
-							managebuilding.CreateBuilding("stonetower", mouseClick.x, mouseClick.y, 1, ui,event);
+							
+							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);
 			
 						}
-					
+						nextBuilding = ui.eventHandler(event);
 						break;
 					case SDL_QUIT:
 						quit = true;
@@ -62,14 +65,42 @@ void Game::run(){
 		}//end while(quit==false)
 	}
 }
-void Game::TrapAttackCooldownCheck(){
+
+void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct){
+	int i, cooldown;
+	int size = attackCooldownStruct->attackCooldowns.size();
+	
+	if (size>0){
+		Building* building = new Building;
+		cout << "Tasta alkaa cooldown lista: ";
+		for (i = 0; i < size; i++){
+			building = attackCooldownStruct->attackCooldowns.at(i);
+			cooldown = building->GetCooldown();
+			cout << cooldown << endl;
+		}
+	}
+}
+
+void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
 	int i;
-	int size = attackCooldownStruct->attackCooldownIDs.size();
-	int cooldown;
+	int size = attackCooldownStruct->attackCooldowns.size();
+	int cooldown1, cooldown2;
 	Building* building = new Building;
+	//V‰hennet‰‰n cooldownia
 	for (i = 0; i < size; i++){
-		building=attackCooldownStruct->attackCooldownIDs.at(i);
-		cooldown=building->GetCooldown();
+		building=attackCooldownStruct->attackCooldowns.at(i);
+		cooldown1=building->GetCooldown();
+		//V‰hent‰‰ 1 rakennuksen cooldownista
+		building->SetCooldown(1);
+		cout << "cooldownia on vahennetty " << cooldown1<<endl;
+	}
+	//tarkistetaan, ett‰ cooldown on suurempi kuin 0
+	for (i = 0; i < size; i++){
+		building = attackCooldownStruct->attackCooldowns.at(i);
+		cooldown2 = building->GetCooldown();
+		if (cooldown2 == 0){
+			attackCooldownStruct->attackCooldowns.erase(attackCooldownStruct->attackCooldowns.begin() + i);
+		}
 	}
 	
 	

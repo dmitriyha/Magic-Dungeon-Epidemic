@@ -22,6 +22,9 @@ int Building::GetCooldown(){
 	return attackCooldown;
 }
 
+void Building::SetCooldown(int minus){
+	attackCooldown=(attackCooldown - minus);
+}
 
 /** \brief Renders the building
 *
@@ -158,21 +161,6 @@ int Building::get_level(){
 	return level;
 }
 
-//
-///** \brief handels the fighting
-//*
-//* \param building* building: The defending building. The one who is receiving damage
-//*
-//*/
-//int Building::fight(Character* chracter){
-//	//damage to be inflicted
-//	int damage = 0;
-//	
-//		damage = 3;
-//		chracter->Health(damage);
-//
-//	return damage;
-//}
 Building::~Building()
 {
 }
