@@ -31,10 +31,14 @@ void Building::SetCooldown(int minus){
 *
 */
 void Building::render(){
-
+	
 	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
-
-	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	if (health > 0){
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	}
+	else {
+	
+	}
 }
 
 
