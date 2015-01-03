@@ -1,4 +1,4 @@
 #pragma once
 
 
-enum BuildingTypes{ TRAP, TOWER, BARRICADE };
+enum BuildingTypes{ TRAP, BLADETRAP, BARRICADE };

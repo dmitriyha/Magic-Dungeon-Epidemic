@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Building.h"
-#include "StoneTower.h"
+#include "BladeTrap.h"
 #include "SpikeTrap.h"
 #include "WoodBarricade.h"
 

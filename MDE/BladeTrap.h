@@ -1,10 +1,10 @@
 #pragma once
 #include "Building.h"
 #include "LocationCoordinate.h"
-class StoneTower :public Building
+class BladeTrap :public Building
 {
 public:
-	StoneTower(void);
+	BladeTrap(void);
 	void set_stats(int healths, int strengths,int damage, int accuracy,int luck);
 
 	int Health(void);
@@ -25,5 +25,5 @@ public:
 	int get_level();
 	
 
-	~StoneTower();
+	~BladeTrap();
 };

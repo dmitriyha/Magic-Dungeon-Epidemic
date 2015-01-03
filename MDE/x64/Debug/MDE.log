@@ -1,8 +1,25 @@
-﻿Build started 18.12.2014 13:51:38.
+﻿Build started 3.1.2015 15:11:13.
      1>Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ArtificialIntelligence.cpp
-         ArtificialIntelligence.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt EnemyManager.cpp
+         EnemyManager.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(37) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(36) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(35) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(35): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(36): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(37): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+     1>EnemyManager.cpp(11): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(22): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(20): warning C4101: 'combatXorYCoordinate' : unreferenced local variable
+     1>EnemyManager.cpp(305): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(306): warning C4101: 'cooldown' : unreferenced local variable
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ArtificialIntelligence.obj
          x64\Debug\Battle.obj
@@ -33,7 +50,7 @@
          x64\Debug\ReadString.obj
          x64\Debug\RNG.obj
          x64\Debug\sound_play.obj
-         x64\Debug\StoneTower.obj
+         x64\Debug\BladeTrap.obj
          x64\Debug\TextTexture.obj
          x64\Debug\Texture.obj
          x64\Debug\UserInterface.obj
@@ -45,4 +62,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:08.63
+Time Elapsed 00:00:06.53

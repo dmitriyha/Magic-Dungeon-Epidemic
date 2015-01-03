@@ -1,24 +1,24 @@
-#include "StoneTower.h""
+#include "BladeTrap.h""
 
 
-StoneTower::StoneTower(){
+BladeTrap::BladeTrap(){
 	charSprite = { 0, 67, 115, 177 };
 }
 
 
-/** \brief Sets Stonetowers stats
+/** \brief Sets BladeTraps stats
 *
-* \param health Stonetower's health
-* \param strength Stonetower's strength
-* \param damage Stonetower's damage
-* \param accuracy Stonetower's accuracy
-* \param luck Stonetower's luck
-* \param ID Stonetower's ID
+* \param health BladeTrap's health
+* \param strength BladeTrap's strength
+* \param damage BladeTrap's damage
+* \param accuracy BladeTrap's accuracy
+* \param luck BladeTrap's luck
+* \param ID BladeTrap's ID
 *
 * \return the current health
 *
 */
-void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracys, int lucks){
+void  BladeTrap::set_stats(int healths, int strengths, int damages, int accuracys, int lucks){
 	health = healths;
 	strength = strengths;
 	damage = damages;
@@ -33,7 +33,7 @@ void  StoneTower::set_stats(int healths, int strengths,int damages, int accuracy
 */
 
 
-int  StoneTower::Health(void){
+int  BladeTrap::Health(void){
 	return health;
 }
 
@@ -43,7 +43,7 @@ int  StoneTower::Health(void){
 *
 */
 
-bool  StoneTower::Health(int damage){
+bool  BladeTrap::Health(int damage){
 	health = health - damage;
 	if (health>0){
 		return true;
@@ -53,14 +53,14 @@ bool  StoneTower::Health(int damage){
 	}
 }
 
-/** \brief  id getter of the StoneTower entity
+/** \brief  id getter of the BladeTrap entity
 *
 * \return the ID of the entity
 *
 */
 
 
-int  StoneTower::getID(){
+int  BladeTrap::getID(){
 	return id;
 }
 
@@ -72,13 +72,13 @@ int  StoneTower::getID(){
 */
 
 
-void  StoneTower::setCoords(int x, int y){
+void  BladeTrap::setCoords(int x, int y){
 	coord.x = x;
 	coord.y = y;
 }
 
 //Sets id
-void StoneTower::set_Id(int _id){
+void BladeTrap::set_Id(int _id){
 	id = _id;
 }
 
@@ -90,7 +90,7 @@ void StoneTower::set_Id(int _id){
 
 
 
-LocationCoordinates  StoneTower::getCoords(){
+LocationCoordinates  BladeTrap::getCoords(){
 
 	return coord;
 }
@@ -104,7 +104,7 @@ LocationCoordinates  StoneTower::getCoords(){
 * \return strength attribute
 *
 */
-int  StoneTower::Strength(){
+int  BladeTrap::Strength(){
 	return strength;
 }
 
@@ -114,7 +114,7 @@ int  StoneTower::Strength(){
 * \return damage attribute
 *
 */
-int  StoneTower::Damage(){
+int  BladeTrap::Damage(){
 	return damage;
 }
 
@@ -125,7 +125,7 @@ int  StoneTower::Damage(){
 */
 
 
-int  StoneTower::Accuracy(){
+int  BladeTrap::Accuracy(){
 	return accuracy;
 }
 
@@ -141,7 +141,7 @@ int  StoneTower::Accuracy(){
 *
 */
 
-int  StoneTower::Luck(){
+int  BladeTrap::Luck(){
 	return luck;
 }
 
@@ -150,7 +150,7 @@ int  StoneTower::Luck(){
 *
 */
 
-void StoneTower::set_level(int lvl){
+void BladeTrap::set_level(int lvl){
 	level = lvl;
 }
 
@@ -161,12 +161,12 @@ void StoneTower::set_level(int lvl){
 */
 
 
-int StoneTower::get_level(){
+int BladeTrap::get_level(){
 	return level;
 }
 
 
 
-StoneTower::~StoneTower()
+BladeTrap::~BladeTrap()
 {
 }

@@ -34,16 +34,16 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 		
 		if (CanBuildBuildingHere(CoordX,CoordY) == true){
 
-			Building* tower = BuildingFactory::create_building(BuildingName);
+			Building* bladeTrap = BuildingFactory::create_building(BuildingName);
 			id++;
-			tower->set_Id(id);
-			tower->set_level(depth);
-			tower->setTexture(building);
-			tower->setCoords(CoordX, CoordY);
+			bladeTrap->set_Id(id);
+			bladeTrap->set_level(depth);
+			bladeTrap->setTexture(building);
+			bladeTrap->setCoords(CoordX, CoordY);
 			
 			mapdata.buildingDataMap[CoordX][CoordY]=1; 
 
-			buildingList.push_back(tower);
+			buildingList.push_back(bladeTrap);
 			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
 			cout << "Rakennus on laitettu\n";
 
@@ -279,7 +279,7 @@ deque<string> BuildingManager::getBuildingListForGeneration(int depth){
 
 	deque<string> buildings;
 	if (depth == 1){
-		buildings.push_back("stonetower");
+		buildings.push_back("bladetrap");
 	}
 	else if (depth == 2){
 		/*characters.push_back("goblin");

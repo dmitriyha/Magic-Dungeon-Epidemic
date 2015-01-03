@@ -30,6 +30,7 @@ public:
 
 
 	BuildingManager();
+	
 	bool CanBuildBuildingHere(int CoordX, int CoordY);
 	void CreateBuilding(string BuildingName, int CoordX, int CoordY, int level, UserInterface ui, SDL_Event event);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);

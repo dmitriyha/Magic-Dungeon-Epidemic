@@ -105,9 +105,6 @@
     <ClCompile Include="Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StoneTower.cpp">
-      <Filter>Source Files\Buildings</Filter>
-    </ClCompile>
     <ClCompile Include="Goblin.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
@@ -183,6 +180,9 @@
     <ClCompile Include="WoodBarricade.cpp">
       <Filter>Source Files\Barricade.h</Filter>
     </ClCompile>
+    <ClCompile Include="BladeTrap.cpp">
+      <Filter>Source Files\Buildings</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArtificialIntelligence.h">
@@ -247,9 +247,6 @@
     </ClInclude>
     <ClInclude Include="BattleHandler.h">
       <Filter>Header Files\Battle.h</Filter>
-    </ClInclude>
-    <ClInclude Include="StoneTower.h">
-      <Filter>Header Files\Buildings.h</Filter>
     </ClInclude>
     <ClInclude Include="Goblin.h">
       <Filter>Header Files\Enemies.h</Filter>
@@ -319,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="WoodBarricade.h">
       <Filter>Header Files\Barricade.h</Filter>
+    </ClInclude>
+    <ClInclude Include="BladeTrap.h">
+      <Filter>Header Files\Buildings.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

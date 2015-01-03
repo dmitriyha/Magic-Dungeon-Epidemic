@@ -1,5 +1,5 @@
 #include "EnemyManager.h"
-
+using namespace std;
 
 EnemyManager::EnemyManager()
 {
@@ -84,9 +84,89 @@ int EnemyManager::move(AttackCooldownStruct* attackCooldownStruct){
 			TrapTriggered(dataForManaging->currentLevel, coord.x, coord.y, attackCooldownStruct);
 			cout << "Vihollinen jäi ansaan" << endl;
 		}
+		BladeTrapCheck(dataForManaging, coord.x, coord.y, attackCooldownStruct);
+
 	}
 	return 0;
 }
+
+void EnemyManager::BladeTrapCheck(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct){
+	int buildingID=0;
+	int CoordX, CoordY;
+	trapCoord[2] = {};
+	IsTrapNextToEnemy(EnemyCoordX, EnemyCoordY);
+		  if (trapCoord[0] != 0 && trapCoord[1] != 0){
+			  CoordX = trapCoord[0];
+			  CoordY = trapCoord[1];
+
+			  Building* building = new Building();
+			  buildingID = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[CoordX][CoordY];
+			  building = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.at(buildingID - 1);
+			  if (building->getType()==1){
+
+				  //Jos rakennuksen cooldown on enemmän kuin 0 tai sitä ei löydy attackCooldowns  vectorista, niin sitten saadaan iskeä vihollista
+				  if (CooldownCheck(attackCooldownStruct, building) == true){
+					  if (building->GetCooldown() == 0){
+						  building->SetCooldown(-4);
+					  }
+					  attackCooldownStruct->attackCooldowns.push_back(building);
+
+					  dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
+					  bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY]]->Health(dataForManaging->userInterfaceStruct.buildingDamage);
+
+					  if (!enemyAlive){
+						  KillEnemy(EnemyCoordX, EnemyCoordY, dataForManaging);
+						  cout << "Vihollinen kuoli" << endl;
+					  }
+					  cout << "Ansan damage on " << building->Damage() << endl;
+				  }
+			  }
+		  }
+	
+}
+
+
+void EnemyManager::IsTrapNextToEnemy(int EnemyCoordX, int EnemyCoordY){
+
+
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY]>0){
+		trapCoord[0] = (EnemyCoordX + 1);
+		trapCoord[1] = EnemyCoordY;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY]>0){
+		trapCoord[0] = (EnemyCoordX - 1);
+		trapCoord[1] = EnemyCoordY;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX][EnemyCoordY+1]>0){
+		trapCoord[0] = EnemyCoordX;
+		trapCoord[1] = (EnemyCoordY + 1);
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX][EnemyCoordY - 1]>0){
+		trapCoord[0] = EnemyCoordX;
+		trapCoord[1] = (EnemyCoordY - 1);
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY +1]>0){
+		trapCoord[0] = (EnemyCoordX + 1);
+		trapCoord[1] = (EnemyCoordY + 1);
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY -1]>0){
+		trapCoord[0] = (EnemyCoordX + 1);
+		trapCoord[1] = (EnemyCoordY - 1);
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY - 1]>0){
+		trapCoord[0] = (EnemyCoordX - 1);
+		trapCoord[1] = (EnemyCoordY - 1);
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY + 1]>0){
+		trapCoord[0] = (EnemyCoordX - 1);
+		trapCoord[1] = (EnemyCoordY + 1);
+	}
+
+
+}
+
+
+
 
 /** \brief gets enemy at coordinates EnemyCoordX and EnemyCoordY
 *
