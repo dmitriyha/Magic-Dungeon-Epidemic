@@ -84,82 +84,108 @@ int EnemyManager::move(AttackCooldownStruct* attackCooldownStruct){
 			TrapTriggered(dataForManaging->currentLevel, coord.x, coord.y, attackCooldownStruct);
 			cout << "Vihollinen jäi ansaan" << endl;
 		}
-		BladeTrapCheck(dataForManaging, coord.x, coord.y, attackCooldownStruct);
+		//BladeTrapCheck(dataForManaging, coord.x, coord.y, attackCooldownStruct);
 
 	}
 	return 0;
 }
 
 void EnemyManager::BladeTrapCheck(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct){
-	int buildingID=0;
+	int buildingID = 0;
 	int CoordX, CoordY;
-	trapCoord[2] = {};
+	trapCoord[17] = {};
 	IsTrapNextToEnemy(EnemyCoordX, EnemyCoordY);
 		  if (trapCoord[0] != 0 && trapCoord[1] != 0){
-			  CoordX = trapCoord[0];
-			  CoordY = trapCoord[1];
+			 
+			  for (int i = 0; i < 17; i++){
 
-			  Building* building = new Building();
-			  buildingID = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[CoordX][CoordY];
-			  building = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.at(buildingID - 1);
-			  if (building->getType()==1){
+				  if (trapCoord[i]!=0){
+					  CoordX = trapCoord[i];
+					  CoordY = trapCoord[i+1];
 
-				  //Jos rakennuksen cooldown on enemmän kuin 0 tai sitä ei löydy attackCooldowns  vectorista, niin sitten saadaan iskeä vihollista
-				  if (CooldownCheck(attackCooldownStruct, building) == true){
-					  if (building->GetCooldown() == 0){
-						  building->SetCooldown(-4);
-					  }
-					  attackCooldownStruct->attackCooldowns.push_back(building);
+					  Building* building = new Building();
+					  buildingID = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[CoordX][CoordY];
+					  building = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.at(buildingID - 1);
 
-					  dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
-					  bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY]]->Health(dataForManaging->userInterfaceStruct.buildingDamage);
-
-					  if (!enemyAlive){
-						  KillEnemy(EnemyCoordX, EnemyCoordY, dataForManaging);
-						  cout << "Vihollinen kuoli" << endl;
-					  }
-					  cout << "Ansan damage on " << building->Damage() << endl;
+					  BladeTrapHitsEnemy(dataForManaging, EnemyCoordX, EnemyCoordY, attackCooldownStruct, building);
+					  trapCoord[16] -= 1;
+				  }
+				  i++;
+				  if (trapCoord[16] == 0){
+					  break;
 				  }
 			  }
+
 		  }
 	
 }
 
+void EnemyManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building){
+
+	if (building->getType() == 1){
+
+		//Jos rakennuksen cooldown on enemmän kuin 0 tai sitä ei löydy attackCooldowns  vectorista, niin sitten saadaan iskeä vihollista
+		if (CooldownCheck(attackCooldownStruct, building) == true){
+			if (building->GetCooldown() == 0){
+				building->SetCooldown(-4);
+			}
+			attackCooldownStruct->attackCooldowns.push_back(building);
+
+			dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
+			bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY]]->Health(dataForManaging->userInterfaceStruct.buildingDamage);
+
+			if (!enemyAlive){
+				KillEnemy(EnemyCoordX, EnemyCoordY, dataForManaging);
+				cout << "Vihollinen kuoli" << endl;
+			}
+			cout << "Ansan damage on " << building->Damage() << endl;
+		}
+	}
+}
+
 
 void EnemyManager::IsTrapNextToEnemy(int EnemyCoordX, int EnemyCoordY){
-
+	int numberOfBladeTraps=0;
 
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY]>0){
 		trapCoord[0] = (EnemyCoordX + 1);
 		trapCoord[1] = EnemyCoordY;
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY]>0){
-		trapCoord[0] = (EnemyCoordX - 1);
-		trapCoord[1] = EnemyCoordY;
+		trapCoord[2] = (EnemyCoordX - 1);
+		trapCoord[3] = EnemyCoordY;
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX][EnemyCoordY+1]>0){
-		trapCoord[0] = EnemyCoordX;
-		trapCoord[1] = (EnemyCoordY + 1);
+		trapCoord[4] = EnemyCoordX;
+		trapCoord[5] = (EnemyCoordY + 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX][EnemyCoordY - 1]>0){
-		trapCoord[0] = EnemyCoordX;
-		trapCoord[1] = (EnemyCoordY - 1);
+		trapCoord[6] = EnemyCoordX;
+		trapCoord[7] = (EnemyCoordY - 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY +1]>0){
-		trapCoord[0] = (EnemyCoordX + 1);
-		trapCoord[1] = (EnemyCoordY + 1);
+		trapCoord[8] = (EnemyCoordX + 1);
+		trapCoord[9] = (EnemyCoordY + 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX + 1][EnemyCoordY -1]>0){
-		trapCoord[0] = (EnemyCoordX + 1);
-		trapCoord[1] = (EnemyCoordY - 1);
+		trapCoord[10] = (EnemyCoordX + 1);
+		trapCoord[11] = (EnemyCoordY - 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY - 1]>0){
-		trapCoord[0] = (EnemyCoordX - 1);
-		trapCoord[1] = (EnemyCoordY - 1);
+		trapCoord[12] = (EnemyCoordX - 1);
+		trapCoord[13] = (EnemyCoordY - 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.live[EnemyCoordX - 1][EnemyCoordY + 1]>0){
-		trapCoord[0] = (EnemyCoordX - 1);
-		trapCoord[1] = (EnemyCoordY + 1);
+		trapCoord[14] = (EnemyCoordX - 1);
+		trapCoord[15] = (EnemyCoordY + 1);
+		trapCoord[16] = numberOfBladeTraps++;
 	}
 
 
@@ -316,8 +342,6 @@ bool EnemyManager::CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Bui
 		}
 	}
 	return true;
-	
-	
 }
 
 void EnemyManager::setPlayerPointer(Player* _player){

@@ -14,7 +14,8 @@ class EnemyManager :
 	sound_play * play = new sound_play("music\\hit.wav");
 	ArtificialIntelligence *npc = new ArtificialIntelligence();
 public:
-	int trapCoord[2];
+	int trapCoord[17];
+	void BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building);
 	EnemyManager();
 	void IsTrapNextToEnemy(int EnemyCoordX, int EnemyCoordY);
 	void BladeTrapCheck(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct);

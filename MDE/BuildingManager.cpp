@@ -18,6 +18,183 @@ void BuildingManager::render(){
 }
 
 
+void BuildingManager::TrapAttackEnemys(CameraStruct* dataForManaging, AttackCooldownStruct* attackCooldownStruct){
+	int CoordX, CoordY,j=0,enemyCoordX,enemyCoordY,k=0;
+	int numberOfBuildinsTotal = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.size();
+	
+	for (int j=0; j < numberOfBuildinsTotal; j++){
+		try{
+			Building* building = new Building();
+			building = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.at(j);
+		if (building->getType() == 1){
+			if (building->Health()>0){
+				if (CooldownCheck(attackCooldownStruct, building) == true){
+					CoordX = building->getCoords().x;
+					CoordY = building->getCoords().y;
+					CheckIfThereIsEnemysInRange(CoordX, CoordY, dataForManaging);
+					
+					if (trapCoord[16] != 0){
+						if (building->GetCooldown() == 0){
+										building->SetCooldown(-4);
+						}
+							attackCooldownStruct->attackCooldowns.push_back(building);
+				
+								for (int i = 0; i < 8; i++){
+									if (trapCoord[k] != 0){
+										enemyCoordX = trapCoord[k];
+										enemyCoordY = trapCoord[k + 1];
+										BladeTrapHitsEnemy(dataForManaging, enemyCoordX, enemyCoordY, attackCooldownStruct, building);
+									}
+									k += 2;
+
+
+								}					
+						}
+					}
+				}
+			}
+			}
+			catch (exception& e){
+				cout << endl << "BuildingsManager heitti " << e.what() << endl;
+				cout << "Kaatumisessa rakennusnumero oli " << j << endl;
+				cout << "Kaatumisessa rakennuksien maara oli " << numberOfBuildinsTotal << endl;
+
+			}
+	}
+}
+
+
+void BuildingManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building){
+	try{
+			bool enemyAlive = true;
+			dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
+			Enemy* enemy = new Enemy();
+			enemy=GetEnemy(dataForManaging, EnemyCoordX, EnemyCoordY);
+			enemy->Health(building->Damage());
+
+			if (enemy->Health() <= 0){
+				KillEnemy(EnemyCoordX, EnemyCoordY, dataForManaging);
+				cout << "Vihollinen kuoli ansaan" << endl;
+			}
+			cout << "Ansan damage on " << building->Damage() << endl;
+	
+	}
+	catch (exception& e){
+		cout << endl << "BuildingsManager heitti " << e.what() << endl;
+	}
+		
+	
+}
+
+
+/** \brief gets enemy at coordinates EnemyCoordX and EnemyCoordY
+*
+* \param dataForManaging is CameraStruct object
+* \param currentdepth is the current depth/level
+* \param EnemyCoordX is the enemy coordinate x
+* \param EnemyCoordY is the enemy coordinate y
+*
+* \return enemy object which is at coordinates EnemyCoordX and EnemyCoordY
+*/
+Enemy* BuildingManager::GetEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY){
+	int enemyID;
+	Enemy* enemy = new Enemy();
+	enemyID = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY];
+	enemy = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(enemyID - 1);
+	return enemy;
+}
+
+/** \brief Kills the enemy. Removes enemy from the alive array to dead array.
+*
+* \param coordX is the enemy coordinates x
+* \param coordY is the enemy coordinates y
+*
+* \return True if cooldown is 0. Returns false is cooldown is more than 0.
+*/
+void BuildingManager::KillEnemy(int coordX, int coordY, CameraStruct *dataForManaging){
+	dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coordX][coordY] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY];
+	dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY] = 0;
+}
+
+void BuildingManager::CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging){
+	int numberOfBladeTraps = 0;
+	memset(trapCoord, 0, sizeof(trapCoord));
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY]>0){
+		trapCoord[0] = (trapCoordX + 1);
+		trapCoord[1] = trapCoordY;
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY]>0){
+		trapCoord[2] = (trapCoordX - 1);
+		trapCoord[3] = trapCoordY;
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY + 1]>0){
+		trapCoord[4] = trapCoordX;
+		trapCoord[5] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY - 1]>0){
+		trapCoord[6] = trapCoordX;
+		trapCoord[7] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY + 1]>0){
+		trapCoord[8] = (trapCoordX + 1);
+		trapCoord[9] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY - 1]>0){
+		trapCoord[10] = (trapCoordX + 1);
+		trapCoord[11] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY - 1]>0){
+		trapCoord[12] = (trapCoordX - 1);
+		trapCoord[13] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY + 1]>0){
+		trapCoord[14] = (trapCoordX - 1);
+		trapCoord[15] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+
+
+}
+
+/** \brief Checks if trap has a cooldown still
+*
+* \param attackCooldownStruct handels traps attack cooldown
+* \param building which cooldown we want to check
+*
+* \return True if cooldown is 0. Returns false is cooldown is more than 0.
+*/
+bool BuildingManager::CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Building* building){
+	int i;
+	int size = attackCooldownStruct->attackCooldowns.size();
+	int cooldown;
+
+	for (i = 0; i < size; i++){
+		if (building == attackCooldownStruct->attackCooldowns.at(i)){
+			if (building->GetCooldown() > 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	}
+	return true;
+}
 
 /** \brief CreateBuilding: Creates a Building.
 *

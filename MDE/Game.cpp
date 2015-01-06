@@ -18,20 +18,22 @@ void Game::run(){
 						managePlayer.eventHandler(event,turn);
 						if (managebuilding.GetBuildingCooldown() == false){
 							managebuilding.buildingCooldown--;
-							cout << "Rakennus cooldown on " << managebuilding.buildingCooldown << "\n";
+							cout << "Rakentamis cooldown on " << managebuilding.buildingCooldown << "\n";
 						}
+						managebuilding.TrapAttackEnemys(camData, attackCooldownStruct);
 						TrapAttackCooldownCheck(attackCooldownStruct);
 						debugPrintAttackCooldowns(attackCooldownStruct);
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
-
+						cout << "Pelaajan x coordinaatti on " << managePlayer.getPlayerCoord().x << endl;
+						cout << "Pelaajan y coordinaatti on " << managePlayer.getPlayerCoord().y << endl;
 						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
 							
-							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);
-			
+							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);			
 						}
+						
 						nextBuilding = ui.eventHandler(event);
 						break;
 					case SDL_QUIT:
@@ -92,7 +94,7 @@ void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
 		cooldown1=building->GetCooldown();
 		//Vähentää 1 rakennuksen cooldownista
 		building->SetCooldown(1);
-		cout << "cooldownia on vahennetty " << cooldown1<<endl;
+		cout << "TrapAttackCooldownia on vahennetty. Cooldown on " << cooldown1<<endl;
 	}
 	//tarkistetaan, että cooldown on suurempi kuin 0
 	for (i = 0; i < size; i++){
