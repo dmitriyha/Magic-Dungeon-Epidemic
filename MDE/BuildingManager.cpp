@@ -66,7 +66,6 @@ void BuildingManager::TrapAttackEnemys(CameraStruct* dataForManaging, AttackCool
 
 void BuildingManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building){
 	try{
-			bool enemyAlive = true;
 			dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
 			Enemy* enemy = new Enemy();
 			enemy=GetEnemy(dataForManaging, EnemyCoordX, EnemyCoordY);
@@ -99,8 +98,7 @@ void BuildingManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int Enem
 Enemy* BuildingManager::GetEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY){
 	int enemyID;
 	Enemy* enemy = new Enemy();
-	enemyID = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY];
-	enemy = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(enemyID - 1);
+	enemy = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY]];
 	return enemy;
 }
 
@@ -119,49 +117,49 @@ void BuildingManager::KillEnemy(int coordX, int coordY, CameraStruct *dataForMan
 void BuildingManager::CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging){
 	int numberOfBladeTraps = 0;
 	memset(trapCoord, 0, sizeof(trapCoord));
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY]>1){
 		trapCoord[0] = (trapCoordX + 1);
 		trapCoord[1] = trapCoordY;
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY]>1){
 		trapCoord[2] = (trapCoordX - 1);
 		trapCoord[3] = trapCoordY;
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY + 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY + 1]>1){
 		trapCoord[4] = trapCoordX;
 		trapCoord[5] = (trapCoordY + 1);
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY - 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY - 1]>1){
 		trapCoord[6] = trapCoordX;
 		trapCoord[7] = (trapCoordY - 1);
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY + 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY + 1]>1){
 		trapCoord[8] = (trapCoordX + 1);
 		trapCoord[9] = (trapCoordY + 1);
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY - 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY - 1]>1){
 		trapCoord[10] = (trapCoordX + 1);
 		trapCoord[11] = (trapCoordY - 1);
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY - 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY - 1]>1){
 		trapCoord[12] = (trapCoordX - 1);
 		trapCoord[13] = (trapCoordY - 1);
 		numberOfBladeTraps++;
 		trapCoord[16] = numberOfBladeTraps;
 	}
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY + 1]>0){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY + 1]>1){
 		trapCoord[14] = (trapCoordX - 1);
 		trapCoord[15] = (trapCoordY + 1);
 		numberOfBladeTraps++;
