@@ -10,10 +10,13 @@
 #include "MouseCoordinates.h"
 #include "PlaceItemsAndEnemies.h"
 #include "AttackCooldownStruct.h"
+#include "MapDataStructs.h"
+
 using namespace std;
 class Game
 {
 	SDL_Event event;
+	MapData mapdata;
 	CameraStruct* camData=new CameraStruct;
 	AttackCooldownStruct* attackCooldownStruct = new AttackCooldownStruct;
 	Map *map;
@@ -34,9 +37,13 @@ public:
 	void run();
 	~Game();
 private:
+	int mouseCoordX;
+	int mouseCoordY;
 	void initialize();
 	int turn;
+	bool CheckTile(int x, int y, CameraStruct* dataForManaging);
 	int towerCooldown;
+	bool Bresenham(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging);
 	int trapCooldown;
 	void TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct);
 	void debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct);

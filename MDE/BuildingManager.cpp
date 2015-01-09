@@ -117,6 +117,8 @@ void BuildingManager::KillEnemy(int coordX, int coordY, CameraStruct *dataForMan
 void BuildingManager::CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging){
 	int numberOfBladeTraps = 0;
 	memset(trapCoord, 0, sizeof(trapCoord));
+
+	
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY]>1){
 		trapCoord[0] = (trapCoordX + 1);
 		trapCoord[1] = trapCoordY;

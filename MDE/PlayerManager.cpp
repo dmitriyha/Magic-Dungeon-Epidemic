@@ -129,7 +129,7 @@ MouseCoordinates PlayerManager::mouseEventHandler(SDL_Event event){
 		case SDL_BUTTON_LEFT:
 			//if (event.button.button == SDL_BUTTON_LEFT){
 			SDL_GetMouseState(&mouseCoordX, &mouseCoordY);
-			rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
+			//rangedCombat(mouseCoordX / TILE_WIDTH, mouseCoordY / TILE_HEIGHT);
 			cout << "Hiiri " << mouseCoordX << " " << mouseCoordY << endl;
 			//}
 			return MouseCoordinates{ -1, -1,NONE };
@@ -302,77 +302,231 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 	}
 }
 
-/* \BRIEF RANGED COMBAT
-*   may have bugs regarding the damage... investigate later
-*/
-void PlayerManager::rangedCombat(int x, int y){
-	LocationCoordinates  playerCoordinates = player->getCoords();
+bool PlayerManager::Bresenham(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging)
+{
+	int delta_x(x2 - x1);
+	// if x1 == x2, then it does not matter what we set here
+	signed char const ix((delta_x > 0) - (delta_x < 0));
+	delta_x = std::abs(delta_x) << 1;
 
-	LocationCoordinates click;
+	int delta_y(y2 - y1);
+	// if y1 == y2, then it does not matter what we set here
+	signed char const iy((delta_y > 0) - (delta_y < 0));
+	delta_y = std::abs(delta_y) << 1;
 
-	click.x = dataForManaging->leftCorner.x + x;
-	click.y = dataForManaging->leftCorner.y + y;
+	cout << "X on " << x1 << ", Y on " << y1 << endl;
+	//plot(x1, y1);
 
-	bool combatHappens = false;
+	if (delta_x >= delta_y)
+	{
+		// error may go below zero
+		int error(delta_y - (delta_x >> 1));
 
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[click.x][click.y]>1){
-		int rangeX = playerCoordinates.x - click.x;
-		int rangeY = playerCoordinates.y - click.y;
-		if (rangeX >= -4 && rangeX <= 4 && rangeY == 0){
-			while (rangeX != 0){
-				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x - rangeX][playerCoordinates.y] != '#'){
-					if (rangeX<0){
-						rangeX++;
-					}
-					else{
-						rangeX--;
-					}
-					combatHappens = true;
-				}
-				else{
-					combatHappens = false;
-					cout << "wall encountered" << endl;
-					rangeX = 0;
-				}
+		while (x1 != x2)
+		{
+			if ((error >= 0) && (error || (ix > 0)))
+			{
+				error -= delta_x;
+				y1 += iy;
 			}
-		}
-		else if (rangeX == 0 && rangeY <= 4 && rangeY >= -4){
-			while (rangeY != 0){
-				if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[playerCoordinates.x][playerCoordinates.y - rangeY] != '#'){
-					if (rangeY<0){
-						rangeY++;
-					}
-					else{
-						rangeY--;
-					}
-					combatHappens = true;
-				}
-				else{
-					combatHappens = false;
-					cout << "wall encountered" << endl;
-					rangeY = 0;
-				}
+			// else do nothing
+
+			error += delta_y;
+			x1 += ix;
+			if (CheckTile(x1, y1, dataForManaging) == false){
+				return false;
 			}
-
+			//cout << "X on " << x1 << ", Y on " << y1 << endl;
+			//plot(x1, y1);
 		}
-
-		if (combatHappens){
-			LocationCoordinates enemyCoord = { 0,0 };
-			enemyCoord = click;
-			fightAndKillEnemy(enemyCoord);
-		}
-
 	}
+	else
+	{
+		// error may go below zero
+		int error(delta_x - (delta_y >> 1));
 
-	//return true;
+		while (y1 != y2)
+		{
+			if ((error >= 0) && (error || (iy > 0)))
+			{
+				error -= delta_y;
+				x1 += ix;
+			}
+			// else do nothing
+
+			error += delta_x;
+			y1 += iy;
+
+			if (CheckTile(x1, y1, dataForManaging) == false){
+				return false;
+			}
+			//cout << "X on " << x1 << ", Y on " << y1 << endl;
+			//plot(x1, y1);
+		}
+	}
+	return true;
+}
+
+bool PlayerManager::CheckTile(int x, int y, CameraStruct* dataForManaging){
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] != '#'){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+bool PlayerManager::InRangeOfRangedWeaponCheck(int destinationX, int destinationY, int range, CameraStruct* camData, MapData mapdata){
+	int rangeX=0, rangeY=0;
+	//if playerIsHere is true, then player is in the selected tile.
+	bool playerIsHere = false;
+
+	//if inRange is true, then inRange is in allowed range.
+	bool inRange = false;
+
+	//if enemyIsHere is true, then enemy is in the selected tile.
+	bool enemyIsHere = false;
+
+	//If buildingIsHere is true, then building is already in the selected tile
+	bool buildingIsHere = false;
+
+	//If wallIsHere is true, then wall is already in the selected tile
+	bool wallIsHere = false;
+
+	//If player is in the selected tile
+	if (player->getCoords().x == destinationX && player->getCoords().y == destinationY){
+		playerIsHere = true;
+	}
+	
+		//Range X
+		rangeX = player->getCoords().x - destinationX;
+		//Range Y
+		rangeY = player->getCoords().y - destinationY;
+	
+		//If range is 0 or less then range default is 5
+		if (range <= 0){
+			if (rangeX >= -5 && rangeX <= 5 && rangeY >= -5 && rangeY <= 5){
+				inRange = true;
+			}
+		}
+		else{
+			if (rangeX >= -range && rangeX <= range && rangeY >= -range && rangeY <= range){
+				inRange = true;
+			}
+		}
+
+	if (camData->mapStruct[camData->currentLevel].entityData.live[destinationX][destinationY] > 0){
+		enemyIsHere = true;
+	}
+	if (mapdata.buildingDataMap[destinationX][destinationY] != 0){
+		buildingIsHere = true;
+	}
+	//if (camData->mapStruct[dataForManaging->currentLevel].mapData.buildingDataMap[destinationX][destinationY] != 0){ //ei ole alustettu
+	//	buildingIsHere = true;
+	//}
+	if (camData->mapStruct[camData->currentLevel].mapData.mapDim[destinationX][destinationY] == '#'){
+		wallIsHere = true;
+	}
+	///Final check. If values are desirable, then we can shoot
+	if (playerIsHere == false &&
+		inRange == true &&
+		buildingIsHere == false &&
+		wallIsHere == false &&
+		enemyIsHere == true){
+
+		return true;
+	}
+	//if values are not desirable, then we will not shoot anything
+	else{
+		return false;
+	}
+}
+
+bool PlayerManager::CheckIfThereIsObstaclesInRangedCombat(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging)
+{
+	int delta_x(x2 - x1);
+	// if x1 == x2, then it does not matter what we set here
+	signed char const ix((delta_x > 0) - (delta_x < 0));
+	delta_x = std::abs(delta_x) << 1;
+
+	int delta_y(y2 - y1);
+	// if y1 == y2, then it does not matter what we set here
+	signed char const iy((delta_y > 0) - (delta_y < 0));
+	delta_y = std::abs(delta_y) << 1;
+
+	cout << "X on " << x1 << ", Y on " << y1 << endl;
+	//plot(x1, y1);
+
+	if (delta_x >= delta_y)
+	{
+		// error may go below zero
+		int error(delta_y - (delta_x >> 1));
+
+		while (x1 != x2)
+		{
+			if ((error >= 0) && (error || (ix > 0)))
+			{
+				error -= delta_x;
+				y1 += iy;
+			}
+			// else do nothing
+
+			error += delta_y;
+			x1 += ix;
+			if (CheckTile(x1, y1, dataForManaging) == false){
+				return false;
+			}
+			//cout << "X on " << x1 << ", Y on " << y1 << endl;
+			//plot(x1, y1);
+		}
+	}
+	else
+	{
+		// error may go below zero
+		int error(delta_x - (delta_y >> 1));
+
+		while (y1 != y2)
+		{
+			if ((error >= 0) && (error || (iy > 0)))
+			{
+				error -= delta_y;
+				x1 += ix;
+			}
+			// else do nothing
+
+			error += delta_x;
+			y1 += iy;
+
+			if (CheckTile(x1, y1, dataForManaging) == false){
+				return false;
+			}
+			//cout << "X on " << x1 << ", Y on " << y1 << endl;
+			//plot(x1, y1);
+		}
+	}
+	return true;
+}
+void PlayerManager::rangedCombat(int coordX, int coordY, CameraStruct* dataForManaging){
+	LocationCoordinates coord;
+	coord.x = coordX;
+	coord.y = coordY;
+	if (CheckIfThereIsObstaclesInRangedCombat(getPlayerCoord().x, getPlayerCoord().y, coordX, coordY, dataForManaging) == true){
+		cout << "Ranged combat onnistui" << endl;
+		fightAndKillEnemy(coord);
+		
+	}
+	else{
+		cout << "Este esti taistelun" << endl;
+	}
 }
 
 void PlayerManager::fightAndKillEnemy(LocationCoordinates coord){//player attack calculation function
 	dataForManaging->userInterfaceStruct.playerDamage = BattleHandler::handle(player, dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy.at(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y + 1]));
+	cout << "Pelaaja iskee " << dataForManaging->userInterfaceStruct.playerDamage << " damagea" << endl;
 	bool enemyAlive = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y]]->Health(dataForManaging->userInterfaceStruct.playerDamage);
 
 
 	if (!enemyAlive){
+		cout << "Vihollinen kuoli " << endl;
 		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord.x][coord.y] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y];
 		dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coord.x][coord.y] = 0;
 		player->set_xp(dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coord.x][coord.y]]->get_level());

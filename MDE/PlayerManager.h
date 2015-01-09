@@ -35,11 +35,15 @@ public:
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
 	void checkTileForItems();
-	void rangedCombat(int x, int y);
+	void rangedCombat(int coordX, int coordY, CameraStruct* dataForManaging);
 	string getMainWeaponType();
 	int get_inventory_size();
 	int dropItem(int inventory_cursor);
 	int equipItem(int inventory_cursor);
+	bool CheckIfThereIsObstaclesInRangedCombat(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging);
+	bool InRangeOfRangedWeaponCheck(int destinationX, int destinationY, int range, CameraStruct* camData, MapData mapdata);
+	bool CheckTile(int x, int y, CameraStruct* dataForManaging);
+	bool Bresenham(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging);
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
 	bool check_player_death();
