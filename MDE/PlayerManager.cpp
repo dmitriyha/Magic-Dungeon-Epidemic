@@ -10,6 +10,28 @@ void PlayerManager::render(){
 	player->render();
 }
 
+void PlayerManager::RangedCombatAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
+	int i;
+	int size = attackCooldownStruct->playerCooldowns.size();
+	int cooldown1, cooldown2;
+	Player* player = new Player;
+	//V‰hennet‰‰n cooldownia
+	for (i = 0; i < size; i++){
+		player = attackCooldownStruct->playerCooldowns.at(i);
+		cooldown1 = player->GetCooldown();
+		//V‰hent‰‰ 1 rakennuksen cooldownista
+		player->SetCooldown(1);
+		cout << "RangedAttackCooldownia on v‰hennetty. Cooldown on " << cooldown1 << endl;
+	}
+	//tarkistetaan, ett‰ cooldown on suurempi kuin 0
+	for (i = 0; i < size; i++){
+		player = attackCooldownStruct->playerCooldowns.at(i);
+		cooldown2 = player->GetCooldown();
+		if (cooldown2 == 0){
+			attackCooldownStruct->playerCooldowns.erase(attackCooldownStruct->playerCooldowns.begin() + i);
+		}
+	}
+}
 
 /* \brief gets players coordinates
 *   
@@ -375,6 +397,35 @@ bool PlayerManager::CheckTile(int x, int y, CameraStruct* dataForManaging){
 		return false;
 	}
 }
+
+/** \brief SetRangedCombatCooldown: Sets cooldown for a players ranged combat.
+*
+* \param int cooldown: the cooldown you want to set for the players ranged combat
+*
+*/
+void PlayerManager::SetRangedCombatCooldown(int cooldown){
+	rangedCombatCooldown = cooldown;
+	player->SetCooldown(cooldown);
+}
+/** \brief GettowerCooldown: Gets building cooldown
+*
+* \param string building: name of the building which cooldown you want to check
+* \return true if cooldown is zero. Return false is cooldown is not yet ended.
+*
+*/
+bool PlayerManager::GetRangedCombatCooldown(){
+
+	if (rangedCombatCooldown > 0){
+		return false;
+	}
+	else{
+		return true;
+	}
+
+}
+
+
+
 bool PlayerManager::InRangeOfRangedWeaponCheck(int destinationX, int destinationY, int range, CameraStruct* camData, MapData mapdata){
 	int rangeX=0, rangeY=0;
 	//if playerIsHere is true, then player is in the selected tile.
@@ -406,6 +457,9 @@ bool PlayerManager::InRangeOfRangedWeaponCheck(int destinationX, int destination
 		if (range <= 0){
 			if (rangeX >= -5 && rangeX <= 5 && rangeY >= -5 && rangeY <= 5){
 				inRange = true;
+			}
+			else{
+				cout << "You selected a tile out of your weapon range" <<endl;
 			}
 		}
 		else{

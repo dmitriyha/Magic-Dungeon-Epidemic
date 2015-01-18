@@ -18,6 +18,7 @@ class PlayerManager : public Manager
 	Player *player;
 	bool inventory = false;
 	int inventory_cursor = 1;
+	
 	int max_achieved_depth = 0;
 	int kills = 0;
 	int mouseCoordX, mouseCoordY;
@@ -25,7 +26,7 @@ class PlayerManager : public Manager
 	
 public:
 	bool playerMoved = false;
-
+	int rangedCombatCooldown;
 	PlayerManager();
 
 	void render();
@@ -39,7 +40,10 @@ public:
 	string getMainWeaponType();
 	int get_inventory_size();
 	int dropItem(int inventory_cursor);
+	void RangedCombatAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct);
 	int equipItem(int inventory_cursor);
+	void SetRangedCombatCooldown(int cooldown);
+	bool GetRangedCombatCooldown();
 	bool CheckIfThereIsObstaclesInRangedCombat(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging);
 	bool InRangeOfRangedWeaponCheck(int destinationX, int destinationY, int range, CameraStruct* camData, MapData mapdata);
 	bool CheckTile(int x, int y, CameraStruct* dataForManaging);

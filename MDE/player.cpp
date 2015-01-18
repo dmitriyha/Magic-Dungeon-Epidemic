@@ -9,6 +9,15 @@ Player::Player(){
 	charSpriteDead = { 0, 0, 0, 0 };
 }
 
+
+int Player::GetCooldown(){
+	return rangedAttackCooldown;
+}
+
+void Player::SetCooldown(int minus){
+	rangedAttackCooldown = (rangedAttackCooldown - minus);
+}
+
 /** \brief sets the stats of the  Player entity
 *
 * \param healths max health
@@ -23,8 +32,6 @@ Player::Player(){
 * \param ID the ID of this entity
 *
 */
-
-
 void  Player::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID){
 	health = healths;
 	strength = strengths;

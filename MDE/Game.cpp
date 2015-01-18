@@ -9,6 +9,7 @@ Game::Game()
 void Game::run(){
 	//PlaySound("music\\game1.wav", NULL, SND_FILENAME | SND_LOOP | SND_ASYNC | SND_NOSTOP);
 	if (win.windowExists()){
+		setlocale(LC_ALL, "finnish"); //Voi printata ääkkösiä
 		camData->leftCorner = win.getUpperCorner();
 		while (quit == false){
 			MouseCoordinates mouseClick{ -1, -1, NONE };
@@ -21,8 +22,14 @@ void Game::run(){
 							managebuilding.buildingCooldown--;
 							cout << "Rakentamis cooldown on " << managebuilding.buildingCooldown << "\n";
 						}
+
+						if (managePlayer.GetRangedCombatCooldown() == false){
+							managePlayer.rangedCombatCooldown--;
+							cout << "Ranged combat cooldown on " << managePlayer.rangedCombatCooldown << "\n";
+						}
 						managebuilding.TrapAttackEnemys(camData, attackCooldownStruct);
 						TrapAttackCooldownCheck(attackCooldownStruct);
+						managePlayer.RangedCombatAttackCooldownCheck(attackCooldownStruct);
 						debugPrintAttackCooldowns(attackCooldownStruct);
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
@@ -36,9 +43,16 @@ void Game::run(){
 						/*if (Bresenham(managePlayer.getPlayerCoord().x, managePlayer.getPlayerCoord().y, mouseClick.x, mouseClick.y, camData)==true){
 							cout << "Ranged combat palautti true" << endl;
 						}*/
-						if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
-							cout << "Aloitetaan ranged combat check" << endl;
-							managePlayer.rangedCombat(mouseClick.x, mouseClick.y,camData);
+						if (managePlayer.GetRangedCombatCooldown() == true){
+							if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
+								cout << "Aloitetaan ranged combat check" << endl;
+								managePlayer.rangedCombat(mouseClick.x, mouseClick.y,camData);
+								managePlayer.SetRangedCombatCooldown(4);
+								
+							}
+							else{
+								cout << "Ei ole mitään hyökättävää" << endl;
+							}
 						}
 						
 
@@ -99,71 +113,6 @@ void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct)
 }
 
 
-bool Game::Bresenham(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging)
-{
-	int delta_x(x2 - x1);
-	// if x1 == x2, then it does not matter what we set here
-	signed char const ix((delta_x > 0) - (delta_x < 0));
-	delta_x = std::abs(delta_x) << 1;
-
-	int delta_y(y2 - y1);
-	// if y1 == y2, then it does not matter what we set here
-	signed char const iy((delta_y > 0) - (delta_y < 0));
-	delta_y = std::abs(delta_y) << 1;
-
-	cout << "X on " << x1 << ", Y on " << y1 << endl;
-	//plot(x1, y1);
-
-	if (delta_x >= delta_y)
-	{
-		// error may go below zero
-		int error(delta_y - (delta_x >> 1));
-
-		while (x1 != x2)
-		{
-			if ((error >= 0) && (error || (ix > 0)))
-			{
-				error -= delta_x;
-				y1 += iy;
-			}
-			// else do nothing
-
-			error += delta_y;
-			x1 += ix;
-			if (CheckTile(x1, y1, dataForManaging) == false){
-				return false;
-			}
-			//cout << "X on " << x1 << ", Y on " << y1 << endl;
-			//plot(x1, y1);
-		}
-	}
-	else
-	{
-		// error may go below zero
-		int error(delta_x - (delta_y >> 1));
-
-		while (y1 != y2)
-		{
-			if ((error >= 0) && (error || (iy > 0)))
-			{
-				error -= delta_y;
-				x1 += ix;
-			}
-			// else do nothing
-
-			error += delta_x;
-			y1 += iy;
-
-			if (CheckTile(x1, y1, dataForManaging) == false){
-				return false;
-			}
-			//cout << "X on " << x1 << ", Y on " << y1 << endl;
-			//plot(x1, y1);
-		}
-	}
-	return true;
-}
-
 bool Game::CheckTile(int x, int y, CameraStruct* dataForManaging){
 	if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] != '#'){
 		return true;
@@ -194,8 +143,6 @@ void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
 			attackCooldownStruct->attackCooldowns.erase(attackCooldownStruct->attackCooldowns.begin() + i);
 		}
 	}
-	
-	
 }
 
 
@@ -231,6 +178,7 @@ void Game::initialize(){
 
 	managePlayer.setPointers(camData);
 	managePlayer.setPlayerPointer(player);
+	managePlayer.SetRangedCombatCooldown(0);
 
 	manageEnemy.setPointers(camData);
 	manageEnemy.setPlayerPointer(player);
