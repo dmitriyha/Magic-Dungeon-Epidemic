@@ -43,7 +43,8 @@ void Game::run(){
 						/*if (Bresenham(managePlayer.getPlayerCoord().x, managePlayer.getPlayerCoord().y, mouseClick.x, mouseClick.y, camData)==true){
 							cout << "Ranged combat palautti true" << endl;
 						}*/
-						if (managePlayer.GetRangedCombatCooldown() == true){
+						//cout << "Pää ase on " << managePlayer.getMainWeaponType() << endl;
+						if (managePlayer.GetRangedCombatCooldown() == true && managePlayer.getMainWeaponType() == "bow"){
 							if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
 								cout << "Aloitetaan ranged combat check" << endl;
 								managePlayer.rangedCombat(mouseClick.x, mouseClick.y,camData);
@@ -54,9 +55,6 @@ void Game::run(){
 								cout << "Ei ole mitään hyökättävää" << endl;
 							}
 						}
-						
-
-						
 						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
 							
 							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);			

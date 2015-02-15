@@ -51,9 +51,12 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 		if (entityData->mapStruct[entityData->currentLevel].mapData.mapDim[x][y] == '.'){//generates and places 50 random items to 50 random locations
 			int rand;
 			if (entityData->currentLevel == 0){
-				rand=random.generate(1,3);
+				rand=random.generate(1,4);
 				if (rand == 3){
 					rand=7;
+				}
+				if (rand == 4){
+					rand = 12;
 				}
 				Item it(rand);
 				it.setTexture(texture);
@@ -64,6 +67,9 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 				rand=random.generate(1,6);
 				if (rand > 4){
 					rand=rand+2;
+				}
+				if (rand == 4){
+					rand = 12;
 				}
 				Item it(rand);
 				it.setTexture(texture);
