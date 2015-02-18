@@ -38,7 +38,7 @@ public:
 	void CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging);
 	void TrapAttackEnemys(CameraStruct* dataForManaging, AttackCooldownStruct* attackCooldownStruct);
 	bool CanBuildBuildingHere(int CoordX, int CoordY);
-	bool CreateBuilding(string BuildingName, MouseCoordinates coord, int level, SDL_Event event);
+	void CreateBuilding(string BuildingName, int CoordX,int CoordY, int level,UserInterface ui, SDL_Event event);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);
 	void initializeBuildings(Texture* _buildinTexture);
 	void render();
