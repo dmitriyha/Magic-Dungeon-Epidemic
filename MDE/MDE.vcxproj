@@ -48,11 +48,12 @@
     <ClCompile Include="ReadString.cpp" />
     <ClCompile Include="RNG.cpp" />
     <ClCompile Include="sound_play.cpp" />
-    <ClCompile Include="StoneTower.cpp" />
+    <ClCompile Include="BladeTrap.cpp" />
     <ClCompile Include="TextTexture.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Window.cpp" />
+    <ClCompile Include="WoodBarricade.cpp" />
     <ClCompile Include="WriteFile.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -93,11 +94,12 @@
     <ClInclude Include="ReadString.h" />
     <ClInclude Include="RNG.h" />
     <ClInclude Include="sound_play.h" />
-    <ClInclude Include="StoneTower.h" />
+    <ClInclude Include="BladeTrap.h" />
     <ClInclude Include="TextTexture.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="UserInterface.h" />
     <ClInclude Include="Window.h" />
+    <ClInclude Include="WoodBarricade.h" />
     <ClInclude Include="WriteFile.h" />
   </ItemGroup>
   <ItemGroup>

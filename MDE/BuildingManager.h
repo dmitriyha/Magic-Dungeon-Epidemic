@@ -10,7 +10,8 @@
 #include "Texture.h"
 #include "UserInterface.h"
 #include "PlaceItemsAndEnemies.h"
-#include "MouseCoordinates.h"
+#include "AttackCooldownStruct.h"
+
 
 using namespace std;
 
@@ -26,11 +27,16 @@ public:
 	deque<Building*> buildingList;
 	Player* player;
 	int cursor;
+	int trapCoord[17];
 
 
-
-
+	Enemy* GetEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY);
+	void BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building);
+	bool CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Building* building);
+	void KillEnemy(int coordX, int coordY, CameraStruct *dataForManaging);
 	BuildingManager();
+	void CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging);
+	void TrapAttackEnemys(CameraStruct* dataForManaging, AttackCooldownStruct* attackCooldownStruct);
 	bool CanBuildBuildingHere(int CoordX, int CoordY);
 	bool CreateBuilding(string BuildingName, MouseCoordinates coord, int level, SDL_Event event);
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);

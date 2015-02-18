@@ -38,21 +38,29 @@ void UserInterface::initialize(CameraStruct* _camData, Texture* _backgroundTextu
 
 	SDL_Rect stoneTowerSprite{ 0, 65, 121, 174 };
 
-	stoneTower.setTexture(t,stoneTowerSprite);
-	stoneTower.setLocation(705, 307);
+	bladetrap.setTexture(t, stoneTowerSprite);
+	bladetrap.setLocation(705, 307);
 
 	SDL_Rect spikeTrapSprite{ 0, 0, 121, 65 };
 
 	spikeTrap.setTexture(t, spikeTrapSprite);
 	spikeTrap.setLocation(770, 307);
+
+	//SDL_Rect woodBarricadeSprite{ 0, 0, 121, 65 };
+	SDL_Rect woodBarricadeSprite{ 37, 240, 52, 61 };
+	woodBarricade.setTexture(t, woodBarricadeSprite);
+	woodBarricade.setLocation(705, 390);
 }
 
 string UserInterface::eventHandler(SDL_Event event){
-	if (stoneTower.isPressed(event)){
-		return "stonetower";
+	if (bladetrap.isPressed(event)){
+		return "bladetrap";
 	}
 	else if (spikeTrap.isPressed(event)){
 		return "spiketrap";
+	}
+	else if (woodBarricade.isPressed(event)){
+		return "woodbarricade";
 	}
 	else{
 		return "none";
@@ -71,8 +79,9 @@ void UserInterface::render(){
 	background();//render the bacground of the user interface
 	text();//render the text of the user interface
 
-	stoneTower.render();
+	bladetrap.render();
 	spikeTrap.render();
+	woodBarricade.render();
 
 	SDL_RenderPresent(backroundTexture->getRenderer()); //finally show everything
 

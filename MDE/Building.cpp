@@ -22,16 +22,23 @@ int Building::GetCooldown(){
 	return attackCooldown;
 }
 
+void Building::SetCooldown(int minus){
+	attackCooldown=(attackCooldown - minus);
+}
 
 /** \brief Renders the building
 *
 *
 */
 void Building::render(){
-
+	
 	SDL_Rect charLoc = { coord.x * TILE_WIDTH, ((coord.y - 1) * TILE_HEIGHT), TILE_WIDTH, TILE_HEIGHT * 2 };
-
-	SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	if (health > 0){
+		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSprite, &charLoc);
+	}
+	else {
+	
+	}
 }
 
 
@@ -158,21 +165,6 @@ int Building::get_level(){
 	return level;
 }
 
-//
-///** \brief handels the fighting
-//*
-//* \param building* building: The defending building. The one who is receiving damage
-//*
-//*/
-//int Building::fight(Character* chracter){
-//	//damage to be inflicted
-//	int damage = 0;
-//	
-//		damage = 3;
-//		chracter->Health(damage);
-//
-//	return damage;
-//}
 Building::~Building()
 {
 }

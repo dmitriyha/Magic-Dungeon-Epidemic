@@ -20,6 +20,7 @@ protected:
 	int level=1;
 	int next_level=400;
 	int lvl_points=0;
+	int rangedAttackCooldown;
 public:
 	Player();
 
@@ -31,6 +32,8 @@ public:
 
 	int Health(void);
 	bool Health(int);
+	void SetCooldown(int minus);
+	int GetCooldown();
 
 	int getID();
 

@@ -17,7 +17,9 @@ class ArtificialIntelligence{
 	//CameraStruct* dataForManaging;
 public:
 	ArtificialIntelligence();
-	int IfThereIsBuilding(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord);
+	bool EnemyAttacksBuildingCheck(int coordX, int coordY, CameraStruct* dataForManaging);
+	bool IsBuildingHere(int coordX, int coordY, CameraStruct* dataForManaging);
+	int GetBuildingType(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord);
 	int direction(LocationCoordinates  PlayerLoc, LocationCoordinates coord, EntityData liveEntities, MapData maplayer, CameraStruct* dataForManaging);
 	~ArtificialIntelligence();
 };

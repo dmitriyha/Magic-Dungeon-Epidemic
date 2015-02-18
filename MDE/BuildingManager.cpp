@@ -18,6 +18,183 @@ void BuildingManager::render(){
 }
 
 
+void BuildingManager::TrapAttackEnemys(CameraStruct* dataForManaging, AttackCooldownStruct* attackCooldownStruct){
+	int CoordX, CoordY,j=0,enemyCoordX,enemyCoordY,k=0;
+	int numberOfBuildinsTotal = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.size();
+	
+	for (int j=0; j < numberOfBuildinsTotal; j++){
+		try{
+			Building* building = new Building();
+			building = dataForManaging->mapStruct[dataForManaging->currentLevel].entityDataBuildings.building.at(j);
+		if (building->getType() == 1){
+			if (building->Health()>0){
+				if (CooldownCheck(attackCooldownStruct, building) == true){
+					CoordX = building->getCoords().x;
+					CoordY = building->getCoords().y;
+					CheckIfThereIsEnemysInRange(CoordX, CoordY, dataForManaging);
+					
+					if (trapCoord[16] != 0){
+						if (building->GetCooldown() == 0){
+										building->SetCooldown(-4);
+						}
+							attackCooldownStruct->attackCooldowns.push_back(building);
+				
+								for (int i = 0; i < 8; i++){
+									if (trapCoord[k] != 0){
+										enemyCoordX = trapCoord[k];
+										enemyCoordY = trapCoord[k + 1];
+										BladeTrapHitsEnemy(dataForManaging, enemyCoordX, enemyCoordY, attackCooldownStruct, building);
+									}
+									k += 2;
+
+
+								}					
+						}
+					}
+				}
+			}
+			}
+			catch (exception& e){
+				cout << endl << "BuildingsManager heitti " << e.what() << endl;
+				cout << "Kaatumisessa rakennusnumero oli " << j << endl;
+				cout << "Kaatumisessa rakennuksien maara oli " << numberOfBuildinsTotal << endl;
+
+			}
+	}
+}
+
+
+void BuildingManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building){
+	try{
+			dataForManaging->userInterfaceStruct.buildingDamage = building->Damage();
+			Enemy* enemy = new Enemy();
+			enemy=GetEnemy(dataForManaging, EnemyCoordX, EnemyCoordY);
+			enemy->Health(building->Damage());
+
+			if (enemy->Health() <= 0){
+				KillEnemy(EnemyCoordX, EnemyCoordY, dataForManaging);
+				cout << "Vihollinen kuoli ansaan" << endl;
+			}
+			cout << "Ansan damage on " << building->Damage() << endl;
+	
+	}
+	catch (exception& e){
+		cout << endl << "BuildingsManager heitti " << e.what() << endl;
+	}
+		
+	
+}
+
+
+/** \brief gets enemy at coordinates EnemyCoordX and EnemyCoordY
+*
+* \param dataForManaging is CameraStruct object
+* \param currentdepth is the current depth/level
+* \param EnemyCoordX is the enemy coordinate x
+* \param EnemyCoordY is the enemy coordinate y
+*
+* \return enemy object which is at coordinates EnemyCoordX and EnemyCoordY
+*/
+Enemy* BuildingManager::GetEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY){
+	int enemyID;
+	Enemy* enemy = new Enemy();
+	enemy = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.enemy[dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[EnemyCoordX][EnemyCoordY]];
+	return enemy;
+}
+
+/** \brief Kills the enemy. Removes enemy from the alive array to dead array.
+*
+* \param coordX is the enemy coordinates x
+* \param coordY is the enemy coordinates y
+*
+* \return True if cooldown is 0. Returns false is cooldown is more than 0.
+*/
+void BuildingManager::KillEnemy(int coordX, int coordY, CameraStruct *dataForManaging){
+	dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.dead[coordX][coordY] = dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY];
+	dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[coordX][coordY] = 0;
+}
+
+void BuildingManager::CheckIfThereIsEnemysInRange(int trapCoordX, int trapCoordY, CameraStruct *dataForManaging){
+	int numberOfBladeTraps = 0;
+	memset(trapCoord, 0, sizeof(trapCoord));
+
+	
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY]>1){
+		trapCoord[0] = (trapCoordX + 1);
+		trapCoord[1] = trapCoordY;
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY]>1){
+		trapCoord[2] = (trapCoordX - 1);
+		trapCoord[3] = trapCoordY;
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY + 1]>1){
+		trapCoord[4] = trapCoordX;
+		trapCoord[5] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX][trapCoordY - 1]>1){
+		trapCoord[6] = trapCoordX;
+		trapCoord[7] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY + 1]>1){
+		trapCoord[8] = (trapCoordX + 1);
+		trapCoord[9] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX + 1][trapCoordY - 1]>1){
+		trapCoord[10] = (trapCoordX + 1);
+		trapCoord[11] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY - 1]>1){
+		trapCoord[12] = (trapCoordX - 1);
+		trapCoord[13] = (trapCoordY - 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+	if (dataForManaging->mapStruct[dataForManaging->currentLevel].entityData.live[trapCoordX - 1][trapCoordY + 1]>1){
+		trapCoord[14] = (trapCoordX - 1);
+		trapCoord[15] = (trapCoordY + 1);
+		numberOfBladeTraps++;
+		trapCoord[16] = numberOfBladeTraps;
+	}
+
+
+}
+
+/** \brief Checks if trap has a cooldown still
+*
+* \param attackCooldownStruct handels traps attack cooldown
+* \param building which cooldown we want to check
+*
+* \return True if cooldown is 0. Returns false is cooldown is more than 0.
+*/
+bool BuildingManager::CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Building* building){
+	int i;
+	int size = attackCooldownStruct->attackCooldowns.size();
+	int cooldown;
+
+	for (i = 0; i < size; i++){
+		if (building == attackCooldownStruct->attackCooldowns.at(i)){
+			if (building->GetCooldown() > 0){
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+	}
+	return true;
+}
 
 /** \brief CreateBuilding: Creates a Building.
 *
@@ -26,37 +203,88 @@ void BuildingManager::render(){
 * \param int depth: Current depth or level. Level 1 is depth=1
 *
 */
-bool BuildingManager::CreateBuilding(string buildingName, MouseCoordinates mouseClick, int depth, SDL_Event event){
+void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY, int depth, UserInterface ui, SDL_Event event){
+
+	if (BuildingName != "none"){
 	
-	if (buildingName != "none" ){
-		if (mouseClick.button == RIGHT && GetBuildingCooldown()){
-			if (CanBuildBuildingHere(mouseClick.x, mouseClick.y) == true){
+		
+		if (CanBuildBuildingHere(CoordX,CoordY) == true){
 
-				Building* tower = BuildingFactory::create_building(buildingName);
-				id++;
-				tower->set_Id(id);
-				tower->set_level(depth);
-				tower->setTexture(building);
-				tower->setCoords(mouseClick.x, mouseClick.y);
+			Building* bladeTrap = BuildingFactory::create_building(BuildingName);
+			id++;
+			bladeTrap->set_Id(id);
+			bladeTrap->set_level(depth);
+			bladeTrap->setTexture(building);
+			bladeTrap->setCoords(CoordX, CoordY);
+			
+			mapdata.buildingDataMap[CoordX][CoordY]=1; 
 
-				mapdata.buildingDataMap[mouseClick.x][mouseClick.y] = 1;
+			buildingList.push_back(bladeTrap);
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+			cout << "Rakennus on laitettu\n";
 
-				buildingList.push_back(tower);
-				camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
-				cout << "Rakennus on laitettu\n";
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+			Collision(CoordX, CoordY, id);
+			cursor++;
 
-				camData->mapStruct[camData->currentLevel].entityDataBuildings.live[mouseClick.x][mouseClick.y] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
-				Collision(mouseClick.x, mouseClick.y, id);
-				cursor++;
+			SetBuildingCooldown();
+			nextBuilding = ui.eventHandler(event);
 
-				SetBuildingCooldown();
-				return true;
-			}
-			else { return false; }
 		}
-		else { return false; }
+		
 	}
-	else { return false; }
+	if (BuildingName == "spiketrap"){
+
+
+		if (CanBuildBuildingHere(CoordX, CoordY) == true){
+
+			Building* spiketrap = BuildingFactory::create_building("spiketrap");
+			id++;
+			spiketrap->set_Id(id);
+			spiketrap->set_level(depth);
+			spiketrap->setTexture(building);
+			spiketrap->setCoords(CoordX, CoordY);
+
+			mapdata.buildingDataMap[CoordX][CoordY] = 1;
+
+			buildingList.push_back(spiketrap);
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+			cout << "Rakennus on laitettu\n";
+
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+			Collision(CoordX, CoordY,id);
+			cursor++;
+			nextBuilding = ui.eventHandler(event);
+		}
+
+	}
+	if (BuildingName == "woodbarricade"){
+
+
+		if (CanBuildBuildingHere(CoordX, CoordY) == true){
+
+			Building* woodbarricade = BuildingFactory::create_building("woodbarricade");
+			id++;
+			woodbarricade->set_Id(id);
+			woodbarricade->set_level(depth);
+			woodbarricade->setTexture(building);
+			woodbarricade->setCoords(CoordX, CoordY);
+
+			mapdata.buildingDataMap[CoordX][CoordY] = 1;
+
+			buildingList.push_back(woodbarricade);
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+			cout << "Rakennus on laitettu\n";
+
+			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+			Collision(CoordX, CoordY, id);
+			cursor++;
+			nextBuilding = ui.eventHandler(event);
+		}
+
+	}
+	
+	
 }
 
 /** \brief Collision: Creates collision to the Building.
@@ -227,7 +455,7 @@ deque<string> BuildingManager::getBuildingListForGeneration(int depth){
 
 	deque<string> buildings;
 	if (depth == 1){
-		buildings.push_back("stonetower");
+		buildings.push_back("bladetrap");
 	}
 	else if (depth == 2){
 		/*characters.push_back("goblin");

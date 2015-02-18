@@ -28,8 +28,9 @@ class UserInterface{
 	//the texture used for text rendering
 	TextTexture* carbon18;
 
-	Button stoneTower;
+	Button bladetrap;
 	Button spikeTrap;
+	Button woodBarricade;
 
 public:
 	UserInterface();
