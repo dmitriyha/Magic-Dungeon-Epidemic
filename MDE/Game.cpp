@@ -36,15 +36,8 @@ void Game::run(){
 						
 						mouseClick = managePlayer.mouseEventHandler(event);
 
-					/*	cout << "Pelaajan x coordinaatti on " << managePlayer.getPlayerCoord().x << endl;
-						cout << "Pelaajan y coordinaatti on " << managePlayer.getPlayerCoord().y << endl;*/
-						
 						cout << "Hiiren klikkaama x coordinaatti on " << mouseClick.x << endl;
 						cout << "Hiiren klikkaama y coordinaatti on " << mouseClick.y << endl;
-						/*if (Bresenham(managePlayer.getPlayerCoord().x, managePlayer.getPlayerCoord().y, mouseClick.x, mouseClick.y, camData)==true){
-							cout << "Ranged combat palautti true" << endl;
-						}*/
-						//cout << "Pää ase on " << managePlayer.getMainWeaponType() << endl;
 						if (managePlayer.GetRangedCombatCooldown() == true && managePlayer.getMainWeaponType() == "bow"){
 							if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
 								cout << "Aloitetaan ranged combat check" << endl;

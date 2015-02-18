@@ -183,6 +183,15 @@
     <ClCompile Include="BladeTrap.cpp">
       <Filter>Source Files\Buildings</Filter>
     </ClCompile>
+    <ClCompile Include="GoblingKing.cpp">
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="OrcChief.cpp">
+      <Filter>Source Files\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArtificialIntelligence.h">
@@ -319,6 +328,15 @@
     </ClInclude>
     <ClInclude Include="BladeTrap.h">
       <Filter>Header Files\Buildings.h</Filter>
+    </ClInclude>
+    <ClInclude Include="GoblingKing.h">
+      <Filter>Header Files\Enemies.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>Header Files\Enemies.h</Filter>
+    </ClInclude>
+    <ClInclude Include="OrcChief.h">
+      <Filter>Header Files\Enemies.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

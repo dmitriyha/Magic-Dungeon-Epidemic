@@ -19,7 +19,10 @@ using namespace std;
 class EnemyGen{
 	vector<string> getEnemyListForGeneration(int depth);
 public:
+	deque<Enemy*> enemy;
 	EnemyGen( CameraStruct* cam,Texture* texture);
+	int GenerateNormalEnemys(int numberOfEnemies, int id, bool firstEnemy, int currentLevel, Texture* texture);
+	void GenerateBosses(int numberOfBosses, int id, int currentLevel, Texture* texture);
 	
 	~EnemyGen();
 };

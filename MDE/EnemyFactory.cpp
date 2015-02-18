@@ -8,7 +8,7 @@
 *
 */
 Enemy* EnemyFactory::create_enemy(string enemyType, bool firstEnemy){
-
+	//Normal enemys
 	if (enemyType == "goblin"){
 		if (firstEnemy == true){
 			Goblin* goblin = new Goblin();
@@ -22,5 +22,22 @@ Enemy* EnemyFactory::create_enemy(string enemyType, bool firstEnemy){
 		}
 
 	}
+	else if (enemyType == "orc"){
+		Orc* orc = new Orc();
+		orc->set_stats(20, 8, 3, 3, 3, 3, 3, 3, 1);
+		return orc;
+	}
+	//Boses
+	else if (enemyType == "goblingking"){
+		GoblingKing* goblinking = new GoblingKing();
+		goblinking->set_stats(25, 12, 3, 3, 3, 3, 3, 3, 1);
+		return goblinking;
+	}
+	else if (enemyType == "orcchief"){
+		OrcChief* orcChief = new OrcChief();
+		orcChief->set_stats(35, 12, 3, 3, 3, 3, 3, 3, 1);
+		return orcChief;
+	}
+	
 	
 }

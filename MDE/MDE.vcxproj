@@ -33,7 +33,10 @@
     <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goblin.cpp" />
+    <ClCompile Include="GoblingKing.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Orc.cpp" />
+    <ClCompile Include="OrcChief.cpp" />
     <ClCompile Include="SpikeTrap.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="ItemRenderer.cpp" />
@@ -77,7 +80,10 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GlobalDef.h" />
     <ClInclude Include="Goblin.h" />
+    <ClInclude Include="GoblingKing.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Orc.h" />
+    <ClInclude Include="OrcChief.h" />
     <ClInclude Include="SpikeTrap.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemRenderer.h" />
