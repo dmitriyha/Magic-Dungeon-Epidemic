@@ -8,6 +8,13 @@ Goblin::Goblin(){
 	charSpriteDead = { 188, 270, 50, 50 };
 }
 
+string Goblin::GetName(){
+	return name;
+}
+
+string Goblin::GetType(){
+	return type;
+}
 
 void Goblin::setPrimaryWeapon(Item* item){
 	weapon = item;
@@ -27,7 +34,7 @@ void Goblin::setPrimaryWeapon(Item* item){
 * \param ID the ID of this entity
 *
 */
-void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks){
+void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, string names, string types){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -37,6 +44,8 @@ void  Goblin::set_stats(int healths, int strengths, int dexteritys, int witss, i
 	charisma = charismas;
 	awareness = awarenesss;
 	luck = lucks;
+	name = names;
+	type = types;
 }
 
 /** \brief the getter of health

@@ -2,18 +2,12 @@
 
 /** \brief Places the items and enemies on the map
  *
- * \param mapLayer MapLayer object that contains the map data
- * \param baddies the deque with Enemy objects to be put on the map
- * \param level the current level of the dungeon to put the proper items on the ground
+ * \param CameraStruct 
+ * \param Texture Item texture
  */     
-
-
-PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
+PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture, Map* map){
 	RNG random;
-	
-
 	entityData = cam;
-
 	int cursor=0,x=0,y=0;
 	
 	while(y<GRID_HEIGHT){//initialises entityData to 0
@@ -35,9 +29,15 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 		y=random.generate(0,GRID_HEIGHT);//generates the y coordinate
 		
 		if (entityData->mapStruct[entityData->currentLevel].mapData.mapDim[x][y] == '.' && entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] == 0){//sets enemies to random locations
+			if (entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->GetType()=="bossmelee"){
+				PlaceBossesToTheMap(cam, texture, map,cursor);
+				cursor++;
+			}
+			else{
 			entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->setCoords(x, y);
 			entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] = entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->getID();
 			cursor++;
+			}
 		}
 	}
 	cursor=0;
@@ -86,6 +86,68 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture){
 			cursor++;
 		}
 	}
+}
+
+void PlaceItemsAndEnemies::PlaceBossesToTheMap(CameraStruct* cam, Texture* texture, Map* map,int cursor){
+	LocationCoordinates upstairs = {0,0};
+	upstairs=map->GetStairsUpCoord();
+	cout << " Portaitten koordinaatti on "<< upstairs.x << " ja "<< upstairs.y << endl;
+	LocationCoordinates availablePlaceCoord = { 0, 0 };
+
+	availablePlaceCoord = PlaceBossesToTheMapCheck(cam, map,upstairs);
+	if (availablePlaceCoord.x > -1 && availablePlaceCoord.y > -1){
+		entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->setCoords(availablePlaceCoord.x, availablePlaceCoord.y);
+		entityData->mapStruct[entityData->currentLevel].entityData.live[availablePlaceCoord.x][availablePlaceCoord.y] = entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->getID();
+	}
+}
+
+LocationCoordinates PlaceItemsAndEnemies::PlaceBossesToTheMapCheck(CameraStruct* cam, Map* map, LocationCoordinates upstairs){
+	LocationCoordinates availablePlace = { 0, 0 };;
+	int x = upstairs.x;
+	int y = upstairs.y;
+	if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x + 1][y] == '.'&& cam->mapStruct[cam->currentLevel].entityData.live[x + 1][y]<=0){
+		availablePlace.x = x + 1;
+		availablePlace.y = y;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x - 1][y] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x - 1][y] <= 0){
+		availablePlace.x = x - 1;
+		availablePlace.y = y;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x][y + 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x][y + 1] <= 0){
+		availablePlace.x = x;
+		availablePlace.y = y + 1;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x][y - 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x][y - 1] <= 0){
+		availablePlace.x = x;
+		availablePlace.y = y - 1;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x + 1][y + 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x + 1][y + 1] <= 0){
+		availablePlace.x = x + 1;
+		availablePlace.y = y + 1;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x + 1][y - 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x + 1][y - 1] <= 0){
+		availablePlace.x = x + 1;
+		availablePlace.y = y - 1;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x - 1][y - 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x - 1][y - 1] <= 0){
+		availablePlace.x = x - 1;
+		availablePlace.y = y - 1;
+		return availablePlace;
+	}
+	else if (cam->mapStruct[cam->currentLevel].mapData.mapDim[x - 1][y + 1] == '.' && cam->mapStruct[cam->currentLevel].entityData.live[x - 1][y + 1] <= 0){
+		availablePlace.x = x - 1;
+		availablePlace.y = y + 1;
+		return availablePlace;
+	}
+	availablePlace.x = -1;
+	availablePlace.y = -1;
+	return availablePlace;
 }
 
 PlaceItemsAndEnemies::~PlaceItemsAndEnemies(){

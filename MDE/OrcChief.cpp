@@ -9,6 +9,14 @@ OrcChief::OrcChief(){
 }
 
 
+string OrcChief::GetName(){
+	return name;
+}
+
+string OrcChief::GetType(){
+	return type;
+}
+
 void OrcChief::setPrimaryWeapon(Item* item){
 	weapon = item;
 }
@@ -27,7 +35,7 @@ void OrcChief::setPrimaryWeapon(Item* item){
 * \param ID the ID of this entity
 *
 */
-void  OrcChief::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks){
+void OrcChief::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks,string names, string types){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -37,6 +45,8 @@ void  OrcChief::set_stats(int healths, int strengths, int dexteritys, int witss,
 	charisma = charismas;
 	awareness = awarenesss;
 	luck = lucks;
+	name = names;
+	type = types;
 }
 
 /** \brief the getter of health

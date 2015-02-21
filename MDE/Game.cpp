@@ -154,7 +154,7 @@ void Game::initialize(){
 	renderItem.setPointer(camData);
 
 	EnemyGen b(camData, enemyTexture);
-	PlaceItemsAndEnemies c(camData, itemTexture);
+	PlaceItemsAndEnemies c(camData, itemTexture,map);
 
 	map->setRenderer(win.getRenderer());
 

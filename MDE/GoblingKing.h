@@ -4,7 +4,10 @@ class GoblingKing :public Enemy
 {
 public:
 	GoblingKing(void);
-	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks);
+	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, string names, string types);
+
+	string GetName();
+	string GetType();
 
 	int Health(void);
 	bool Health(int);

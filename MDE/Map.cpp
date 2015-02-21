@@ -151,6 +151,9 @@ Map::Map(CameraStruct* cam){
 
 				mapData->mapStruct[mapData->currentLevel].mapData.mapDim[x][y] = 'u';
 				placed = 1;
+				cout << x << " ja " << y<<endl;
+				stairs_up2.x = x;
+				stairs_up2.y = y;
 			}
 		}
 		else if(mapData->currentLevel == 1){
@@ -327,6 +330,10 @@ Texture* Map::getMapAsTexture(){
 
 	SDL_SetRenderTarget(renderer, NULL);
 	return tex;
+}
+
+LocationCoordinates Map::GetStairsUpCoord(){
+	return stairs_up2;
 }
 
 void Map::render(){

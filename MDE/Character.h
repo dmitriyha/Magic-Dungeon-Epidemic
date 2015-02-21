@@ -16,9 +16,10 @@ using namespace std;
 class Character:public Object{
 	int direction;
 protected:
+	string name;
+	string type;
 
 	int health;
-	
 	int strength;
 	int dexterity;
 	int wits;
@@ -28,6 +29,7 @@ protected:
 	int awareness;
 	int luck;
 	int id;
+
 	
 
 	LocationCoordinates coord;
@@ -46,12 +48,12 @@ public:
 	
 	virtual int fight(Character* character);
 //	virtual int fight(Building* building);
-
-	
+	virtual string GetName();
+	virtual string GetType();
 
 	void render();
 
-	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID);
+	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID, string name, string type);
 	
 	virtual int Health(void);
 	virtual bool Health(int);
@@ -60,7 +62,6 @@ public:
 	
 	virtual void setCoords(int, int);
 	virtual LocationCoordinates  getCoords();
-	
 	virtual int Strength();
 	virtual int Dexterity();
 	virtual int Wits();

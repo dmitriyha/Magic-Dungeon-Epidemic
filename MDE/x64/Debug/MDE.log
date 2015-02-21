@@ -1,8 +1,8 @@
-﻿Build started 18.2.2015 16:18:51.
+﻿Build started 21.2.2015 16:53:20.
      1>Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt EnemyGen.cpp
-         EnemyGen.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt PlaceItemsAndEnemies.cpp
+         PlaceItemsAndEnemies.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ArtificialIntelligence.obj
          x64\Debug\Battle.obj
@@ -48,4 +48,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.32
+Time Elapsed 00:00:01.40

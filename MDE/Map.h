@@ -36,14 +36,17 @@ class Map{
 	Texture* tex;
 
 	CameraStruct* mapData;
-	LocationCoordinates stairs_up;
+	
 	LocationCoordinates stairs_down;
+	LocationCoordinates stairs_up;
+	LocationCoordinates stairs_up2;
 public:
+
 	Map(CameraStruct* cam);
 	Texture* getMapAsTexture();
 	void render();
 	void setRenderer(SDL_Renderer* _renderer);
-
+	LocationCoordinates GetStairsUpCoord();
 	
 	~Map();
 };

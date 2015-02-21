@@ -7,7 +7,13 @@ Character::Character(){
 	faceRight = { 128, 0, 64, 64 };
 	faceDown = { 192, 0, 64, 64 };
 }
+string Character::GetName(){
+	return name;
+}
 
+string Character::GetType(){
+	return type;
+}
 /** \brief sets the stats of the Character entity
  *
  * \param int healths: max health
@@ -22,7 +28,7 @@ Character::Character(){
  * \param int ID: the ID of this entity
  *
  */     
-void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID){
+void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID,string names,string types){
 	health=healths;
 	strength=strengths;
 	dexterity=dexteritys;
@@ -33,6 +39,8 @@ void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int
 	awareness=awarenesss;
 	luck=lucks;
 	id=ID;
+	name = names;
+	type = types;
 }
 
 

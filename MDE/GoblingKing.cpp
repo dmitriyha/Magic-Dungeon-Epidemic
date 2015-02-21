@@ -8,6 +8,14 @@ GoblingKing::GoblingKing(){
 	charSpriteDead = { 188, 270, 50, 50 };
 }
 
+string GoblingKing::GetName(){
+	return name;
+}
+
+string GoblingKing::GetType(){
+	return type;
+}
+
 
 void GoblingKing::setPrimaryWeapon(Item* item){
 	weapon = item;
@@ -27,7 +35,7 @@ void GoblingKing::setPrimaryWeapon(Item* item){
 * \param ID the ID of this entity
 *
 */
-void  GoblingKing::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks){
+void  GoblingKing::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, string names, string types){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -37,6 +45,8 @@ void  GoblingKing::set_stats(int healths, int strengths, int dexteritys, int wit
 	charisma = charismas;
 	awareness = awarenesss;
 	luck = lucks;
+	name = names;
+	type = types;
 }
 
 /** \brief the getter of health
@@ -44,8 +54,6 @@ void  GoblingKing::set_stats(int healths, int strengths, int dexteritys, int wit
 * \return the current health
 *
 */
-
-
 int  GoblingKing::Health(void){
 	return health;
 }
@@ -55,7 +63,6 @@ int  GoblingKing::Health(void){
 * \return if the entity is alive, returns true, if dead, returns false
 *
 */
-
 bool  GoblingKing::Health(int damage){
 	health = health - damage;
 	if (health>0){
@@ -71,8 +78,6 @@ bool  GoblingKing::Health(int damage){
 * \return the ID of the entity
 *
 */
-
-
 int  GoblingKing::getID(){
 	return id;
 }
@@ -83,8 +88,6 @@ int  GoblingKing::getID(){
 * \param y the y coordinate on the map
 *
 */
-
-
 void  GoblingKing::setCoords(int x, int y){
 	coord = { x, y };
 }
@@ -94,10 +97,7 @@ void  GoblingKing::setCoords(int x, int y){
 * \return a 2 element array with x and y coordinates
 *
 */
-
-
-
-LocationCoordinates   GoblingKing::getCoords(){
+LocationCoordinates GoblingKing::getCoords(){
 	return coord;
 }
 
@@ -121,8 +121,6 @@ int  GoblingKing::Strength(){
 * \return dexterity attribute
 *
 */
-
-
 int  GoblingKing::Dexterity(){
 	return dexterity;
 }
@@ -132,7 +130,6 @@ int  GoblingKing::Dexterity(){
 * \return Wits attribute
 *
 */
-
 int  GoblingKing::Wits(){
 	return wits;
 }
@@ -142,7 +139,6 @@ int  GoblingKing::Wits(){
 * \return Sanity attribute
 *
 */
-
 int  GoblingKing::Sanity(){
 	return sanity;
 }
@@ -152,7 +148,6 @@ int  GoblingKing::Sanity(){
 * \return Stamina attribute
 *
 */
-
 int  GoblingKing::Stamina(){
 	return stamina;
 }
@@ -162,7 +157,6 @@ int  GoblingKing::Stamina(){
 * \return Charisma attribute
 *
 */
-
 int  GoblingKing::Charisma(){
 	return charisma;
 }
@@ -172,7 +166,6 @@ int  GoblingKing::Charisma(){
 * \return Awareness attribute
 *
 */
-
 int  GoblingKing::Awareness(){
 	return awareness;
 }
@@ -182,7 +175,6 @@ int  GoblingKing::Awareness(){
 * \return Luck attribute
 *
 */
-
 int  GoblingKing::Luck(){
 	return luck;
 }
@@ -191,7 +183,6 @@ int  GoblingKing::Luck(){
 *
 *
 */
-
 void GoblingKing::set_level(int lvl){
 	level = lvl;
 
@@ -204,8 +195,6 @@ void GoblingKing::set_level(int lvl){
 * \return the level of Enemy
 *
 */
-
-
 int GoblingKing::get_level(){
 	return level;
 }

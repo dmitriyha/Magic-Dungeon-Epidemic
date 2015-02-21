@@ -29,7 +29,7 @@
 #define MAX_DEPTH 3
 
 ///the max amount of enemies
-#define MAX_ENEMIES 25
+#define MAX_ENEMIES 0
 
 
 #define SND_FILENAME 0x20000

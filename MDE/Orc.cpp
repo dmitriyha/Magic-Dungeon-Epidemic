@@ -8,7 +8,13 @@ Orc::Orc(){
 	charSpriteDead = { 188, 270, 50, 50 };
 }
 
+string Orc::GetName(){
+	return name;
+}
 
+string Orc::GetType(){
+	return type;
+}
 void Orc::setPrimaryWeapon(Item* item){
 	weapon = item;
 }
@@ -27,7 +33,7 @@ void Orc::setPrimaryWeapon(Item* item){
 * \param ID the ID of this entity
 *
 */
-void  Orc::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks){
+void  Orc::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, string names, string types){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -37,6 +43,8 @@ void  Orc::set_stats(int healths, int strengths, int dexteritys, int witss, int 
 	charisma = charismas;
 	awareness = awarenesss;
 	luck = lucks;
+	name = names;
+	type = types;
 }
 
 /** \brief the getter of health
