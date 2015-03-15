@@ -7,9 +7,11 @@
  */     
 PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture, Map* map){
 	RNG random;
+	LocationCoordinates upstairs = { 0, 0 };
 	entityData = cam;
 	int cursor=0,x=0,y=0;
-	
+	upstairs = map->GetStairsUpCoord();
+	cout << " Portaitten koordinaatti on " << upstairs.x << " ja " << upstairs.y << endl;
 	while(y<GRID_HEIGHT){//initialises entityData to 0
 		if(x<GRID_WIDTH){
 			entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] = 0;
@@ -30,7 +32,7 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture, 
 		
 		if (entityData->mapStruct[entityData->currentLevel].mapData.mapDim[x][y] == '.' && entityData->mapStruct[entityData->currentLevel].entityData.live[x][y] == 0){//sets enemies to random locations
 			if (entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->GetType()=="bossmelee"){
-				PlaceBossesToTheMap(cam, texture, map,cursor);
+				PlaceBossesToTheMap(cam, texture, map,cursor,upstairs);
 				cursor++;
 			}
 			else{
@@ -88,16 +90,15 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture, 
 	}
 }
 
-void PlaceItemsAndEnemies::PlaceBossesToTheMap(CameraStruct* cam, Texture* texture, Map* map,int cursor){
-	LocationCoordinates upstairs = {0,0};
-	upstairs=map->GetStairsUpCoord();
-	cout << " Portaitten koordinaatti on "<< upstairs.x << " ja "<< upstairs.y << endl;
+void PlaceItemsAndEnemies::PlaceBossesToTheMap(CameraStruct* cam, Texture* texture, Map* map, int cursor, LocationCoordinates upstairs){
+
 	LocationCoordinates availablePlaceCoord = { 0, 0 };
 
 	availablePlaceCoord = PlaceBossesToTheMapCheck(cam, map,upstairs);
 	if (availablePlaceCoord.x > -1 && availablePlaceCoord.y > -1){
 		entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->setCoords(availablePlaceCoord.x, availablePlaceCoord.y);
 		entityData->mapStruct[entityData->currentLevel].entityData.live[availablePlaceCoord.x][availablePlaceCoord.y] = entityData->mapStruct[entityData->currentLevel].entityData.enemy[cursor + 2]->getID();
+		cout << "Pomo laitettu karttaan"<<endl;
 	}
 }
 

@@ -5,7 +5,7 @@ EnemyGen::EnemyGen(CameraStruct* cam, Texture* texture){  //generates 'enemies'a
 	int id=0;
 	bool firstEnemy=true;
 	int enemies = MAX_ENEMIES;
-	int boses = 2;
+	int boses = MAX_BOSSENEMIES;
 	int currentLevel = cam->currentLevel + 1;
 	vector<string> characters = getEnemyListForGeneration(currentLevel);
 
@@ -13,7 +13,7 @@ EnemyGen::EnemyGen(CameraStruct* cam, Texture* texture){  //generates 'enemies'a
 	enemies = enemies + 2;
 	//deque<Enemy*> enemy;
 	id=GenerateNormalEnemys(enemies, id, firstEnemy, currentLevel, texture);
-	GenerateBosses(enemies, id, currentLevel, texture);
+	GenerateBosses(boses, id, currentLevel, texture);
 	
 	cam->mapStruct[cam->currentLevel].entityData.enemy = enemy;
 }
@@ -70,7 +70,7 @@ void EnemyGen::GenerateBosses(int numberOfBosses, int startingID, int currentLev
 		//delete npc;
 		i++;
 	}
-	cout << "Peli generoi " << j - MAX_ENEMIES << " verran pomo vihollisia" << endl;
+	cout << "Peli generoi " << numberOfBosses << " verran pomo vihollisia" << endl;
 }
 
 /** \brief This method is

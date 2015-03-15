@@ -27,7 +27,7 @@ class PlaceItemsAndEnemies{
 public:
 	PlaceItemsAndEnemies(CameraStruct* cam,Texture* texture, Map* map);
 	LocationCoordinates PlaceBossesToTheMapCheck(CameraStruct* cam, Map* map, LocationCoordinates upstairs);
-	void PlaceBossesToTheMap(CameraStruct* cam, Texture* texture, Map* map,int cursor);
+	void PlaceBossesToTheMap(CameraStruct* cam, Texture* texture, Map* map, int cursor, LocationCoordinates upstairs);
 	~PlaceItemsAndEnemies();
 };
 
