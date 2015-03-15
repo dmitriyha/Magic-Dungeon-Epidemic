@@ -61,16 +61,16 @@ bool Character::Health(int damage){
 	}
 }
 
-/** \brief renders the character
+/** \brief renders and animates the character
 *
 *
 */
 void Character::render(){
 	lastTickCount = currentTickCount;
-	currentTickCount = SDL_GetTicks();
-	location = { coord.x * TILE_WIDTH, coord.y  * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };
+	currentTickCount = SDL_GetTicks(); //starts the animation counter
+	location = { coord.x * TILE_WIDTH, coord.y  * TILE_HEIGHT, TILE_WIDTH, TILE_HEIGHT };//sets the animation lovation
 	if (health > 0){
-		if (direction == 2){
+		if (direction == 2){//sets the facing direction
 			sprite = faceDown;
 		}
 		else if (direction == 4){
@@ -82,11 +82,11 @@ void Character::render(){
 		else if (direction == 8){
 			sprite = faceUp;
 		}
-		if (moved){
+		if (moved){// checks the moved flag
 			
-			timer += (currentTickCount - lastTickCount);
+			timer += (currentTickCount - lastTickCount); //sets the timer
 
-			if (timer > 200){
+			if (timer > 200){ // depending on the time elapsed, chooses the correct sprite
 				sprite.x = 64;
 				if (timer > 400){
 					sprite.x = 128;
@@ -102,7 +102,7 @@ void Character::render(){
 				}
 			}
 		}
-		Object::render();
+		Object::render();//renders the character
 	}
 	else {
 		SDL_RenderCopy(texture->getRenderer(), texture->getTexture(), &charSpriteDead, &location);

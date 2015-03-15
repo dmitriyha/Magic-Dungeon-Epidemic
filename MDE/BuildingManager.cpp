@@ -24,14 +24,14 @@ void BuildingManager::render(){
 * \param string BuildingName: name of the building you want to build
 * \param MouseCoordinates coord:  coordinates, where you want to build your building and the button pressed
 * \param int depth: Current depth or level. Level 1 is depth=1
-*
+* \return if the bulding was sucessfuly placed or not
 */
 bool BuildingManager::CreateBuilding(string buildingName, MouseCoordinates mouseClick, int depth, SDL_Event event){
 	
-	if (buildingName != "none" ){
-		if (mouseClick.button == RIGHT && GetBuildingCooldown()){
-			if (CanBuildBuildingHere(mouseClick.x, mouseClick.y) == true){
-
+	if (buildingName != "none" ){//if a bulding is selected...
+		if (mouseClick.button == RIGHT && GetBuildingCooldown()){//... and the right button is pressed...
+			if (CanBuildBuildingHere(mouseClick.x, mouseClick.y) == true){//..and you are ble to build there
+				//create the building
 				Building* tower = BuildingFactory::create_building(buildingName);
 				id++;
 				tower->set_Id(id);
@@ -39,17 +39,21 @@ bool BuildingManager::CreateBuilding(string buildingName, MouseCoordinates mouse
 				tower->setTexture(building);
 				tower->setCoords(mouseClick.x, mouseClick.y);
 
+				//place it on the map
 				mapdata.buildingDataMap[mouseClick.x][mouseClick.y] = 1;
 
 				buildingList.push_back(tower);
 				camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
 				cout << "Rakennus on laitettu\n";
 
+				//set it to be alive
 				camData->mapStruct[camData->currentLevel].entityDataBuildings.live[mouseClick.x][mouseClick.y] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
 				Collision(mouseClick.x, mouseClick.y, id);
 				cursor++;
 
+				//set the cooldown
 				SetBuildingCooldown();
+				//return success
 				return true;
 			}
 			else { return false; }
