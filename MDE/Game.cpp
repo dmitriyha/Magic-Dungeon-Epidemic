@@ -38,15 +38,19 @@ void Game::run(){
 
 						cout << "Hiiren klikkaama x coordinaatti on " << mouseClick.x << endl;
 						cout << "Hiiren klikkaama y coordinaatti on " << mouseClick.y << endl;
-						if (managePlayer.GetRangedCombatCooldown() == true && managePlayer.getMainWeaponType() == "bow"){
-							if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
-								cout << "Aloitetaan ranged combat check" << endl;
-								managePlayer.rangedCombat(mouseClick.x, mouseClick.y,camData);
-								managePlayer.SetRangedCombatCooldown(4);
-								
+						if (managePlayer.getMainWeaponType() == "bow" && managePlayer.GetRangedCombatCooldown() == true){
+							if (managePlayer.Arrows() > 0){
+								if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
+									cout << "Aloitetaan ranged combat check" << endl;
+									managePlayer.rangedCombat(mouseClick.x, mouseClick.y, camData);
+									managePlayer.SetRangedCombatCooldown(4);
+								}
+								else{
+									cout << "There is nothing to attack!" << endl;
+								}
 							}
 							else{
-								cout << "Ei ole mitään hyökättävää" << endl;
+								cout << "You have no arrows left!" << endl;
 							}
 						}
 						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
@@ -88,7 +92,7 @@ void Game::run(){
 	}
 }
 
-
+//Move from the game class
 void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct){
 	int i, cooldown;
 	int size = attackCooldownStruct->attackCooldowns.size();
@@ -104,16 +108,7 @@ void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct)
 	}
 }
 
-
-bool Game::CheckTile(int x, int y, CameraStruct* dataForManaging){
-	if (dataForManaging->mapStruct[dataForManaging->currentLevel].mapData.mapDim[x][y] != '#'){
-		return true;
-	}
-	else{
-		return false;
-	}
-}
-
+//Move from the game class
 void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
 	int i;
 	int size = attackCooldownStruct->attackCooldowns.size();

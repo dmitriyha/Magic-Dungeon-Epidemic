@@ -12,7 +12,6 @@ Inventory::Inventory(){
  * \return returns 1 if successful store, else returns 0
  *
  */     
-
 int Inventory::storeItem(Item item){//inventosy store function
 	if (inventory.size()<15){
 		inventory.push_back(item);//store items at the back of the list
@@ -30,8 +29,6 @@ int Inventory::storeItem(Item item){//inventosy store function
  * \return returns new inventory cursor
  *
  */     
-
-
 int Inventory::inventory_control(int mode, int inventory_cursor){
 	int size=inventory.size();
 	if (mode == 1){ // drop items

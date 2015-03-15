@@ -313,10 +313,19 @@ int PlayerManager::move(int direction){
 }
 
 void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if inventory not full
+
 	LocationCoordinates coord = player->getCoords();
 	while (!dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].empty()){
 		if (player->getInventory()->storeItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front()) == 1){
+			Item pickedItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front());
+			if (pickedItem.getType()=="bow"){
+				int arrows = BASE_ARROWS;
+				AddArrows(arrows);
+				cout << arrows << " arrows was added" << endl;
+			}
 			dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].pop_front();
+			cout << "Item added!" << endl;
+			
 		}
 		else{
 			break;
@@ -565,8 +574,9 @@ void PlayerManager::rangedCombat(int coordX, int coordY, CameraStruct* dataForMa
 	coord.y = coordY;
 	if (CheckIfThereIsObstaclesInRangedCombat(getPlayerCoord().x, getPlayerCoord().y, coordX, coordY, dataForManaging) == true){
 		cout << "Ranged combat onnistui" << endl;
-		fightAndKillEnemy(coord);
-		
+		fightAndKillEnemy(coord);	
+		RemoveArrows(1);
+		cout << " a arrow was used" << endl;
 	}
 	else{
 		cout << "Este esti taistelun" << endl;
@@ -592,7 +602,7 @@ void PlayerManager::fightAndKillEnemy(LocationCoordinates coord){//player attack
 
 void PlayerManager::setPlayerPointer(Player* _player){
 	player = _player;
-	player->set_stats(100,5,5,5,5,5,5,5,5,1);
+	player->set_stats(100,5,5,5,5,5,5,5,5,0,1);
 
 	RNG random;
 
@@ -653,6 +663,29 @@ int PlayerManager::equipItem(int inventory_cursor){
 }
 
 
+/** \brief Arrows remover
+*
+* \param remove Number of arrows you want to remove
+*/
+void PlayerManager::RemoveArrows(int remove){
+	player->RemoveArrows(remove);
+}
+
+/** \brief Arrows getter
+*
+* \return number of ammunition player has
+*/
+int  PlayerManager::Arrows(){
+	return player->Arrows();
+}
+
+/** \brief Arrows adder
+*
+* \param newArrows Number of arrows you want to add
+*/
+void  PlayerManager::AddArrows(int newArrows){
+	player->AddArrows(newArrows);
+}
 
 /** \brief Removes secondary weapon and puts it int the place of the inventory_cursor
 *
@@ -660,8 +693,6 @@ int PlayerManager::equipItem(int inventory_cursor){
 * \return returns the new cursor number
 *
 */
-
-
 int PlayerManager::remove_secondary_weapon(int inventory_cursor){
 	inventory_cursor = player->getInventory()->inventory_control(3, inventory_cursor);
 	return inventory_cursor;

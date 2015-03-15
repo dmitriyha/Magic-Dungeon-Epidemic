@@ -4,8 +4,6 @@
  *
  * \param id the item that this Item object will be, as defined in the item_data.csv
  */     
-
-
 Item::Item(int id){							//defines everything an item needs
 	ReadFile read;
 	ID=id;

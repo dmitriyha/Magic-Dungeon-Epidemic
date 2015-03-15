@@ -1,8 +1,113 @@
-﻿Build started 15.3.2015 12:38:42.
+﻿Build started 15.3.2015 15:27:19.
      1>Project "C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\MDE\MDE.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Map.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IC:\SDL2\include /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ArtificialIntelligence.cpp Battle.cpp BattleHandler.cpp BladeTrap.cpp Building.cpp BuildingFactory.cpp BuildingManager.cpp Button.cpp Character.cpp EnemyFactory.cpp EnemyGen.cpp EnemyManager.cpp Game.cpp Goblin.cpp GoblingKing.cpp Inventory.cpp Item.cpp ItemRenderer.cpp Manager.cpp Map.cpp Object.cpp Orc.cpp OrcChief.cpp PlaceItemsAndEnemies.cpp PlayerManager.cpp RNG.cpp SpikeTrap.cpp TextTexture.cpp Texture.cpp UserInterface.cpp Window.cpp WoodBarricade.cpp enemy.cpp main.cpp player.cpp
+         player.cpp
+     1>player.cpp(261): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>player.cpp(264): warning C4244: '=' : conversion from 'double' to 'int', possible loss of data
+     1>player.cpp(283): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         PlayerManager.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>PlayerManager.cpp(15): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>PlayerManager.cpp(47): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>PlayerManager.cpp(634): warning C4267: 'return' : conversion from 'size_t' to 'int', possible loss of data
+         Character.cpp
+         Generating Code...
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\playermanager.cpp(195): warning C4715: 'PlayerManager::mouseEventHandler' : not all control paths return a value
+         Compiling...
+         main.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+         enemy.cpp
+         WoodBarricade.cpp
+         Window.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         UserInterface.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         Texture.cpp
+         TextTexture.cpp
+         SpikeTrap.cpp
+     1>SpikeTrap.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         RNG.cpp
+     1>RNG.cpp(10): warning C4244: 'argument' : conversion from 'std::chrono::system_clock::rep' to 'unsigned int', possible loss of data
+         PlaceItemsAndEnemies.cpp
+         OrcChief.cpp
+         Orc.cpp
+         Object.cpp
          Map.cpp
+         Manager.cpp
+         ItemRenderer.cpp
+         Item.cpp
+         Inventory.cpp
+     1>Inventory.cpp(33): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         GoblingKing.cpp
+         Goblin.cpp
+         Generating Code...
+         Compiling...
+         Game.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+     1>Game.cpp(98): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>Game.cpp(114): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+         EnemyManager.cpp
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82): warning C4005: 'SND_ASYNC' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42) : see previous definition of 'SND_ASYNC'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85): warning C4005: 'SND_LOOP' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41) : see previous definition of 'SND_LOOP'
+     1>C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91): warning C4005: 'SND_FILENAME' : macro redefinition
+                 c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(40): warning C4005: 'SND_FILENAME' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(91) : see previous definition of 'SND_FILENAME'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(41): warning C4005: 'SND_LOOP' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(85) : see previous definition of 'SND_LOOP'
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\GlobalDef.h(42): warning C4005: 'SND_ASYNC' : macro redefinition
+                 C:\Program Files (x86)\Windows Kits\8.1\Include\um\playsoundapi.h(82) : see previous definition of 'SND_ASYNC'
+     1>EnemyManager.cpp(11): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(22): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(20): warning C4101: 'combatXorYCoordinate' : unreferenced local variable
+     1>EnemyManager.cpp(331): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>EnemyManager.cpp(332): warning C4101: 'cooldown' : unreferenced local variable
+         EnemyGen.cpp
+         EnemyFactory.cpp
+         Button.cpp
+         BuildingManager.cpp
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\UserInterface.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>BuildingManager.cpp(23): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>BuildingManager.cpp(99): warning C4101: 'enemyID' : unreferenced local variable
+     1>BuildingManager.cpp(183): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
+     1>BuildingManager.cpp(184): warning C4101: 'cooldown' : unreferenced local variable
+         BuildingFactory.cpp
+         Building.cpp
+         BladeTrap.cpp
+     1>BladeTrap.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         BattleHandler.cpp
+         Battle.cpp
+         ArtificialIntelligence.cpp
+         Generating Code...
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\buildingfactory.cpp(31): warning C4715: 'BuildingFactory::create_building' : not all control paths return a value
+     1>c:\users\joonas\documents\github\magic-dungeon-epidemic\mde\enemyfactory.cpp(43): warning C4715: 'EnemyFactory::create_enemy' : not all control paths return a value
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2\lib\x64 SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib winmm.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Joonas\Documents\GitHub\Magic-Dungeon-Epidemic\x64\Debug\MDE.lib" /MACHINE:X64 x64\Debug\ArtificialIntelligence.obj
          x64\Debug\Battle.obj
@@ -48,4 +153,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.74
+Time Elapsed 00:00:27.89

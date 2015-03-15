@@ -28,7 +28,7 @@ public:
 
 	Inventory* getInventory();
 
-	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID);
+	void set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks,int arrows, int ID);
 
 	int Health(void);
 	bool Health(int);
@@ -48,6 +48,9 @@ public:
 	int Charisma();
 	int Awareness();
 	int Luck();
+	int Arrows();
+	void AddArrows(int moreArrows);
+	void RemoveArrows(int remove);
 
 	void setPrimaryWeapon(Item item);
 

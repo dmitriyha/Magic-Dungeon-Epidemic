@@ -32,7 +32,7 @@ void Player::SetCooldown(int minus){
 * \param ID the ID of this entity
 *
 */
-void  Player::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks, int ID){
+void  Player::set_stats(int healths, int strengths, int dexteritys, int witss, int sanitys, int staminas, int charismas, int awarenesss, int lucks,int arrows, int ID){
 	health = healths;
 	strength = strengths;
 	dexterity = dexteritys;
@@ -92,6 +92,40 @@ int  Player::Health(void){
 	return health;
 }
 
+/** \brief Arrows remover
+*
+* \param remove Number of arrows you want to remove
+*/
+void Player::RemoveArrows(int remove){
+	if (arrows>0){
+	arrows -= remove;
+	}
+	else{
+		cout << "Laitoit väärän arvon RemoveArrows metodiin";
+	}
+}
+
+
+/** \brief Arrows getter
+*
+* \return number of ammunition player has
+*/
+int  Player::Arrows(){
+	return arrows;
+}
+
+/** \brief Arrows adder
+*
+* \param newArrows Number of arrows you want to add
+*/
+void  Player::AddArrows(int newArrows){
+	if (newArrows){
+		arrows += newArrows;
+	}
+	else{
+		cout << "Laitoit väärän arvon AddArrows metodiin";
+	}
+}
 /** \brief the damage function
 *
 * \return if the entity is alive, returns true, if dead, returns false

@@ -31,6 +31,9 @@
 ///the max amount of enemies
 #define MAX_ENEMIES 25
 
+//Number of arrows player gets, when he pick ups the bow
+#define BASE_ARROWS 4
+
 ///the max amount of enemies
 #define MAX_BOSSENEMIES 2
 

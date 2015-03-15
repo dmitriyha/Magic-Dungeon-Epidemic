@@ -29,6 +29,7 @@ protected:
 	int awareness;
 	int luck;
 	int id;
+	int arrows;
 
 	
 
@@ -53,7 +54,7 @@ public:
 
 	void render();
 
-	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID, string name, string type);
+	virtual void set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int arrows,int ID, string name, string type);
 	
 	virtual int Health(void);
 	virtual bool Health(int);
@@ -70,6 +71,9 @@ public:
 	virtual int Charisma();
 	virtual int Awareness();
 	virtual int Luck();
+	/*virtual int Arrows();
+	virtual void AddArrows(int newArrows);
+	virtual void RemoveArrows(int remove);*/
 
 	virtual void setPrimaryWeapon(Item item);
 

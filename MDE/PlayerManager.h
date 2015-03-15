@@ -50,6 +50,9 @@ public:
 	bool Bresenham(int x1, int y1, int const x2, int const y2, CameraStruct* dataForManaging);
 	int remove_secondary_weapon(int inventory_cursor);
 	void inventoryData();
+	void RemoveArrows(int remove);
+	int Arrows();
+	void AddArrows(int newArrows);
 	bool check_player_death();
 	int IfThereIsBuilding(CameraStruct* dataForManaging, int currentdepth, int xCoord, int yCoord);
 	

@@ -23,7 +23,7 @@ PlaceItemsAndEnemies::PlaceItemsAndEnemies(CameraStruct* cam, Texture* texture, 
 			x=0;
 		}
 	}
-
+	//Create all enemys created in EnemyGen class
 	while (cursor < entityData->mapStruct[entityData->currentLevel].entityData.enemy.size() - 2){
 		int i;
 		for(i=0;i<50000;i++)

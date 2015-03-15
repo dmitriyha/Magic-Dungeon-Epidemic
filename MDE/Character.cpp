@@ -28,7 +28,7 @@ string Character::GetType(){
  * \param int ID: the ID of this entity
  *
  */     
-void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ID,string names,string types){
+void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int sanitys,int staminas,int charismas,int awarenesss,int lucks,int ammos,int ID,string names,string types){
 	health=healths;
 	strength=strengths;
 	dexterity=dexteritys;
@@ -38,6 +38,7 @@ void Character::set_stats(int healths,int strengths,int dexteritys,int witss,int
 	charisma=charismas;
 	awareness=awarenesss;
 	luck=lucks;
+	arrows = ammos;
 	id=ID;
 	name = names;
 	type = types;
@@ -137,12 +138,7 @@ LocationCoordinates  Character::getCoords(){
 int Character::Strength(){
 	return strength;
 }
-
-/** \brief dexterity getter
- *
- * \return dexterity attribute
- *
- */     
+    
 
 
 int Character::Dexterity(){
