@@ -92,7 +92,7 @@ void Game::run(){
 	}
 }
 
-//Move from the game class
+//Todo:Move from the game class
 void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct){
 	int i, cooldown;
 	int size = attackCooldownStruct->attackCooldowns.size();
@@ -108,7 +108,7 @@ void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct)
 	}
 }
 
-//Move from the game class
+//Todo:Move from the game class
 void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
 	int i;
 	int size = attackCooldownStruct->attackCooldowns.size();

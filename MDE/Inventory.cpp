@@ -122,7 +122,6 @@ int Inventory::inventory_control(int mode, int inventory_cursor){
  * \param remove the item in this slot
  *
  */     
-
 void Inventory::removeItem(int rmItem){
 	if (rmItem > 0){
 		inventory.erase(inventory.begin() + (rmItem - 1));//remove the specified item
@@ -134,7 +133,6 @@ void Inventory::removeItem(int rmItem){
  * \return the dropped item to put on the ground
  *
  */     
-
 Item Inventory::dropped_item(){
 	return dropped_Item;
 }

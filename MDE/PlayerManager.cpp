@@ -316,12 +316,20 @@ void PlayerManager::checkTileForItems(){//checks tile for items and picks up, if
 
 	LocationCoordinates coord = player->getCoords();
 	while (!dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].empty()){
-		if (player->getInventory()->storeItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front()) == 1){
+		if (player->getInventory()->storeItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front()) == 1){//Picks the item. This may need fixin
 			Item pickedItem(dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].front());
 			if (pickedItem.getType()=="bow"){
 				int arrows = BASE_ARROWS;
 				AddArrows(arrows);
 				cout << arrows << " arrows was added" << endl;
+			}
+			if (pickedItem.getType() == "arrow"){
+				int arrows = BASE_ARROWS;
+				AddArrows(arrows);
+				cout << arrows << " arrows was added" << endl;
+				int cursor;
+				cursor = player->getInventory()->getList().size();
+				player->getInventory()->inventory_control(1,cursor);//No need to keep arrows in the inventory list. 
 			}
 			dataForManaging->mapStruct[dataForManaging->currentLevel].itemData.itemDataMap[coord.x][coord.y].pop_front();
 			cout << "Item added!" << endl;

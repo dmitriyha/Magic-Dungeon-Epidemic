@@ -10,3 +10,4 @@
 10,Health potion.,Heals you For 10 HP.,10,5,health_potion,0,192
 11,Gold.,Shiny.,0,500,gold,64,192
 12,Bow,Shoots arrows.,2,1,bow,128,0
+13,Arrow,Arrows for bows,0,0,arrow,193,0
