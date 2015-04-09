@@ -63,6 +63,36 @@ void BuildingManager::TrapAttackEnemys(CameraStruct* dataForManaging, AttackCool
 	}
 }
 
+void BuildingManager::BuildingCooldownCheck(){
+	if (GetBuildingCooldown() == false){
+		buildingCooldown--;
+		cout << "Rakentamis cooldown on " << buildingCooldown << "\n";
+	}
+}
+
+void BuildingManager::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
+	int i;
+	int size = attackCooldownStruct->attackCooldowns.size();
+	int cooldown1, cooldown2;
+	Building* building = new Building;
+	//V‰hennet‰‰n cooldownia
+	for (i = 0; i < size; i++){
+		building = attackCooldownStruct->attackCooldowns.at(i);
+		cooldown1 = building->GetCooldown();
+		//V‰hent‰‰ 1 rakennuksen cooldownista
+		building->SetCooldown(1);
+		cout << "TrapAttackCooldownia on vahennetty. Cooldown on " << cooldown1 << endl;
+	}
+	//tarkistetaan, ett‰ cooldown on suurempi kuin 0
+	for (i = 0; i < size; i++){
+		building = attackCooldownStruct->attackCooldowns.at(i);
+		cooldown2 = building->GetCooldown();
+		if (cooldown2 == 0){
+			attackCooldownStruct->attackCooldowns.erase(attackCooldownStruct->attackCooldowns.begin() + i);
+		}
+	}
+}
+
 
 void BuildingManager::BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building){
 	try{
@@ -196,6 +226,10 @@ bool BuildingManager::CooldownCheck(AttackCooldownStruct* attackCooldownStruct, 
 	return true;
 }
 
+bool BuildingManager::BuildingWasBuilt(){
+	return buildingwasbuilt;
+}
+
 /** \brief CreateBuilding: Creates a Building.
 *
 * \param string BuildingName: name of the building you want to build
@@ -207,29 +241,30 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 
 	if (BuildingName != "none"){
 	
-		
-		if (CanBuildBuildingHere(CoordX,CoordY) == true){
+		if (BuildingName == "bladetrap"){
+			if (CanBuildBuildingHere(CoordX,CoordY) == true){
 
-			Building* bladeTrap = BuildingFactory::create_building(BuildingName);
-			id++;
-			bladeTrap->set_Id(id);
-			bladeTrap->set_level(depth);
-			bladeTrap->setTexture(building);
-			bladeTrap->setCoords(CoordX, CoordY);
+				Building* bladeTrap = BuildingFactory::create_building(BuildingName);
+				id++;
+				bladeTrap->set_Id(id);
+				bladeTrap->set_level(depth);
+				bladeTrap->setTexture(building);
+				bladeTrap->setCoords(CoordX, CoordY);
 			
-			mapdata.buildingDataMap[CoordX][CoordY]=1; 
+				mapdata.buildingDataMap[CoordX][CoordY]=1; 
 
-			buildingList.push_back(bladeTrap);
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
-			cout << "Rakennus on laitettu\n";
+				buildingList.push_back(bladeTrap);
+				camData->mapStruct[camData->currentLevel].entityDataBuildings.building.push_back(buildingList.at(cursor));
+				cout << "Rakennus on laitettu\n";
 
-			camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
-			Collision(CoordX, CoordY, id);
-			cursor++;
+				camData->mapStruct[camData->currentLevel].entityDataBuildings.live[CoordX][CoordY] = camData->mapStruct[camData->currentLevel].entityDataBuildings.building[cursor]->getID();
+				Collision(CoordX, CoordY, id);
+				cursor++;
 
-			SetBuildingCooldown();
-			nextBuilding = ui.eventHandler(event);
-
+				SetBuildingCooldown();
+				nextBuilding = ui.eventHandler(event);
+				buildingwasbuilt = true;
+			}
 		}
 		
 	}
@@ -255,6 +290,7 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			Collision(CoordX, CoordY,id);
 			cursor++;
 			nextBuilding = ui.eventHandler(event);
+			buildingwasbuilt = true;
 		}
 
 	}
@@ -280,6 +316,7 @@ void BuildingManager::CreateBuilding(string BuildingName, int CoordX, int CoordY
 			Collision(CoordX, CoordY, id);
 			cursor++;
 			nextBuilding = ui.eventHandler(event);
+			buildingwasbuilt = true;
 		}
 
 	}

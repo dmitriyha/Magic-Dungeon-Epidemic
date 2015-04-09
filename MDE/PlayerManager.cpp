@@ -10,26 +10,50 @@ void PlayerManager::render(){
 	player->render();
 }
 
-void PlayerManager::RangedCombatAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
-	int i;
-	int size = attackCooldownStruct->playerCooldowns.size();
-	int cooldown1, cooldown2;
-	Player* player = new Player;
-	//V‰hennet‰‰n cooldownia
-	for (i = 0; i < size; i++){
-		player = attackCooldownStruct->playerCooldowns.at(i);
-		cooldown1 = player->GetCooldown();
-		//V‰hent‰‰ 1 rakennuksen cooldownista
-		player->SetCooldown(1);
-		cout << "RangedAttackCooldownia on v‰hennetty. Cooldown on " << cooldown1 << endl;
-	}
-	//tarkistetaan, ett‰ cooldown on suurempi kuin 0
-	for (i = 0; i < size; i++){
-		player = attackCooldownStruct->playerCooldowns.at(i);
-		cooldown2 = player->GetCooldown();
-		if (cooldown2 == 0){
-			attackCooldownStruct->playerCooldowns.erase(attackCooldownStruct->playerCooldowns.begin() + i);
+/* \brief Manages players actions(Ranged combat, building buildings)
+*
+* \param event the events
+* \param camData CameraStruct object
+* \param mapdata the MapData object
+* \param managebuilding the BuildingManager object
+* \param ui the UserInterface object
+* \return Buildingmanager object
+*/
+BuildingManager PlayerManager::PlayerActionManager(SDL_Event event, CameraStruct* camData, MapData mapdata, BuildingManager managebuilding, UserInterface ui){
+	MouseCoordinates mouseClick{ -1, -1, NONE };
+	mouseClick = mouseEventHandler(event);
+
+	cout << "Hiiren klikkaama x coordinaatti on " << mouseClick.x << endl;
+	cout << "Hiiren klikkaama y coordinaatti on " << mouseClick.y << endl;
+	if (getMainWeaponType() == "bow" && GetRangedCombatCooldown() == true){
+		if (Arrows() > 0){
+			if (InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
+				cout << "Aloitetaan ranged combat check" << endl;
+				rangedCombat(mouseClick.x, mouseClick.y, camData);
+				SetRangedCombatCooldown(4);
+			}
+			else{
+				cout << "There is nothing to attack!" << endl;
+			}
 		}
+		else{
+			cout << "You have no arrows left!" << endl;
+		}
+	}
+	if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown() == true){
+
+		managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);
+	}
+
+	nextBuilding = ui.eventHandler(event);
+	return managebuilding;
+}
+
+
+void PlayerManager::RangedCombatAttackCooldownCheck(){
+	if (GetRangedCombatCooldown() == false){
+		rangedCombatCooldown--;
+		cout << "Ranged combat cooldown on " << rangedCombatCooldown << "\n";
 	}
 }
 
@@ -37,7 +61,6 @@ void PlayerManager::RangedCombatAttackCooldownCheck(AttackCooldownStruct* attack
 *   
 * \return players coordinates. Save this to example int *coord = . coord[0] is x coordinate, coord[1] is y coordinate.
 */
-
 LocationCoordinates PlayerManager::getPlayerCoord(){
 	return player->getCoords();
 }
@@ -578,6 +601,8 @@ bool PlayerManager::CheckIfThereIsObstaclesInRangedCombat(int x1, int y1, int co
 }
 void PlayerManager::rangedCombat(int coordX, int coordY, CameraStruct* dataForManaging){
 	LocationCoordinates coord;
+	int arrows;
+	arrows = Arrows();
 	coord.x = coordX;
 	coord.y = coordY;
 	if (CheckIfThereIsObstaclesInRangedCombat(getPlayerCoord().x, getPlayerCoord().y, coordX, coordY, dataForManaging) == true){
@@ -585,6 +610,7 @@ void PlayerManager::rangedCombat(int coordX, int coordY, CameraStruct* dataForMa
 		fightAndKillEnemy(coord);	
 		RemoveArrows(1);
 		cout << " a arrow was used" << endl;
+		cout << "player has " << arrows << " left" << endl;
 	}
 	else{
 		cout << "Este esti taistelun" << endl;

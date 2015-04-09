@@ -18,47 +18,15 @@ void Game::run(){
 					break;
 					case SDL_KEYDOWN:
 						managePlayer.eventHandler(event,turn);
-						if (managebuilding.GetBuildingCooldown() == false){
-							managebuilding.buildingCooldown--;
-							cout << "Rakentamis cooldown on " << managebuilding.buildingCooldown << "\n";
-						}
-
-						if (managePlayer.GetRangedCombatCooldown() == false){
-							managePlayer.rangedCombatCooldown--;
-							cout << "Ranged combat cooldown on " << managePlayer.rangedCombatCooldown << "\n";
-						}
+						//Cooldownchecks
+						managebuilding.BuildingCooldownCheck();
 						managebuilding.TrapAttackEnemys(camData, attackCooldownStruct);
-						TrapAttackCooldownCheck(attackCooldownStruct);
-						managePlayer.RangedCombatAttackCooldownCheck(attackCooldownStruct);
-						debugPrintAttackCooldowns(attackCooldownStruct);
+						managebuilding.TrapAttackCooldownCheck(attackCooldownStruct);
+						managePlayer.RangedCombatAttackCooldownCheck();
 						break; 
 					case SDL_MOUSEBUTTONDOWN:
-						
-						mouseClick = managePlayer.mouseEventHandler(event);
-
-						cout << "Hiiren klikkaama x coordinaatti on " << mouseClick.x << endl;
-						cout << "Hiiren klikkaama y coordinaatti on " << mouseClick.y << endl;
-						if (managePlayer.getMainWeaponType() == "bow" && managePlayer.GetRangedCombatCooldown() == true){
-							if (managePlayer.Arrows() > 0){
-								if (managePlayer.InRangeOfRangedWeaponCheck(mouseClick.x, mouseClick.y, 0, camData, mapdata) == true){
-									cout << "Aloitetaan ranged combat check" << endl;
-									managePlayer.rangedCombat(mouseClick.x, mouseClick.y, camData);
-									managePlayer.SetRangedCombatCooldown(4);
-								}
-								else{
-									cout << "There is nothing to attack!" << endl;
-								}
-							}
-							else{
-								cout << "You have no arrows left!" << endl;
-							}
-						}
-						if (mouseClick.button == RIGHT && managebuilding.GetBuildingCooldown()==true){
-							
-							managebuilding.CreateBuilding(nextBuilding, mouseClick.x, mouseClick.y, 1, ui, event);			
-						}
-						
-						nextBuilding = ui.eventHandler(event);
+						//Players actionmanager, that manages players actions
+						managebuilding=managePlayer.PlayerActionManager(event, camData, mapdata, managebuilding, ui);
 						break;
 					case SDL_QUIT:
 						quit = true;
@@ -92,45 +60,6 @@ void Game::run(){
 	}
 }
 
-//Todo:Move from the game class
-void Game::debugPrintAttackCooldowns(AttackCooldownStruct* attackCooldownStruct){
-	int i, cooldown;
-	int size = attackCooldownStruct->attackCooldowns.size();
-	
-	if (size>0){
-		Building* building = new Building;
-		cout << "Tasta alkaa cooldown lista: ";
-		for (i = 0; i < size; i++){
-			building = attackCooldownStruct->attackCooldowns.at(i);
-			cooldown = building->GetCooldown();
-			cout << cooldown << endl;
-		}
-	}
-}
-
-//Todo:Move from the game class
-void Game::TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct){
-	int i;
-	int size = attackCooldownStruct->attackCooldowns.size();
-	int cooldown1, cooldown2;
-	Building* building = new Building;
-	//V‰hennet‰‰n cooldownia
-	for (i = 0; i < size; i++){
-		building=attackCooldownStruct->attackCooldowns.at(i);
-		cooldown1=building->GetCooldown();
-		//V‰hent‰‰ 1 rakennuksen cooldownista
-		building->SetCooldown(1);
-		cout << "TrapAttackCooldownia on vahennetty. Cooldown on " << cooldown1<<endl;
-	}
-	//tarkistetaan, ett‰ cooldown on suurempi kuin 0
-	for (i = 0; i < size; i++){
-		building = attackCooldownStruct->attackCooldowns.at(i);
-		cooldown2 = building->GetCooldown();
-		if (cooldown2 == 0){
-			attackCooldownStruct->attackCooldowns.erase(attackCooldownStruct->attackCooldowns.begin() + i);
-		}
-	}
-}
 
 
 
@@ -175,7 +104,6 @@ void Game::initialize(){
 	building->setRenderer(win.getRenderer());
 	building->makeTexture("img\\Building.png");
 	managebuilding.initializeBuildings(camData, building, player);
-
 
 	Texture* uiTexture = new Texture();
 	uiTexture->setRenderer(win.getRenderer());

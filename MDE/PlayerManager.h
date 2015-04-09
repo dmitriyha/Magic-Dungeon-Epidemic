@@ -18,10 +18,10 @@ class PlayerManager : public Manager
 	Player *player;
 	bool inventory = false;
 	int inventory_cursor = 1;
-	
 	int max_achieved_depth = 0;
 	int kills = 0;
 	int mouseCoordX, mouseCoordY;
+	string nextBuilding = "none";
 	BuildingData *buildData;
 	
 public:
@@ -30,11 +30,13 @@ public:
 	PlayerManager();
 
 	void render();
+	BuildingManager PlayerActionManager(SDL_Event event, CameraStruct* camData, MapData mapdata, BuildingManager managebuilding, UserInterface ui);
 	LocationCoordinates  getPlayerCoord();
 	void eventHandler(SDL_Event event, int& turn);
 	MouseCoordinates mouseEventHandler(SDL_Event event);
 	void setPlayerPointer(Player* _player);
 	int move(int direction);
+	void RangedCombatAttackCooldownCheck();
 	void checkTileForItems();
 	void rangedCombat(int coordX, int coordY, CameraStruct* dataForManaging);
 	string getMainWeaponType();

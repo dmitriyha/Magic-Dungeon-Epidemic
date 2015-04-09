@@ -28,8 +28,9 @@ public:
 	Player* player;
 	int cursor;
 	int trapCoord[17];
+	bool buildingwasbuilt;
 
-
+	bool BuildingWasBuilt();
 	Enemy* GetEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY);
 	void BladeTrapHitsEnemy(CameraStruct* dataForManaging, int EnemyCoordX, int EnemyCoordY, AttackCooldownStruct* attackCooldownStruct, Building* building);
 	bool CooldownCheck(AttackCooldownStruct* attackCooldownStruct, Building* building);
@@ -42,11 +43,13 @@ public:
 	void initializeBuildings(CameraStruct* camData, Texture* _buildinTexture, Player* _player);
 	void initializeBuildings(Texture* _buildinTexture);
 	void render();
+	void TrapAttackCooldownCheck(AttackCooldownStruct* attackCooldownStruct);
 	void SetBuildingCooldown();
 	bool GetBuildingCooldown();
 	deque<string> getBuildingListForGeneration(int depth);
 	void free();
 	void Collision(int CoordX, int CoordY, int id);
+	void BuildingCooldownCheck();
 	int buildingCooldown;
 	~BuildingManager();
 private:
